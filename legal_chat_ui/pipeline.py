@@ -1314,7 +1314,7 @@ def build_supervisor_messages(question: str, ledger: str, draft: str,
     sys = SUPERVISOR_SYSTEM + "\n\n" + FIRST_CLASS_STANDARD
     standards = guides.writing_standards()
     if standards:
-        sys += "\n\nWRITING STANDARDS (from the user's real marker feedback):\n" + standards
+        sys += "\n\nANONYMISED WRITING STANDARDS:\n" + standards
     quality = guides.supervisor_quality(question, slug)
     if quality:  # give the supervisor the citation policy + accuracy/marking gates
         sys += "\n\nApply these quality gates:\n" + quality

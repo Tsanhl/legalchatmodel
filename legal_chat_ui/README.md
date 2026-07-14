@@ -40,6 +40,13 @@ sqlite3 legal_chat_ui/chat.sqlite3 \
   "select c.title, m.role, substr(m.content,1,80) from messages m join conversations c on c.id=m.conversation_id order by m.id;"
 ```
 
+Public mode uses a separate configured SQLite file and adds `users`, `feedback`
+and `usage_events`. Cloudflare Access performs login; the origin validates its
+signed JWT, provisions an opaque user ID and scopes every conversation,
+attachment and Memory query to that ID. Launch it with
+`scripts/public_chat_ui.sh`; see the repository `DEPLOYMENT.md` before exposing
+the hostname.
+
 ## What this is / isn't
 
 - ✅ Local fine-tuned `Qwen2.5-7B` + the deployed V11 specialist adapter.

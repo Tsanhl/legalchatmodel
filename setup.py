@@ -34,6 +34,7 @@ setup(
         "certifi",
         "pypdf",
         "python-docx",
+        "PyJWT[crypto]>=2.10.0",
     ],
     packages=[
         "mlx_lm",

@@ -61,7 +61,7 @@ def feedback_signature(feedback_dir: Path) -> tuple[tuple[str, int, int], ...]:
     if not feedback_dir.exists():
         return tuple()
     rows: list[tuple[str, int, int]] = []
-    for path in sorted(feedback_dir.glob("*/corrections/*.json")):
+    for path in sorted(feedback_dir.rglob("corrections/*.json")):
         try:
             stat = path.stat()
         except FileNotFoundError:

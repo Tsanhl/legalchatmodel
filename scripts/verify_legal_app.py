@@ -5,10 +5,12 @@ from __future__ import annotations
 
 import base64
 import json
+import os
 import re
 import sqlite3
 import sys
 import tempfile
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -20,6 +22,7 @@ import pipeline  # noqa: E402
 import retrieval  # noqa: E402
 import server  # noqa: E402
 from live_private_release_sweep import GENERAL_ENQUIRIES, SQE_PROBES  # noqa: E402
+from promote_feedback_to_lora_data import feedback_paths  # noqa: E402
 
 
 def check(condition: bool, message: str, results: list[dict]) -> None:
@@ -66,6 +69,9 @@ def main() -> None:
     )
     bundled_guides = sorted((ROOT / "legal_chat_ui" / "law_guides").glob("*.md"))
     bundled_text = "\n".join(path.read_text(encoding="utf-8", errors="ignore") for path in bundled_guides)
+    public_prompt_source = (ROOT / "legal_chat_ui" / "pipeline.py").read_text(
+        encoding="utf-8", errors="ignore"
+    )
     check(
         len(bundled_guides) == 51
         and not re.search(
@@ -74,7 +80,8 @@ def main() -> None:
             r"\bLAW\d{4,6}\b|user(?:'s|s) own .{0,30} scripts",
             bundled_text,
             re.I,
-        ),
+        )
+        and not re.search(r"user(?:'s)?\s+real\s+marker\s+feedback", public_prompt_source, re.I),
         "51 bundled legal guides are standalone and contain no known private identifiers",
         results,
     )
@@ -817,6 +824,215 @@ therefore preferable, provided that it preserves the genuine disagreements among
                   "private chat and upload are permanently removed", results)
         finally:
             server.DB_PATH, server.PRIVATE_UPLOAD_ROOT, server.RECORD_ROOT = old
+
+    # Public-mode storage and authorization are exercised without a live
+    # Cloudflare account by provisioning two already-verified test identities.
+    with tempfile.TemporaryDirectory() as tmp:
+        temp = Path(tmp)
+        old = (
+            server.DB_PATH, server.PRIVATE_UPLOAD_ROOT, server.RECORD_ROOT,
+            server.PUBLIC_MODE, server.REQUESTS_PER_HOUR, server.REQUESTS_PER_DAY,
+            server.RETENTION_DAYS,
+        )
+        server.DB_PATH = temp / "public-chat.sqlite3"
+        server.PRIVATE_UPLOAD_ROOT = temp / "uploads"
+        server.RECORD_ROOT = temp / "feedback"
+        server.PUBLIC_MODE = True
+        server.REQUESTS_PER_HOUR = 1
+        server.REQUESTS_PER_DAY = 2
+        server.RETENTION_DAYS = 30
+        try:
+            server.init_db()
+            alice = server.ensure_user("test:alice", "alice@example.test")
+            bob = server.ensure_user("test:bob", "bob@example.test")
+            alice_old = server.create_conversation(
+                "england_wales", "memory", user_id=alice["id"]
+            )
+            alice_now = server.create_conversation(
+                "england_wales", "memory", user_id=alice["id"]
+            )
+            bob_chat = server.create_conversation(
+                "england_wales", "memory", user_id=bob["id"]
+            )
+            server.add_message(alice_old["id"], "user", "ALICE_MEMORY", user_id=alice["id"])
+            server.add_message(alice_old["id"], "assistant", "ALICE_REPLY", user_id=alice["id"])
+            server.add_message(bob_chat["id"], "user", "BOB_PRIVATE_DATA", user_id=bob["id"])
+            server.add_message(bob_chat["id"], "assistant", "BOB_REPLY", user_id=bob["id"])
+            alice_context = server.get_memory_context(
+                alice_now["id"], "remember ALICE_MEMORY BOB_PRIVATE_DATA", user_id=alice["id"]
+            )
+            check(
+                "ALICE_MEMORY" in alice_context
+                and "BOB_PRIVATE_DATA" not in alice_context
+                and server.get_messages(bob_chat["id"], alice["id"]) == []
+                and server.conversation_mode(bob_chat["id"], alice["id"]) is None,
+                "public users cannot read another user's chats or cross-chat memory",
+                results,
+            )
+
+            no_consent = server.save_feedback_record(
+                alice_old["id"], "Question", "Answer", "Needs a clearer test.",
+                user_id=alice["id"], consent_training=False,
+            )
+            no_consent_files = list((server.RECORD_ROOT / alice["id"]).rglob("*.json"))
+            consented = server.save_feedback_record(
+                alice_old["id"], "Question 2", "Answer 2", "Use the correct authority.",
+                user_id=alice["id"], consent_training=True,
+            )
+            with server.db() as conn:
+                feedback_rows = conn.execute(
+                    "SELECT id, consent_training FROM feedback WHERE user_id = ? ORDER BY created_at",
+                    (alice["id"],),
+                ).fetchall()
+            check(
+                no_consent == feedback_rows[0]["id"]
+                and not no_consent_files
+                and Path(consented).is_file()
+                and Path(consented).with_suffix(".json") in feedback_paths(server.RECORD_ROOT)
+                and [row["consent_training"] for row in feedback_rows] == [0, 1],
+                "public feedback is structured and enters training files only after explicit consent",
+                results,
+            )
+
+            stored = server.save_private_upload(
+                alice_old["id"], "user-file.txt",
+                base64.b64encode(b"owned-by-alice").decode(), user_id=alice["id"],
+            )
+            server.add_attachment(
+                alice_old["id"], "user-file.txt", "ALICE_FILE", stored_path=stored,
+                byte_size=14, user_id=alice["id"],
+            )
+            blocked_attachment = False
+            try:
+                server.add_attachment(
+                    alice_old["id"], "intrusion.txt", "NO", user_id=bob["id"]
+                )
+            except PermissionError:
+                blocked_attachment = True
+            check(
+                blocked_attachment
+                and server.get_attachments(alice_old["id"], bob["id"]) == []
+                and server.user_storage_bytes(alice["id"]) == 14,
+                "public uploads and storage quotas are scoped to their owner",
+                results,
+            )
+
+            server.consume_generation_quota(alice["id"])
+            rate_limited = False
+            try:
+                server.consume_generation_quota(alice["id"])
+            except server.QuotaError:
+                rate_limited = True
+            check(rate_limited, "public generation rate limits persist in SQLite", results)
+
+            expired = (datetime.now(timezone.utc) - timedelta(days=31)).isoformat()
+            with server.db() as conn:
+                conn.execute(
+                    "UPDATE conversations SET updated_at = ? WHERE id = ?",
+                    (expired, bob_chat["id"]),
+                )
+            check(
+                server.purge_expired_public_data() == 1
+                and server.conversation_mode(bob_chat["id"], bob["id"]) is None,
+                "public retention cleanup permanently removes expired conversations",
+                results,
+            )
+
+            account_before = server.account_summary(alice)
+            server.delete_user_account(alice["id"])
+            with server.db() as conn:
+                remains = {
+                    "user": conn.execute("SELECT COUNT(*) n FROM users WHERE id = ?", (alice["id"],)).fetchone()["n"],
+                    "chat": conn.execute("SELECT COUNT(*) n FROM conversations WHERE user_id = ?", (alice["id"],)).fetchone()["n"],
+                    "feedback": conn.execute("SELECT COUNT(*) n FROM feedback WHERE user_id = ?", (alice["id"],)).fetchone()["n"],
+                }
+            check(
+                account_before["conversations"] == 2
+                and not any(remains.values())
+                and not Path(stored).exists(),
+                "public account deletion removes identity, chats, feedback and uploads",
+                results,
+            )
+
+            import jwt
+            from cryptography.hazmat.primitives.asymmetric import rsa
+
+            private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+            public_key = private_key.public_key()
+
+            class TestJwksClient:
+                def get_signing_key_from_jwt(self, _token):
+                    return type("SigningKey", (), {"key": public_key})()
+
+            old_auth = (
+                server.CF_ACCESS_TEAM_DOMAIN, server.CF_ACCESS_AUD, server._JWKS_CLIENT,
+                {name: os.environ.get(name) for name in (
+                    "LEGAL_CHAT_DB", "LEGAL_FEEDBACK_ROOT", "LEGAL_PRIVATE_UPLOAD_ROOT",
+                    "LEGAL_RAG_DB", "LEGAL_GUIDANCE_DB",
+                )},
+            )
+            server.CF_ACCESS_TEAM_DOMAIN = "https://test.cloudflareaccess.com"
+            server.CF_ACCESS_AUD = "test-audience"
+            server._JWKS_CLIENT = TestJwksClient()
+            os.environ["LEGAL_CHAT_DB"] = str(server.DB_PATH)
+            os.environ["LEGAL_FEEDBACK_ROOT"] = str(server.RECORD_ROOT)
+            os.environ["LEGAL_PRIVATE_UPLOAD_ROOT"] = str(server.PRIVATE_UPLOAD_ROOT)
+            os.environ["LEGAL_RAG_DB"] = str(temp / "public-rag.sqlite3")
+            os.environ["LEGAL_GUIDANCE_DB"] = str(temp / "public-guidance.sqlite3")
+            issued = datetime.now(timezone.utc)
+            payload = {
+                "sub": "verified-user", "email": "verified@example.test", "type": "app",
+                "iss": server.CF_ACCESS_TEAM_DOMAIN, "aud": [server.CF_ACCESS_AUD],
+                "iat": issued, "exp": issued + timedelta(minutes=5),
+            }
+            valid_token = jwt.encode(payload, private_key, algorithm="RS256")
+            valid_claims = server.decode_access_jwt(valid_token)
+            wrong_audience = dict(payload, aud=["wrong-audience"])
+            bad_token = jwt.encode(wrong_audience, private_key, algorithm="RS256")
+            bad_rejected = False
+            try:
+                server.decode_access_jwt(bad_token)
+            except server.AuthenticationError:
+                bad_rejected = True
+            check(
+                valid_claims["sub"] == "verified-user" and bad_rejected,
+                "public origin validates the Cloudflare Access JWT signature, issuer and audience",
+                results,
+            )
+            safe_public_rag = os.environ["LEGAL_RAG_DB"]
+            os.environ["LEGAL_RAG_DB"] = str(ROOT / "model_database" / "snapshot" / "chroma.sqlite3")
+            private_rag_rejected = False
+            try:
+                server.validate_public_config()
+            except RuntimeError:
+                private_rag_rejected = True
+            os.environ["LEGAL_RAG_DB"] = safe_public_rag
+            check(
+                private_rag_rejected,
+                "public configuration refuses the repository's private RAG database",
+                results,
+            )
+            public_launcher = (ROOT / "scripts" / "public_chat_ui.sh").read_text(encoding="utf-8")
+            check(
+                'LEGAL_RAG_DB="${LEGAL_RAG_DB:-$DATA_DIR/public-rag.sqlite3}"' in public_launcher
+                and 'LEGAL_GUIDANCE_DB="${LEGAL_GUIDANCE_DB:-$DATA_DIR/public-guidance.sqlite3}"'
+                in public_launcher
+                and "model_database" not in public_launcher,
+                "public launcher cannot inherit the private local RAG database",
+                results,
+            )
+            server.CF_ACCESS_TEAM_DOMAIN, server.CF_ACCESS_AUD, server._JWKS_CLIENT, old_env = old_auth
+            for name, value in old_env.items():
+                if value is None:
+                    os.environ.pop(name, None)
+                else:
+                    os.environ[name] = value
+        finally:
+            (
+                server.DB_PATH, server.PRIVATE_UPLOAD_ROOT, server.RECORD_ROOT,
+                server.PUBLIC_MODE, server.REQUESTS_PER_HOUR, server.REQUESTS_PER_DAY,
+                server.RETENTION_DAYS,
+            ) = old
 
     report = {"passed": all(result["passed"] for result in results), "checks": results}
     out = ROOT / "training" / "LEGAL_APP_VERIFICATION.json"

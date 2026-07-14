@@ -1,0 +1,8 @@
+# Copy to ~/.cloudflared/config.yml and replace the placeholders.
+tunnel: YOUR_TUNNEL_UUID
+credentials-file: /absolute/path/to/YOUR_TUNNEL_UUID.json
+
+ingress:
+  - hostname: legal.example.com
+    service: http://127.0.0.1:8765
+  - service: http_status:404

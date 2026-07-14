@@ -134,6 +134,25 @@ Open <http://127.0.0.1:8765/> and wait for **Local model ready**. The base model
 is downloaded from its model host on first use; its own model card and licence
 apply separately.
 
+### Public pilot
+
+Website visitors do **not** download Qwen or this repository. The operator's
+Apple-silicon Mac downloads the base model once and serves browser users through
+an authenticated named tunnel. The public launcher adds verified Cloudflare
+Access identities, per-user chat/Memory isolation, SQL feedback, explicit
+training consent, persistent rate limits, upload quotas and complete account
+deletion:
+
+```bash
+export CF_ACCESS_TEAM_DOMAIN="https://your-team.cloudflareaccess.com"
+export CF_ACCESS_AUD="your-application-audience-tag"
+./scripts/public_chat_ui.sh
+```
+
+This is not deployable through GitHub Pages: Pages cannot run the Python/MLX
+model process. Complete tunnel, Access policy and private-storage instructions
+are in [DEPLOYMENT.md](DEPLOYMENT.md).
+
 Useful options:
 
 ```bash

@@ -1,0 +1,26 @@
+name: Legal public release checks
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-public-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          lfs: true
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install runtime dependencies
+        run: python -m pip install -e .
+      - name: Verify legal quality, privacy and multi-user isolation
+        run: python scripts/verify_legal_app.py
+      - name: Validate deployment scripts
+        run: bash -n scripts/public_chat_ui.sh scripts/backup_public_data.sh

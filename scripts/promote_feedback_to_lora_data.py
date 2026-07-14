@@ -3,7 +3,7 @@
 
 The app saves feedback as:
 
-    user's request record for improvements/<dd-mm-yyyy>/corrections/*.json
+    user's request record for improvements/**/corrections/*.json
 
 This script scans those dated folders, promotes new usable correction records,
 and rebuilds an MLX chat dataset that includes the original legal-answer-flow
@@ -129,6 +129,8 @@ def split_for_key(key: str) -> str:
 
 
 def looks_trainable(payload: dict[str, Any], *, min_chars: int, include_comments: bool) -> tuple[bool, str]:
+    if payload.get("consent_training") is False:
+        return False, "training_consent_not_granted"
     question = clean(payload.get("question"))
     model_output = clean(payload.get("model_output"))
     feedback = clean(payload.get("user_feedback"))
@@ -210,7 +212,9 @@ def training_example(payload: dict[str, Any]) -> dict[str, Any]:
 def feedback_paths(feedback_dir: Path) -> list[Path]:
     if not feedback_dir.exists():
         return []
-    return sorted(feedback_dir.glob("*/corrections/*.json"))
+    # Local records use <date>/corrections; consented public records add an
+    # opaque <user-id>/<date>/corrections level.
+    return sorted(feedback_dir.rglob("corrections/*.json"))
 
 
 def read_jsonl_lines(path: Path) -> list[str]:

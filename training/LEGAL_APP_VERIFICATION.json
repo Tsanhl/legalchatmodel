@@ -256,6 +256,42 @@
     {
       "check": "private chat and upload are permanently removed",
       "passed": true
+    },
+    {
+      "check": "public users cannot read another user's chats or cross-chat memory",
+      "passed": true
+    },
+    {
+      "check": "public feedback is structured and enters training files only after explicit consent",
+      "passed": true
+    },
+    {
+      "check": "public uploads and storage quotas are scoped to their owner",
+      "passed": true
+    },
+    {
+      "check": "public generation rate limits persist in SQLite",
+      "passed": true
+    },
+    {
+      "check": "public retention cleanup permanently removes expired conversations",
+      "passed": true
+    },
+    {
+      "check": "public account deletion removes identity, chats, feedback and uploads",
+      "passed": true
+    },
+    {
+      "check": "public origin validates the Cloudflare Access JWT signature, issuer and audience",
+      "passed": true
+    },
+    {
+      "check": "public configuration refuses the repository's private RAG database",
+      "passed": true
+    },
+    {
+      "check": "public launcher cannot inherit the private local RAG database",
+      "passed": true
     }
   ]
 }

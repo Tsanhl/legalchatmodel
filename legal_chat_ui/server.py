@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Local legal chat UI for the fine-tuned MLX model.
 
-Self-contained, zero extra dependencies (Python stdlib + mlx_lm only).
+Self-contained local mode; public mode additionally validates Cloudflare Access
+JWTs with PyJWT's cryptography extra.
 
 - Loads the base model + your trained LoRA adapter in-process.
 - Serves a chat front-end styled like the source legal app.
@@ -24,9 +25,10 @@ import sqlite3
 import threading
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import urlparse
 
 APP_DIR = Path(__file__).resolve().parent
 STATIC_DIR = APP_DIR / "static"
@@ -42,6 +44,35 @@ RECORD_ROOT = Path(os.environ.get(
 PRIVATE_UPLOAD_ROOT = Path(os.environ.get(
     "LEGAL_PRIVATE_UPLOAD_ROOT", APP_DIR / "private_uploads"
 )).expanduser()
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+# Public mode is deliberately opt-in. Local mode keeps the existing single-owner
+# experience and migrates old conversations to this opaque local identity.
+PUBLIC_MODE = _env_bool("LEGAL_PUBLIC_MODE")
+LOCAL_USER_ID = "local-owner"
+CF_ACCESS_TEAM_DOMAIN = os.environ.get("CF_ACCESS_TEAM_DOMAIN", "").strip().rstrip("/")
+CF_ACCESS_AUD = os.environ.get("CF_ACCESS_AUD", "").strip()
+MAX_JSON_BYTES = int(os.environ.get("LEGAL_MAX_JSON_BYTES", str(16 * 1024 * 1024)))
+MAX_UPLOAD_BYTES = int(os.environ.get("LEGAL_MAX_UPLOAD_BYTES", str(8 * 1024 * 1024)))
+MAX_USER_STORAGE_BYTES = int(os.environ.get("LEGAL_MAX_USER_STORAGE_BYTES", str(50 * 1024 * 1024)))
+MAX_USER_CONVERSATIONS = int(os.environ.get("LEGAL_MAX_USER_CONVERSATIONS", "100"))
+MAX_QUESTION_CHARS = int(os.environ.get("LEGAL_MAX_QUESTION_CHARS", "60000"))
+REQUESTS_PER_HOUR = int(os.environ.get("LEGAL_REQUESTS_PER_HOUR", "20"))
+REQUESTS_PER_DAY = int(os.environ.get("LEGAL_REQUESTS_PER_DAY", "50"))
+RETENTION_DAYS = int(os.environ.get("LEGAL_RETENTION_DAYS", "90"))
+PUBLIC_UPLOAD_SUFFIXES = {
+    ".pdf", ".docx", ".txt", ".md", ".csv", ".png", ".jpg", ".jpeg", ".webp"
+}
+
+_JWKS_CLIENT = None
+_PUBLIC_CONFIG_LOCK = threading.Lock()
 
 APPROVED_ADAPTER_DIR = "legal_answer_flow_v11_specialist_lora"
 APPROVED_ADAPTER_SHA256 = "18dcd485f52b5747059c03fa0c620ccc027820d0241b04977fc4a0223679e69a"
@@ -256,8 +287,10 @@ def now_iso() -> str:
 
 
 def db() -> sqlite3.Connection:
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys=ON")
     conn.execute("PRAGMA journal_mode=WAL")
     # Ensure a permanent private-chat deletion overwrites freed SQLite pages.
     conn.execute("PRAGMA secure_delete=ON")
@@ -268,8 +301,18 @@ def init_db():
     with db() as conn:
         conn.executescript(
             """
+            CREATE TABLE IF NOT EXISTS users (
+                id TEXT PRIMARY KEY,
+                external_subject TEXT NOT NULL UNIQUE,
+                email TEXT,
+                display_name TEXT,
+                created_at TEXT NOT NULL,
+                updated_at TEXT NOT NULL,
+                deleted_at TEXT
+            );
             CREATE TABLE IF NOT EXISTS conversations (
                 id TEXT PRIMARY KEY,
+                user_id TEXT,
                 title TEXT,
                 jurisdiction TEXT,
                 mode TEXT NOT NULL DEFAULT 'memory',
@@ -292,120 +335,436 @@ def init_db():
                 sha256 TEXT,
                 text TEXT,
                 stored_path TEXT,
+                byte_size INTEGER NOT NULL DEFAULT 0,
                 created_at TEXT
             );
             CREATE INDEX IF NOT EXISTS idx_attach_conv ON attachments(conversation_id);
+            CREATE TABLE IF NOT EXISTS feedback (
+                id TEXT PRIMARY KEY,
+                user_id TEXT NOT NULL,
+                conversation_id TEXT NOT NULL,
+                question TEXT NOT NULL,
+                model_output TEXT NOT NULL,
+                user_feedback TEXT NOT NULL,
+                feedback_type TEXT NOT NULL,
+                consent_training INTEGER NOT NULL DEFAULT 0,
+                status TEXT NOT NULL DEFAULT 'pending',
+                created_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_feedback_user ON feedback(user_id, created_at DESC);
+            CREATE TABLE IF NOT EXISTS usage_events (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id TEXT NOT NULL,
+                event_type TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            );
+            CREATE INDEX IF NOT EXISTS idx_usage_user_time
+                ON usage_events(user_id, event_type, created_at);
             """
+        )
+        ts = now_iso()
+        conn.execute(
+            "INSERT OR IGNORE INTO users "
+            "(id, external_subject, email, display_name, created_at, updated_at) "
+            "VALUES (?, ?, NULL, ?, ?, ?)",
+            (LOCAL_USER_ID, "local:owner", "Local owner", ts, ts),
         )
         # Migrate databases created by earlier UI versions in place.
         conv_columns = {row["name"] for row in conn.execute("PRAGMA table_info(conversations)")}
         if "mode" not in conv_columns:
             conn.execute("ALTER TABLE conversations ADD COLUMN mode TEXT NOT NULL DEFAULT 'memory'")
+        if "user_id" not in conv_columns:
+            conn.execute("ALTER TABLE conversations ADD COLUMN user_id TEXT")
+        # Existing local chats remain with their owner and can never become
+        # visible to a newly authenticated public identity.
+        conn.execute(
+            "UPDATE conversations SET user_id = ? WHERE user_id IS NULL OR user_id = ''",
+            (LOCAL_USER_ID,),
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_conversations_user_updated "
+            "ON conversations(user_id, updated_at DESC)"
+        )
         attachment_columns = {row["name"] for row in conn.execute("PRAGMA table_info(attachments)")}
         if "stored_path" not in attachment_columns:
             conn.execute("ALTER TABLE attachments ADD COLUMN stored_path TEXT")
+        if "byte_size" not in attachment_columns:
+            conn.execute("ALTER TABLE attachments ADD COLUMN byte_size INTEGER NOT NULL DEFAULT 0")
 
 
-def attachment_exists(conv_id: str, sha: str) -> str | None:
+class AuthenticationError(RuntimeError):
+    pass
+
+
+class QuotaError(RuntimeError):
+    pass
+
+
+def validate_public_config() -> None:
+    """Fail closed before serving if public authentication is incomplete."""
+    if not PUBLIC_MODE:
+        return
+    missing = [name for name, value in (
+        ("CF_ACCESS_TEAM_DOMAIN", CF_ACCESS_TEAM_DOMAIN),
+        ("CF_ACCESS_AUD", CF_ACCESS_AUD),
+        ("LEGAL_CHAT_DB", os.environ.get("LEGAL_CHAT_DB", "").strip()),
+        ("LEGAL_FEEDBACK_ROOT", os.environ.get("LEGAL_FEEDBACK_ROOT", "").strip()),
+        ("LEGAL_PRIVATE_UPLOAD_ROOT", os.environ.get("LEGAL_PRIVATE_UPLOAD_ROOT", "").strip()),
+        ("LEGAL_RAG_DB", os.environ.get("LEGAL_RAG_DB", "").strip()),
+        ("LEGAL_GUIDANCE_DB", os.environ.get("LEGAL_GUIDANCE_DB", "").strip()),
+    ) if not value]
+    if missing:
+        raise RuntimeError(
+            "LEGAL_PUBLIC_MODE requires " + ", ".join(missing)
+            + ". Do not expose public mode without Cloudflare Access."
+        )
+    if not CF_ACCESS_TEAM_DOMAIN.startswith("https://"):
+        raise RuntimeError("CF_ACCESS_TEAM_DOMAIN must be an https:// URL.")
+    project = PROJECT_ROOT.resolve()
+    for label, path in (
+        ("LEGAL_CHAT_DB", DB_PATH),
+        ("LEGAL_FEEDBACK_ROOT", RECORD_ROOT),
+        ("LEGAL_PRIVATE_UPLOAD_ROOT", PRIVATE_UPLOAD_ROOT),
+    ):
+        resolved = path.resolve()
+        if resolved == project or project in resolved.parents:
+            raise RuntimeError(f"{label} must point outside the source repository in public mode.")
+    private_index = (PROJECT_ROOT / "model_database").resolve()
+    for label in ("LEGAL_RAG_DB", "LEGAL_GUIDANCE_DB"):
+        resolved = Path(os.environ[label]).expanduser().resolve()
+        if resolved == private_index or private_index in resolved.parents:
+            raise RuntimeError(f"{label} cannot point at the private model_database in public mode.")
+    try:
+        import jwt  # noqa: F401
+    except ImportError as exc:
+        raise RuntimeError(
+            "Public mode requires PyJWT with cryptography. Run `pip install -e .` again."
+        ) from exc
+
+
+def decode_access_jwt(token: str) -> dict:
+    """Validate Cloudflare Access signature, issuer, audience and time claims."""
+    global _JWKS_CLIENT
+    if not token:
+        raise AuthenticationError("Missing Cloudflare Access application token.")
+    validate_public_config()
+    try:
+        import jwt
+        with _PUBLIC_CONFIG_LOCK:
+            if _JWKS_CLIENT is None:
+                _JWKS_CLIENT = jwt.PyJWKClient(
+                    f"{CF_ACCESS_TEAM_DOMAIN}/cdn-cgi/access/certs",
+                    cache_keys=True,
+                )
+        signing_key = _JWKS_CLIENT.get_signing_key_from_jwt(token)
+        claims = jwt.decode(
+            token,
+            signing_key.key,
+            algorithms=["RS256"],
+            audience=CF_ACCESS_AUD,
+            issuer=CF_ACCESS_TEAM_DOMAIN,
+            options={"require": ["aud", "exp", "iat", "iss", "sub"]},
+        )
+    except Exception as exc:
+        raise AuthenticationError("Invalid or expired Cloudflare Access token.") from exc
+    if claims.get("type") not in (None, "app"):
+        raise AuthenticationError("A user application token is required.")
+    return claims
+
+
+def ensure_user(external_subject: str, email: str | None = None,
+                display_name: str | None = None) -> dict:
+    """Just-in-time provision an opaque local user from a verified identity."""
+    external_subject = (external_subject or "").strip()
+    if not external_subject:
+        raise AuthenticationError("The authenticated identity has no subject.")
+    ts = now_iso()
+    with db() as conn:
+        row = conn.execute(
+            "SELECT * FROM users WHERE external_subject = ? AND deleted_at IS NULL",
+            (external_subject,),
+        ).fetchone()
+        if row:
+            conn.execute(
+                "UPDATE users SET email = ?, display_name = ?, updated_at = ? WHERE id = ?",
+                (email or row["email"], display_name or row["display_name"], ts, row["id"]),
+            )
+            row = conn.execute("SELECT * FROM users WHERE id = ?", (row["id"],)).fetchone()
+            return dict(row)
+        uid = LOCAL_USER_ID if external_subject == "local:owner" else uuid.uuid4().hex
+        conn.execute(
+            "INSERT INTO users "
+            "(id, external_subject, email, display_name, created_at, updated_at) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (uid, external_subject, email, display_name or email or "User", ts, ts),
+        )
+        return dict(conn.execute("SELECT * FROM users WHERE id = ?", (uid,)).fetchone())
+
+
+def local_user() -> dict:
+    return ensure_user("local:owner", display_name="Local owner")
+
+
+def user_storage_bytes(user_id: str) -> int:
+    with db() as conn:
+        row = conn.execute(
+            "SELECT COALESCE(SUM(a.byte_size), 0) AS total FROM attachments a "
+            "JOIN conversations c ON c.id = a.conversation_id WHERE c.user_id = ?",
+            (user_id,),
+        ).fetchone()
+    return int(row["total"] or 0)
+
+
+def account_summary(user: dict) -> dict:
+    with db() as conn:
+        conversations = conn.execute(
+            "SELECT COUNT(*) AS n FROM conversations "
+            "WHERE user_id = ? AND deleted_at IS NULL", (user["id"],)
+        ).fetchone()["n"]
+        feedback = conn.execute(
+            "SELECT COUNT(*) AS n FROM feedback WHERE user_id = ?", (user["id"],)
+        ).fetchone()["n"]
+    return {
+        "id": user["id"],
+        "email": user.get("email"),
+        "display_name": user.get("display_name") or user.get("email") or "User",
+        "public_mode": PUBLIC_MODE,
+        "conversations": conversations,
+        "feedback_records": feedback,
+        "storage_bytes": user_storage_bytes(user["id"]),
+        "limits": {
+            "conversations": MAX_USER_CONVERSATIONS,
+            "storage_bytes": MAX_USER_STORAGE_BYTES,
+            "requests_per_hour": REQUESTS_PER_HOUR,
+            "requests_per_day": REQUESTS_PER_DAY,
+            "upload_bytes": MAX_UPLOAD_BYTES,
+        },
+    }
+
+
+def consume_generation_quota(user_id: str) -> None:
+    if not PUBLIC_MODE:
+        return
+    now = datetime.now(timezone.utc)
+    hour = (now - timedelta(hours=1)).isoformat()
+    day = (now - timedelta(days=1)).isoformat()
+    with db() as conn:
+        conn.execute("BEGIN IMMEDIATE")
+        hourly = conn.execute(
+            "SELECT COUNT(*) AS n FROM usage_events "
+            "WHERE user_id = ? AND event_type = 'generation' AND created_at >= ?",
+            (user_id, hour),
+        ).fetchone()["n"]
+        daily = conn.execute(
+            "SELECT COUNT(*) AS n FROM usage_events "
+            "WHERE user_id = ? AND event_type = 'generation' AND created_at >= ?",
+            (user_id, day),
+        ).fetchone()["n"]
+        if hourly >= REQUESTS_PER_HOUR:
+            raise QuotaError("Hourly answer limit reached. Please try again later.")
+        if daily >= REQUESTS_PER_DAY:
+            raise QuotaError("Daily answer limit reached. Please try again tomorrow.")
+        conn.execute(
+            "INSERT INTO usage_events (user_id, event_type, created_at) VALUES (?, 'generation', ?)",
+            (user_id, now.isoformat()),
+        )
+        conn.execute(
+            "DELETE FROM usage_events WHERE created_at < ?",
+            ((now - timedelta(days=8)).isoformat(),),
+        )
+
+
+def _safe_remove_stored_file(value: str | None) -> None:
+    if not value:
+        return
+    path = Path(value).expanduser().resolve()
+    allowed = [PRIVATE_UPLOAD_ROOT.expanduser().resolve(), RECORD_ROOT.expanduser().resolve()]
+    if any(root == path or root in path.parents for root in allowed):
+        path.unlink(missing_ok=True)
+
+
+def delete_user_account(user_id: str) -> None:
+    """Permanently delete one public user's chats, uploads, feedback and identity."""
+    if user_id == LOCAL_USER_ID:
+        raise PermissionError("The local owner account cannot be deleted through the public API.")
+    with db() as conn:
+        stored = conn.execute(
+            "SELECT a.stored_path FROM attachments a "
+            "JOIN conversations c ON c.id = a.conversation_id WHERE c.user_id = ?",
+            (user_id,),
+        ).fetchall()
+        conv_ids = [row["id"] for row in conn.execute(
+            "SELECT id FROM conversations WHERE user_id = ?", (user_id,)
+        ).fetchall()]
+        conn.execute(
+            "DELETE FROM messages WHERE conversation_id IN "
+            "(SELECT id FROM conversations WHERE user_id = ?)", (user_id,)
+        )
+        conn.execute(
+            "DELETE FROM attachments WHERE conversation_id IN "
+            "(SELECT id FROM conversations WHERE user_id = ?)", (user_id,)
+        )
+        conn.execute("DELETE FROM conversations WHERE user_id = ?", (user_id,))
+        conn.execute("DELETE FROM feedback WHERE user_id = ?", (user_id,))
+        conn.execute("DELETE FROM usage_events WHERE user_id = ?", (user_id,))
+        conn.execute("DELETE FROM users WHERE id = ?", (user_id,))
+    for row in stored:
+        _safe_remove_stored_file(row["stored_path"])
+    shutil.rmtree(PRIVATE_UPLOAD_ROOT / user_id, ignore_errors=True)
+    shutil.rmtree(RECORD_ROOT / user_id, ignore_errors=True)
+    # Remove any legacy per-conversation private directories belonging to this user.
+    for conv_id in conv_ids:
+        shutil.rmtree(PRIVATE_UPLOAD_ROOT / conv_id, ignore_errors=True)
+    with db() as conn:
+        conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+
+
+def attachment_exists(conv_id: str, sha: str, user_id: str = LOCAL_USER_ID) -> str | None:
     """Return the filename if this exact file is already attached to the conversation."""
     with db() as conn:
         row = conn.execute(
-            "SELECT filename FROM attachments WHERE conversation_id = ? AND sha256 = ? LIMIT 1",
-            (conv_id, sha),
+            "SELECT a.filename FROM attachments a JOIN conversations c ON c.id = a.conversation_id "
+            "WHERE a.conversation_id = ? AND a.sha256 = ? AND c.user_id = ? LIMIT 1",
+            (conv_id, sha, user_id),
         ).fetchone()
     return row["filename"] if row else None
 
 
 def add_attachment(conv_id: str, filename: str, text: str, sha: str = "",
-                   stored_path: str = ""):
+                   stored_path: str = "", byte_size: int = 0,
+                   user_id: str = LOCAL_USER_ID):
     with db() as conn:
+        owner = conn.execute(
+            "SELECT 1 FROM conversations WHERE id = ? AND user_id = ? AND deleted_at IS NULL",
+            (conv_id, user_id),
+        ).fetchone()
+        if not owner:
+            raise PermissionError("Conversation not found for this user.")
         conn.execute(
-            "INSERT INTO attachments (conversation_id, filename, sha256, text, stored_path, created_at) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
-            (conv_id, filename, sha, text, stored_path, now_iso()),
+            "INSERT INTO attachments "
+            "(conversation_id, filename, sha256, text, stored_path, byte_size, created_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (conv_id, filename, sha, text, stored_path, int(byte_size), now_iso()),
         )
 
 
-def get_attachments(conv_id: str) -> list[dict]:
+def get_attachments(conv_id: str, user_id: str = LOCAL_USER_ID) -> list[dict]:
     if not conv_id:
         return []
     with db() as conn:
         rows = conn.execute(
-            "SELECT filename, text FROM attachments WHERE conversation_id = ? ORDER BY id ASC",
-            (conv_id,),
+            "SELECT a.filename, a.text FROM attachments a "
+            "JOIN conversations c ON c.id = a.conversation_id "
+            "WHERE a.conversation_id = ? AND c.user_id = ? ORDER BY a.id ASC",
+            (conv_id, user_id),
         ).fetchall()
     return [{"name": r["filename"], "text": r["text"]} for r in rows if r["text"]]
 
 
-def list_conversations() -> list[dict]:
+def list_conversations(user_id: str = LOCAL_USER_ID) -> list[dict]:
     with db() as conn:
         rows = conn.execute(
             "SELECT id, title, jurisdiction, mode, updated_at FROM conversations "
-            "WHERE deleted_at IS NULL ORDER BY updated_at DESC"
+            "WHERE user_id = ? AND deleted_at IS NULL ORDER BY updated_at DESC",
+            (user_id,),
         ).fetchall()
     return [dict(r) for r in rows]
 
 
-def conversation_mode(conv_id: str) -> str | None:
+def conversation_mode(conv_id: str, user_id: str = LOCAL_USER_ID) -> str | None:
     with db() as conn:
         row = conn.execute(
-            "SELECT mode FROM conversations WHERE id = ? AND deleted_at IS NULL", (conv_id,)
+            "SELECT mode FROM conversations WHERE id = ? AND user_id = ? AND deleted_at IS NULL",
+            (conv_id, user_id),
         ).fetchone()
     return row["mode"] if row else None
 
 
-def get_messages(conv_id: str) -> list[dict]:
+def get_messages(conv_id: str, user_id: str = LOCAL_USER_ID) -> list[dict]:
     with db() as conn:
         rows = conn.execute(
-            "SELECT role, content, created_at FROM messages "
-            "WHERE conversation_id = ? ORDER BY id ASC",
-            (conv_id,),
+            "SELECT m.role, m.content, m.created_at FROM messages m "
+            "JOIN conversations c ON c.id = m.conversation_id "
+            "WHERE m.conversation_id = ? AND c.user_id = ? ORDER BY m.id ASC",
+            (conv_id, user_id),
         ).fetchall()
     return [dict(r) for r in rows]
 
 
-def create_conversation(jurisdiction: str | None, mode: str | None = "memory") -> dict:
+def create_conversation(jurisdiction: str | None, mode: str | None = "memory",
+                        user_id: str = LOCAL_USER_ID) -> dict:
     mode = mode if mode in ("memory", "private") else "memory"
     cid = uuid.uuid4().hex
     ts = now_iso()
     with db() as conn:
+        if PUBLIC_MODE:
+            count = conn.execute(
+                "SELECT COUNT(*) AS n FROM conversations "
+                "WHERE user_id = ? AND deleted_at IS NULL", (user_id,)
+            ).fetchone()["n"]
+            if count >= MAX_USER_CONVERSATIONS:
+                raise QuotaError("Conversation limit reached. Delete an existing chat first.")
         conn.execute(
-            "INSERT INTO conversations (id, title, jurisdiction, mode, created_at, updated_at) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
-            (cid, "New chat", jurisdiction, mode, ts, ts),
+            "INSERT INTO conversations "
+            "(id, user_id, title, jurisdiction, mode, created_at, updated_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (cid, user_id, "New chat", jurisdiction, mode, ts, ts),
         )
     return {"id": cid, "title": "New chat", "jurisdiction": jurisdiction,
             "mode": mode, "updated_at": ts}
 
 
-def add_message(conv_id: str, role: str, content: str, set_title: bool = False):
+def add_message(conv_id: str, role: str, content: str, set_title: bool = False,
+                user_id: str = LOCAL_USER_ID):
     ts = now_iso()
     with db() as conn:
+        owner = conn.execute(
+            "SELECT 1 FROM conversations WHERE id = ? AND user_id = ? AND deleted_at IS NULL",
+            (conv_id, user_id),
+        ).fetchone()
+        if not owner:
+            raise PermissionError("Conversation not found for this user.")
         conn.execute(
             "INSERT INTO messages (conversation_id, role, content, created_at) VALUES (?, ?, ?, ?)",
             (conv_id, role, content, ts),
         )
         if set_title:
             title = (content.strip().split("\n", 1)[0])[:60] or "New chat"
-            conn.execute("UPDATE conversations SET title = ?, updated_at = ? WHERE id = ?",
-                         (title, ts, conv_id))
+            conn.execute(
+                "UPDATE conversations SET title = ?, updated_at = ? WHERE id = ? AND user_id = ?",
+                (title, ts, conv_id, user_id),
+            )
         else:
-            conn.execute("UPDATE conversations SET updated_at = ? WHERE id = ?", (ts, conv_id))
+            conn.execute(
+                "UPDATE conversations SET updated_at = ? WHERE id = ? AND user_id = ?",
+                (ts, conv_id, user_id),
+            )
 
 
-def soft_delete(conv_id: str):
+def soft_delete(conv_id: str, user_id: str = LOCAL_USER_ID):
     with db() as conn:
-        conn.execute("UPDATE conversations SET deleted_at = ? WHERE id = ?", (now_iso(), conv_id))
+        conn.execute(
+            "UPDATE conversations SET deleted_at = ? WHERE id = ? AND user_id = ?",
+            (now_iso(), conv_id, user_id),
+        )
 
 
-def hard_delete_private(conv_id: str) -> bool:
+def hard_delete_private(conv_id: str, user_id: str = LOCAL_USER_ID) -> bool:
     """Permanently remove a private chat, its messages, and its uploaded files."""
-    if conversation_mode(conv_id) != "private":
+    if conversation_mode(conv_id, user_id) != "private":
         return False
     with db() as conn:
+        stored = conn.execute(
+            "SELECT stored_path FROM attachments WHERE conversation_id = ?", (conv_id,)
+        ).fetchall()
         conn.execute("DELETE FROM attachments WHERE conversation_id = ?", (conv_id,))
         conn.execute("DELETE FROM messages WHERE conversation_id = ?", (conv_id,))
-        conn.execute("DELETE FROM conversations WHERE id = ?", (conv_id,))
+        conn.execute("DELETE FROM conversations WHERE id = ? AND user_id = ?", (conv_id, user_id))
+    for row in stored:
+        _safe_remove_stored_file(row["stored_path"])
+    user_dir = PRIVATE_UPLOAD_ROOT / user_id / conv_id
+    if user_dir.exists():
+        shutil.rmtree(user_dir)
     private_dir = PRIVATE_UPLOAD_ROOT / conv_id
     if private_dir.exists():
         shutil.rmtree(private_dir)
@@ -415,8 +774,44 @@ def hard_delete_private(conv_id: str) -> bool:
     return True
 
 
+def hard_delete_conversation(conv_id: str, user_id: str) -> bool:
+    """Permanently delete any one conversation owned by a public user."""
+    if not conversation_mode(conv_id, user_id):
+        return False
+    with db() as conn:
+        stored = conn.execute(
+            "SELECT stored_path FROM attachments WHERE conversation_id = ?", (conv_id,)
+        ).fetchall()
+        conn.execute("DELETE FROM attachments WHERE conversation_id = ?", (conv_id,))
+        conn.execute("DELETE FROM messages WHERE conversation_id = ?", (conv_id,))
+        conn.execute("DELETE FROM feedback WHERE conversation_id = ? AND user_id = ?", (conv_id, user_id))
+        conn.execute("DELETE FROM conversations WHERE id = ? AND user_id = ?", (conv_id, user_id))
+    for row in stored:
+        _safe_remove_stored_file(row["stored_path"])
+    shutil.rmtree(PRIVATE_UPLOAD_ROOT / user_id / conv_id, ignore_errors=True)
+    with db() as conn:
+        conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+    return True
+
+
+def purge_expired_public_data() -> int:
+    """Apply the configured public-chat retention period at server startup."""
+    if not PUBLIC_MODE or RETENTION_DAYS <= 0:
+        return 0
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=RETENTION_DAYS)).isoformat()
+    with db() as conn:
+        rows = conn.execute(
+            "SELECT id, user_id FROM conversations WHERE updated_at < ?", (cutoff,)
+        ).fetchall()
+    removed = 0
+    for row in rows:
+        if hard_delete_conversation(row["id"], row["user_id"]):
+            removed += 1
+    return removed
+
+
 def get_memory_context(conv_id: str, query: str = "", limit: int = 80,
-                       max_chars: int = 3500) -> str:
+                       max_chars: int = 3500, user_id: str = LOCAL_USER_ID) -> str:
     """Return relevant user-authored context from completed Memory chats.
 
     Assistant prose is deliberately excluded: prior generated law is neither a
@@ -428,12 +823,12 @@ def get_memory_context(conv_id: str, query: str = "", limit: int = 80,
         rows = conn.execute(
             "SELECT c.title, m.content FROM messages m "
             "JOIN conversations c ON c.id = m.conversation_id "
-            "WHERE c.id != ? AND c.deleted_at IS NULL AND c.mode = 'memory' "
+            "WHERE c.id != ? AND c.user_id = ? AND c.deleted_at IS NULL AND c.mode = 'memory' "
             "AND m.role = 'user' "
             "AND EXISTS (SELECT 1 FROM messages completed "
             "            WHERE completed.conversation_id = c.id AND completed.role = 'assistant') "
             "ORDER BY m.id DESC LIMIT ?",
-            (conv_id, limit),
+            (conv_id, user_id, limit),
         ).fetchall()
     stop = {
         "about", "advise", "answer", "consider", "contract", "english", "essay", "general",
@@ -494,17 +889,18 @@ def _slug(text: str, n: int = 40) -> str:
     return s[:n] or "entry"
 
 
-def record_dir_for_today() -> Path:
+def record_dir_for_today(user_id: str = LOCAL_USER_ID) -> Path:
     """`.../user's request record for improvements/DD-MM-YYYY/` (created on demand)."""
     day = datetime.now().strftime("%d-%m-%Y")  # e.g. 30-06-2026, then 01-07-2026 next day
-    d = RECORD_ROOT / day
+    d = RECORD_ROOT / user_id / day if PUBLIC_MODE else RECORD_ROOT / day
     (d / "uploads").mkdir(parents=True, exist_ok=True)
     return d
 
 
-def write_exchange_record(conv_id: str, jurisdiction: str | None, question: str, answer: str) -> str:
+def write_exchange_record(conv_id: str, jurisdiction: str | None, question: str, answer: str,
+                          user_id: str = LOCAL_USER_ID) -> str:
     """Save one Q&A as (1) a line in the day's log.jsonl and (2) a review markdown file."""
-    d = record_dir_for_today()
+    d = record_dir_for_today(user_id)
     ts = datetime.now()
     with open(d / "log.jsonl", "a", encoding="utf-8") as f:
         f.write(json.dumps({
@@ -526,15 +922,18 @@ def write_exchange_record(conv_id: str, jurisdiction: str | None, question: str,
     return str(d / fname)
 
 
-def write_correction_record(conv_id: str, question: str, answer: str, feedback: str) -> str:
+def write_correction_record(conv_id: str, question: str, answer: str, feedback: str,
+                            user_id: str = LOCAL_USER_ID,
+                            feedback_id: str | None = None) -> str:
     """Save a (question, model output, user feedback) triple for the training loop."""
-    d = record_dir_for_today()
+    d = record_dir_for_today(user_id)
     corr = d / "corrections"
     corr.mkdir(parents=True, exist_ok=True)
     ts = datetime.now()
     with open(d / "log.jsonl", "a", encoding="utf-8") as f:
         f.write(json.dumps({
             "time": ts.isoformat(), "type": "correction", "conversation_id": conv_id,
+            "user_id": user_id, "feedback_id": feedback_id,
             "question": question, "answer": answer, "feedback": feedback,
         }, ensure_ascii=False) + "\n")
     fname = f"{ts.strftime('%H%M%S')}_{_slug(question)}.md"
@@ -553,27 +952,46 @@ def write_correction_record(conv_id: str, question: str, answer: str, feedback: 
     # corrections actually feed the training loop. Full replacement answers
     # (>=180 words) auto-qualify; short comments stay for human review.
     payload = {
-        "id": f"{conv_id}-{ts.strftime('%H%M%S')}",
+        "id": feedback_id or f"{conv_id}-{ts.strftime('%H%M%S')}",
         "time": ts.isoformat(),
+        "user_id": user_id,
         "conversation_id": conv_id,
         "question": question,
         "model_output": answer,
         "user_feedback": feedback,
         "feedback_type": "replacement_answer" if len(feedback.split()) >= 180 else "correction",
+        "consent_training": True if PUBLIC_MODE else None,
     }
     (corr / fname.replace(".md", ".json")).write_text(
         json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     return str(corr / fname)
 
 
-def save_feedback_record(conv_id: str, question: str, answer: str, feedback: str) -> str:
+def save_feedback_record(conv_id: str, question: str, answer: str, feedback: str,
+                         user_id: str = LOCAL_USER_ID,
+                         consent_training: bool = False) -> str:
     """Persist feedback only for Memory conversations; Private is a hard boundary."""
-    if conversation_mode(conv_id) != "memory":
+    if conversation_mode(conv_id, user_id) != "memory":
         raise PermissionError("Private chats are excluded from training records.")
     feedback = (feedback or "").strip()
     if not feedback:
         raise ValueError("Feedback cannot be empty.")
-    return write_correction_record(conv_id, question, answer, feedback)
+    feedback_id = uuid.uuid4().hex
+    feedback_type = "replacement_answer" if len(feedback.split()) >= 180 else "correction"
+    with db() as conn:
+        conn.execute(
+            "INSERT INTO feedback "
+            "(id, user_id, conversation_id, question, model_output, user_feedback, "
+            "feedback_type, consent_training, status, created_at) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)",
+            (feedback_id, user_id, conv_id, question, answer, feedback,
+             feedback_type, int(bool(consent_training)), now_iso()),
+        )
+    if not PUBLIC_MODE or consent_training:
+        return write_correction_record(
+            conv_id, question, answer, feedback, user_id=user_id, feedback_id=feedback_id
+        )
+    return feedback_id
 
 
 def save_upload(filename: str, content_b64: str, note: str | None = None) -> str:
@@ -590,10 +1008,11 @@ def save_upload(filename: str, content_b64: str, note: str | None = None) -> str
     return str(out)
 
 
-def save_private_upload(conv_id: str, filename: str, content_b64: str) -> str:
+def save_private_upload(conv_id: str, filename: str, content_b64: str,
+                        user_id: str = LOCAL_USER_ID) -> str:
     """Save a private-chat upload outside all improvement/training records."""
     safe = re.sub(r"[^A-Za-z0-9._-]+", "_", filename or "upload.bin")
-    private_dir = PRIVATE_UPLOAD_ROOT / conv_id
+    private_dir = (PRIVATE_UPLOAD_ROOT / user_id / conv_id) if PUBLIC_MODE else (PRIVATE_UPLOAD_ROOT / conv_id)
     private_dir.mkdir(parents=True, exist_ok=True)
     out = private_dir / f"{uuid.uuid4().hex[:10]}_{safe}"
     out.write_bytes(base64.b64decode(content_b64))
@@ -613,22 +1032,58 @@ class Handler(BaseHTTPRequestHandler):
     server_version = "LegalChatUI/1.0"
 
     def log_message(self, fmt, *args):  # quieter logging
-        print(f"[http] {self.address_string()} {fmt % args}", flush=True)
+        prefix = "[http] public-user" if PUBLIC_MODE else f"[http] {self.address_string()}"
+        print(f"{prefix} {fmt % args}", flush=True)
 
     # -- helpers --
     def _json(self, obj, status=200):
         body = json.dumps(obj).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
 
     def _read_json(self) -> dict:
         length = int(self.headers.get("Content-Length", 0))
+        if length < 0 or length > MAX_JSON_BYTES:
+            raise ValueError("Request body is too large.")
         if not length:
             return {}
         return json.loads(self.rfile.read(length).decode("utf-8"))
+
+    @staticmethod
+    def _safe_error(exc: Exception, public_message: str) -> str:
+        return public_message if PUBLIC_MODE else f"{type(exc).__name__}: {exc}"
+
+    def _authenticated_user(self) -> dict:
+        cached = getattr(self, "_request_user", None)
+        if cached:
+            return cached
+        if not PUBLIC_MODE:
+            user = local_user()
+        else:
+            claims = decode_access_jwt(self.headers.get("Cf-Access-Jwt-Assertion", ""))
+            subject = f"cloudflare:{claims['sub']}"
+            email = (claims.get("email") or "").strip().lower() or None
+            user = ensure_user(subject, email=email, display_name=email or "Authenticated user")
+        self._request_user = user
+        return user
+
+    def _require_mutation_origin(self) -> None:
+        if not PUBLIC_MODE:
+            return
+        if self.headers.get("Sec-Fetch-Site", "").lower() == "cross-site":
+            raise PermissionError("Cross-site requests are not accepted.")
+        origin = self.headers.get("Origin", "").strip()
+        host = self.headers.get("Host", "").strip().lower()
+        if origin:
+            parsed = urlparse(origin)
+            if parsed.scheme != "https" or parsed.netloc.lower() != host:
+                raise PermissionError("Request origin does not match this application.")
 
     def _serve_static(self, rel: str):
         if rel in ("", "/"):
@@ -640,6 +1095,14 @@ class Handler(BaseHTTPRequestHandler):
         data = path.read_bytes()
         self.send_response(200)
         self.send_header("Content-Type", STATIC_TYPES.get(path.suffix, "application/octet-stream"))
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Referrer-Policy", "same-origin")
+        self.send_header(
+            "Content-Security-Policy",
+            "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
+            "img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; "
+            "frame-ancestors 'none'; form-action 'self'",
+        )
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
         self.wfile.write(data)
@@ -648,14 +1111,33 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = self.path.split("?", 1)[0]
         if path == "/api/health":
-            self._json({"ready": bool(MODEL and MODEL.ready), "error": MODEL.error if MODEL else None,
-                        "model": MODEL.base_model if MODEL else None,
-                        "adapter": MODEL.adapter_path if MODEL else None})
+            self._json({
+                "ready": bool(MODEL and MODEL.ready),
+                "error": ("Model failed to load." if PUBLIC_MODE and MODEL and MODEL.error
+                          else MODEL.error if MODEL else None),
+                "model": Path(MODEL.base_model).name if PUBLIC_MODE and MODEL else MODEL.base_model if MODEL else None,
+                "adapter": APPROVED_ADAPTER_DIR if MODEL and MODEL.adapter_path else None,
+                "public_mode": PUBLIC_MODE,
+            })
+            return
+        if path.startswith("/api/"):
+            try:
+                user = self._authenticated_user()
+            except AuthenticationError as exc:
+                self._json({"error": str(exc)}, status=401)
+                return
+        else:
+            user = None
+        if path == "/api/account":
+            self._json({"account": account_summary(user)})
         elif path == "/api/conversations":
-            self._json({"conversations": list_conversations()})
+            self._json({"conversations": list_conversations(user["id"])})
         elif path.startswith("/api/conversations/"):
             cid = path.rsplit("/", 1)[-1]
-            self._json({"messages": get_messages(cid)})
+            if not conversation_mode(cid, user["id"]):
+                self._json({"error": "Conversation not found."}, status=404)
+            else:
+                self._json({"messages": get_messages(cid, user["id"])})
         elif path.startswith("/assets/"):
             self._serve_static(path[len("/assets/"):])
         else:
@@ -663,51 +1145,113 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_DELETE(self):
         path = self.path.split("?", 1)[0]
+        try:
+            user = self._authenticated_user()
+            self._require_mutation_origin()
+        except AuthenticationError as exc:
+            self._json({"error": str(exc)}, status=401)
+            return
+        except PermissionError as exc:
+            self._json({"error": str(exc)}, status=403)
+            return
+        if path == "/api/account":
+            if not PUBLIC_MODE:
+                self._json({"error": "Account deletion is available only in public mode."}, status=400)
+                return
+            try:
+                delete_user_account(user["id"])
+                self._json({"ok": True, "deleted": True})
+            except Exception as exc:
+                self._json({"error": str(exc)}, status=400)
+            return
         if path.startswith("/api/conversations/"):
             cid = path.rsplit("/", 1)[-1]
-            permanent = hard_delete_private(cid)
+            if not conversation_mode(cid, user["id"]):
+                self._json({"error": "Conversation not found."}, status=404)
+                return
+            permanent = (hard_delete_conversation(cid, user["id"]) if PUBLIC_MODE
+                         else hard_delete_private(cid, user["id"]))
             if not permanent:
-                soft_delete(cid)
+                soft_delete(cid, user["id"])
             self._json({"ok": True, "permanent": permanent})
         else:
             self.send_error(404)
 
     def do_POST(self):
         path = self.path.split("?", 1)[0]
+        try:
+            request_length = int(self.headers.get("Content-Length", 0))
+            if request_length < 0 or request_length > MAX_JSON_BYTES:
+                self._json({"error": "Request body is too large."}, status=413)
+                return
+            user = self._authenticated_user()
+            self._require_mutation_origin()
+        except AuthenticationError as exc:
+            self._json({"error": str(exc)}, status=401)
+            return
+        except PermissionError as exc:
+            self._json({"error": str(exc)}, status=403)
+            return
+        except (TypeError, ValueError):
+            self._json({"error": "Invalid Content-Length."}, status=400)
+            return
         if path == "/api/conversations":
-            data = self._read_json()
-            self._json(create_conversation(data.get("jurisdiction"), data.get("mode")))
-        elif path == "/api/chat":
-            self._handle_chat()
-        elif path == "/api/feedback":
-            data = self._read_json()
             try:
+                data = self._read_json()
+                self._json(create_conversation(
+                    data.get("jurisdiction"), data.get("mode"), user_id=user["id"]
+                ))
+            except QuotaError as exc:
+                self._json({"error": str(exc)}, status=429)
+            except Exception as exc:
+                self._json({"error": self._safe_error(exc, "Invalid conversation request.")}, status=400)
+        elif path == "/api/chat":
+            self._handle_chat(user)
+        elif path == "/api/feedback":
+            try:
+                data = self._read_json()
                 saved = save_feedback_record(
                     data.get("conversation_id", ""), data.get("question", ""),
-                    data.get("answer", ""), (data.get("feedback") or "").strip())
-                self._json({"ok": True, "saved": Path(saved).name})
+                    data.get("answer", ""), (data.get("feedback") or "").strip(),
+                    user_id=user["id"], consent_training=bool(data.get("consent_training")))
+                self._json({
+                    "ok": True,
+                    "saved": Path(saved).name,
+                    "training_candidate": bool(data.get("consent_training")) or not PUBLIC_MODE,
+                })
             except PermissionError as exc:
                 self._json({"error": str(exc)}, status=403)
             except Exception as exc:
-                self._json({"error": f"{type(exc).__name__}: {exc}"}, status=400)
+                self._json({"error": self._safe_error(exc, "Feedback could not be saved.")}, status=400)
         elif path == "/api/upload":
-            data = self._read_json()
             try:
+                data = self._read_json()
                 import hashlib
                 conv_id = data.get("conversation_id")
                 raw = base64.b64decode((data.get("content_b64") or "").split(",")[-1], validate=False)
                 sha = hashlib.sha256(raw).hexdigest()
                 filename = data.get("filename") or "upload.bin"
-                mode = conversation_mode(conv_id) if conv_id else None
+                if PUBLIC_MODE and Path(filename).suffix.lower() not in PUBLIC_UPLOAD_SUFFIXES:
+                    self._json({"error": "This upload type is not allowed."}, status=400)
+                    return
+                mode = conversation_mode(conv_id, user["id"]) if conv_id else None
                 if mode not in ("memory", "private"):
                     self._json({"error": "A valid conversation is required."}, status=400)
                     return
                 # De-dup: same file already in this chat? Skip re-indexing.
-                if conv_id and attachment_exists(conv_id, sha):
+                if len(raw) > MAX_UPLOAD_BYTES:
+                    self._json({"error": "Upload exceeds the per-file size limit."}, status=413)
+                    return
+                if PUBLIC_MODE and user_storage_bytes(user["id"]) + len(raw) > MAX_USER_STORAGE_BYTES:
+                    self._json({"error": "Your upload storage quota is full."}, status=429)
+                    return
+                if conv_id and attachment_exists(conv_id, sha, user["id"]):
                     self._json({"ok": True, "saved": filename, "duplicate": True, "readable": True})
                     return
-                if mode == "private":
-                    saved_path = save_private_upload(conv_id, filename, data.get("content_b64", ""))
+                if mode == "private" or PUBLIC_MODE:
+                    saved_path = save_private_upload(
+                        conv_id, filename, data.get("content_b64", ""), user_id=user["id"]
+                    )
                 else:
                     saved_path = save_upload(filename, data.get("content_b64", ""),
                                              note=f"conv {conv_id}")
@@ -718,25 +1262,36 @@ class Handler(BaseHTTPRequestHandler):
                         import documents
                         extracted = documents.extract_text(saved_path)
                     except Exception as exc:
-                        print(f"[upload] extract failed: {exc}", flush=True)
-                add_attachment(conv_id, Path(saved_path).name, extracted, sha=sha,
-                               stored_path=saved_path)
+                        detail = "" if PUBLIC_MODE else f": {exc}"
+                        print(f"[upload] extract failed{detail}", flush=True)
+                add_attachment(
+                    conv_id, Path(saved_path).name, extracted, sha=sha,
+                    stored_path=saved_path, byte_size=len(raw), user_id=user["id"]
+                )
                 self._json({"ok": True, "saved": Path(saved_path).name, "duplicate": False,
                             "chars": len(extracted), "readable": bool(extracted.strip())})
             except Exception as exc:
-                self._json({"error": f"{type(exc).__name__}: {exc}"}, status=400)
+                self._json({"error": self._safe_error(exc, "Upload could not be processed.")}, status=400)
         else:
             self.send_error(404)
 
-    def _handle_chat(self):
-        data = self._read_json()
+    def _handle_chat(self, user: dict):
+        try:
+            data = self._read_json()
+        except Exception as exc:
+            self._json({"error": self._safe_error(exc, "Invalid chat request.")}, status=400)
+            return
         conv_id = data.get("conversation_id")
         message = (data.get("message") or "").strip()
         jurisdiction = data.get("jurisdiction")
         if not conv_id or not message:
             self._json({"error": "conversation_id and message are required"}, status=400)
             return
-        mode = conversation_mode(conv_id)
+        if len(message) > MAX_QUESTION_CHARS:
+            self._json({"error": "Question exceeds the maximum input length."}, status=413)
+            return
+        user_id = user["id"]
+        mode = conversation_mode(conv_id, user_id)
         if mode not in ("memory", "private"):
             self._json({"error": "Conversation not found."}, status=404)
             return
@@ -750,11 +1305,20 @@ class Handler(BaseHTTPRequestHandler):
             return
 
         try:
+            try:
+                consume_generation_quota(user_id)
+            except QuotaError as exc:
+                self._json({"error": str(exc)}, status=429)
+                return
             # Persist the user's turn (and title the chat if it's the first message).
-            existing = get_messages(conv_id)
-            add_message(conv_id, "user", message, set_title=(len(existing) == 0))
+            existing = get_messages(conv_id, user_id)
+            add_message(
+                conv_id, "user", message, set_title=(len(existing) == 0), user_id=user_id
+            )
             history = existing + [{"role": "user", "content": message}]
-            memory_context = get_memory_context(conv_id, message) if mode == "memory" else ""
+            memory_context = (
+                get_memory_context(conv_id, message, user_id=user_id) if mode == "memory" else ""
+            )
             if memory_context:
                 history = [{"role": "system", "content": memory_context}] + history
 
@@ -772,34 +1336,40 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 answer, meta = self._run_pipeline(
                     conv_id, message, history, jurisdiction, online_mode,
-                    memory_context=memory_context)
+                    memory_context=memory_context, user_id=user_id)
             except (BrokenPipeError, ConnectionResetError):
                 return  # client navigated away
             except Exception as exc:
                 # Do not rerun the entire multi-pass pipeline and then return a
                 # blank error.  Build one direct, source-grounded completion and
                 # release it after deterministic privacy/count/structure repair.
-                print(f"[answer] first attempt rejected: {type(exc).__name__}: {exc}", flush=True)
+                detail = "" if PUBLIC_MODE else f": {exc}"
+                print(f"[answer] first attempt rejected: {type(exc).__name__}{detail}", flush=True)
                 self._sse({"status": "Finalising a complete answer after an internal retry…"})
                 try:
                     answer, meta = self._run_emergency_completion(
                         conv_id, message, history, jurisdiction, "always", memory_context
+                        , user_id=user_id
                     )
                 except (BrokenPipeError, ConnectionResetError):
                     return
                 except Exception as retry_exc:
-                    print(f"[answer] emergency completion failed: {type(retry_exc).__name__}: {retry_exc}", flush=True)
+                    detail = "" if PUBLIC_MODE else f": {retry_exc}"
+                    print(f"[answer] emergency completion failed: {type(retry_exc).__name__}{detail}", flush=True)
                     self._sse({"error": "The local generation engine stopped unexpectedly before it could finish. "
                                         "Your question remains in this chat; press Send again to resume."})
                     answer, meta = "", {}
 
             if answer:
-                add_message(conv_id, "assistant", answer)
-                if mode == "memory":
+                add_message(conv_id, "assistant", answer, user_id=user_id)
+                if mode == "memory" and not PUBLIC_MODE:
                     try:
-                        write_exchange_record(conv_id, jurisdiction, message, answer)
+                        write_exchange_record(
+                            conv_id, jurisdiction, message, answer, user_id=user_id
+                        )
                     except Exception as exc:
-                        print(f"[record] failed to write exchange: {exc}", flush=True)
+                        detail = "" if PUBLIC_MODE else f": {exc}"
+                        print(f"[record] failed to write exchange{detail}", flush=True)
             self._sse({"sources": meta.get("sources", []) if meta else []})
             self._sse({"done": True})
         finally:
@@ -826,7 +1396,8 @@ class Handler(BaseHTTPRequestHandler):
             if len(key) > 100:
                 seen[key] = seen.get(key, 0) + 1
                 if seen[key] >= 2:
-                    print(f"[deloop] cut at repeat: {key[:80]!r}", flush=True)
+                    detail = "" if PUBLIC_MODE else f": {key[:80]!r}"
+                    print(f"[deloop] cut at repeat{detail}", flush=True)
                     break
             out.append(s)
         return " ".join(out).strip()
@@ -2315,7 +2886,8 @@ class Handler(BaseHTTPRequestHandler):
         return "\n\n".join(parts)
 
     def _run_emergency_completion(self, conv_id, message, history, jurisdiction,
-                                  online_mode="always", memory_context=""):
+                                  online_mode="always", memory_context="",
+                                  user_id=LOCAL_USER_ID):
         """Last-resort complete-answer route used only after the supervised route errors.
 
         It still uses hybrid RAG, current official-source search, subject/writing
@@ -2324,7 +2896,7 @@ class Handler(BaseHTTPRequestHandler):
         a second supervisor loop so the user receives the answer instead of a
         repeated RuntimeError.
         """
-        attachments = get_attachments(conv_id)
+        attachments = get_attachments(conv_id, user_id)
         ledger, meta = pipeline.assemble_ledger(
             message, jurisdiction, attachments, online_mode=online_mode
         )
@@ -2382,7 +2954,7 @@ class Handler(BaseHTTPRequestHandler):
         return final, meta
 
     def _run_pipeline(self, conv_id, message, history, jurisdiction, online_mode="auto",
-                      memory_context=""):
+                      memory_context="", user_id=LOCAL_USER_ID):
         """Retrieve -> draft -> supervise -> stream final. Returns (final_text, meta)."""
         # Fallback to the legacy single-pass if the pipeline modules are unavailable.
         if not PIPELINE_OK:
@@ -2393,7 +2965,7 @@ class Handler(BaseHTTPRequestHandler):
 
         # 1) assemble the source ledger (uploads > indexed > official online)
         self._sse({"status": "Searching indexed database + official sources…"})
-        attachments = get_attachments(conv_id)
+        attachments = get_attachments(conv_id, user_id)
         ledger, meta = pipeline.assemble_ledger(message, jurisdiction, attachments, online_mode=online_mode)
 
         slug = meta.get("subject") or None
@@ -2429,7 +3001,7 @@ class Handler(BaseHTTPRequestHandler):
         if words and words > 2500:
             return self._run_longform(
                 conv_id, message, jurisdiction, online_mode, slug, words, meta,
-                memory_context=memory_context)
+                memory_context=memory_context, user_id=user_id)
 
         # 2) internal draft pass (structured by the subject guide)
         subj = f" ({slug.replace('_', ' ')})" if slug else ""
@@ -2457,7 +3029,8 @@ class Handler(BaseHTTPRequestHandler):
                 "status": f"Drafting answer… {count:,} words generated"
             }),
         )
-        print(f"[pipeline] draft {len(draft.split())}w: {draft[:220]!r}", flush=True)
+        preview = "" if PUBLIC_MODE else f": {draft[:220]!r}"
+        print(f"[pipeline] draft {len(draft.split())}w{preview}", flush=True)
 
         # 3) deterministic supervisor pass.  A second whole-answer generation
         # made the local 7B model shorten good 1,000-word drafts to 300-600 words.
@@ -2593,13 +3166,13 @@ class Handler(BaseHTTPRequestHandler):
         return final, meta
 
     def _run_longform(self, conv_id, message, jurisdiction, online_mode, slug, words, meta,
-                      memory_context=""):
+                      memory_context="", user_id=LOCAL_USER_ID):
         """Automatic multi-part long answer: plan 600–800-word parts, retrieve per part,
         generate each part with the first-class gates, stitch and stream."""
         parts = pipeline.plan_sections(message, words)
         n = len(parts)
         self._sse({"status": f"Long answer: planning {n} streamable parts (total ~{words:,} words)…"})
-        attachments = get_attachments(conv_id)
+        attachments = get_attachments(conv_id, user_id)
         done_titles: list[str] = []
         chunks: list[str] = []
         prev_tail = ""
@@ -2834,7 +3407,13 @@ def main():
     ap.add_argument("--no-adapter", action="store_true", help="Chat with the base model only.")
     args = ap.parse_args()
 
+    validate_public_config()
+    if PUBLIC_MODE and args.host not in ("127.0.0.1", "localhost", "::1"):
+        raise RuntimeError(
+            "Public mode must bind to loopback and be reached through the authenticated tunnel."
+        )
     init_db()
+    purged = purge_expired_public_data()
     adapter = None if args.no_adapter else args.adapter_path
     MODEL = ModelHolder(args.model, adapter, args.max_tokens, args.temp, args.top_p)
     threading.Thread(target=MODEL.load, daemon=True).start()
@@ -2842,6 +3421,10 @@ def main():
     httpd = ThreadingHTTPServer((args.host, args.port), Handler)
     url = f"http://{args.host}:{args.port}"
     print(f"[server] Legal chat UI on {url}  (model loading in background)", flush=True)
+    if PUBLIC_MODE:
+        print("[server] Public mode: Cloudflare Access JWT + per-user isolation enabled", flush=True)
+        if purged:
+            print(f"[server] Retention cleanup removed {purged} expired conversation(s)", flush=True)
     print("[server] Open that URL in your browser. Ctrl+C to stop.", flush=True)
     try:
         httpd.serve_forever()

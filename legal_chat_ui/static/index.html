@@ -60,7 +60,11 @@
 
         <div class="user-row">
           <div class="user-ava">ME</div>
-          <div class="user-name">You</div>
+          <div id="accountName" class="user-name">You</div>
+          <button id="deleteAccountButton" class="ghost-icon account-delete" type="button"
+                  title="Permanently delete my account data" aria-label="Permanently delete my account data" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 10v6M14 10v6"/></svg>
+          </button>
           <span id="modelBadge" class="kbd" title="Generation engine">local</span>
         </div>
       </aside>

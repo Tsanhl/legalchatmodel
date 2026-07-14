@@ -24,6 +24,8 @@ const els = {
   modeButtons: [...document.querySelectorAll(".mode-pill[data-mode]")],
   newChatLabel: $("newChatLabel"),
   composerFoot: $("composerFoot"),
+  accountName: $("accountName"),
+  deleteAccount: $("deleteAccountButton"),
 };
 
 // ---------- sidebar collapse (restored) ----------
@@ -42,6 +44,8 @@ const state = {
   mode: "memory",
   ready: false,
   streaming: false,
+  publicMode: false,
+  account: null,
 };
 
 try {
@@ -191,15 +195,25 @@ function attachFeedback(node, question, answer) {
     const box = document.createElement("div");
     box.className = "fb-box";
     box.style.cssText = "margin-top:8px;display:flex;flex-direction:column;gap:6px";
-    box.innerHTML = `<textarea class="fb-text" rows="2" placeholder="What should be corrected or improved? (saved to your improvement records)" style="width:100%;border-radius:10px;padding:8px;background:var(--surface-input);border:1px solid var(--line);color:inherit;font:inherit"></textarea><div><button type="button" class="primary-button fb-save">Save correction</button></div>`;
+    const consent = state.publicMode
+      ? `<label class="feedback-consent"><input class="fb-consent" type="checkbox"> Allow this correction to be considered for future model training after human review.</label>`
+      : "";
+    box.innerHTML = `<textarea class="fb-text" rows="2" placeholder="What should be corrected or improved?" style="width:100%;border-radius:10px;padding:8px;background:var(--surface-input);border:1px solid var(--line);color:inherit;font:inherit"></textarea>${consent}<div><button type="button" class="primary-button fb-save">Save correction</button></div>`;
     body.appendChild(box);
     const ta = box.querySelector(".fb-text"); ta.focus();
     box.querySelector(".fb-save").addEventListener("click", async () => {
       const feedback = ta.value.trim();
       if (!feedback) return;
       try {
-        const res = await postJSON("/api/feedback", { conversation_id: state.currentId, question, answer, feedback });
-        box.innerHTML = res.ok ? `<span class="message-status">✓ Saved for training review</span>` : `<span class="message-status">Save failed</span>`;
+        const consentTraining = Boolean(box.querySelector(".fb-consent")?.checked);
+        const res = await postJSON("/api/feedback", {
+          conversation_id: state.currentId, question, answer, feedback,
+          consent_training: consentTraining,
+        });
+        const savedText = res.training_candidate
+          ? "✓ Saved as a human-review training candidate"
+          : "✓ Feedback saved; not authorised for training";
+        box.innerHTML = res.ok ? `<span class="message-status">${savedText}</span>` : `<span class="message-status">Save failed</span>`;
       } catch { box.innerHTML = `<span class="message-status">Save failed</span>`; }
     });
   });
@@ -264,12 +278,12 @@ function renderConversationList() {
     b.innerHTML = `<span class="conversation-dot"></span><div class="conversation-main"><span class="conversation-title">${escapeHtml(c.title || "New chat")}</span><span class="conversation-meta"><span class="conversation-mode ${mode}">${mode}</span>${timeLabel(c.updated_at)}</span></div>`;
     b.addEventListener("click", () => openConversation(c.id));
     row.appendChild(b);
-    if (mode === "private") {
+    if (mode === "private" || state.publicMode) {
       const del = document.createElement("button");
       del.className = "conversation-delete";
       del.type = "button";
-      del.title = "Permanently delete private chat";
-      del.setAttribute("aria-label", `Permanently delete ${c.title || "private chat"}`);
+      del.title = "Permanently delete chat";
+      del.setAttribute("aria-label", `Permanently delete ${c.title || "chat"}`);
       del.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 10v6M14 10v6"/></svg>`;
       del.addEventListener("click", () => deletePrivateConversation(c));
       row.appendChild(del);
@@ -279,7 +293,7 @@ function renderConversationList() {
 }
 
 async function deletePrivateConversation(conversation) {
-  if (!window.confirm(`Permanently delete “${conversation.title || "Private chat"}”?\n\nMessages and private uploads will be removed and cannot be recovered.`)) return;
+  if (!window.confirm(`Permanently delete “${conversation.title || "Chat"}”?\n\nMessages and uploads will be removed and cannot be recovered.`)) return;
   const response = await fetch(`/api/conversations/${conversation.id}`, { method: "DELETE" });
   if (!response.ok) return;
   if (state.currentId === conversation.id) {
@@ -288,6 +302,39 @@ async function deletePrivateConversation(conversation) {
     showHero();
   }
   await refreshConversations();
+}
+
+async function loadAccount() {
+  const { account } = await getJSON("/api/account");
+  state.account = account || null;
+  state.publicMode = Boolean(account?.public_mode);
+  if (els.accountName && account) {
+    els.accountName.textContent = account.display_name || account.email || "User";
+    els.accountName.title = account.email || "Authenticated user";
+  }
+  if (els.deleteAccount) els.deleteAccount.hidden = !state.publicMode;
+  if (state.publicMode) {
+    modeInfo.memory.hero = "Uses only your own saved Memory chats for continuity. Corrections are considered for training only when you explicitly opt in. This service provides legal information and is not a substitute for a qualified lawyer.";
+    modeInfo.memory.foot = "Only your account can reuse this history. Training requires opt-in. Legal information, not a lawyer.";
+    modeInfo.private.hero = "Isolated to this conversation and permanently deletable. It is excluded from cross-chat Memory and training. This service provides legal information and is not a substitute for a qualified lawyer.";
+    modeInfo.private.foot = "Private and isolated; permanently deletable. Legal information, not a lawyer.";
+    updateModeUI();
+  }
+}
+
+async function deleteAccountData() {
+  if (!state.publicMode) return;
+  if (!window.confirm("Permanently delete your account data?\n\nAll chats, messages, uploads and feedback records will be erased. This cannot be undone.")) return;
+  const response = await fetch("/api/account", { method: "DELETE" });
+  if (!response.ok) return;
+  state.currentId = null;
+  state.conversations = [];
+  renderConversationList();
+  state.ready = false;
+  els.send.disabled = true;
+  els.input.disabled = true;
+  els.messages.innerHTML = `<div class="hero"><div class="hero-mode private">Data deleted</div><h1>Your account data has been erased</h1><p>All chats, uploads and feedback records were permanently removed. Close this page when finished.</p></div>`;
+  if (els.deleteAccount) els.deleteAccount.hidden = true;
 }
 
 // ---------- data flow ----------
@@ -434,6 +481,7 @@ els.input.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); els.form.requestSubmit(); }
 });
 els.newChat.addEventListener("click", newChat);
+if (els.deleteAccount) els.deleteAccount.addEventListener("click", deleteAccountData);
 for (const button of els.modeButtons) {
   button.addEventListener("click", () => chooseMode(button.dataset.mode));
 }
@@ -503,6 +551,7 @@ async function pollHealth() {
 (async function boot() {
   updateModeUI();
   showHero();
+  await loadAccount();
   await refreshConversations();
   pollHealth();
 })();
