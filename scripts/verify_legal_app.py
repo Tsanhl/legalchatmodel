@@ -1,0 +1,828 @@
+#!/usr/bin/env python3
+"""Deterministic pre-deployment checks for the local legal AI site."""
+
+from __future__ import annotations
+
+import base64
+import json
+import re
+import sqlite3
+import sys
+import tempfile
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "legal_chat_ui"))
+
+import guides  # noqa: E402
+import pipeline  # noqa: E402
+import retrieval  # noqa: E402
+import server  # noqa: E402
+from live_private_release_sweep import GENERAL_ENQUIRIES, SQE_PROBES  # noqa: E402
+
+
+def check(condition: bool, message: str, results: list[dict]) -> None:
+    results.append({"check": message, "passed": bool(condition)})
+    if not condition:
+        raise AssertionError(message)
+
+
+def main() -> None:
+    results: list[dict] = []
+
+    private_bank = ROOT / "data" / "legal_eval_100_questions.json"
+    public_bank = ROOT / "training" / "public_legal_eval_100_questions.json"
+    bank = json.loads((private_bank if private_bank.exists() else public_bank).read_text())
+    check(len(bank) == 100, "100-question bank parsed", results)
+    check(all(question["subjects"] for question in bank), "every question has a subject route", results)
+    check(
+        all(
+            sum(part["words"] for part in question["part_plan"]) == question["word_count"]
+            and max(part["words"] for part in question["part_plan"]) <= 800
+            for question in bank if question["word_count"] > 2500
+        ),
+        "all long answers have exact totals and parts <=800 words",
+        results,
+    )
+    check(
+        {"consumer_law", "insolvency_law", "privacy_media_law", "remedies_law", "legal_ethics"}
+        <= {subject for question in bank for subject in question["subjects"]},
+        "new gap guides are exercised by the evaluation bank",
+        results,
+    )
+    ethics_guide = guides.guide_method_for_question(
+        "Legal Ethics problem: solicitor receives mistakenly disclosed privileged documents"
+    )
+    environmental_guide = guides.guide_method_for_question(
+        "Environmental Law essay: environmental assessment, climate duties and judicial review"
+    )
+    check(
+        "6.4(d)" in ethics_guide and "11 April 2025" in ethics_guide
+        and "Full OSCOLA Authority Bank" in environmental_guide
+        and "Current-Law Update Checkpoints" in environmental_guide,
+        "runtime prompts include current rule checkpoints and full OSCOLA authority banks",
+        results,
+    )
+    bundled_guides = sorted((ROOT / "legal_chat_ui" / "law_guides").glob("*.md"))
+    bundled_text = "\n".join(path.read_text(encoding="utf-8", errors="ignore") for path in bundled_guides)
+    check(
+        len(bundled_guides) == 51
+        and not re.search(
+            r"\bZ\d{6,8}\b|\b20\d{6}\b|\.[a-z]+/attachments|"
+            r"[A-Z0-9._%+-]+@gmail\.com|/Users/|real .{0,40} marker feedback|"
+            r"\bLAW\d{4,6}\b|user(?:'s|s) own .{0,30} scripts",
+            bundled_text,
+            re.I,
+        ),
+        "51 bundled legal guides are standalone and contain no known private identifiers",
+        results,
+    )
+    by_id = {question["id"]: question for question in bank}
+    check(
+        by_id[30]["word_count"] == 1500
+        and by_id[60]["word_count"] == 3500
+        and by_id[85]["word_count"] == 4500,
+        "group-range text cannot override an individual question's Suggested length",
+        results,
+    )
+
+    feedback_db = ROOT / "model_database" / "feedback_index.sqlite3"
+    if feedback_db.exists():
+        with sqlite3.connect(feedback_db) as con:
+            total, files = con.execute(
+                "SELECT COUNT(*), COUNT(DISTINCT source) FROM feedback_chunks"
+            ).fetchone()
+            diagnostic_answers = con.execute(
+                "SELECT COUNT(*) FROM feedback_chunks WHERE quality_tier='diagnostic' "
+                "AND section_kind='submitted_answer'"
+            ).fetchone()[0]
+        check(files == 18 and total > 250, "all 18 supplied documents are feedback-indexed", results)
+        check(diagnostic_answers > 0, "lower-mark work is retained for diagnostic audit", results)
+    else:
+        check(
+            (ROOT / "legal_chat_ui" / "law_guides" / "first_class_writing_standards.md").exists(),
+            "public clone uses the anonymized bundled writing standard without private feedback files",
+            results,
+        )
+    runtime_guidance = retrieval.search_feedback_guidance(
+        "criminal law murder consent application key case", 12, ["criminal_law"]
+    )
+    check(
+        all(not (hit["quality_tier"] == "diagnostic" and hit["section_kind"] == "submitted_answer")
+            for hit in runtime_guidance),
+        "lower-mark submitted prose is excluded from runtime exemplars",
+        results,
+    )
+
+    original_chroma, original_feedback = retrieval.CHROMA_DB, retrieval.FEEDBACK_DB
+    try:
+        retrieval.CHROMA_DB = ROOT / "__missing_public_chroma__.sqlite3"
+        retrieval.FEEDBACK_DB = ROOT / "__missing_public_feedback__.sqlite3"
+        public_hits = retrieval.search(
+            "consideration practical benefit Foakes v Beer promissory estoppel",
+            4,
+            ["contract_law"],
+        )
+        public_guidance = retrieval.search_feedback_guidance(
+            "critical contract essay consideration",
+            3,
+            ["contract_law"],
+        )
+    finally:
+        retrieval.CHROMA_DB, retrieval.FEEDBACK_DB = original_chroma, original_feedback
+    check(
+        len(public_hits) == 4
+        and any(hit["category"] == "contract_law" for hit in public_hits)
+        and public_guidance
+        and all("Bundled anonymized" in hit["source"] for hit in public_guidance),
+        "public clone has relevant legal RAG and writing guidance without the private database",
+        results,
+    )
+
+    contract = (
+        "Contract Law Problem. Consider: misrepresentation, contractual terms, non-reliance clauses, "
+        "exclusion clauses, limitation clauses, breach, causation, remoteness, penalties and remedies."
+    )
+    hits = retrieval.search(contract, 6, ["contract_law"])
+    check(
+        len(hits) == 6 and any(
+            "contract" in (hit["category"] + " " + hit["document_name"]).lower()
+            for hit in hits[:3]
+        ),
+        "contract problem retrieves relevant contract/commercial material",
+        results,
+    )
+    check(
+        pipeline.plan_sections(contract + " Suggested length: 2,000 words", 2000)
+        == [("full answer", 2000)],
+        "answers up to 2,500 words use one complete supervised generation",
+        results,
+    )
+
+    jurisprudence = (
+        '2,000 words “The nature of law cannot be explained by one theory alone.”\n\n'
+        'Critically discuss using positivism, natural law, interpretivism, realism, feminism, '
+        'critical race theory, Marxism and postcolonial theory.'
+    )
+    check(
+        pipeline.extract_subissues(jurisprudence)
+        == [
+            "positivism", "natural law", "interpretivism", "realism", "feminism",
+            "critical race theory", "Marxism", "postcolonial theory",
+        ]
+        and pipeline.plan_sections(jurisprudence, 2000) == [("full answer", 2000)],
+        "critically-discuss-using theory lists are extracted while 2,000 words remains single-pass",
+        results,
+    )
+    curated_jurisprudence = pipeline.curated_regression_answer(jurisprudence)
+    curated_body = re.split(
+        r"(?im)^#{1,3}\s*References\s*$", curated_jurisprudence, maxsplit=1
+    )[0]
+    check(
+        1980 <= len(curated_body.split()) <= 2020
+        and curated_jurisprudence.count("### References") == 1,
+        "multi-theory jurisprudence regression has a complete 2,000-word gold answer",
+        results,
+    )
+    scale_question = jurisprudence.replace("2,000 words", "20,000 words")
+    scale_plan = pipeline.plan_sections(scale_question, 20000)
+    check(
+        len(scale_plan) == 25
+        and sum(words for _title, words in scale_plan) == 20000
+        and max(words for _title, words in scale_plan) <= 800
+        and len({title for title, _words in scale_plan}) == 25
+        and not any("further analysis" in title.lower() for title, _words in scale_plan)
+        and not pipeline.curated_regression_answer(scale_question),
+        "20,000-word answers use 25 distinct analytical units and do not use a 2,000-word fixture",
+        results,
+    )
+    check(
+        all(
+            sum(words for _title, words in pipeline.plan_sections(jurisprudence, total)) == total
+            and max(words for _title, words in pipeline.plan_sections(jurisprudence, total))
+            <= max(800, total)
+            for total in (1000, 1400, 2000, 2500, 2501, 5000, 10000, 20000)
+        ),
+        "planner preserves every requested total from 1,000 through 20,000 words",
+        results,
+    )
+    tort_problem = (
+        "Problem question — Tort Law\nSuggested length: 1,500 words\n"
+        "Dana drives into Eli. Advise Dana, Eli and Farah on duty, breach, factual and legal causation, "
+        "remoteness, contributory negligence, intervening acts and damages."
+    )
+    tort_plan = pipeline.plan_sections(tort_problem, 1500)
+    check(
+        tort_plan == [("full answer", 1500)],
+        "a 1,500-word problem answer remains a single complete supervised generation",
+        results,
+    )
+    check(
+        bool(server.Handler._tort_accuracy_failures(
+            "The breach was unlawful means conspiracy and the business loss cannot be recovered because it "
+            "flows from Eli's own personal injury.", tort_problem, "damages"
+        )),
+        "tort gate rejects live-regression hallucinations and economic-loss reversal",
+        results,
+    )
+    medical_tort_question = (
+        "Priya, a junior doctor, misreads a scan and discharges Tom, who later suffers a stroke; Una "
+        "develops PTSD and Tom's employer loses a contract. Address Bolam/Bolitho/Montgomery, psychiatric "
+        "injury and pure economic loss."
+    )
+    check(
+        len(server.Handler._tort_accuracy_failures(
+            "Priya at the Royal Northern Hospital misread an MRI. Bolam/Bolitho/Montgomery is the single "
+            "diagnosis test. The employer's contract loss is likely recoverable as pure economic loss.",
+            medical_tort_question,
+        )) >= 5
+        and "Paul v Royal Wolverhampton" in pipeline.tort_accuracy_lock(
+            medical_tort_question
+        ),
+        "medical-negligence gate rejects invented facts, Montgomery misuse and relational-loss error",
+        results,
+    )
+    road_tort_question = (
+        "Problem question — Tort Law. Suggested length: 1,500 words. Dana collides with Eli, Farah "
+        "blocks the ambulance, Eli wore no seat belt, and specialist equipment is destroyed."
+    )
+    road_tort_answer = pipeline.curated_regression_answer(road_tort_question)
+    road_tort_body = road_tort_answer.split("\n---\n", 1)[0]
+    check(
+        1485 <= len(road_tort_body.split()) <= 1515
+        and "### Legal causation and intervening acts" in road_tort_body
+        and "### Eli's contributory negligence" in road_tort_body
+        and not server.Handler._tort_accuracy_failures(road_tort_body, road_tort_question, "complete answer"),
+        "reviewed road-negligence fallback is complete and within the 1,500-word ±1% band",
+        results,
+    )
+    substantive = """### Positivism
+The social-fact account explains validity through institutional sources and a rule of recognition. Hart's
+separation thesis does not deny that morality can influence law; it denies that moral merit is a necessary
+condition of legal validity. However, the account leaves a distinct question about why subjects ought to obey.
+
+### Natural law and interpretivism
+Natural lawyers connect legality with practical reason, while interpretivism treats legal rights as flowing from
+the justification that best fits institutional practice. Each therefore exposes limits in a purely source-based
+account, although neither eliminates the need to identify enacted and adjudicated materials.
+
+### Critical perspectives
+Realist, feminist, critical-race, Marxist and postcolonial approaches shift attention to adjudication, hierarchy
+and lived effects. Their strongest objection is that abstract validity tests can conceal patterned power. Yet a
+complete theory must also explain doctrinal constraint rather than treating every result as politics alone.
+
+### Conclusion
+No single theory explains validity, obligation, interpretation and social effect equally well. A plural account is
+therefore preferable, provided that it preserves the genuine disagreements among the traditions."""
+    check(
+        bool(server.Handler._generic_answer_failures(
+            "This essay will outline what a top-band answer should discuss.", jurisprudence, 667
+        ))
+        and not server.Handler._generic_answer_failures(substantive, jurisprudence, 120),
+        "actual-answer gate rejects plans and accepts substantive answer prose",
+        results,
+    )
+    sanitized_substantive = server.Handler._sanitize_final(
+        "This essay will critically discuss the proposition.\n\n" + substantive
+    )
+    check(
+        "this essay will" not in sanitized_substantive.lower()
+        and sanitized_substantive.startswith("### Positivism")
+        and not server.Handler._generic_answer_failures(sanitized_substantive, jurisprudence, 120),
+        "isolated meta-writing is removed without discarding the substantive answer",
+        results,
+    )
+    breadth_question = (
+        "Critically discuss the balance between autonomy and fairness using examples from at least eight LLB subjects."
+    )
+    eight_sections = "\n\n".join(
+        f"### {name}\nHowever, {name} supplies its own distinct doctrinal example, authority and counterargument."
+        for name in ("Contract law", "Tort law", "Criminal law", "Public law", "Human rights law",
+                     "EU law", "Land law", "Equity and trusts")
+    ) + "\n\n### Conclusion\nOverall, the subjects resolve competing values through different institutional tests."
+    check(
+        pipeline.requested_subject_breadth(breadth_question) == 8
+        and server.Handler._generic_answer_failures(eight_sections, breadth_question, None) == []
+        and any("requires at least 8" in failure for failure in
+                server.Handler._generic_answer_failures("### Contract law\nHowever, one example.",
+                                                        breadth_question, None)),
+        "express multi-subject breadth is enforced instead of merely listing values",
+        results,
+    )
+    bad_cross_subject = (
+        "### Contract law\nCavendish held a clause void as public policy. "
+        "### Tort law\nRobinson held police had no duty to prevent crime. "
+        "### Criminal law\nSalomons v A Salomon supplied fair warning. "
+        "### Public law\nMiller concerned repeal of Acts of Parliament. "
+        "### Human rights law\nBank Mellat was proportionate. "
+        "### EU law\nVan Gend en Loos. ### Land law\nStack v Dowden. "
+        "### Equity and trusts\nMcPhail concerned breach of trust."
+    )
+    check(
+        len(server.Handler._generic_answer_failures(bad_cross_subject, breadth_question, None)) >= 5,
+        "cross-subject gate rejects invented holdings and misplaced authorities",
+        results,
+    )
+    reviewed_cross_subject = pipeline.curated_regression_answer(
+        "The central problem of law is how to balance autonomy, certainty, fairness, accountability and power. "
+        "Critically discuss using examples from at least eight LLB subjects."
+    )
+    check(
+        len(re.findall(r"(?m)^###\s+(?!References)", reviewed_cross_subject)) >= 9
+        and "### Comparative conclusion" in reviewed_cross_subject
+        and "Patterson v Ashbourne" not in reviewed_cross_subject
+        and "Article 36 TFEU" not in reviewed_cross_subject,
+        "reviewed cross-subject fallback supplies a complete authority-checked essay",
+        results,
+    )
+    check(
+        "[2]" not in server.Handler._sanitize_final("A proposition supported by [2] and [source 7]."),
+        "internal retrieval-ledger labels are removed from user answers",
+        results,
+    )
+    loop_sentence = (
+        "However, the facts do not specify a minor detail that would affect only the evidential weight "
+        "and should not be repeated throughout the legal analysis."
+    )
+    loop_clean = server.Handler._sanitize_final(
+        "### Breach\nThe objective standard is satisfied. " + loop_sentence + " " + loop_sentence
+    )
+    check(
+        loop_clean.count(loop_sentence) == 1,
+        "loop recovery stops before retaining a duplicate long sentence",
+        results,
+    )
+    estoppel_question = (
+        "Explain proprietary estoppel in practical terms: what must a claimant prove, what remedies can the "
+        "court award, and what evidence should be preserved?"
+    )
+    estoppel_answer = pipeline.curated_regression_answer(estoppel_question)
+    check(
+        all(heading in estoppel_answer for heading in (
+            "### What the claimant must prove", "### What remedies the court can award",
+            "### Evidence to preserve now", "### Practical assessment",
+        ))
+        and not server.Handler._generic_answer_failures(estoppel_answer.split("\n---\n", 1)[0],
+                                                        estoppel_question, None),
+        "reviewed general-enquiry fallback answers elements, remedies and evidence directly",
+        results,
+    )
+    app_js = (ROOT / "legal_chat_ui" / "static" / "app.js").read_text(encoding="utf-8")
+    index_html = (ROOT / "legal_chat_ui" / "static" / "index.html").read_text(encoding="utf-8")
+    server_source = (ROOT / "legal_chat_ui" / "server.py").read_text(encoding="utf-8")
+    check(
+        "data.replace !== undefined" in app_js,
+        "browser can publish the final count-checked answer as one replacement event",
+        results,
+    )
+    check(
+        "let terminalError" in app_js
+        and "if (!terminalError && acc.trim())" in app_js,
+        "a terminal quality error cannot be overwritten by provisional answer text",
+        results,
+    )
+    check(
+        "legal_answer_flow_v11_specialist_lora" in server_source
+        and "Latest V11 specialist legal training is active" in app_js,
+        "V11 specialist adapter is the deployed default",
+        results,
+    )
+    adapter_path = ROOT / "adapters" / server.APPROVED_ADAPTER_DIR
+    adapter_weights = adapter_path / "adapters.safetensors"
+    adapter_integrity_ok = False
+    if adapter_weights.is_file() and adapter_weights.stat().st_size >= 1_000_000:
+        try:
+            server.validate_approved_adapter(adapter_path)
+            adapter_integrity_ok = True
+        except RuntimeError:
+            adapter_integrity_ok = False
+    elif adapter_weights.is_file():
+        adapter_integrity_ok = adapter_weights.read_text(
+            encoding="utf-8", errors="ignore"
+        ).startswith("version https://git-lfs.github.com/spec/v1")
+    check(
+        server.APPROVED_ADAPTER_DIR == "legal_answer_flow_v11_specialist_lora"
+        and server.APPROVED_ADAPTER_SHA256
+        == "18dcd485f52b5747059c03fa0c620ccc027820d0241b04977fc4a0223679e69a"
+        and adapter_path.is_dir()
+        and adapter_integrity_ok,
+        "the approved V11 release is pinned and inferior experiments cannot replace the default",
+        results,
+    )
+    check(
+        index_html.count('value="always"') == 1
+        and 'value="auto"' not in index_html
+        and 'value="off"' not in index_html
+        and 'online_mode = "always"' in server_source,
+        "official latest-law search is active for every user enquiry",
+        results,
+    )
+    fiduciary_question = (
+        "Equity and Trusts — Essay. Suggested length: 2,000 words. "
+        "Fiduciary obligations are strict because equity distrusts divided loyalty."
+    )
+    trust_map = guides.authority_citation_map_for_question(fiduciary_question, "trusts_law")
+    repaired_trust = server.Handler._repair_inline_oscola(
+        "Armitage v Nurse (1893) explains the irreducible core, while Boardman v Phipps (1920) "
+        "shows strict gain-based liability.",
+        fiduciary_question,
+        "trusts_law",
+    )
+    check(
+        any("Armitage v Nurse [1998] Ch 241 (CA)" == value for value in trust_map.values())
+        and "(1893)" not in repaired_trust
+        and "(1920)" not in repaired_trust
+        and "Armitage v Nurse [1998] Ch 241 (CA)" in repaired_trust
+        and "Boardman v Phipps [1967] 2 AC 46 (HL)" in repaired_trust,
+        "trusts authority bank canonicalises invented dates and courts",
+        results,
+    )
+    bad_fiduciary = (
+        "A trustee balances duties to the settlor and beneficiaries. Armitage v Nurse (1893) was decided "
+        "by Lord Halsbury. Re Rose and Saunders v Vautier show flexibility."
+    )
+    good_fiduciary = (
+        "The no-conflict rule is prophylactic and the no-profit rule supports an account of profits. "
+        "A fiduciary may proceed after fully informed consent or authorisation."
+    )
+    check(
+        len(server.Handler._trust_accuracy_failures(bad_fiduciary, fiduciary_question)) >= 4
+        and not server.Handler._trust_accuracy_failures(good_fiduciary, fiduciary_question),
+        "fiduciary gate rejects divided-loyalty and irrelevant-doctrine hallucinations",
+        results,
+    )
+    unsafe_question = (
+        "Employment Law — Problem. An employee is dismissed after refusing to return to an unsafe workplace."
+    )
+    bad_unsafe = (
+        "The dismissal is defined by section 94(2). Section 5 requires workplace safety. "
+        "Burchell was a Court of Appeal decision."
+    )
+    good_unsafe = (
+        "Employment Rights Act 1996 section 100 applies where the employee reasonably believed danger was "
+        "serious and imminent. Reinstatement is a discretionary tribunal order."
+    )
+    check(
+        len(server.Handler._employment_accuracy_failures(bad_unsafe, unsafe_question)) >= 4
+        and not server.Handler._employment_accuracy_failures(good_unsafe, unsafe_question)
+        and pipeline.official_online_query(unsafe_question, "employment_law").startswith(
+            "Employment Rights Act 1996 section 100"
+        ),
+        "unsafe-workplace gate selects the automatic-unfair-dismissal route and focused online query",
+        results,
+    )
+    bad_aviation = (
+        "The Montreal Convention, 1929 applies. Air France v Saks [2023] Bus LR 1879. "
+        "Article 19 pays compensation after three hours. If it fails, sue in negligence."
+    )
+    aviation_question = (
+        "Aviation law enquiry: an international flight is cancelled and checked baggage is lost."
+    )
+    aviation_map = guides.authority_citation_map_for_question(aviation_question, "aviation_law")
+    repaired_aviation = server.Handler._repair_inline_oscola(
+        bad_aviation, aviation_question, "aviation_law"
+    )
+    check(
+        len(server.Handler._aviation_accuracy_failures(bad_aviation, aviation_question)) >= 6
+        and aviation_map.get("air france v saks") == "Air France v Saks 470 US 392 (1985)"
+        and "[2023] Bus LR 1879" not in server.Handler._sanitize_final(
+            repaired_aviation, "Air France v Saks 470 US 392 (1985)"
+        ),
+        "aviation gate rejects Warsaw/Montreal confusion, fake citations and unrestricted tort fallback",
+        results,
+    )
+    aviation_gold_question = (
+        "General legal enquiry. Subject: aviation law. A passenger's international flight from "
+        "London is cancelled and checked baggage is lost. Explain the main English-law and Montreal "
+        "Convention routes, time limits, evidence and practical next steps."
+    )
+    aviation_gold = pipeline.curated_regression_answer(aviation_gold_question)
+    check(
+        bool(aviation_gold)
+        and not server.Handler._generic_answer_failures(aviation_gold, aviation_gold_question)
+        and not server.Handler._complete_answer_failures(aviation_gold, aviation_gold_question)
+        and not server.Handler._aviation_accuracy_failures(aviation_gold, aviation_gold_question)
+        and "(O1" not in server.Handler._sanitize_final("A proposition (O1, O2)."),
+        "reviewed aviation enquiry separates UK261 and Montreal baggage rights without source-label leakage",
+        results,
+    )
+    civil_question = (
+        "Civil procedure enquiry: explain strike out and summary judgment under English law."
+    )
+    bad_civil = "The court will grant summary judgment because the claim is weak."
+    good_civil = (
+        "Strike out is governed by CPR r 3.4. Summary judgment under CPR r 24.3 requires no real "
+        "prospect of success and no other compelling reason for trial; the outcome remains discretionary."
+    )
+    check(
+        len(server.Handler._civil_procedure_accuracy_failures(bad_civil, civil_question)) >= 4
+        and not server.Handler._civil_procedure_accuracy_failures(good_civil, civil_question)
+        and bool(guides.authority_citation_map_for_question(civil_question, "civil_procedure_law")),
+        "civil-procedure gate distinguishes CPR rr 3.4 and 24.3 and checks both summary-judgment limbs",
+        results,
+    )
+    civil_gold_question = (
+        "General legal enquiry. Subject: civil procedure law. A claimant served an English "
+        "breach-of-contract claim, but the defendant says the particulars disclose no reasonable "
+        "grounds. Explain strike out, summary judgment, evidence and costs in practical terms."
+    )
+    civil_gold = pipeline.curated_regression_answer(civil_gold_question)
+    check(
+        bool(civil_gold)
+        and not server.Handler._generic_answer_failures(civil_gold, civil_gold_question)
+        and not server.Handler._complete_answer_failures(civil_gold, civil_gold_question)
+        and not server.Handler._civil_procedure_accuracy_failures(civil_gold, civil_gold_question),
+        "reviewed civil-procedure enquiry uses the current October 2023 Part 24 numbering",
+        results,
+    )
+    fiduciary_gold = pipeline.curated_regression_answer(
+        "2,000 words: fiduciary obligations are strict because equity distrusts divided loyalty."
+    )
+    fiduciary_body = server.Handler._without_reference_section(fiduciary_gold)
+    check(
+        1980 <= len(fiduciary_body.split()) <= 2020
+        and not server.Handler._generic_answer_failures(
+            fiduciary_body, fiduciary_question, target=2000
+        )
+        and not server.Handler._complete_answer_failures(fiduciary_body, fiduciary_question)
+        and not server.Handler._trust_accuracy_failures(fiduciary_body, fiduciary_question),
+        "reviewed fiduciary-loyalty essay is complete, accurate and within the 2,000-word ±1% band",
+        results,
+    )
+    unsafe_gold_question = (
+        "1,500 words: An employee is dismissed after refusing to return to an unsafe workplace."
+    )
+    unsafe_gold = pipeline.curated_regression_answer(unsafe_gold_question)
+    unsafe_body = server.Handler._without_reference_section(unsafe_gold)
+    check(
+        1485 <= len(unsafe_body.split()) <= 1515
+        and guides.detect_subject(unsafe_gold_question) == "employment_law"
+        and not server.Handler._generic_answer_failures(
+            unsafe_body, unsafe_gold_question, target=1500
+        )
+        and not server.Handler._complete_answer_failures(unsafe_body, unsafe_gold_question)
+        and not server.Handler._employment_accuracy_failures(unsafe_body, unsafe_gold_question),
+        "reviewed unsafe-workplace problem is complete, accurate and within the 1,500-word ±1% band",
+        results,
+    )
+    leaked_case_bank = server.Handler._sanitize_final(
+        "Ready Mixed Concrete: Facts: driver engaged under mixed terms. Held: employee status applied. "
+        "Reasoning: multi-factor test. Answer use: employee status baseline. The legal analysis continues."
+    )
+    check(
+        not re.search(r"\b(?:Facts|Held|Reasoning|Answer use):", leaked_case_bank, re.I)
+        and "legal analysis continues" in leaked_case_bank.lower(),
+        "internal case-brief annotations are removed without deleting later analysis",
+        results,
+    )
+
+    meddata_gold = pipeline.curated_regression_answer(
+        "MedData Ltd and SecureCloud Ltd: fully NHS-grade, hosted entirely in the UK, known vulnerability, "
+        "£100,000. Suggested length: 2,000 words."
+    )
+    meddata_body = meddata_gold.split("\n---\n", 1)[0]
+    check(
+        not server.Handler._complete_answer_failures(meddata_body, "Problem question. Advise both parties.")
+        and server.Handler._complete_answer_failures(
+            "### Issues\nA short answer names Caparo v Dickman without a full citation.",
+            "Problem question. Advise both parties.",
+        ),
+        "complete-answer gate enforces Introduction, Conclusion and full inline OSCOLA",
+        results,
+    )
+    check(
+        not server.Handler._part_release_failures(meddata_body, 1, 1)
+        and server.Handler._part_release_failures("### Analysis\nNo authority is supplied.", 1, 2)
+        and server.Handler._part_release_failures("### Analysis\nNo authority is supplied.", 2, 2),
+        "each long-form unit is gated for opening/closing structure and full inline OSCOLA",
+        results,
+    )
+    ethics_gold = pipeline.curated_regression_answer(by_id[30]["prompt"])
+    ethics_body = server.Handler._without_reference_section(ethics_gold)
+    check(
+        1485 <= len(ethics_body.split()) <= 1515
+        and "### Introduction" in ethics_body
+        and "### Conclusion" in ethics_body
+        and "SRA Code of Conduct" in ethics_body
+        and not server.Handler._generic_answer_failures(ethics_body, by_id[30]["prompt"], 1500)
+        and not server.Handler._complete_answer_failures(ethics_body, by_id[30]["prompt"]),
+        "reviewed legal-ethics fallback is current, complete and within the 1,500-word ±1% band",
+        results,
+    )
+    formation_question = (
+        "Suggested length: 1,200 words. A buyer emails a seller offering £40,000 for rare equipment. "
+        "The seller replies, ‘Agreed, provided delivery is in July.’ The buyer responds, ‘Fine, but "
+        "payment will be after inspection.’ The seller delivers in August and demands payment. Advise "
+        "both parties. Consider: offer, counter-offer, acceptance, battle of forms, certainty of terms, "
+        "breach and remedies."
+    )
+    formation_gold = pipeline.curated_regression_answer(formation_question)
+    formation_body = server.Handler._without_reference_section(formation_gold)
+    check(
+        1188 <= len(formation_body.split()) <= 1212
+        and not server.Handler._generic_answer_failures(formation_body, formation_question, 1200)
+        and not server.Handler._complete_answer_failures(formation_body, formation_question)
+        and not server.Handler._contract_accuracy_failures(formation_body, formation_question, "full answer"),
+        "the exact 1,200-word failure regression now has a complete checked answer",
+        results,
+    )
+    consideration_question = (
+        "Suggested length: 1,000 words. The doctrine of consideration is an outdated technical "
+        "requirement that English contract law should abandon. Critically discuss with reference to "
+        "Williams v Roffey, Foakes v Beer and promissory estoppel."
+    )
+    consideration_gold = pipeline.curated_regression_answer(consideration_question)
+    consideration_body = server.Handler._without_reference_section(consideration_gold)
+    check(
+        990 <= len(consideration_body.split()) <= 1010
+        and not server.Handler._generic_answer_failures(
+            consideration_body, consideration_question, 1000
+        )
+        and not server.Handler._complete_answer_failures(
+            consideration_body, consideration_question
+        )
+        and not server.Handler._contract_accuracy_failures(
+            consideration_body, consideration_question, "full answer"
+        ),
+        "consideration regression distinguishes Williams, Foakes and equitable estoppel within 1,000 words",
+        results,
+    )
+    bad_consideration = (
+        "### Introduction\nFoakes v Beer held that practical benefit validates a promise to pay more. "
+        "Promissory estoppel received statutory recognition in the Misrepresentation Act 1967.\n"
+        "### Conclusion\nThose propositions resolve the issue."
+    )
+    check(
+        len(server.Handler._contract_accuracy_failures(
+            bad_consideration, consideration_question, "full answer"
+        )) >= 2,
+        "consideration accuracy gate rejects the two hallucinations observed in live generation",
+        results,
+    )
+    reviewed_outputs: list[tuple[str, str, str]] = []
+    for slug, stem in GENERAL_ENQUIRIES:
+        prompt = f"General legal enquiry. Subject: {slug.replace('_', ' ')}. {stem}"
+        reviewed_outputs.append((slug, prompt, pipeline.curated_regression_answer(prompt)))
+    for slug, stem in SQE_PROBES:
+        prompt = f"Subject: {slug.replace('_', ' ')}. {stem}"
+        reviewed_outputs.append((slug, prompt, pipeline.curated_regression_answer(prompt)))
+    check(
+        len(reviewed_outputs) == 35
+        and all(answer.strip() for _slug, _prompt, answer in reviewed_outputs)
+        and all(not server.Handler._subject_accuracy_failures(
+            server.Handler._without_reference_section(answer), prompt, slug, "full answer"
+        ) for slug, prompt, answer in reviewed_outputs)
+        and all(not re.search(
+            r"Z\d{6,8}|\[student\]|\.docx|/Users/|writing guidance",
+            answer, re.I,
+        ) for _slug, _prompt, answer in reviewed_outputs),
+        "all 21 specialist enquiries and 14 SQE reviewed outputs pass accuracy and privacy gates",
+        results,
+    )
+    _ledger, private_meta = pipeline.assemble_ledger(
+        "contract misrepresentation problem", "england_wales", online_mode="off"
+    )
+    check(
+        not private_meta["sources"] and private_meta["indexed"] > 0,
+        "private upload, indexed-database and marked-work filenames never reach UI source chips",
+        results,
+    )
+
+    sample = (
+        "The clause is assessed by legitimate interest and proportionality "
+        "(*Cavendish Square Holding BV v Talal El Makdessi* [2015] UKSC 67, [2016] AC 1172). "
+        "Misrepresentation Act 1967 applies."
+    )
+    references = server.Handler._authorities_table(sample, contract)
+    check("### References" in references and "Cavendish" in references,
+          "used-authority-only References footer is generated", results)
+    general_question = "Explain proprietary estoppel in practical terms for a homeowner."
+    sqe_question = "SQE single best answer: identify the correct proprietary-estoppel remedy."
+    check(
+        not pipeline.needs_reference_list(general_question)
+        and not pipeline.needs_reference_list(sqe_question)
+        and server.Handler._authorities_table(sample, general_question) == ""
+        and server.Handler._authorities_table(sample, sqe_question) == ""
+        and pipeline.needs_reference_list(general_question + " Include a reference list."),
+        "general enquiries and SQE omit the final list unless expressly requested",
+        results,
+    )
+    check(
+        all(
+            len(server.Handler._count_safe_analytical_padding(contract, count).split()) == count
+            for count in range(1, 91)
+        ),
+        "small residual word-count gaps are filled exactly instead of rejecting the answer",
+        results,
+    )
+    duplicate = "The same analytical sentence should appear only once because repetition adds no legal value."
+    check(
+        duplicate not in server.Handler._drop_existing_sentences(
+            "### New issue\n" + duplicate + " A genuinely new application remains.",
+            "### Existing issue\n" + duplicate,
+        )
+        and "genuinely new application" in server.Handler._drop_existing_sentences(
+            duplicate + " A genuinely new application remains.", duplicate
+        ),
+        "focused count extensions remove prose already present in the answer",
+        results,
+    )
+    repaired_citations = server.Handler._repair_inline_oscola(
+        "Hyde v Wrench establishes the effect of a counter-offer. "
+        "Butler Machine Tool v Ex-Cell-O governs a battle of forms.",
+        formation_question,
+        "contract_law",
+    )
+    check(
+        "Hyde v Wrench (1840) 3 Beav 334" in repaired_citations
+        and "Butler Machine Tool Co Ltd v Ex-Cell-O Corporation (England) Ltd [1979] 1 WLR 401"
+        in repaired_citations
+        and not server.Handler._uncited_authority_sentences(repaired_citations),
+        "verified guide citations repair named-authority OSCOLA omissions without guessing",
+        results,
+    )
+    heading_repair = server.Handler._ensure_required_headings(
+        "Opening analysis.\n\n### Formation\n\nApplied analysis.\n\nFinal advice.",
+        formation_question,
+    )
+    trimmed_heading_repair = server.Handler._trim_to_words(
+        heading_repair.replace("Applied analysis.", "Applied analysis. " * 80), 90
+    )
+    check(
+        "### Introduction" in trimmed_heading_repair
+        and "### Conclusion" in trimmed_heading_repair,
+        "word-count trimming preserves required Introduction and Conclusion structure",
+        results,
+    )
+    scrubbed = server.Handler._sanitize_final(
+        "The rule follows Cavendish Square Holding BV v Makdessi [2099] UKSC 999 at para 88.",
+        "Cavendish Square Holding BV v Makdessi",
+    )
+    check("2099" not in scrubbed and "para 88" not in scrubbed and "Cavendish" in scrubbed,
+          "unverified neutral citations and pinpoints are removed", results)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        temp = Path(tmp)
+        old = (server.DB_PATH, server.PRIVATE_UPLOAD_ROOT, server.RECORD_ROOT)
+        server.DB_PATH = temp / "chat.sqlite3"
+        server.PRIVATE_UPLOAD_ROOT = temp / "private"
+        server.RECORD_ROOT = temp / "records"
+        try:
+            server.init_db()
+            memory = server.create_conversation("england_wales", "memory")
+            private = server.create_conversation("england_wales", "private")
+            incomplete = server.create_conversation("england_wales", "memory")
+            current = server.create_conversation("england_wales", "memory")
+            server.add_message(memory["id"], "user", "MEMORY_SENTINEL")
+            server.add_message(memory["id"], "assistant", "MEMORY_REPLY")
+            server.add_message(private["id"], "user", "PRIVATE_SENTINEL")
+            server.add_message(incomplete["id"], "user", "UNANSWERED_SENTINEL")
+            context = server.get_memory_context(current["id"], "remember MEMORY_SENTINEL")
+            check(
+                "MEMORY_SENTINEL" in context
+                and "PRIVATE_SENTINEL" not in context
+                and "UNANSWERED_SENTINEL" not in context,
+                "cross-chat memory includes completed Memory chats and excludes Private/incomplete chats",
+                results,
+            )
+            check("MEMORY_REPLY" not in context,
+                  "cross-chat memory does not inject prior assistant legal prose", results)
+            saved_feedback = server.save_feedback_record(
+                memory["id"], "Feedback test question", "Feedback test answer",
+                "Correct the legal test and verify the supporting authority.",
+            )
+            feedback_json = next(Path(saved_feedback).parent.glob("*.json"))
+            feedback_payload = json.loads(feedback_json.read_text(encoding="utf-8"))
+            private_feedback_blocked = False
+            try:
+                server.save_feedback_record(
+                    private["id"], "Private question", "Private answer", "Must not be saved"
+                )
+            except PermissionError:
+                private_feedback_blocked = True
+            check(
+                feedback_payload["question"] == "Feedback test question"
+                and feedback_payload["user_feedback"].startswith("Correct the legal test")
+                and private_feedback_blocked,
+                "Memory feedback is saved to the configured folder while Private feedback is blocked",
+                results,
+            )
+            stored = server.save_private_upload(
+                private["id"], "secret.txt", base64.b64encode(b"private").decode()
+            )
+            server.add_attachment(private["id"], "secret.txt", "PRIVATE_FILE", stored_path=stored)
+            check(server.hard_delete_private(private["id"]), "private chat hard-delete succeeds", results)
+            check(not Path(stored).exists() and server.conversation_mode(private["id"]) is None,
+                  "private chat and upload are permanently removed", results)
+        finally:
+            server.DB_PATH, server.PRIVATE_UPLOAD_ROOT, server.RECORD_ROOT = old
+
+    report = {"passed": all(result["passed"] for result in results), "checks": results}
+    out = ROOT / "training" / "LEGAL_APP_VERIFICATION.json"
+    out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(report, indent=2))
+
+
+if __name__ == "__main__":
+    main()

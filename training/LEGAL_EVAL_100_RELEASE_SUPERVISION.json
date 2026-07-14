@@ -1,0 +1,3442 @@
+{
+  "passed": true,
+  "question_count": 100,
+  "questions_passed": 100,
+  "total_requested_answer_words": 452100,
+  "scope": "All-question deterministic supervision of parsing, routing, RAG, structure, privacy presentation and word budgets. It is not a claim that every complete answer was generated or human-marked.",
+  "failures": [],
+  "questions": [
+    {
+      "id": 1,
+      "type": "essay",
+      "word_count": 1000,
+      "allowed_body_words": [
+        990,
+        1010
+      ],
+      "parts": 1,
+      "subjects": [
+        "contract_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 2,
+      "type": "problem",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "contract_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 3,
+      "type": "essay",
+      "word_count": 1300,
+      "allowed_body_words": [
+        1287,
+        1313
+      ],
+      "parts": 1,
+      "subjects": [
+        "tort_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 4,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "tort_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 5,
+      "type": "essay",
+      "word_count": 1000,
+      "allowed_body_words": [
+        990,
+        1010
+      ],
+      "parts": 1,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 6,
+      "type": "problem",
+      "word_count": 1400,
+      "allowed_body_words": [
+        1386,
+        1414
+      ],
+      "parts": 1,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 7,
+      "type": "essay",
+      "word_count": 1300,
+      "allowed_body_words": [
+        1287,
+        1313
+      ],
+      "parts": 1,
+      "subjects": [
+        "public_law",
+        "public_international_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 8,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "public_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 9,
+      "type": "essay",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "biolaw_ai_data",
+        "family_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 10,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "biolaw_ai_data",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 11,
+      "type": "essay",
+      "word_count": 1300,
+      "allowed_body_words": [
+        1287,
+        1313
+      ],
+      "parts": 1,
+      "subjects": [
+        "land_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 12,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "land_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 13,
+      "type": "essay",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "trusts_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 14,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "trusts_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 15,
+      "type": "essay",
+      "word_count": 1300,
+      "allowed_body_words": [
+        1287,
+        1313
+      ],
+      "parts": 1,
+      "subjects": [
+        "trusts_law",
+        "business_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 16,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "land_law",
+        "business_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 17,
+      "type": "essay",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "evidence_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 18,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "evidence_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 19,
+      "type": "essay",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "family_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 20,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "family_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 21,
+      "type": "essay",
+      "word_count": 1300,
+      "allowed_body_words": [
+        1287,
+        1313
+      ],
+      "parts": 1,
+      "subjects": [
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 22,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "contract_law",
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 23,
+      "type": "essay",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "intellectual_property_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 24,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "intellectual_property_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 25,
+      "type": "essay",
+      "word_count": 1200,
+      "allowed_body_words": [
+        1188,
+        1212
+      ],
+      "parts": 1,
+      "subjects": [
+        "biolaw_ai_data",
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 26,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "biolaw_ai_data",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 27,
+      "type": "essay",
+      "word_count": 1300,
+      "allowed_body_words": [
+        1287,
+        1313
+      ],
+      "parts": 1,
+      "subjects": [
+        "immigration_refugee_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 28,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "family_law",
+        "human_rights_law",
+        "immigration_refugee_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 29,
+      "type": "essay",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "public_law",
+        "jurisprudence_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 30,
+      "type": "problem",
+      "word_count": 1500,
+      "allowed_body_words": [
+        1485,
+        1515
+      ],
+      "parts": 1,
+      "subjects": [
+        "legal_ethics"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 31,
+      "type": "essay",
+      "word_count": 2000,
+      "allowed_body_words": [
+        1980,
+        2020
+      ],
+      "parts": 1,
+      "subjects": [
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "remedies_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 32,
+      "type": "problem",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "contract_law",
+        "remedies_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 33,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "contract_law",
+        "commercial_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 34,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "law_medicine",
+        "contract_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 35,
+      "type": "essay",
+      "word_count": 2000,
+      "allowed_body_words": [
+        1980,
+        2020
+      ],
+      "parts": 1,
+      "subjects": [
+        "tort_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 36,
+      "type": "problem",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "tort_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 37,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "tort_law",
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 38,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "tort_law",
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 39,
+      "type": "essay",
+      "word_count": 2000,
+      "allowed_body_words": [
+        1980,
+        2020
+      ],
+      "parts": 1,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 40,
+      "type": "problem",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "tort_law",
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 41,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "law_medicine",
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 42,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 43,
+      "type": "essay",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "public_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 44,
+      "type": "problem",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "law_medicine",
+        "public_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 45,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 46,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "privacy_media_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 47,
+      "type": "essay",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "tort_law",
+        "land_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 48,
+      "type": "problem",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "trusts_law",
+        "land_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 49,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "trusts_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 50,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "trusts_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 51,
+      "type": "essay",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "business_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 52,
+      "type": "problem",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "business_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 53,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "insolvency_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 54,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "insolvency_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 55,
+      "type": "essay",
+      "word_count": 2500,
+      "allowed_body_words": [
+        2475,
+        2525
+      ],
+      "parts": 1,
+      "subjects": [
+        "commercial_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "single_answer_structure_contract": true
+      },
+      "passed": true
+    },
+    {
+      "id": 56,
+      "type": "problem",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "commercial_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 57,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "eu_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 58,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "eu_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 59,
+      "type": "essay",
+      "word_count": 3000,
+      "allowed_body_words": [
+        2970,
+        3030
+      ],
+      "parts": 4,
+      "subjects": [
+        "public_international_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 60,
+      "type": "problem",
+      "word_count": 3500,
+      "allowed_body_words": [
+        3465,
+        3535
+      ],
+      "parts": 5,
+      "subjects": [
+        "criminal_law",
+        "public_international_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 61,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "contract_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 62,
+      "type": "problem",
+      "word_count": 5000,
+      "allowed_body_words": [
+        4950,
+        5050
+      ],
+      "parts": 7,
+      "subjects": [
+        "contract_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 63,
+      "type": "essay",
+      "word_count": 4500,
+      "allowed_body_words": [
+        4455,
+        4545
+      ],
+      "parts": 6,
+      "subjects": [
+        "tort_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 64,
+      "type": "problem",
+      "word_count": 6000,
+      "allowed_body_words": [
+        5940,
+        6060
+      ],
+      "parts": 8,
+      "subjects": [
+        "tort_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 65,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 66,
+      "type": "problem",
+      "word_count": 5500,
+      "allowed_body_words": [
+        5445,
+        5555
+      ],
+      "parts": 7,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 67,
+      "type": "essay",
+      "word_count": 5000,
+      "allowed_body_words": [
+        4950,
+        5050
+      ],
+      "parts": 7,
+      "subjects": [
+        "public_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 68,
+      "type": "problem",
+      "word_count": 6000,
+      "allowed_body_words": [
+        5940,
+        6060
+      ],
+      "parts": 8,
+      "subjects": [
+        "public_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 69,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "trusts_law",
+        "land_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 70,
+      "type": "problem",
+      "word_count": 6500,
+      "allowed_body_words": [
+        6435,
+        6565
+      ],
+      "parts": 9,
+      "subjects": [
+        "land_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 71,
+      "type": "essay",
+      "word_count": 5000,
+      "allowed_body_words": [
+        4950,
+        5050
+      ],
+      "parts": 7,
+      "subjects": [
+        "trusts_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 72,
+      "type": "problem",
+      "word_count": 7000,
+      "allowed_body_words": [
+        6930,
+        7070
+      ],
+      "parts": 9,
+      "subjects": [
+        "trusts_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 73,
+      "type": "essay",
+      "word_count": 5000,
+      "allowed_body_words": [
+        4950,
+        5050
+      ],
+      "parts": 7,
+      "subjects": [
+        "business_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 74,
+      "type": "problem",
+      "word_count": 6500,
+      "allowed_body_words": [
+        6435,
+        6565
+      ],
+      "parts": 9,
+      "subjects": [
+        "insolvency_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 75,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "contract_law",
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 76,
+      "type": "problem",
+      "word_count": 5000,
+      "allowed_body_words": [
+        4950,
+        5050
+      ],
+      "parts": 7,
+      "subjects": [
+        "commercial_law",
+        "employment_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 77,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "family_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 78,
+      "type": "problem",
+      "word_count": 5500,
+      "allowed_body_words": [
+        5445,
+        5555
+      ],
+      "parts": 7,
+      "subjects": [
+        "family_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 79,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "law_medicine"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 80,
+      "type": "problem",
+      "word_count": 5000,
+      "allowed_body_words": [
+        4950,
+        5050
+      ],
+      "parts": 7,
+      "subjects": [
+        "law_medicine",
+        "family_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 81,
+      "type": "essay",
+      "word_count": 4500,
+      "allowed_body_words": [
+        4455,
+        4545
+      ],
+      "parts": 6,
+      "subjects": [
+        "biolaw_ai_data",
+        "intellectual_property_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 82,
+      "type": "problem",
+      "word_count": 6000,
+      "allowed_body_words": [
+        5940,
+        6060
+      ],
+      "parts": 8,
+      "subjects": [
+        "biolaw_ai_data"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 83,
+      "type": "essay",
+      "word_count": 4000,
+      "allowed_body_words": [
+        3960,
+        4040
+      ],
+      "parts": 5,
+      "subjects": [
+        "biolaw_ai_data"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 84,
+      "type": "problem",
+      "word_count": 5500,
+      "allowed_body_words": [
+        5445,
+        5555
+      ],
+      "parts": 7,
+      "subjects": [
+        "biolaw_ai_data"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 85,
+      "type": "essay",
+      "word_count": 4500,
+      "allowed_body_words": [
+        4455,
+        4545
+      ],
+      "parts": 6,
+      "subjects": [
+        "environmental_law",
+        "public_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 86,
+      "type": "essay",
+      "word_count": 8000,
+      "allowed_body_words": [
+        7920,
+        8080
+      ],
+      "parts": 10,
+      "subjects": [
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "land_law",
+        "restitution_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 87,
+      "type": "problem",
+      "word_count": 10000,
+      "allowed_body_words": [
+        9900,
+        10100
+      ],
+      "parts": 13,
+      "subjects": [
+        "contract_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 88,
+      "type": "problem",
+      "word_count": 10000,
+      "allowed_body_words": [
+        9900,
+        10100
+      ],
+      "parts": 13,
+      "subjects": [
+        "tort_law",
+        "environmental_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 89,
+      "type": "problem",
+      "word_count": 10000,
+      "allowed_body_words": [
+        9900,
+        10100
+      ],
+      "parts": 13,
+      "subjects": [
+        "criminal_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 90,
+      "type": "essay",
+      "word_count": 12000,
+      "allowed_body_words": [
+        11880,
+        12120
+      ],
+      "parts": 15,
+      "subjects": [
+        "public_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 91,
+      "type": "problem",
+      "word_count": 12000,
+      "allowed_body_words": [
+        11880,
+        12120
+      ],
+      "parts": 15,
+      "subjects": [
+        "biolaw_ai_data",
+        "public_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 92,
+      "type": "problem",
+      "word_count": 12000,
+      "allowed_body_words": [
+        11880,
+        12120
+      ],
+      "parts": 15,
+      "subjects": [
+        "trusts_law",
+        "land_law",
+        "family_law",
+        "remedies_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 93,
+      "type": "problem",
+      "word_count": 12000,
+      "allowed_body_words": [
+        11880,
+        12120
+      ],
+      "parts": 15,
+      "subjects": [
+        "insolvency_law",
+        "business_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 94,
+      "type": "essay",
+      "word_count": 12000,
+      "allowed_body_words": [
+        11880,
+        12120
+      ],
+      "parts": 15,
+      "subjects": [
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 95,
+      "type": "essay",
+      "word_count": 12000,
+      "allowed_body_words": [
+        11880,
+        12120
+      ],
+      "parts": 15,
+      "subjects": [
+        "public_international_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 96,
+      "type": "essay",
+      "word_count": 15000,
+      "allowed_body_words": [
+        14850,
+        15150
+      ],
+      "parts": 19,
+      "subjects": [
+        "jurisprudence_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 97,
+      "type": "problem",
+      "word_count": 15000,
+      "allowed_body_words": [
+        14850,
+        15150
+      ],
+      "parts": 19,
+      "subjects": [
+        "biolaw_ai_data",
+        "consumer_law",
+        "contract_law",
+        "employment_law",
+        "intellectual_property_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 98,
+      "type": "essay",
+      "word_count": 18000,
+      "allowed_body_words": [
+        17820,
+        18180
+      ],
+      "parts": 23,
+      "subjects": [
+        "trusts_law",
+        "public_law",
+        "human_rights_law",
+        "remedies_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 99,
+      "type": "essay",
+      "word_count": 20000,
+      "allowed_body_words": [
+        19800,
+        20200
+      ],
+      "parts": 25,
+      "subjects": [
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "land_law",
+        "criminal_law",
+        "business_law",
+        "public_law",
+        "human_rights_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    },
+    {
+      "id": 100,
+      "type": "problem",
+      "word_count": 20000,
+      "allowed_body_words": [
+        19800,
+        20200
+      ],
+      "parts": 25,
+      "subjects": [
+        "legal_ethics",
+        "biolaw_ai_data",
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "land_law",
+        "insolvency_law",
+        "business_law",
+        "employment_law",
+        "family_law"
+      ],
+      "answer_contract": {
+        "explicit_introduction": true,
+        "explicit_conclusion": true,
+        "full_inline_oscola_parentheses": true,
+        "used_authority_only_references": true,
+        "private_source_labels_public": false
+      },
+      "checks": {
+        "answer_mode": true,
+        "requested_words": true,
+        "subject_route": true,
+        "subject_guide": true,
+        "legal_rag": true,
+        "assessment_guidance": true,
+        "part_total": true,
+        "part_cap": true,
+        "stored_plan_current": true,
+        "introduction_unit": true,
+        "conclusion_unit": true
+      },
+      "passed": true
+    }
+  ]
+}

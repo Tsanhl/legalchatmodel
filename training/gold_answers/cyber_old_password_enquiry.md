@@ -1,0 +1,25 @@
+Using a still-working password after employment ended can amount to unauthorised access even though no technical barrier was defeated. Liability turns on the former employee’s actual authority and knowledge, what was done after access, and the nature of the downloaded files. The employee should stop accessing or using the material and preserve evidence; the employer should revoke access, preserve logs and assess containment, notification and urgent civil relief.
+
+### Computer Misuse Act offences
+
+The principal offence is intentionally causing a computer to perform a function to secure access to programs or data where that access is unauthorised and the defendant knows it is unauthorised (Computer Misuse Act 1990, s 1). Section 1 does not require an intention to commit a further offence. A password’s technical validity is not the same as legal authority: termination, account permissions, policies, warnings and the employee’s role will show whether authority had ended.
+
+The boundary is fact-sensitive. Improper use by someone authorised to access the relevant data is not automatically unauthorised, as Bignell illustrates (*DPP v Bignell* [1998] 1 Cr App R 1). Conversely, an insider can be unauthorised when knowingly accessing data outside the authority actually granted (*R v Bow Street Magistrates’ Court, ex p Allison* [2000] 2 AC 216). A former employee who deliberately logs in after departure is therefore at substantial section 1 risk unless there is evidence that access remained authorised, rather than merely possible.
+
+Section 2 applies where section 1 unauthorised access was intended to commit or facilitate a further offence (Computer Misuse Act 1990, s 2). It should not be invoked without identifying that further offence and the required intent. Section 3 instead concerns an unauthorised act intended to impair computer operation, prevent or hinder access, or impair data, or recklessness as to such impairment (Computer Misuse Act 1990, s 3). Merely copying files does not establish impairment; deletion, encryption, alteration or disruption could.
+
+### Data, fraud and civil exposure
+
+If the files contain personal data, knowingly or recklessly obtaining or retaining it without the controller’s consent may engage section 170, subject to its statutory defences (Data Protection Act 2018, s 170). The facts must show what data was taken, whether it was retained or disclosed, and whether any defence—such as prevention or detection of crime, legal requirement, public interest or reasonable belief in a legal right—can realistically apply.
+
+Fraud by false representation requires a dishonest false representation, made with intent to make a gain or cause or risk loss (Fraud Act 2006, ss 1-2). Logging in may sometimes carry an implied representation, but downloading files does not by itself prove that another person was induced to enter a transaction. Fraud should not be added mechanically.
+
+Civil claims may include breach of express or implied confidentiality obligations, breach of confidence, misuse of private information, infringement of copyright or database right, and misuse of a trade secret. The precise route depends on the files, how access occurred and what use or disclosure followed. The employer may seek an interim injunction, delivery up or deletion under a controlled order, preservation orders, damages or an account where legally available. Exemplary damages are exceptional, not an automatic response to serious conduct.
+
+### Evidence and immediate action
+
+The former employee should make no further login, copying, disclosure, deletion or alteration. They should keep the devices and records intact, obtain independent legal advice, and communicate through counsel. They should not attempt to erase downloaded files unilaterally, because that may destroy evidence; counsel can arrange secure isolation and an agreed or ordered deletion protocol.
+
+The employer should revoke credentials and tokens, reset affected accounts through its own administrators, preserve authentication and download logs, image relevant systems proportionately, document the chronology, and assess whether information was disclosed. It should avoid altering the only evidence. If personal data was compromised, the controller must assess risk and whether notification to the Information Commissioner within the applicable UK GDPR timetable, and communication to affected individuals, is required.
+
+The employer should also consider police reporting, insurer notification, contractual steps and a narrowly framed injunction. Before accusing the employee publicly, it should verify account attribution, shared credentials, timestamps and lawful-access records. The likely criminal route is section 1 if post-termination access and knowledge are proved; sections 2 or 3 require additional facts. Civil urgency depends chiefly on sensitivity, continuing possession, threatened use and evidence of disclosure.

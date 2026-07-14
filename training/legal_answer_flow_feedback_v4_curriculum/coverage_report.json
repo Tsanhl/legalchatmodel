@@ -1,0 +1,41 @@
+{
+  "data_dir": "data/legal_answer_flow_v4_curriculum",
+  "split_counts": {
+    "train": 3214,
+    "valid": 280,
+    "test": 140
+  },
+  "topic_counts": {
+    "company": 25,
+    "competition": 315,
+    "contract": 709,
+    "criminal": 274,
+    "employment": 83,
+    "equity_trusts": 404,
+    "evidence": 68,
+    "family": 13,
+    "human_rights": 48,
+    "intellectual_property": 39,
+    "land": 106,
+    "media_privacy": 48,
+    "medical_biolaw": 233,
+    "private_international": 27,
+    "public_international": 33,
+    "public_jr": 3,
+    "tax": 191,
+    "tort": 186,
+    "unclassified": 829
+  },
+  "answer_type_counts": {
+    "essay": 604,
+    "explanatory": 1488,
+    "other": 1164,
+    "problem": 378
+  },
+  "output_word_count": {
+    "count": 3634,
+    "median": 156,
+    "at_least_700": 41,
+    "at_least_1000": 0
+  }
+}

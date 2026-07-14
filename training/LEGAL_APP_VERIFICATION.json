@@ -1,0 +1,261 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "100-question bank parsed",
+      "passed": true
+    },
+    {
+      "check": "every question has a subject route",
+      "passed": true
+    },
+    {
+      "check": "all long answers have exact totals and parts <=800 words",
+      "passed": true
+    },
+    {
+      "check": "new gap guides are exercised by the evaluation bank",
+      "passed": true
+    },
+    {
+      "check": "runtime prompts include current rule checkpoints and full OSCOLA authority banks",
+      "passed": true
+    },
+    {
+      "check": "51 bundled legal guides are standalone and contain no known private identifiers",
+      "passed": true
+    },
+    {
+      "check": "group-range text cannot override an individual question's Suggested length",
+      "passed": true
+    },
+    {
+      "check": "all 18 supplied documents are feedback-indexed",
+      "passed": true
+    },
+    {
+      "check": "lower-mark work is retained for diagnostic audit",
+      "passed": true
+    },
+    {
+      "check": "lower-mark submitted prose is excluded from runtime exemplars",
+      "passed": true
+    },
+    {
+      "check": "public clone has relevant legal RAG and writing guidance without the private database",
+      "passed": true
+    },
+    {
+      "check": "contract problem retrieves relevant contract/commercial material",
+      "passed": true
+    },
+    {
+      "check": "answers up to 2,500 words use one complete supervised generation",
+      "passed": true
+    },
+    {
+      "check": "critically-discuss-using theory lists are extracted while 2,000 words remains single-pass",
+      "passed": true
+    },
+    {
+      "check": "multi-theory jurisprudence regression has a complete 2,000-word gold answer",
+      "passed": true
+    },
+    {
+      "check": "20,000-word answers use 25 distinct analytical units and do not use a 2,000-word fixture",
+      "passed": true
+    },
+    {
+      "check": "planner preserves every requested total from 1,000 through 20,000 words",
+      "passed": true
+    },
+    {
+      "check": "a 1,500-word problem answer remains a single complete supervised generation",
+      "passed": true
+    },
+    {
+      "check": "tort gate rejects live-regression hallucinations and economic-loss reversal",
+      "passed": true
+    },
+    {
+      "check": "medical-negligence gate rejects invented facts, Montgomery misuse and relational-loss error",
+      "passed": true
+    },
+    {
+      "check": "reviewed road-negligence fallback is complete and within the 1,500-word \u00b11% band",
+      "passed": true
+    },
+    {
+      "check": "actual-answer gate rejects plans and accepts substantive answer prose",
+      "passed": true
+    },
+    {
+      "check": "isolated meta-writing is removed without discarding the substantive answer",
+      "passed": true
+    },
+    {
+      "check": "express multi-subject breadth is enforced instead of merely listing values",
+      "passed": true
+    },
+    {
+      "check": "cross-subject gate rejects invented holdings and misplaced authorities",
+      "passed": true
+    },
+    {
+      "check": "reviewed cross-subject fallback supplies a complete authority-checked essay",
+      "passed": true
+    },
+    {
+      "check": "internal retrieval-ledger labels are removed from user answers",
+      "passed": true
+    },
+    {
+      "check": "loop recovery stops before retaining a duplicate long sentence",
+      "passed": true
+    },
+    {
+      "check": "reviewed general-enquiry fallback answers elements, remedies and evidence directly",
+      "passed": true
+    },
+    {
+      "check": "browser can publish the final count-checked answer as one replacement event",
+      "passed": true
+    },
+    {
+      "check": "a terminal quality error cannot be overwritten by provisional answer text",
+      "passed": true
+    },
+    {
+      "check": "V11 specialist adapter is the deployed default",
+      "passed": true
+    },
+    {
+      "check": "the approved V11 release is pinned and inferior experiments cannot replace the default",
+      "passed": true
+    },
+    {
+      "check": "official latest-law search is active for every user enquiry",
+      "passed": true
+    },
+    {
+      "check": "trusts authority bank canonicalises invented dates and courts",
+      "passed": true
+    },
+    {
+      "check": "fiduciary gate rejects divided-loyalty and irrelevant-doctrine hallucinations",
+      "passed": true
+    },
+    {
+      "check": "unsafe-workplace gate selects the automatic-unfair-dismissal route and focused online query",
+      "passed": true
+    },
+    {
+      "check": "aviation gate rejects Warsaw/Montreal confusion, fake citations and unrestricted tort fallback",
+      "passed": true
+    },
+    {
+      "check": "reviewed aviation enquiry separates UK261 and Montreal baggage rights without source-label leakage",
+      "passed": true
+    },
+    {
+      "check": "civil-procedure gate distinguishes CPR rr 3.4 and 24.3 and checks both summary-judgment limbs",
+      "passed": true
+    },
+    {
+      "check": "reviewed civil-procedure enquiry uses the current October 2023 Part 24 numbering",
+      "passed": true
+    },
+    {
+      "check": "reviewed fiduciary-loyalty essay is complete, accurate and within the 2,000-word \u00b11% band",
+      "passed": true
+    },
+    {
+      "check": "reviewed unsafe-workplace problem is complete, accurate and within the 1,500-word \u00b11% band",
+      "passed": true
+    },
+    {
+      "check": "internal case-brief annotations are removed without deleting later analysis",
+      "passed": true
+    },
+    {
+      "check": "complete-answer gate enforces Introduction, Conclusion and full inline OSCOLA",
+      "passed": true
+    },
+    {
+      "check": "each long-form unit is gated for opening/closing structure and full inline OSCOLA",
+      "passed": true
+    },
+    {
+      "check": "reviewed legal-ethics fallback is current, complete and within the 1,500-word \u00b11% band",
+      "passed": true
+    },
+    {
+      "check": "the exact 1,200-word failure regression now has a complete checked answer",
+      "passed": true
+    },
+    {
+      "check": "consideration regression distinguishes Williams, Foakes and equitable estoppel within 1,000 words",
+      "passed": true
+    },
+    {
+      "check": "consideration accuracy gate rejects the two hallucinations observed in live generation",
+      "passed": true
+    },
+    {
+      "check": "all 21 specialist enquiries and 14 SQE reviewed outputs pass accuracy and privacy gates",
+      "passed": true
+    },
+    {
+      "check": "private upload, indexed-database and marked-work filenames never reach UI source chips",
+      "passed": true
+    },
+    {
+      "check": "used-authority-only References footer is generated",
+      "passed": true
+    },
+    {
+      "check": "general enquiries and SQE omit the final list unless expressly requested",
+      "passed": true
+    },
+    {
+      "check": "small residual word-count gaps are filled exactly instead of rejecting the answer",
+      "passed": true
+    },
+    {
+      "check": "focused count extensions remove prose already present in the answer",
+      "passed": true
+    },
+    {
+      "check": "verified guide citations repair named-authority OSCOLA omissions without guessing",
+      "passed": true
+    },
+    {
+      "check": "word-count trimming preserves required Introduction and Conclusion structure",
+      "passed": true
+    },
+    {
+      "check": "unverified neutral citations and pinpoints are removed",
+      "passed": true
+    },
+    {
+      "check": "cross-chat memory includes completed Memory chats and excludes Private/incomplete chats",
+      "passed": true
+    },
+    {
+      "check": "cross-chat memory does not inject prior assistant legal prose",
+      "passed": true
+    },
+    {
+      "check": "Memory feedback is saved to the configured folder while Private feedback is blocked",
+      "passed": true
+    },
+    {
+      "check": "private chat hard-delete succeeds",
+      "passed": true
+    },
+    {
+      "check": "private chat and upload are permanently removed",
+      "passed": true
+    }
+  ]
+}

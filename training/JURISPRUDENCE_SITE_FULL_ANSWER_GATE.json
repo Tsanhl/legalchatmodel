@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "conversation_id": "842b51f79e8943a5a67b9f30b02ef59f",
+  "created_at": "2026-07-13T15:29:53.102513+00:00",
+  "body_words": 2011,
+  "total_words_with_references": 2240,
+  "theory_section_words": {
+    "Positivism: validity and institutional structure": 323,
+    "Natural law: legality, reason and moral authority": 263,
+    "Interpretivism: principles and adjudication": 179,
+    "Realism: law in action": 151,
+    "Feminist jurisprudence: gendered power": 159,
+    "Critical race theory: racial formation and rights": 248,
+    "Marxism: political economy and legal form": 153,
+    "Postcolonial theory: empire, sovereignty and legal knowledge": 218
+  },
+  "checks": {
+    "body_1980_to_2020_words": true,
+    "all_eight_theories_present": true,
+    "named_theorists_across_traditions": true,
+    "critical_ranked_thesis": true,
+    "theory_sections_developed": true,
+    "single_references_section": true,
+    "oscola_bibliography_breadth": true,
+    "no_pipeline_or_part_placeholder": true,
+    "no_caricature_shortcuts": true,
+    "conclusion_present": true
+  }
+}

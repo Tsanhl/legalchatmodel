@@ -1,0 +1,3454 @@
+[
+  {
+    "id": 1,
+    "title": "Contract Law — Essay",
+    "type": "essay",
+    "word_count": 1000,
+    "subjects": [
+      "contract_law"
+    ],
+    "prompt": "Contract Law — Essay\n\n**Suggested length: 1,000 words**\n\n> “The objective theory of agreement promotes certainty, but it can also enforce contracts that one party never subjectively intended to make.”\n\nCritically discuss with reference to offer, acceptance, unilateral contracts, battle of forms and electronic contracting.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1000
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Contract Law — Problem",
+    "type": "problem",
+    "word_count": 1200,
+    "subjects": [
+      "contract_law"
+    ],
+    "prompt": "Contract Law — Problem\n\n**Suggested length: 1,200 words**\n\nA buyer emails a seller offering £40,000 for rare equipment. The seller replies, “Agreed, provided delivery is in July.” The buyer responds, “Fine, but payment will be after inspection.” The seller delivers in August and demands payment.\n\nAdvise both parties.\n\nConsider offer, counter-offer, acceptance, battle of forms, certainty of terms, breach and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Tort Law — Essay",
+    "type": "essay",
+    "word_count": 1300,
+    "subjects": [
+      "tort_law"
+    ],
+    "prompt": "Tort Law — Essay\n\n**Suggested length: 1,300 words**\n\n> “Assumption of responsibility is a useful but unstable basis for liability in negligence.”\n\nCritically discuss.\n\nConsider negligent misstatement, professional advice, pure economic loss, reliance and incremental development.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1300
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Tort Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "tort_law"
+    ],
+    "prompt": "Tort Law — Problem\n\n**Suggested length: 1,500 words**\n\nA financial adviser carelessly tells Lara that an investment is “low risk”. Lara invests and loses £80,000. Her brother also invests after Lara repeats the advice to him. The adviser says he never knew the brother would rely on it.\n\nAdvise Lara and her brother.\n\nConsider duty of care, negligent misstatement, assumption of responsibility, reliance, causation and remoteness.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Criminal Law — Essay",
+    "type": "essay",
+    "word_count": 1000,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Essay\n\n**Suggested length: 1,000 words**\n\n> “Dishonesty is now easier to state but still difficult to apply.”\n\nCritically discuss.\n\nConsider theft, fraud, objective standards, defendant’s belief, mistake and moral evaluation.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1000
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Criminal Law — Problem",
+    "type": "problem",
+    "word_count": 1400,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Problem\n\n**Suggested length: 1,400 words**\n\nJon finds a lost designer bag in a café. He intends to return it later but sells it when he needs money. He says he believed the owner had abandoned it. He also uses a bank card found inside the bag to pay for a hotel.\n\nAdvise Jon.\n\nConsider theft, appropriation, dishonesty, intention permanently to deprive, fraud and possible defences.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1400
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Public Law — Essay",
+    "type": "essay",
+    "word_count": 1300,
+    "subjects": [
+      "public_law",
+      "public_international_law"
+    ],
+    "prompt": "Public Law — Essay\n\n**Suggested length: 1,300 words**\n\n> “The royal prerogative remains constitutionally significant because it allows major executive action without ordinary statutory control.”\n\nCritically discuss.\n\nConsider foreign affairs, treaty-making, war powers, parliamentary accountability, judicial review and limits on prerogative power.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1300
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Administrative Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "public_law",
+      "human_rights_law"
+    ],
+    "prompt": "Administrative Law — Problem\n\n**Suggested length: 1,500 words**\n\nA regulator bans a small company from trading after receiving complaints. The company is not shown the complaints and is given only 24 hours to respond. The regulator says urgent action was necessary.\n\nAdvise the company.\n\nConsider procedural fairness, reasons, disclosure, legitimate expectation, proportionality, irrationality and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Human Rights Law — Essay",
+    "type": "essay",
+    "word_count": 1200,
+    "subjects": [
+      "biolaw_ai_data",
+      "family_law",
+      "human_rights_law"
+    ],
+    "prompt": "Human Rights Law — Essay\n\n**Suggested length: 1,200 words**\n\n> “Article 8 ECHR has expanded from privacy into a broad protection of personal autonomy.”\n\nCritically discuss.\n\nConsider surveillance, family life, bodily autonomy, reputation, data protection and limits on Article 8.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Human Rights Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "biolaw_ai_data",
+      "human_rights_law"
+    ],
+    "prompt": "Human Rights Law — Problem\n\n**Suggested length: 1,500 words**\n\nA school introduces compulsory fingerprint scanning for library access. Parents object. The school says the system improves security and efficiency. One student refuses and is suspended.\n\nAdvise the student and parents.\n\nConsider Article 8, proportionality, data protection, children’s rights and public authority duties.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Land Law — Essay",
+    "type": "essay",
+    "word_count": 1300,
+    "subjects": [
+      "land_law"
+    ],
+    "prompt": "Land Law — Essay\n\n**Suggested length: 1,300 words**\n\n> “Proprietary estoppel is attractive because it prevents unconscionability, but dangerous because it weakens formal property rules.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1300
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Land Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "land_law"
+    ],
+    "prompt": "Land Law — Problem\n\n**Suggested length: 1,500 words**\n\nFor 12 years, Grace works unpaid on her uncle’s farm after he repeatedly says, “One day this will all be yours.” He later leaves the farm to someone else in his will.\n\nAdvise Grace.\n\nConsider proprietary estoppel, assurance, reliance, detriment, unconscionability and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Equity and Trusts — Essay",
+    "type": "essay",
+    "word_count": 1200,
+    "subjects": [
+      "trusts_law"
+    ],
+    "prompt": "Equity and Trusts — Essay\n\n**Suggested length: 1,200 words**\n\n> “The beneficiary principle is necessary for enforceability, but modern exceptions make the rule uncertain.”\n\nCritically discuss.\n\nConsider private purpose trusts, charitable trusts, animals, graves, unincorporated associations and enforcement.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Equity and Trusts — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "trusts_law"
+    ],
+    "prompt": "Equity and Trusts — Problem\n\n**Suggested length: 1,500 words**\n\nA will leaves £100,000 “for the care of my dogs”, £200,000 “to support local artistic creativity”, and £150,000 “for my chess club members to use as they decide”.\n\nAdvise the executors.\n\nConsider purpose trusts, charitable trusts, unincorporated associations, certainty and resulting trusts.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Company Law — Essay",
+    "type": "essay",
+    "word_count": 1300,
+    "subjects": [
+      "trusts_law",
+      "business_law"
+    ],
+    "prompt": "Company Law — Essay\n\n**Suggested length: 1,300 words**\n\n> “The corporate opportunity doctrine is essential to fiduciary loyalty, but it may discourage entrepreneurial directors.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1300
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Company Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "land_law",
+      "business_law"
+    ],
+    "prompt": "Company Law — Problem\n\n**Suggested length: 1,500 words**\n\nA director learns that a supplier wants to sell valuable land. Instead of telling the company, she buys the land through her own company and later resells it at a profit.\n\nAdvise the company.\n\nConsider directors’ duties, conflicts, corporate opportunities, disclosure, ratification and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Evidence Law — Essay",
+    "type": "essay",
+    "word_count": 1200,
+    "subjects": [
+      "evidence_law"
+    ],
+    "prompt": "Evidence Law — Essay\n\n**Suggested length: 1,200 words**\n\n> “Bad character evidence risks punishing defendants for who they are rather than what they did.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Evidence Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "evidence_law"
+    ],
+    "prompt": "Evidence Law — Problem\n\n**Suggested length: 1,500 words**\n\nD is charged with assault. The prosecution wants to rely on two previous assault convictions, a threatening text, and CCTV that is poor quality. D says the evidence is unfairly prejudicial.\n\nAdvise on admissibility.\n\nConsider bad character, relevance, probative value, prejudice, identification evidence and fairness.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Family Law — Essay",
+    "type": "essay",
+    "word_count": 1200,
+    "subjects": [
+      "family_law"
+    ],
+    "prompt": "Family Law — Essay\n\n**Suggested length: 1,200 words**\n\n> “Financial remedies on divorce are guided by fairness, but fairness is too open-ended to be predictable.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Family Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "family_law"
+    ],
+    "prompt": "Family Law — Problem\n\n**Suggested length: 1,500 words**\n\nAfter a 20-year marriage, one spouse has a high-paying career while the other left work to raise children. They dispute the family home, pensions and future maintenance.\n\nAdvise both parties.\n\nConsider needs, sharing, compensation, child welfare, clean break and judicial discretion.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Employment Law — Essay",
+    "type": "essay",
+    "word_count": 1300,
+    "subjects": [
+      "employment_law"
+    ],
+    "prompt": "Employment Law — Essay\n\n**Suggested length: 1,300 words**\n\n> “The gig economy exposes the weakness of the employee/worker/self-employed distinction.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1300
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Employment Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "contract_law",
+      "employment_law"
+    ],
+    "prompt": "Employment Law — Problem\n\n**Suggested length: 1,500 words**\n\nA courier must wear the company uniform, accept fixed routes and cannot negotiate pay. Her contract says she is self-employed. She is dismissed after joining a trade union.\n\nAdvise her.\n\nConsider employment status, worker rights, unfair dismissal, trade union protection and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Intellectual Property — Essay",
+    "type": "essay",
+    "word_count": 1200,
+    "subjects": [
+      "intellectual_property_law"
+    ],
+    "prompt": "Intellectual Property — Essay\n\n**Suggested length: 1,200 words**\n\n> “Copyright protects creativity, but in the digital age it often protects investment more than originality.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Intellectual Property — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "intellectual_property_law"
+    ],
+    "prompt": "Intellectual Property — Problem\n\n**Suggested length: 1,500 words**\n\nAn influencer copies another creator’s video structure, music style, captions and visual branding but changes the words and images. The original creator wants to sue.\n\nAdvise.\n\nConsider copyright, substantial copying, ideas/expression, passing off, trade marks and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Data Protection — Essay",
+    "type": "essay",
+    "word_count": 1200,
+    "subjects": [
+      "biolaw_ai_data",
+      "employment_law"
+    ],
+    "prompt": "Data Protection — Essay\n\n**Suggested length: 1,200 words**\n\n> “Consent is often an illusion in data protection law.”\n\nCritically discuss.\n\nConsider lawful bases, power imbalance, transparency, online services, employment and withdrawal of consent.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1200
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Data Protection — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "biolaw_ai_data",
+      "human_rights_law"
+    ],
+    "prompt": "Data Protection — Problem\n\n**Suggested length: 1,500 words**\n\nAn employer installs software that records employees’ screens, keystrokes and webcam activity. Employees are told only that “performance may be monitored”.\n\nAdvise the employees.\n\nConsider lawful basis, transparency, proportionality, special category data, employee privacy and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Immigration Law — Essay",
+    "type": "essay",
+    "word_count": 1300,
+    "subjects": [
+      "immigration_refugee_law"
+    ],
+    "prompt": "Immigration Law — Essay\n\n**Suggested length: 1,300 words**\n\n> “The best interests of children are important in immigration law, but they rarely determine the outcome alone.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1300
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Immigration Law — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "family_law",
+      "human_rights_law",
+      "immigration_refugee_law"
+    ],
+    "prompt": "Immigration Law — Problem\n\n**Suggested length: 1,500 words**\n\nA non-British parent of a British child faces removal after overstaying. The Home Office says the child can remain with the other parent. The parent argues removal would destroy family life.\n\nAdvise.\n\nConsider Article 8, best interests, proportionality, public interest and remedies.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Jurisprudence — Essay",
+    "type": "essay",
+    "word_count": 1500,
+    "subjects": [
+      "public_law",
+      "jurisprudence_law"
+    ],
+    "prompt": "Jurisprudence — Essay\n\n**Suggested length: 1,500 words**\n\n> “The rule of law is both a legal ideal and a political slogan.”\n\nCritically discuss.\n\nConsider formal and substantive conceptions, legality, discretion, equality, rights and judicial power.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Legal Ethics — Problem",
+    "type": "problem",
+    "word_count": 1500,
+    "subjects": [
+      "legal_ethics"
+    ],
+    "prompt": "Legal Ethics — Problem\n\n**Suggested length: 1,500 words**\n\nA solicitor discovers that her client has accidentally received privileged documents from the other side. The client instructs her to use them and not tell anyone.\n\nAdvise the solicitor.\n\nConsider confidentiality, privilege, duties to the court, client instructions, integrity and professional discipline.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 1500
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "title": "Contract Law — Essay",
+    "type": "essay",
+    "word_count": 2000,
+    "subjects": [
+      "contract_law",
+      "tort_law",
+      "trusts_law",
+      "remedies_law"
+    ],
+    "prompt": "Contract Law — Essay\n\n**Suggested length: 2,000 words**\n\n> “Misrepresentation law sits awkwardly between contract, tort and equity.”\n\nCritically discuss.\n\nConsider fraudulent, negligent and innocent misrepresentation, rescission, damages, exclusion clauses and bars to rescission.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2000
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Contract Law — Problem",
+    "type": "problem",
+    "word_count": 2500,
+    "subjects": [
+      "contract_law",
+      "remedies_law"
+    ],
+    "prompt": "Contract Law — Problem\n\n**Suggested length: 2,500 words**\n\nA gym franchise is sold after the seller gives inflated membership numbers, hides unpaid rent and describes future earnings as “guaranteed”. The contract contains an entire agreement clause.\n\nAdvise the buyer.\n\nConsider terms, representations, misrepresentation, non-reliance, rescission, damages and exclusion clauses.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "title": "Contract Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "contract_law",
+      "commercial_law"
+    ],
+    "prompt": "Contract Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “The penalty doctrine shows that freedom of contract is limited where agreed remedies become oppressive.”\n\nCritically discuss.\n\nConsider liquidated damages, commercial justification, legitimate interest and unconscionability.",
+    "part_plan": [
+      {
+        "focus": "introduction; liquidated damages — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "liquidated damages — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "commercial justification — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "legitimate interest and unconscionability — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "title": "Contract Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "law_medicine",
+      "contract_law"
+    ],
+    "prompt": "Contract Law — Problem\n\n**Suggested length: 3,500 words**\n\nA supplier agrees to deliver medical equipment by a fixed date. Delay causes a hospital to cancel operations, lose income and pay emergency suppliers. The contract caps liability and excludes consequential loss.\n\nAdvise both parties.\n\nConsider classification of terms, breach, causation, remoteness, mitigation, exclusion clauses and damages.",
+    "part_plan": [
+      {
+        "focus": "introduction; classification of terms; breach",
+        "words": 700
+      },
+      {
+        "focus": "causation; remoteness",
+        "words": 700
+      },
+      {
+        "focus": "mitigation; exclusion clauses and damages",
+        "words": 700
+      },
+      {
+        "focus": "critical synthesis segment 4",
+        "words": 700
+      },
+      {
+        "focus": "critical synthesis segment 5; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "title": "Tort Law — Essay",
+    "type": "essay",
+    "word_count": 2000,
+    "subjects": [
+      "tort_law"
+    ],
+    "prompt": "Tort Law — Essay\n\n**Suggested length: 2,000 words**\n\n> “Public authority negligence cases reveal the tension between individual justice and defensive administration.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2000
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "title": "Tort Law — Problem",
+    "type": "problem",
+    "word_count": 2500,
+    "subjects": [
+      "tort_law",
+      "human_rights_law"
+    ],
+    "prompt": "Tort Law — Problem\n\n**Suggested length: 2,500 words**\n\nPolice receive repeated warnings that a violent offender is threatening a named individual. They fail to act. The offender attacks the individual. A relative who witnesses the aftermath develops PTSD.\n\nAdvise possible claimants.\n\nConsider omissions, public authority liability, duty of care, causation, psychiatric harm and human rights.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "title": "Tort Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "tort_law",
+      "employment_law"
+    ],
+    "prompt": "Tort Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “Vicarious liability has expanded from employment relationships into a broader doctrine of enterprise risk.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Tort Law — Essay — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "Tort Law — Essay — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "> “Vicarious liability has expanded from employment relationships into a broader doctrine of enterprise risk.”\n\nCritically discuss — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "> “Vicarious liability has expanded from employment relationships into a broader doctrine of enterprise risk.”\n\nCritically discuss — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "title": "Tort Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "tort_law",
+      "employment_law"
+    ],
+    "prompt": "Tort Law — Problem\n\n**Suggested length: 3,500 words**\n\nA delivery driver employed by QuickDrop assaults a customer after an argument about a parcel. QuickDrop says the driver acted for personal reasons. The driver was using QuickDrop’s app and uniform.\n\nAdvise the customer.\n\nConsider vicarious liability, close connection, employment-like relationships, negligence and direct liability.",
+    "part_plan": [
+      {
+        "focus": "introduction; vicarious liability — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "vicarious liability — operation, examples and doctrinal development",
+        "words": 700
+      },
+      {
+        "focus": "close connection — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "employment-like relationships — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "negligence and direct liability — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "title": "Criminal Law — Essay",
+    "type": "essay",
+    "word_count": 2000,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Essay\n\n**Suggested length: 2,000 words**\n\n> “The law of omissions is narrow in theory but significant in practice.”\n\nCritically discuss.\n\nConsider duties from relationships, contracts, assumption of responsibility, creation of danger and public policy.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2000
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "title": "Criminal Law — Problem",
+    "type": "problem",
+    "word_count": 2500,
+    "subjects": [
+      "tort_law",
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Problem\n\n**Suggested length: 2,500 words**\n\nLiam accidentally starts a fire in a warehouse while trespassing. He notices smoke but leaves without calling emergency services. A sleeping security guard dies.\n\nAdvise Liam.\n\nConsider actus reus, omissions, creation of danger, gross negligence manslaughter, unlawful act manslaughter and causation.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "title": "Criminal Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "law_medicine",
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “The criminal law’s approach to consent is inconsistent because it protects autonomy in some contexts and denies it in others.”\n\nCritically discuss.\n\nConsider sexual offences, non-fatal offences, sports, medical treatment, body modification and public policy.",
+    "part_plan": [
+      {
+        "focus": "introduction; sexual offences; non-fatal offences",
+        "words": 750
+      },
+      {
+        "focus": "sports; medical treatment",
+        "words": 750
+      },
+      {
+        "focus": "body modification and public policy",
+        "words": 750
+      },
+      {
+        "focus": "critical synthesis segment 4; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "title": "Criminal Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Problem\n\n**Suggested length: 3,500 words**\n\nDuring a consensual fight filmed for social media, one participant suffers serious injury. Another participant later shares the video and encourages more fights.\n\nAdvise on liability.\n\nConsider consent, assault, battery, ABH, GBH, public policy, secondary liability and possible defences.",
+    "part_plan": [
+      {
+        "focus": "introduction; liability; Consider consent",
+        "words": 700
+      },
+      {
+        "focus": "assault; battery",
+        "words": 700
+      },
+      {
+        "focus": "ABH; GBH",
+        "words": 700
+      },
+      {
+        "focus": "public policy; secondary liability",
+        "words": 700
+      },
+      {
+        "focus": "possible defences; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "title": "Public Law — Essay",
+    "type": "essay",
+    "word_count": 2500,
+    "subjects": [
+      "public_law"
+    ],
+    "prompt": "Public Law — Essay\n\n**Suggested length: 2,500 words**\n\n> “Ouster clauses test whether the rule of law has any real limit on parliamentary sovereignty.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "title": "Administrative Law — Problem",
+    "type": "problem",
+    "word_count": 3000,
+    "subjects": [
+      "law_medicine",
+      "public_law"
+    ],
+    "prompt": "Administrative Law — Problem\n\n**Suggested length: 3,000 words**\n\nA statute says decisions of a benefits tribunal “shall be final and not appealable”. The tribunal refuses benefits after misunderstanding the statutory test and refusing to hear medical evidence.\n\nAdvise the claimant.\n\nConsider ouster clauses, error of law, procedural fairness, jurisdiction, judicial review and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; ouster clauses; error of law",
+        "words": 750
+      },
+      {
+        "focus": "procedural fairness; jurisdiction",
+        "words": 750
+      },
+      {
+        "focus": "judicial review and remedies",
+        "words": 750
+      },
+      {
+        "focus": "critical synthesis segment 4; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "title": "Human Rights Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "human_rights_law"
+    ],
+    "prompt": "Human Rights Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “Freedom of expression is most important when the speech is unpopular, offensive or politically inconvenient.”\n\nCritically discuss.\n\nConsider Article 10, hate speech, protest, journalism, national security and proportionality.",
+    "part_plan": [
+      {
+        "focus": "introduction; Article 10; hate speech",
+        "words": 750
+      },
+      {
+        "focus": "protest; journalism",
+        "words": 750
+      },
+      {
+        "focus": "national security and proportionality",
+        "words": 750
+      },
+      {
+        "focus": "critical synthesis segment 4; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "title": "Human Rights Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "privacy_media_law",
+      "human_rights_law"
+    ],
+    "prompt": "Human Rights Law — Problem\n\n**Suggested length: 3,500 words**\n\nA comedian is prosecuted for a provocative performance. A venue cancels another performer after police warn of disorder. A journalist is ordered to reveal a confidential source.\n\nAdvise each claimant.\n\nConsider Article 10, legitimate aims, necessity, chilling effect, source protection and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; Article 10",
+        "words": 700
+      },
+      {
+        "focus": "legitimate aims",
+        "words": 700
+      },
+      {
+        "focus": "necessity",
+        "words": 700
+      },
+      {
+        "focus": "chilling effect",
+        "words": 700
+      },
+      {
+        "focus": "source protection and remedies; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "title": "Land Law — Essay",
+    "type": "essay",
+    "word_count": 2500,
+    "subjects": [
+      "tort_law",
+      "land_law"
+    ],
+    "prompt": "Land Law — Essay\n\n**Suggested length: 2,500 words**\n\n> “Overreaching is a brilliant conveyancing device but can be harsh to occupiers.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "title": "Land Law — Problem",
+    "type": "problem",
+    "word_count": 3000,
+    "subjects": [
+      "trusts_law",
+      "land_law"
+    ],
+    "prompt": "Land Law — Problem\n\n**Suggested length: 3,000 words**\n\nA house is held on trust for two siblings. One sibling sells the house to a purchaser. Purchase money is paid to only one trustee. The other beneficiary was living in the house.\n\nAdvise the beneficiary and purchaser.\n\nConsider trusts of land, overreaching, actual occupation, overriding interests and priority.",
+    "part_plan": [
+      {
+        "focus": "introduction; trusts of land",
+        "words": 750
+      },
+      {
+        "focus": "overreaching",
+        "words": 750
+      },
+      {
+        "focus": "actual occupation",
+        "words": 750
+      },
+      {
+        "focus": "overriding interests and priority; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "title": "Equity and Trusts — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "trusts_law"
+    ],
+    "prompt": "Equity and Trusts — Essay\n\n**Suggested length: 3,000 words**\n\n> “Fiduciary law is strict because loyalty is more important than proof of loss.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Equity and Trusts — Essay — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "Equity and Trusts — Essay — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "> “Fiduciary law is strict because loyalty is more important than proof of loss.”\n\nCritically discuss — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "> “Fiduciary law is strict because loyalty is more important than proof of loss.”\n\nCritically discuss — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "title": "Equity and Trusts — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "trusts_law"
+    ],
+    "prompt": "Equity and Trusts — Problem\n\n**Suggested length: 3,500 words**\n\nA financial adviser manages a client’s investments, secretly receives commission, invests in a company he partly owns, and makes both profits and losses.\n\nAdvise the client.\n\nConsider fiduciary duties, conflicts, secret profits, informed consent, equitable compensation and account of profits.",
+    "part_plan": [
+      {
+        "focus": "introduction; fiduciary duties",
+        "words": 700
+      },
+      {
+        "focus": "conflicts",
+        "words": 700
+      },
+      {
+        "focus": "secret profits",
+        "words": 700
+      },
+      {
+        "focus": "informed consent",
+        "words": 700
+      },
+      {
+        "focus": "equitable compensation and account of profits; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "title": "Company Law — Essay",
+    "type": "essay",
+    "word_count": 2500,
+    "subjects": [
+      "business_law"
+    ],
+    "prompt": "Company Law — Essay\n\n**Suggested length: 2,500 words**\n\n> “Shareholder remedies are fragmented because company law struggles to distinguish personal wrongs from corporate wrongs.”\n\nCritically discuss.\n\nConsider derivative claims, unfair prejudice, reflective loss and winding up.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "title": "Company Law — Problem",
+    "type": "problem",
+    "word_count": 3000,
+    "subjects": [
+      "business_law"
+    ],
+    "prompt": "Company Law — Problem\n\n**Suggested length: 3,000 words**\n\nA majority shareholder excludes a minority shareholder from management, diverts contracts to another company and refuses dividends while paying high director salaries.\n\nAdvise the minority shareholder.\n\nConsider unfair prejudice, derivative claims, directors’ duties and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; unfair prejudice — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "unfair prejudice — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "derivative claims — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "directors’ duties and remedies — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "title": "Insolvency Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "insolvency_law"
+    ],
+    "prompt": "Insolvency Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “The pari passu principle is more symbolic than real.”\n\nCritically discuss.\n\nConsider secured creditors, preferential debts, floating charges, insolvency set-off, trusts and retention of title.",
+    "part_plan": [
+      {
+        "focus": "introduction; secured creditors; preferential debts",
+        "words": 750
+      },
+      {
+        "focus": "floating charges; insolvency set-off",
+        "words": 750
+      },
+      {
+        "focus": "trusts and retention of title",
+        "words": 750
+      },
+      {
+        "focus": "critical synthesis segment 4; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "title": "Insolvency Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "insolvency_law"
+    ],
+    "prompt": "Insolvency Law — Problem\n\n**Suggested length: 3,500 words**\n\nA company grants security to a bank, repays a connected creditor, transfers assets to a sister company and enters administration two months later.\n\nAdvise the administrator.\n\nConsider preferences, transactions at undervalue, floating charges, misfeasance and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; preferences — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "preferences — operation, examples and doctrinal development",
+        "words": 700
+      },
+      {
+        "focus": "transactions at undervalue — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "floating charges — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "misfeasance and remedies — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "title": "Commercial Law — Essay",
+    "type": "essay",
+    "word_count": 2500,
+    "subjects": [
+      "commercial_law"
+    ],
+    "prompt": "Commercial Law — Essay\n\n**Suggested length: 2,500 words**\n\n> “The nemo dat rule protects owners, but its exceptions protect commerce.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "full answer",
+        "words": 2500
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "title": "Commercial Law — Problem",
+    "type": "problem",
+    "word_count": 3000,
+    "subjects": [
+      "commercial_law"
+    ],
+    "prompt": "Commercial Law — Problem\n\n**Suggested length: 3,000 words**\n\nA rogue sells leased equipment to an innocent buyer. The buyer resells it to another business. The original owner claims the equipment.\n\nAdvise all parties.\n\nConsider nemo dat, void and voidable title, buyer in possession, mercantile agents and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; nemo dat",
+        "words": 750
+      },
+      {
+        "focus": "void and voidable title",
+        "words": 750
+      },
+      {
+        "focus": "buyer in possession",
+        "words": 750
+      },
+      {
+        "focus": "mercantile agents and remedies; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "title": "EU Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "eu_law",
+      "human_rights_law"
+    ],
+    "prompt": "EU Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “Proportionality is the central technique by which EU law balances market integration and national autonomy.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; EU Law — Essay — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "EU Law — Essay — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "> “Proportionality is the central technique by which EU law balances market integration and national autonomy.”\n\nCritically discuss — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "> “Proportionality is the central technique by which EU law balances market integration and national autonomy.”\n\nCritically discuss — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "title": "EU Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "eu_law",
+      "human_rights_law"
+    ],
+    "prompt": "EU Law — Problem\n\n**Suggested length: 3,500 words**\n\nAssume State Y is an EU Member State. It bans foreign online pharmacies, imposes language tests on doctors and taxes imported electric bikes more heavily than domestic ones.\n\nAdvise affected parties.\n\nConsider free movement, discrimination, justification and proportionality.",
+    "part_plan": [
+      {
+        "focus": "introduction; free movement — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "free movement — operation, examples and doctrinal development",
+        "words": 700
+      },
+      {
+        "focus": "discrimination — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "discrimination — operation, examples and doctrinal development",
+        "words": 700
+      },
+      {
+        "focus": "justification and proportionality — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "title": "Public International Law — Essay",
+    "type": "essay",
+    "word_count": 3000,
+    "subjects": [
+      "public_international_law"
+    ],
+    "prompt": "Public International Law — Essay\n\n**Suggested length: 3,000 words**\n\n> “State sovereignty is no longer absolute, but it remains the organising principle of international law.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Public International Law — Essay — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "Public International Law — Essay — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "> “State sovereignty is no longer absolute, but it remains the organising principle of international law.”\n\nCritically discuss — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "> “State sovereignty is no longer absolute, but it remains the organising principle of international law.”\n\nCritically discuss — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "title": "Public International Law — Problem",
+    "type": "problem",
+    "word_count": 3500,
+    "subjects": [
+      "criminal_law",
+      "public_international_law"
+    ],
+    "prompt": "Public International Law — Problem\n\n**Suggested length: 3,500 words**\n\nState A funds rebels in State B, conducts cyber espionage and later sends troops to protect its nationals. State B brings an international claim.\n\nAdvise State B.\n\nConsider non-intervention, use of force, self-defence, state responsibility and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; non-intervention — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "non-intervention — operation, examples and doctrinal development",
+        "words": 700
+      },
+      {
+        "focus": "use of force — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "self-defence — foundations, definitions and leading authority",
+        "words": 700
+      },
+      {
+        "focus": "state responsibility and remedies — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 700
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "title": "Contract Law — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "contract_law"
+    ],
+    "prompt": "Contract Law — Essay\n\n**Suggested length: 4,000 words**\n\n> “Modern contract law is best understood as the law of risk allocation.”\n\nCritically discuss across formation, terms, interpretation, vitiating factors, breach, frustration and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; Contract Law — Essay; > “Modern contract law is best understood as the law of risk allocation.”",
+        "words": 800
+      },
+      {
+        "focus": "Critically discuss across formation; terms",
+        "words": 800
+      },
+      {
+        "focus": "interpretation; vitiating factors",
+        "words": 800
+      },
+      {
+        "focus": "breach; frustration and remedies",
+        "words": 800
+      },
+      {
+        "focus": "critical synthesis segment 5; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "title": "Contract Law — Problem",
+    "type": "problem",
+    "word_count": 5000,
+    "subjects": [
+      "contract_law"
+    ],
+    "prompt": "Contract Law — Problem\n\n**Suggested length: 5,000 words**\n\nA software implementation project fails after inaccurate sales claims, unclear specifications, delay, defects, data loss and a termination dispute. The contract includes exclusions, caps, milestone payments and a liquidated damages clause.\n\nAdvise both parties fully.",
+    "part_plan": [
+      {
+        "focus": "introduction; Contract Law — Problem; A software implementation project fails after inaccurate sales claims",
+        "words": 715
+      },
+      {
+        "focus": "unclear specifications; delay",
+        "words": 715
+      },
+      {
+        "focus": "defects; data loss and a termination dispute. The contract includes exclusions",
+        "words": 714
+      },
+      {
+        "focus": "caps; milestone payments and a liquidated damages clause",
+        "words": 714
+      },
+      {
+        "focus": "Advise both parties fully",
+        "words": 714
+      },
+      {
+        "focus": "critical synthesis segment 6",
+        "words": 714
+      },
+      {
+        "focus": "critical synthesis segment 7; synthesis and conclusion",
+        "words": 714
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "title": "Tort Law — Essay",
+    "type": "essay",
+    "word_count": 4500,
+    "subjects": [
+      "tort_law"
+    ],
+    "prompt": "Tort Law — Essay\n\n**Suggested length: 4,500 words**\n\n> “The boundaries of negligence are shaped less by principle than by fear of indeterminate liability.”\n\nCritically discuss.\n\nUse psychiatric harm, economic loss, omissions, public authority liability and professional negligence.",
+    "part_plan": [
+      {
+        "focus": "introduction; Tort Law — Essay; > “The boundaries of negligence are shaped less by principle than by fear of indeterminate liability.”",
+        "words": 750
+      },
+      {
+        "focus": "Critically discuss; Use psychiatric harm",
+        "words": 750
+      },
+      {
+        "focus": "economic loss; omissions",
+        "words": 750
+      },
+      {
+        "focus": "public authority liability and professional negligence",
+        "words": 750
+      },
+      {
+        "focus": "critical synthesis segment 5",
+        "words": 750
+      },
+      {
+        "focus": "critical synthesis segment 6; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "title": "Tort Law — Problem",
+    "type": "problem",
+    "word_count": 6000,
+    "subjects": [
+      "tort_law"
+    ],
+    "prompt": "Tort Law — Problem\n\n**Suggested length: 6,000 words**\n\nA collapsed building causes physical injury, psychiatric harm, business losses and property damage. Potential defendants include the architect, contractor, building inspector, owner and local authority.\n\nAdvise all claimants.",
+    "part_plan": [
+      {
+        "focus": "introduction; Tort Law — Problem",
+        "words": 750
+      },
+      {
+        "focus": "A collapsed building causes physical injury",
+        "words": 750
+      },
+      {
+        "focus": "psychiatric harm",
+        "words": 750
+      },
+      {
+        "focus": "business losses and property damage. Potential defendants include the architect",
+        "words": 750
+      },
+      {
+        "focus": "contractor",
+        "words": 750
+      },
+      {
+        "focus": "building inspector",
+        "words": 750
+      },
+      {
+        "focus": "owner and local authority",
+        "words": 750
+      },
+      {
+        "focus": "Advise all claimants; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "title": "Criminal Law — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Essay\n\n**Suggested length: 4,000 words**\n\n> “Criminal liability is supposed to be personal, yet complicity law often punishes defendants for their association with others.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Criminal Law — Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Criminal Law — Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Criminal Law — Essay — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "Criminal Law — Essay — critical evaluation, comparison and implications",
+        "words": 800
+      },
+      {
+        "focus": "Criminal Law — Essay — reform, consequences and deeper synthesis; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "title": "Criminal Law — Problem",
+    "type": "problem",
+    "word_count": 5500,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Criminal Law — Problem\n\n**Suggested length: 5,500 words**\n\nA group plan an armed burglary. One participant withdraws by text, another escalates violence, a victim dies after negligent hospital treatment, and stolen goods are later sold.\n\nAdvise all defendants.",
+    "part_plan": [
+      {
+        "focus": "introduction; Criminal Law — Problem — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "Criminal Law — Problem — operation, examples and doctrinal development",
+        "words": 786
+      },
+      {
+        "focus": "A group plan an armed burglary. One participant withdraws by text — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "another escalates violence — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "a victim dies after negligent hospital treatment — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "stolen goods are later sold — foundations, definitions and leading authority",
+        "words": 785
+      },
+      {
+        "focus": "Advise all defendants — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 785
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "title": "Constitutional Law — Essay",
+    "type": "essay",
+    "word_count": 5000,
+    "subjects": [
+      "public_law"
+    ],
+    "prompt": "Constitutional Law — Essay\n\n**Suggested length: 5,000 words**\n\n> “The UK constitution is a system of managed constitutional conflict rather than settled constitutional hierarchy.”\n\nCritically discuss.\n\nConsider Parliament, courts, executive, devolved institutions, rights and conventions.",
+    "part_plan": [
+      {
+        "focus": "introduction; Parliament — foundations, definitions and leading authority",
+        "words": 715
+      },
+      {
+        "focus": "Parliament — operation, examples and doctrinal development",
+        "words": 715
+      },
+      {
+        "focus": "courts — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "courts — operation, examples and doctrinal development",
+        "words": 714
+      },
+      {
+        "focus": "executive — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "devolved institutions — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "rights and conventions — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 714
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "title": "Public Law / Human Rights — Problem",
+    "type": "problem",
+    "word_count": 6000,
+    "subjects": [
+      "public_law",
+      "human_rights_law"
+    ],
+    "prompt": "Public Law / Human Rights — Problem\n\n**Suggested length: 6,000 words**\n\nA minister uses emergency powers to restrict protest, impose curfews, authorise surveillance and prevent judicial challenges. Several groups bring claims.\n\nAdvise them.",
+    "part_plan": [
+      {
+        "focus": "introduction; Public Law / Human Rights — Problem — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "Public Law / Human Rights — Problem — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "A minister uses emergency powers to restrict protest — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "A minister uses emergency powers to restrict protest — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "impose curfews — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "impose curfews — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "authorise surveillance and prevent judicial challenges. Several groups bring claims — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "Advise them — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "title": "Land Law — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "trusts_law",
+      "land_law"
+    ],
+    "prompt": "Land Law — Essay\n\n**Suggested length: 4,000 words**\n\n> “Equity has prevented land law from becoming purely transactional.”\n\nCritically discuss.\n\nConsider trusts, estoppel, overriding interests, actual occupation and informal rights.",
+    "part_plan": [
+      {
+        "focus": "introduction; trusts — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "trusts — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "estoppel — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "overriding interests — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "actual occupation and informal rights — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "title": "Land Law — Problem",
+    "type": "problem",
+    "word_count": 6500,
+    "subjects": [
+      "land_law"
+    ],
+    "prompt": "Land Law — Problem\n\n**Suggested length: 6,500 words**\n\nA property dispute involves an unmarried couple, mortgage priority, an unregistered right of way, a neighbour’s parking right, adverse possession and a purchaser with notice.\n\nAdvise all parties.",
+    "part_plan": [
+      {
+        "focus": "introduction; Land Law — Problem — foundations, definitions and leading authority",
+        "words": 723
+      },
+      {
+        "focus": "Land Law — Problem — operation, examples and doctrinal development",
+        "words": 723
+      },
+      {
+        "focus": "A property dispute involves an unmarried couple — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "A property dispute involves an unmarried couple — operation, examples and doctrinal development",
+        "words": 722
+      },
+      {
+        "focus": "mortgage priority — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "an unregistered right of way — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "a neighbour’s parking right — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "adverse possession and a purchaser with notice — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "Advise all parties — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 722
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "title": "Equity and Trusts — Essay",
+    "type": "essay",
+    "word_count": 5000,
+    "subjects": [
+      "trusts_law"
+    ],
+    "prompt": "Equity and Trusts — Essay\n\n**Suggested length: 5,000 words**\n\n> “Trust law uses certainty to control property, but uses equity to prevent certainty from becoming injustice.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Equity and Trusts — Essay — foundations, definitions and leading authority",
+        "words": 715
+      },
+      {
+        "focus": "Equity and Trusts — Essay — operation, examples and doctrinal development",
+        "words": 715
+      },
+      {
+        "focus": "Equity and Trusts — Essay — counterarguments, limitations and rival views",
+        "words": 714
+      },
+      {
+        "focus": "Equity and Trusts — Essay — critical evaluation, comparison and implications",
+        "words": 714
+      },
+      {
+        "focus": "Equity and Trusts — Essay — reform, consequences and deeper synthesis",
+        "words": 714
+      },
+      {
+        "focus": "Equity and Trusts — Essay — extended critical analysis 6, evidence and objections",
+        "words": 714
+      },
+      {
+        "focus": "Equity and Trusts — Essay — extended critical analysis 7, evidence and objections; synthesis and conclusion",
+        "words": 714
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "title": "Equity and Trusts — Problem",
+    "type": "problem",
+    "word_count": 7000,
+    "subjects": [
+      "trusts_law"
+    ],
+    "prompt": "Equity and Trusts — Problem\n\n**Suggested length: 7,000 words**\n\nA wealthy settlor creates gifts for relatives, employees, animals, political campaigning, an unincorporated club and a scholarship fund. Trustees later misapply assets and make secret profits.\n\nAdvise all parties.",
+    "part_plan": [
+      {
+        "focus": "introduction; Equity and Trusts — Problem — foundations, definitions and leading authority",
+        "words": 778
+      },
+      {
+        "focus": "Equity and Trusts — Problem — operation, examples and doctrinal development",
+        "words": 778
+      },
+      {
+        "focus": "A wealthy settlor creates gifts for relatives — foundations, definitions and leading authority",
+        "words": 778
+      },
+      {
+        "focus": "A wealthy settlor creates gifts for relatives — operation, examples and doctrinal development",
+        "words": 778
+      },
+      {
+        "focus": "employees — foundations, definitions and leading authority",
+        "words": 778
+      },
+      {
+        "focus": "animals — foundations, definitions and leading authority",
+        "words": 778
+      },
+      {
+        "focus": "political campaigning — foundations, definitions and leading authority",
+        "words": 778
+      },
+      {
+        "focus": "an unincorporated club and a scholarship fund. Trustees later misapply assets and make secret profits — foundations, definitions and leading authority",
+        "words": 777
+      },
+      {
+        "focus": "Advise all parties — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 777
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "title": "Company Law — Essay",
+    "type": "essay",
+    "word_count": 5000,
+    "subjects": [
+      "business_law"
+    ],
+    "prompt": "Company Law — Essay\n\n**Suggested length: 5,000 words**\n\n> “Directors’ duties are formally owed to the company, but modern corporate law increasingly recognises creditors, employees and society.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Company Law — Essay — foundations, definitions and leading authority",
+        "words": 715
+      },
+      {
+        "focus": "Company Law — Essay — operation, examples and doctrinal development",
+        "words": 715
+      },
+      {
+        "focus": "> “Directors’ duties are formally owed to the company — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "> “Directors’ duties are formally owed to the company — operation, examples and doctrinal development",
+        "words": 714
+      },
+      {
+        "focus": "but modern corporate law increasingly recognises creditors — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "employees and society.” — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "Critically discuss — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 714
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "title": "Company / Insolvency Law — Problem",
+    "type": "problem",
+    "word_count": 6500,
+    "subjects": [
+      "insolvency_law"
+    ],
+    "prompt": "Company / Insolvency Law — Problem\n\n**Suggested length: 6,500 words**\n\nA start-up near insolvency issues misleading accounts, pays insiders, grants security, sells assets cheaply and continues trading while seeking investment.\n\nAdvise directors, creditors, shareholders and liquidator.",
+    "part_plan": [
+      {
+        "focus": "introduction; Company / Insolvency Law — Problem — foundations, definitions and leading authority",
+        "words": 723
+      },
+      {
+        "focus": "Company / Insolvency Law — Problem — operation, examples and doctrinal development",
+        "words": 723
+      },
+      {
+        "focus": "A start-up near insolvency issues misleading accounts — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "pays insiders — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "grants security — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "sells assets cheaply and continues trading while seeking investment — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "Advise directors — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "creditors — foundations, definitions and leading authority",
+        "words": 722
+      },
+      {
+        "focus": "shareholders and liquidator — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 722
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "title": "Employment Law — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "contract_law",
+      "employment_law"
+    ],
+    "prompt": "Employment Law — Essay\n\n**Suggested length: 4,000 words**\n\n> “Employment law is moving from contract status to vulnerability status.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Employment Law — Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Employment Law — Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Employment Law — Essay — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "> “Employment law is moving from contract status to vulnerability status.”\n\nCritically discuss — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "> “Employment law is moving from contract status to vulnerability status.”\n\nCritically discuss — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Employment Law — Problem",
+    "type": "problem",
+    "word_count": 5000,
+    "subjects": [
+      "commercial_law",
+      "employment_law"
+    ],
+    "prompt": "Employment Law — Problem\n\n**Suggested length: 5,000 words**\n\nA platform, warehouse and agency labour arrangement creates disputes over worker status, discrimination, whistleblowing, dismissal and health and safety.\n\nAdvise all workers.",
+    "part_plan": [
+      {
+        "focus": "introduction; Employment Law — Problem",
+        "words": 715
+      },
+      {
+        "focus": "A platform",
+        "words": 715
+      },
+      {
+        "focus": "warehouse and agency labour arrangement creates disputes over worker status",
+        "words": 714
+      },
+      {
+        "focus": "discrimination",
+        "words": 714
+      },
+      {
+        "focus": "whistleblowing",
+        "words": 714
+      },
+      {
+        "focus": "dismissal and health and safety",
+        "words": 714
+      },
+      {
+        "focus": "Advise all workers; synthesis and conclusion",
+        "words": 714
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "title": "Family Law — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "family_law"
+    ],
+    "prompt": "Family Law — Essay\n\n**Suggested length: 4,000 words**\n\n> “Family law must choose between private ordering, child welfare and state protection, but often cannot reconcile them.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Family Law — Essay",
+        "words": 800
+      },
+      {
+        "focus": "> “Family law must choose between private ordering",
+        "words": 800
+      },
+      {
+        "focus": "child welfare and state protection",
+        "words": 800
+      },
+      {
+        "focus": "but often cannot reconcile them.”",
+        "words": 800
+      },
+      {
+        "focus": "Critically discuss; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "title": "Family Law — Problem",
+    "type": "problem",
+    "word_count": 5500,
+    "subjects": [
+      "family_law"
+    ],
+    "prompt": "Family Law — Problem\n\n**Suggested length: 5,500 words**\n\nA divorce involves domestic abuse allegations, relocation, child arrangements, hidden assets, company shares, pensions and occupation of the home.\n\nAdvise both parties.",
+    "part_plan": [
+      {
+        "focus": "introduction; Family Law — Problem; A divorce involves domestic abuse allegations",
+        "words": 786
+      },
+      {
+        "focus": "relocation; child arrangements",
+        "words": 786
+      },
+      {
+        "focus": "hidden assets; company shares",
+        "words": 786
+      },
+      {
+        "focus": "pensions and occupation of the home; Advise both parties",
+        "words": 786
+      },
+      {
+        "focus": "critical synthesis segment 5",
+        "words": 786
+      },
+      {
+        "focus": "critical synthesis segment 6",
+        "words": 785
+      },
+      {
+        "focus": "critical synthesis segment 7; synthesis and conclusion",
+        "words": 785
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "title": "Medical Law — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "law_medicine"
+    ],
+    "prompt": "Medical Law — Essay\n\n**Suggested length: 4,000 words**\n\n> “Autonomy is the dominant language of medical law, but not always its actual outcome.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Medical Law — Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Medical Law — Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Medical Law — Essay — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "> “Autonomy is the dominant language of medical law, but not always its actual outcome.”\n\nCritically discuss — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "> “Autonomy is the dominant language of medical law, but not always its actual outcome.”\n\nCritically discuss — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Medical Law — Problem",
+    "type": "problem",
+    "word_count": 5000,
+    "subjects": [
+      "law_medicine",
+      "family_law"
+    ],
+    "prompt": "Medical Law — Problem\n\n**Suggested length: 5,000 words**\n\nA patient refuses life-saving treatment, later loses capacity, has unclear advance wishes, and doctors disagree with the family. Another patient claims lack of informed consent.\n\nAdvise doctors and patients.",
+    "part_plan": [
+      {
+        "focus": "introduction; Medical Law — Problem — foundations, definitions and leading authority",
+        "words": 715
+      },
+      {
+        "focus": "Medical Law — Problem — operation, examples and doctrinal development",
+        "words": 715
+      },
+      {
+        "focus": "A patient refuses life-saving treatment — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "later loses capacity — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "has unclear advance wishes — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "doctors disagree with the family. Another patient claims lack of informed consent — foundations, definitions and leading authority",
+        "words": 714
+      },
+      {
+        "focus": "Advise doctors and patients — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 714
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "title": "IP / Technology Law — Essay",
+    "type": "essay",
+    "word_count": 4500,
+    "subjects": [
+      "biolaw_ai_data",
+      "intellectual_property_law"
+    ],
+    "prompt": "IP / Technology Law — Essay\n\n**Suggested length: 4,500 words**\n\n> “Artificial intelligence challenges the basic assumptions of intellectual property law.”\n\nCritically discuss.\n\nConsider authorship, originality, infringement, training data, patents, trade secrets and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; authorship",
+        "words": 750
+      },
+      {
+        "focus": "originality",
+        "words": 750
+      },
+      {
+        "focus": "infringement",
+        "words": 750
+      },
+      {
+        "focus": "training data",
+        "words": 750
+      },
+      {
+        "focus": "patents",
+        "words": 750
+      },
+      {
+        "focus": "trade secrets and remedies; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "title": "IP / Technology Law — Problem",
+    "type": "problem",
+    "word_count": 6000,
+    "subjects": [
+      "biolaw_ai_data"
+    ],
+    "prompt": "IP / Technology Law — Problem\n\n**Suggested length: 6,000 words**\n\nAn AI image platform trains on artists’ works, generates similar images, uses protected brands in prompts and stores user datasets. Artists and brands sue.\n\nAdvise all parties.",
+    "part_plan": [
+      {
+        "focus": "introduction; IP / Technology Law — Problem — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "IP / Technology Law — Problem — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "An AI image platform trains on artists’ works — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "An AI image platform trains on artists’ works — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "generates similar images — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "generates similar images — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "uses protected brands in prompts and stores user datasets. Artists and brands sue — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "Advise all parties — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "title": "Data Protection / Privacy — Essay",
+    "type": "essay",
+    "word_count": 4000,
+    "subjects": [
+      "biolaw_ai_data"
+    ],
+    "prompt": "Data Protection / Privacy — Essay\n\n**Suggested length: 4,000 words**\n\n> “Data protection law claims to give individuals control, but modern data processing makes meaningful control unrealistic.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Data Protection / Privacy — Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Data Protection / Privacy — Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Data Protection / Privacy — Essay — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "Data Protection / Privacy — Essay — critical evaluation, comparison and implications",
+        "words": 800
+      },
+      {
+        "focus": "Data Protection / Privacy — Essay — reform, consequences and deeper synthesis; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "title": "Data Protection / Privacy — Problem",
+    "type": "problem",
+    "word_count": 5500,
+    "subjects": [
+      "biolaw_ai_data"
+    ],
+    "prompt": "Data Protection / Privacy — Problem\n\n**Suggested length: 5,500 words**\n\nA hospital uses AI to triage patients, shares data with a private analytics company, suffers a breach and refuses access requests from patients.\n\nAdvise affected patients.",
+    "part_plan": [
+      {
+        "focus": "introduction; Data Protection / Privacy — Problem — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "Data Protection / Privacy — Problem — operation, examples and doctrinal development",
+        "words": 786
+      },
+      {
+        "focus": "A hospital uses AI to triage patients — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "A hospital uses AI to triage patients — operation, examples and doctrinal development",
+        "words": 786
+      },
+      {
+        "focus": "shares data with a private analytics company — foundations, definitions and leading authority",
+        "words": 786
+      },
+      {
+        "focus": "suffers a breach and refuses access requests from patients — foundations, definitions and leading authority",
+        "words": 785
+      },
+      {
+        "focus": "Advise affected patients — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 785
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "title": "Environmental Law — Essay",
+    "type": "essay",
+    "word_count": 4500,
+    "subjects": [
+      "environmental_law",
+      "public_law"
+    ],
+    "prompt": "Environmental Law — Essay\n\n**Suggested length: 4,500 words**\n\n> “Environmental law is strongest procedurally and weakest substantively.”\n\nCritically discuss.\n\nConsider environmental assessment, consultation, judicial review, climate duties and remedies.",
+    "part_plan": [
+      {
+        "focus": "introduction; environmental assessment — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "environmental assessment — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "consultation — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "consultation — operation, examples and doctrinal development",
+        "words": 750
+      },
+      {
+        "focus": "judicial review — foundations, definitions and leading authority",
+        "words": 750
+      },
+      {
+        "focus": "climate duties and remedies — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 750
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "title": "Mega Private Law Essay",
+    "type": "essay",
+    "word_count": 8000,
+    "subjects": [
+      "contract_law",
+      "tort_law",
+      "trusts_law",
+      "land_law",
+      "restitution_law"
+    ],
+    "prompt": "Mega Private Law Essay\n\n**Suggested length: 8,000 words**\n\n> “Private law is structured around autonomy, responsibility, reliance and property, but no single principle explains it.”\n\nCritically discuss across contract, tort, restitution, equity and land law.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Private Law Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Mega Private Law Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "> “Private law is structured around autonomy — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "responsibility — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "reliance and property — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "but no single principle explains it.” — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Critically discuss across contract — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "tort — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "restitution — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "equity and land law — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "title": "Mega Contract Problem",
+    "type": "problem",
+    "word_count": 10000,
+    "subjects": [
+      "contract_law"
+    ],
+    "prompt": "Mega Contract Problem\n\n**Suggested length: 10,000 words**\n\nA multinational outsourcing contract fails after misrepresentation, defective performance, cyber breach, force majeure, sanctions, termination, exclusion clauses, liquidated damages and disputed loss of profits.\n\nAdvise both parties fully.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Contract Problem — foundations, definitions and leading authority",
+        "words": 770
+      },
+      {
+        "focus": "Mega Contract Problem — operation, examples and doctrinal development",
+        "words": 770
+      },
+      {
+        "focus": "A multinational outsourcing contract fails after misrepresentation — foundations, definitions and leading authority",
+        "words": 770
+      },
+      {
+        "focus": "A multinational outsourcing contract fails after misrepresentation — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "defective performance — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "defective performance — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "cyber breach — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "force majeure — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "sanctions — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "termination — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "exclusion clauses — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "liquidated damages and disputed loss of profits — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "Advise both parties fully — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 769
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "title": "Mega Tort Problem",
+    "type": "problem",
+    "word_count": 10000,
+    "subjects": [
+      "tort_law",
+      "environmental_law"
+    ],
+    "prompt": "Mega Tort Problem\n\n**Suggested length: 10,000 words**\n\nA transport disaster causes deaths, injuries, psychiatric illness, environmental damage, business interruption and privacy breaches. Potential defendants include a transport company, manufacturer, regulator, police force and hospital.\n\nAdvise all claimants.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Tort Problem — foundations, definitions and leading authority",
+        "words": 770
+      },
+      {
+        "focus": "Mega Tort Problem — operation, examples and doctrinal development",
+        "words": 770
+      },
+      {
+        "focus": "A transport disaster causes deaths — foundations, definitions and leading authority",
+        "words": 770
+      },
+      {
+        "focus": "A transport disaster causes deaths — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "injuries — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "injuries — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "psychiatric illness — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "environmental damage — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "business interruption and privacy breaches. Potential defendants include a transport company — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "manufacturer — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "regulator — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "police force and hospital — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "Advise all claimants — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 769
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "title": "Mega Criminal Law Problem",
+    "type": "problem",
+    "word_count": 10000,
+    "subjects": [
+      "criminal_law"
+    ],
+    "prompt": "Mega Criminal Law Problem\n\n**Suggested length: 10,000 words**\n\nA planned robbery escalates into homicide, arson, fraud, handling stolen goods and witness intimidation. Several defendants have different knowledge, intentions, intoxication and withdrawal arguments.\n\nAdvise all defendants.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Criminal Law Problem — foundations, definitions and leading authority",
+        "words": 770
+      },
+      {
+        "focus": "Mega Criminal Law Problem — operation, examples and doctrinal development",
+        "words": 770
+      },
+      {
+        "focus": "A planned robbery escalates into homicide — foundations, definitions and leading authority",
+        "words": 770
+      },
+      {
+        "focus": "A planned robbery escalates into homicide — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "arson — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "arson — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "fraud — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "fraud — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "handling stolen goods and witness intimidation. Several defendants have different knowledge — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "handling stolen goods and witness intimidation. Several defendants have different knowledge — operation, examples and doctrinal development",
+        "words": 769
+      },
+      {
+        "focus": "intentions — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "intoxication and withdrawal arguments — foundations, definitions and leading authority",
+        "words": 769
+      },
+      {
+        "focus": "Advise all defendants — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 769
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "title": "Mega Public Law Essay",
+    "type": "essay",
+    "word_count": 12000,
+    "subjects": [
+      "public_law"
+    ],
+    "prompt": "Mega Public Law Essay\n\n**Suggested length: 12,000 words**\n\n> “The UK constitution survives because it is flexible, but that flexibility also makes it vulnerable to executive dominance.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Public Law Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — critical evaluation, comparison and implications",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — reform, consequences and deeper synthesis",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 6, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 7, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 8, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 9, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 10, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 11, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 12, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 13, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 14, evidence and objections",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Essay — extended critical analysis 15, evidence and objections; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "title": "Mega Public Law Problem",
+    "type": "problem",
+    "word_count": 12000,
+    "subjects": [
+      "biolaw_ai_data",
+      "public_law"
+    ],
+    "prompt": "Mega Public Law Problem\n\n**Suggested length: 12,000 words**\n\nA crisis statute authorises curfews, protest bans, algorithmic risk scoring, preventive detention, surveillance and limits on judicial review.\n\nAdvise citizens, journalists and NGOs.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Public Law Problem — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Mega Public Law Problem — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "A crisis statute authorises curfews — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "A crisis statute authorises curfews — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "protest bans — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "protest bans — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "algorithmic risk scoring — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "algorithmic risk scoring — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "preventive detention — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "preventive detention — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "surveillance and limits on judicial review — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "surveillance and limits on judicial review — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Advise citizens — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Advise citizens — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "journalists and NGOs — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "title": "Mega Land / Equity Problem",
+    "type": "problem",
+    "word_count": 12000,
+    "subjects": [
+      "trusts_law",
+      "land_law",
+      "family_law",
+      "remedies_law"
+    ],
+    "prompt": "Mega Land / Equity Problem\n\n**Suggested length: 12,000 words**\n\nA family estate dispute involves beneficial interests, promises, proprietary estoppel, trustees, mortgage priority, easements, licences, adverse possession and tracing misapplied sale proceeds.\n\nAdvise all parties.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Land / Equity Problem — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Mega Land / Equity Problem — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "A family estate dispute involves beneficial interests — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "A family estate dispute involves beneficial interests — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "promises — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "promises — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "proprietary estoppel — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "proprietary estoppel — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "trustees — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "trustees — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "mortgage priority — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "easements — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "licences — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "adverse possession and tracing misapplied sale proceeds — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Advise all parties — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "title": "Mega Company / Insolvency Problem",
+    "type": "problem",
+    "word_count": 12000,
+    "subjects": [
+      "insolvency_law",
+      "business_law"
+    ],
+    "prompt": "Mega Company / Insolvency Problem\n\n**Suggested length: 12,000 words**\n\nA corporate group collapses after director conflicts, asset stripping, parent-company control, misleading accounts, shareholder exclusion, creditor losses and administration.\n\nAdvise shareholders, creditors, directors, liquidators and parent company.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Company / Insolvency Problem — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Mega Company / Insolvency Problem — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "A corporate group collapses after director conflicts — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "A corporate group collapses after director conflicts — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "asset stripping — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "asset stripping — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "parent-company control — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "parent-company control — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "misleading accounts — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "shareholder exclusion — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "creditor losses and administration — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Advise shareholders — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "creditors — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "directors — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "liquidators and parent company — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "title": "Mega Human Rights Essay",
+    "type": "essay",
+    "word_count": 12000,
+    "subjects": [
+      "human_rights_law"
+    ],
+    "prompt": "Mega Human Rights Essay\n\n**Suggested length: 12,000 words**\n\n> “Human rights law is a language of principle, but its outcomes depend on institutional restraint, proportionality and remedies.”\n\nCritically discuss.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Human Rights Essay — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Mega Human Rights Essay — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Mega Human Rights Essay — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "> “Human rights law is a language of principle — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "> “Human rights law is a language of principle — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "> “Human rights law is a language of principle — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "but its outcomes depend on institutional restraint — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "but its outcomes depend on institutional restraint — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "but its outcomes depend on institutional restraint — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "proportionality and remedies.” — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "proportionality and remedies.” — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "proportionality and remedies.” — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "Critically discuss — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "Critically discuss — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "Critically discuss — counterarguments, limitations and rival views; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "title": "Mega International Law Essay",
+    "type": "essay",
+    "word_count": 12000,
+    "subjects": [
+      "public_international_law",
+      "human_rights_law"
+    ],
+    "prompt": "Mega International Law Essay\n\n**Suggested length: 12,000 words**\n\n> “International law is not ineffective simply because it lacks centralised enforcement.”\n\nCritically discuss using use of force, human rights, state responsibility, climate law and international courts.",
+    "part_plan": [
+      {
+        "focus": "introduction; use of force — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "use of force — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "use of force — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "human rights — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "human rights — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "human rights — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "state responsibility — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "state responsibility — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "state responsibility — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "climate law — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "climate law — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "climate law — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "international courts — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "international courts — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "international courts — counterarguments, limitations and rival views; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "title": "Mega Legal Theory Essay",
+    "type": "essay",
+    "word_count": 15000,
+    "subjects": [
+      "jurisprudence_law"
+    ],
+    "prompt": "Mega Legal Theory Essay\n\n**Suggested length: 15,000 words**\n\n> “Law is simultaneously a system of rules, morality, coercion, interpretation and power.”\n\nCritically discuss using positivism, natural law, Dworkin, realism, feminism, critical race theory, Marxism and postcolonial theory.",
+    "part_plan": [
+      {
+        "focus": "introduction; positivism — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "positivism — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "positivism — counterarguments, limitations and rival views",
+        "words": 790
+      },
+      {
+        "focus": "natural law — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "natural law — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "natural law — counterarguments, limitations and rival views",
+        "words": 790
+      },
+      {
+        "focus": "Dworkin — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "Dworkin — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "Dworkin — counterarguments, limitations and rival views",
+        "words": 790
+      },
+      {
+        "focus": "realism — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "realism — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "feminism — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "feminism — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "critical race theory — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "critical race theory — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "Marxism — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "Marxism — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "postcolonial theory — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "postcolonial theory — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 789
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "title": "Mega Legal Tech Problem",
+    "type": "problem",
+    "word_count": 15000,
+    "subjects": [
+      "biolaw_ai_data",
+      "consumer_law",
+      "contract_law",
+      "employment_law",
+      "intellectual_property_law"
+    ],
+    "prompt": "Mega Legal Tech Problem\n\n**Suggested length: 15,000 words**\n\nA legal AI company faces claims involving misleading advertising, contract breach, data breach, copyright infringement, employment disputes, negligent legal outputs and regulatory investigation.\n\nAdvise the company, users, employees and regulators.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Legal Tech Problem — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "Mega Legal Tech Problem — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "A legal AI company faces claims involving misleading advertising — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "A legal AI company faces claims involving misleading advertising — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "contract breach — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "contract breach — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "data breach — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "data breach — operation, examples and doctrinal development",
+        "words": 790
+      },
+      {
+        "focus": "copyright infringement — foundations, definitions and leading authority",
+        "words": 790
+      },
+      {
+        "focus": "copyright infringement — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "employment disputes — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "employment disputes — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "negligent legal outputs and regulatory investigation — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "negligent legal outputs and regulatory investigation — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "Advise the company — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "Advise the company — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "users — foundations, definitions and leading authority",
+        "words": 789
+      },
+      {
+        "focus": "users — operation, examples and doctrinal development",
+        "words": 789
+      },
+      {
+        "focus": "employees and regulators — foundations, definitions and leading authority; synthesis and conclusion",
+        "words": 789
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "title": "Mega Remedies Essay",
+    "type": "essay",
+    "word_count": 18000,
+    "subjects": [
+      "trusts_law",
+      "public_law",
+      "human_rights_law",
+      "remedies_law"
+    ],
+    "prompt": "Mega Remedies Essay\n\n**Suggested length: 18,000 words**\n\n> “Rights matter only as much as the remedies available to enforce them.”\n\nCritically discuss across private law, public law, equity, human rights and judicial review.",
+    "part_plan": [
+      {
+        "focus": "introduction; Mega Remedies Essay — foundations, definitions and leading authority",
+        "words": 783
+      },
+      {
+        "focus": "Mega Remedies Essay — operation, examples and doctrinal development",
+        "words": 783
+      },
+      {
+        "focus": "Mega Remedies Essay — counterarguments, limitations and rival views",
+        "words": 783
+      },
+      {
+        "focus": "Mega Remedies Essay — critical evaluation, comparison and implications",
+        "words": 783
+      },
+      {
+        "focus": "> “Rights matter only as much as the remedies available to enforce them.” — foundations, definitions and leading authority",
+        "words": 783
+      },
+      {
+        "focus": "> “Rights matter only as much as the remedies available to enforce them.” — operation, examples and doctrinal development",
+        "words": 783
+      },
+      {
+        "focus": "> “Rights matter only as much as the remedies available to enforce them.” — counterarguments, limitations and rival views",
+        "words": 783
+      },
+      {
+        "focus": "> “Rights matter only as much as the remedies available to enforce them.” — critical evaluation, comparison and implications",
+        "words": 783
+      },
+      {
+        "focus": "Critically discuss across private law — foundations, definitions and leading authority",
+        "words": 783
+      },
+      {
+        "focus": "Critically discuss across private law — operation, examples and doctrinal development",
+        "words": 783
+      },
+      {
+        "focus": "Critically discuss across private law — counterarguments, limitations and rival views",
+        "words": 783
+      },
+      {
+        "focus": "Critically discuss across private law — critical evaluation, comparison and implications",
+        "words": 783
+      },
+      {
+        "focus": "public law — foundations, definitions and leading authority",
+        "words": 783
+      },
+      {
+        "focus": "public law — operation, examples and doctrinal development",
+        "words": 783
+      },
+      {
+        "focus": "public law — counterarguments, limitations and rival views",
+        "words": 782
+      },
+      {
+        "focus": "public law — critical evaluation, comparison and implications",
+        "words": 782
+      },
+      {
+        "focus": "equity — foundations, definitions and leading authority",
+        "words": 782
+      },
+      {
+        "focus": "equity — operation, examples and doctrinal development",
+        "words": 782
+      },
+      {
+        "focus": "equity — counterarguments, limitations and rival views",
+        "words": 782
+      },
+      {
+        "focus": "equity — critical evaluation, comparison and implications",
+        "words": 782
+      },
+      {
+        "focus": "human rights and judicial review — foundations, definitions and leading authority",
+        "words": 782
+      },
+      {
+        "focus": "human rights and judicial review — operation, examples and doctrinal development",
+        "words": 782
+      },
+      {
+        "focus": "human rights and judicial review — counterarguments, limitations and rival views; synthesis and conclusion",
+        "words": 782
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Mega Integration Essay",
+    "type": "essay",
+    "word_count": 20000,
+    "subjects": [
+      "contract_law",
+      "tort_law",
+      "trusts_law",
+      "land_law",
+      "criminal_law",
+      "business_law",
+      "public_law",
+      "human_rights_law"
+    ],
+    "prompt": "Mega Integration Essay\n\n**Suggested length: 20,000 words**\n\n> “The central tension in English law is between certainty and justice.”\n\nCritically discuss using at least eight subjects, including contract, tort, land, equity, criminal law, public law, company law and human rights.",
+    "part_plan": [
+      {
+        "focus": "introduction; at least eight subjects — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "at least eight subjects — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "at least eight subjects — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "including contract — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "including contract — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "including contract — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "tort — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "tort — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "tort — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "land — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "land — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "land — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "equity — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "equity — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "equity — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "criminal law — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "criminal law — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "criminal law — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "public law — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "public law — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "public law — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "company law — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "company law — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "human rights — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "human rights — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "title": "Mega Final Problem",
+    "type": "problem",
+    "word_count": 20000,
+    "subjects": [
+      "legal_ethics",
+      "biolaw_ai_data",
+      "contract_law",
+      "tort_law",
+      "trusts_law",
+      "land_law",
+      "insolvency_law",
+      "business_law",
+      "employment_law",
+      "family_law"
+    ],
+    "prompt": "Mega Final Problem\n\n**Suggested length: 20,000 words**\n\nA family-owned technology company collapses after a cyberattack, failed cloud contract, disputed IP ownership, employee whistleblowing, director misconduct, property security dispute, insolvency, data breach, misleading investor statements and regulatory investigation.\n\nAdvise all parties.\n\nConsider contract, tort, company law, insolvency, employment, IP, data protection, land/security interests, equity, remedies and professional ethics.",
+    "part_plan": [
+      {
+        "focus": "introduction; contract — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "contract — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "contract — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "tort — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "tort — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "tort — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "company law — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "company law — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "company law — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "insolvency — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "insolvency — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "insolvency — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "employment — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "employment — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "employment — counterarguments, limitations and rival views",
+        "words": 800
+      },
+      {
+        "focus": "IP — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "IP — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "data protection — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "data protection — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "land/security interests — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "land/security interests — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "equity — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "equity — operation, examples and doctrinal development",
+        "words": 800
+      },
+      {
+        "focus": "remedies and professional ethics — foundations, definitions and leading authority",
+        "words": 800
+      },
+      {
+        "focus": "remedies and professional ethics — operation, examples and doctrinal development; synthesis and conclusion",
+        "words": 800
+      }
+    ]
+  }
+]

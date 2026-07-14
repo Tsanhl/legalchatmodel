@@ -1,0 +1,157 @@
+{
+  "data_dir": "data/legal_answer_flow_feedback_v2",
+  "split_counts": {
+    "train": 3094,
+    "valid": 280,
+    "test": 140
+  },
+  "topic_counts": {
+    "company": 25,
+    "competition": 315,
+    "contract": 589,
+    "criminal": 274,
+    "employment": 83,
+    "equity_trusts": 404,
+    "evidence": 68,
+    "family": 13,
+    "human_rights": 48,
+    "intellectual_property": 39,
+    "land": 106,
+    "media_privacy": 48,
+    "medical_biolaw": 233,
+    "private_international": 27,
+    "public_international": 33,
+    "public_jr": 3,
+    "tax": 191,
+    "tort": 186,
+    "unclassified": 829
+  },
+  "topic_output_word_count": {
+    "company": {
+      "count": 25,
+      "median": 155,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "competition": {
+      "count": 315,
+      "median": 104,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "contract": {
+      "count": 589,
+      "median": 164,
+      "at_least_700": 1,
+      "at_least_1000": 0
+    },
+    "criminal": {
+      "count": 274,
+      "median": 163,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "employment": {
+      "count": 83,
+      "median": 169,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "equity_trusts": {
+      "count": 404,
+      "median": 155,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "evidence": {
+      "count": 68,
+      "median": 158,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "family": {
+      "count": 13,
+      "median": 173,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "human_rights": {
+      "count": 48,
+      "median": 160,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "intellectual_property": {
+      "count": 39,
+      "median": 155,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "land": {
+      "count": 106,
+      "median": 163,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "media_privacy": {
+      "count": 48,
+      "median": 154,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "medical_biolaw": {
+      "count": 233,
+      "median": 153,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "private_international": {
+      "count": 27,
+      "median": 166,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "public_international": {
+      "count": 33,
+      "median": 163,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "public_jr": {
+      "count": 3,
+      "median": 124,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "tax": {
+      "count": 191,
+      "median": 156,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "tort": {
+      "count": 186,
+      "median": 164,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    },
+    "unclassified": {
+      "count": 829,
+      "median": 103,
+      "at_least_700": 0,
+      "at_least_1000": 0
+    }
+  },
+  "answer_type_counts": {
+    "essay": 524,
+    "explanatory": 1488,
+    "other": 1164,
+    "problem": 338
+  },
+  "output_word_count": {
+    "count": 3514,
+    "median": 154,
+    "at_least_700": 1,
+    "at_least_1000": 0
+  }
+}

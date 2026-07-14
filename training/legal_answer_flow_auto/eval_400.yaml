@@ -1,0 +1,13 @@
+# Eval-only config for the completed resumed legal answer-flow adapter.
+
+model: "mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit"
+train: false
+test: true
+
+data: "data/legal_answer_flow_auto"
+adapter_path: "adapters/legal_answer_flow_auto_lora_400"
+
+batch_size: 1
+test_batches: 16
+max_seq_length: 4096
+mask_prompt: true

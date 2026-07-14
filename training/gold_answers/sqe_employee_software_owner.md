@@ -1,0 +1,5 @@
+**Single best answer: the employer is ordinarily the first owner, subject to any agreement to the contrary.**
+
+Computer programs are protected as literary works (Copyright, Designs and Patents Act 1988, s 3(1)(b)). Where an employee makes a literary work in the course of employment, the employer is the first owner of copyright unless the parties agree otherwise (Copyright, Designs and Patents Act 1988, s 11(2)).
+
+The employee is not automatically first owner simply because they wrote the code, and commissioning alone would not transfer ownership without the employment rule or an assignment. The key factual issue is whether creation was “in the course of employment,” assessed from the employee’s duties, instructions, working arrangements and connection between the job and the software. On the stated fact that it was created in that course, the employer is the best answer.

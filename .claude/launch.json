@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "legal-chat-ui-v4",
+      "runtimeExecutable": "./scripts/chat_ui.sh",
+      "runtimeArgs": ["--adapter-path", "adapters/legal_answer_flow_feedback_v4_curriculum_lora"],
+      "port": 8765
+    }
+  ]
+}

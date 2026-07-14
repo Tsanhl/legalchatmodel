@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Legal AI — Memory &amp; Private Chat</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark">LA</div>
+          <div class="brand-text">
+            <strong>Legal AI</strong>
+            <span>Local Fine-Tuned Model</span>
+          </div>
+          <button id="closeSidebar" class="side-collapse-btn" type="button" aria-label="Collapse sidebar" title="Collapse sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+        </div>
+
+        <div class="mode-list" role="group" aria-label="Chat mode">
+          <button id="memoryModeButton" class="mode-pill active" type="button" data-mode="memory" aria-pressed="true">
+            <span class="mode-ico ico-memory" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4a4 4 0 0 0-4 4v1a4 4 0 0 0-2 7.5A4 4 0 0 0 12 20Z"/><path d="M12 4a4 4 0 0 1 4 4v1a4 4 0 0 1 2 7.5A4 4 0 0 1 12 20ZM12 4v16"/></svg>
+            </span>
+            <span class="mode-copy">
+              <span class="mode-name">Memory</span>
+              <span class="mode-detail">Cross-chat · training</span>
+            </span>
+            <span class="mode-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 4 4 10-10"/></svg>
+            </span>
+          </button>
+          <button id="privateModeButton" class="mode-pill" type="button" data-mode="private" aria-pressed="false">
+            <span class="mode-ico ico-private" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+            </span>
+            <span class="mode-copy">
+              <span class="mode-name">Private</span>
+              <span class="mode-detail">Isolated · fully deletable</span>
+            </span>
+            <span class="mode-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 4 4 10-10"/></svg>
+            </span>
+          </button>
+        </div>
+
+        <button id="newChatButton" class="new-chat" type="button">
+          <span class="nc-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            <span id="newChatLabel">New memory chat</span>
+          </span>
+          <span class="kbd">⌘N</span>
+        </button>
+
+        <div class="side-label">Conversations</div>
+        <div id="conversationList" class="conversation-list"></div>
+
+        <div class="user-row">
+          <div class="user-ava">ME</div>
+          <div class="user-name">You</div>
+          <span id="modelBadge" class="kbd" title="Generation engine">local</span>
+        </div>
+      </aside>
+
+      <main class="chat-pane">
+        <div class="chat-toolbar">
+          <button id="openSidebar" class="toolbar-menu-btn" type="button" hidden aria-label="Open sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            <span>Menu</span>
+          </button>
+
+          <label class="juris">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+            <span>Jurisdiction</span>
+            <select id="jurisdictionSelect">
+              <option value="england_wales">England &amp; Wales</option>
+              <option value="hong_kong">Hong Kong</option>
+              <option value="us">United States</option>
+              <option value="eu">European Union</option>
+              <option value="other">Other / specify in question</option>
+            </select>
+          </label>
+
+          <label class="juris">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+            <span>Online</span>
+            <select id="onlineModeSelect" title="Search official legal sources online">
+              <option value="always" selected>Always check latest</option>
+            </select>
+          </label>
+
+          <div class="spacer"></div>
+
+          <div id="statusPill" class="toggle" title="Model status">
+            <span class="toggle-track"><span class="toggle-thumb"></span></span>
+            <span id="statusText">Loading model…</span>
+          </div>
+        </div>
+
+        <section id="messageList" class="message-list" aria-live="polite"></section>
+
+        <form id="chatForm" class="composer">
+          <div id="selectedDocsBar" class="selected-docs-bar" hidden></div>
+          <div class="composer-box">
+            <textarea id="chatInput" rows="1" placeholder="Ask any legal question..."></textarea>
+            <div class="composer-actions">
+              <button id="attachButton" class="ghost-icon" type="button" aria-label="Attach a file to today's record">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.5l-8.5 8.5a5 5 0 0 1-7-7l9-9a3.3 3.3 0 0 1 4.7 4.7l-9 9a1.6 1.6 0 0 1-2.3-2.3l8.2-8.2"/></svg>
+              </button>
+              <input id="fileInput" type="file" accept=".pdf,.docx,.txt,.md,.csv,.png,.jpg,.jpeg,.webp" multiple hidden />
+              <div class="spacer"></div>
+              <button id="sendButton" class="send-btn" type="submit" aria-label="Send" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+                <span class="kbd">⌘↵</span>
+              </button>
+            </div>
+          </div>
+          <div id="composerFoot" class="composer-foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            Memory mode: other Memory chats can use this history, and it can join your improvement/training records.
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="/assets/app.js" type="module"></script>
+  </body>
+</html>

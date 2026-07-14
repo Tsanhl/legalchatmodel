@@ -1,0 +1,28 @@
+{
+  "date": "2026-07-14",
+  "adapter": "legal_answer_flow_v8_complete_answer_lora",
+  "question_id": 30,
+  "question_type": "problem",
+  "requested_body_words": 1500,
+  "allowed_body_words": [1485, 1515],
+  "observed_body_words": 1502,
+  "observed_words_including_references": 1567,
+  "conversation_id": "17881cb0a61b46129fc6af77c0774d77",
+  "checks": {
+    "visible_browser_submission": true,
+    "atomic_completed_answer_event": true,
+    "explicit_introduction": true,
+    "explicit_conclusion": true,
+    "full_parenthetical_oscola": true,
+    "used_authority_only_references": true,
+    "current_sra_code_and_principles": true,
+    "official_source_chips_only": true,
+    "private_filename_or_identifier_leak": false,
+    "internal_part_label_or_pipeline_text": false
+  },
+  "official_sources": [
+    "https://www.sra.org.uk/solicitors/standards-regulations/code-conduct-solicitors/",
+    "https://www.sra.org.uk/solicitors/standards-regulations/principles/"
+  ],
+  "passed": true
+}

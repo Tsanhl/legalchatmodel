@@ -1,0 +1,5 @@
+**Single best answer: the statutory bad-character framework governs admissibility, principally the section 101 gateways and section 103 propensity rules (Criminal Justice Act 2003, pt 11 ch 1).**
+
+Evidence of a previous conviction is evidence of the defendant’s bad character unless an exclusion applies (Criminal Justice Act 2003, ss 98-99). The prosecution must identify a section 101 gateway. Where it relies on propensity to commit offences of the kind charged or propensity to be untruthful, section 103 gives the principal statutory test under the important-matter gateway (Criminal Justice Act 2003, ss 101(1)(d) and 103).
+
+Admissibility is not automatic merely because a conviction exists. The court must examine relevance, similarity, age and the statutory exclusion safeguards, including adverse effect on fairness where applicable (Criminal Justice Act 2003, s 101(3)). The hearsay framework is not the primary answer because the question specifically concerns a conviction used to prove propensity.

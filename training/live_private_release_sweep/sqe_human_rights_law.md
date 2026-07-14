@@ -1,0 +1,5 @@
+**Single best answer: section 6(1) supplies the direct unlawfulness route (Human Rights Act 1998, s 6(1)).**
+
+It is unlawful for a public authority to act incompatibly with a Convention right (Human Rights Act 1998, s 6(1)). On the facts, the authority cannot rely on the qualification for conduct compelled by primary legislation because no primary legislation required the incompatible act (Human Rights Act 1998, s 6(2)).
+
+The victim may bring proceedings against the authority or rely on the Convention right in existing proceedings, subject to standing and limitation (Human Rights Act 1998, s 7). Section 3 concerns interpretation of legislation, while section 4 permits a declaration of incompatibility for legislation; neither is the most direct route against an unforced act of a public authority.

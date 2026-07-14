@@ -1,0 +1,5 @@
+**Single best answer: the duty to the court and the administration of justice prevails. The solicitor must not adduce or endorse evidence known to be false, must advise the client to correct the position, and must cease acting if the client persists and lawful correction cannot be secured.**
+
+A solicitor must uphold the rule of law and proper administration of justice and must not mislead the court (Legal Services Act 2007, s 1(1)(a); SRA Principles, principles 1 and 2; SRA Code of Conduct for Solicitors, RELs and RFLs, para 1.4). Client instructions do not authorise deception.
+
+The solicitor should explain the consequences and seek authority to correct any false impression. If the client refuses, the solicitor cannot continue presenting a case that depends on the lie and will normally have to withdraw without misleading the court about the reason. Confidentiality remains important, so withdrawal does not automatically permit disclosure of the client’s confession; disclosure requires client consent or a recognised legal or professional-duty basis. Quietly using the evidence or merely warning the client while continuing are not acceptable alternatives.

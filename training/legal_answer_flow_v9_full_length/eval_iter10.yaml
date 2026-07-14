@@ -1,0 +1,8 @@
+model: "mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit"
+train: false
+test: true
+data: "data/legal_answer_flow_v9_full_length"
+adapter_path: "adapters/legal_answer_flow_v9_full_length_iter10_lora"
+batch_size: 1
+max_seq_length: 4096
+test_batches: -1

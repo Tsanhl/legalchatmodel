@@ -1,0 +1,38 @@
+# QLoRA fine-tuning config for:
+# mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit
+#
+# Replace the sample JSONL files in data/qwen2_5_7b_chat_lora with your own
+# examples before doing a real training run.
+
+model: "mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit"
+train: true
+test: false
+
+fine_tune_type: lora
+optimizer: adamw
+data: "data/qwen2_5_7b_chat_lora"
+adapter_path: "adapters/qwen2_5_7b_lora"
+
+seed: 0
+num_layers: 16
+batch_size: 1
+grad_accumulation_steps: 4
+iters: 100
+learning_rate: 1e-5
+
+mask_prompt: true
+max_seq_length: 2048
+grad_checkpoint: true
+
+steps_per_report: 10
+steps_per_eval: 25
+val_batches: -1
+save_every: 50
+test_batches: -1
+
+lora_parameters:
+  keys: ["self_attn.q_proj", "self_attn.v_proj"]
+  rank: 8
+  scale: 20.0
+  dropout: 0.0
+

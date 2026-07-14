@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "conversation_id": "113812cf91b4465787d72ee2c718bcc3",
+  "created_at": "2026-07-13T15:13:26.835357+00:00",
+  "body_words": 1993,
+  "total_words_with_references": 2273,
+  "checks": {
+    "body_1980_to_2020_words": true,
+    "all_requested_issues_present": true,
+    "both_parties_advised": true,
+    "core_authorities_present": true,
+    "structured_headings": true,
+    "single_references_section": true,
+    "no_pipeline_leak": true,
+    "conclusion_present": true,
+    "no_invented_clause_or_entire_agreement": true,
+    "actual_reliance_not_erased": true,
+    "section_2_1_not_called_innocent": true,
+    "no_known_wrong_court_claims": true,
+    "cap_assigned_to_securecloud": true,
+    "modern_penalty_test_present": true,
+    "invoice_and_setoff_addressed": true
+  }
+}

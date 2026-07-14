@@ -1,0 +1,26 @@
+model: "mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit"
+train: true
+test: false
+
+fine_tune_type: lora
+optimizer: adamw
+data: "data/legal_answer_flow_v9_full_length"
+adapter_path: "adapters/legal_answer_flow_v10_stability_lora"
+resume_adapter_file: "adapters/legal_answer_flow_v9_full_length_lora/adapters.safetensors"
+
+seed: 107
+num_layers: 16
+batch_size: 1
+grad_accumulation_steps: 1
+iters: 10
+learning_rate: 5e-7
+
+mask_prompt: true
+max_seq_length: 4096
+grad_checkpoint: true
+
+steps_per_report: 2
+steps_per_eval: 5
+val_batches: 4
+save_every: 5
+test_batches: -1

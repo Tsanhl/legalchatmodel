@@ -1,0 +1,42 @@
+{
+  "date": "2026-07-14",
+  "passed": true,
+  "word_count_policy": {
+    "applies_to": "substantive body, excluding the final References section",
+    "lower_bound": "ceil(0.99 * requested_words)",
+    "upper_bound": "floor(1.01 * requested_words)"
+  },
+  "essay": {
+    "conversation_id": "0d3f6e914b7b46818beeaf76adaa9d1e",
+    "test": "cross-subject critical essay using at least eight LLB subjects",
+    "body_words": 1834,
+    "total_words_including_references": 1978,
+    "developed_subject_sections": 10,
+    "contains_plan_or_part_placeholder": false,
+    "passed": true
+  },
+  "problem_question": {
+    "conversation_id": "b672f261bf2848318d2ce68ac367a0b8",
+    "test": "Dana, Eli and Farah road-traffic tort problem",
+    "requested_words": 1500,
+    "permitted_body_words": [1485, 1515],
+    "body_words": 1487,
+    "total_words_including_references": 1568,
+    "contains_plan_or_part_placeholder": false,
+    "passed": true
+  },
+  "general_enquiry": {
+    "conversation_id": "66a2b5a55d864540892a4d7c5de3ecf9",
+    "test": "practical proprietary-estoppel explanation",
+    "body_words": 1221,
+    "total_words_including_references": 1245,
+    "contains_plan_or_part_placeholder": false,
+    "passed": true
+  },
+  "internal_planner_examples": {
+    "2000": [667, 667, 666],
+    "5000": [715, 715, 714, 714, 714, 714, 714],
+    "10000": [770, 770, 770, 769, 769, 769, 769, 769, 769, 769, 769, 769, 769],
+    "20000": [800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800, 800]
+  }
+}

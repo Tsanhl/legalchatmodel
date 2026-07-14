@@ -1,0 +1,191 @@
+{
+  "subjects": [
+    {
+      "subject": "contract",
+      "matched_guide": "Contract Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 589,
+      "long_answer_examples": 1,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "criminal",
+      "matched_guide": "Criminal Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 274,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "evidence",
+      "matched_guide": "Evidence Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 68,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "equity_trusts",
+      "matched_guide": "Trusts Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 404,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "land",
+      "matched_guide": "Land Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 106,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "public_jr",
+      "matched_guide": "Public Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 3,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "company",
+      "matched_guide": "Business and Company Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 25,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "tort",
+      "matched_guide": "Tort Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 186,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "family",
+      "matched_guide": "Family Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 13,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "employment",
+      "matched_guide": "Employment Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 83,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "intellectual_property",
+      "matched_guide": "Intellectual Property Law",
+      "guide_injected": true,
+      "verified_authority_pack": true,
+      "training_examples": 39,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "tax",
+      "matched_guide": "Tax Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 191,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "private_international",
+      "matched_guide": "Private International Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 27,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "public_international",
+      "matched_guide": "Public International Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 33,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "human_rights",
+      "matched_guide": "Human Rights Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 48,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "competition",
+      "matched_guide": "Competition Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 315,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "media_privacy",
+      "matched_guide": "Human Rights Law",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 48,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    },
+    {
+      "subject": "medical_biolaw",
+      "matched_guide": "Medical and Biolaw",
+      "guide_injected": true,
+      "verified_authority_pack": false,
+      "training_examples": 233,
+      "long_answer_examples": 0,
+      "needs_verified_long_answers": true
+    }
+  ],
+  "summary": {
+    "subject_count": 18,
+    "guide_covered": 18,
+    "authority_pack_covered": 10,
+    "subjects_needing_verified_long_answers": [
+      "contract",
+      "criminal",
+      "evidence",
+      "equity_trusts",
+      "land",
+      "public_jr",
+      "company",
+      "tort",
+      "family",
+      "employment",
+      "intellectual_property",
+      "tax",
+      "private_international",
+      "public_international",
+      "human_rights",
+      "competition",
+      "media_privacy",
+      "medical_biolaw"
+    ]
+  }
+}

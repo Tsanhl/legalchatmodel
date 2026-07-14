@@ -1,0 +1,39 @@
+# v6 "answering-first" LoRA — fresh from base (NOT resumed from the collapsed feedback lineage).
+# Data: data/legal_answer_flow_v6_answering
+#   - 138 gold full-answer exemplars (23 real curated essay/PQ answers x6)
+#   - 24 curated feedback replacement essays (3 x8)
+#   - 363 capped discipline drills (pinpoint-refusal 120, problem-IRAC 100, harvard 60,
+#     online-fallback 40, chinese 40) — the 1,363 meta "narrate the method" drills are DROPPED.
+# No "(End of Answer)" markers anywhere in assistant targets.
+
+model: "mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit"
+train: true
+test: false
+
+fine_tune_type: lora
+optimizer: adamw
+data: "data/legal_answer_flow_v6_answering"
+adapter_path: "adapters/legal_answer_flow_v6_answering_lora"
+
+seed: 42
+num_layers: 16
+batch_size: 1
+grad_accumulation_steps: 4
+iters: 160
+learning_rate: 1e-5
+
+mask_prompt: true
+max_seq_length: 4096
+grad_checkpoint: true
+
+steps_per_report: 10
+steps_per_eval: 40
+val_batches: 16
+save_every: 40
+test_batches: -1
+
+lora_parameters:
+  keys: ["self_attn.q_proj", "self_attn.v_proj"]
+  rank: 8
+  scale: 20.0
+  dropout: 0.0

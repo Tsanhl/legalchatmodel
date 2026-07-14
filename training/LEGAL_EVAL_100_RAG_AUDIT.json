@@ -1,0 +1,2104 @@
+{
+  "question_count": 100,
+  "passed": true,
+  "questions_with_at_least_3_legal_hits": 100,
+  "questions_with_assessment_guidance": 100,
+  "median_guide_chars": 6889,
+  "top_retrieved_categories": {
+    "Constitutional law": 47,
+    "Trusts law copy": 25,
+    "Criminal law  copy": 23,
+    "Business law copy": 19,
+    "Land law": 18,
+    " Ai and data protection act copy": 17,
+    "Tort law copy": 14,
+    "Contract law journals 24 Jan": 12,
+    "Pensions Law copy": 10,
+    "Contract law materials 26 Jan": 9,
+    "Contract law copy": 8,
+    "Tort law cases:laws 25 Jan": 8,
+    "Family law": 8,
+    "Public international law": 7,
+    "Criminal law cases + legislations 30 Jan": 6,
+    "Law and medicine materials ": 6,
+    "Commerical Law copy": 6,
+    "EU law copy": 6,
+    "Robotics and AI related issues": 5,
+    "Criminal law journals 26 Jan": 4
+  },
+  "failures": [],
+  "questions": [
+    {
+      "id": 1,
+      "title": "Contract Law — Essay",
+      "subjects": [
+        "contract_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "2. Agreement_ Objective or Subjective_ _ Law Trove.pdf",
+        "The hybrid smart contract agreement challenge to European electronic signature regulation Anne Veerpalu*, Liisi Ju¨rgen† , Eduardo da Cruz Rodrigues e Silva‡ and Alex Norta**.pdf",
+        "2. Agreement_ Objective or Subjective_ _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Contract law copy",
+        "Contract law journals 24 Jan",
+        "Contract law copy"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 2,
+      "title": "Contract Law — Problem",
+      "subjects": [
+        "contract_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "3. Offer and Acceptance _ Law Trove.pdf",
+        "3. Offer and Acceptance _ Law Trove.pdf",
+        "Principles of Latin American contract law- conference notes Christina Ramberg*.pdf"
+      ],
+      "top_categories": [
+        "Contract law copy",
+        "Contract law copy",
+        "Contract law journals 24 Jan"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 3,
+      "title": "Tort Law — Essay",
+      "subjects": [
+        "tort_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "160 - Judgment - Mackie v Mercedes-Benz Group AG.pdf",
+        "106 - Judgment - Marples v Secretary of State for Education.pdf",
+        "18 - Judgment - Biffa Waste Services Ltd v Scottish Ministers.pdf"
+      ],
+      "top_categories": [
+        "Tort law cases:laws 25 Jan",
+        "Tort law cases:laws 25 Jan",
+        "Tort law cases:laws 24 Jan"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 4,
+      "title": "Tort Law — Problem",
+      "subjects": [
+        "tort_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "160 - Judgment - Mackie v Mercedes-Benz Group AG.pdf",
+        "298 - [2025] BCC 717 - Coulter v Anderson Anderson And Brown LLP.pdf",
+        "246 - [2025] 2 WLR 1095 - URS Corp Ltd v BDW Trading Ltd.pdf"
+      ],
+      "top_categories": [
+        "Tort law cases:laws 25 Jan",
+        "Tort law cases:laws 25 Jan",
+        "Tort law cases:laws 25 Jan"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 5,
+      "title": "Criminal Law — Essay",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L11 E Reforming theft- taking without consent Nathan Tamblyn.pdf",
+        "L12  General defences in criminal law- domestic and comparative perspectives by Alan Reed; Michael Bohlander; Nicola Wake; Emma Smith 2016 Ch3,7 .pdf",
+        "L12  General defences in criminal law- domestic and comparative perspectives by Alan Reed; Michael Bohlander; Nicola Wake; Emma Smith 2016 Ch3,7 .pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law  copy",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 6,
+      "title": "Criminal Law — Problem",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "The interplay between civil and criminal IP litigation in the UK Christopher Sharp and Joel Smith*.pdf",
+        "L11 E,pb Alex Steel, 'Permanent Borrowing and Lending- A New View of Section 6 Theft Act 1968' (2008) 17 Nottingham LJ 3.pdf",
+        "L11 Developments in the Law of Theft—Appropriation and Consent—Implications for the Civil and Criminal Law L.M. Clements.pdf"
+      ],
+      "top_categories": [
+        "Criminal law journals 26 Jan",
+        "Criminal law  copy",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 7,
+      "title": "Public Law — Essay",
+      "subjects": [
+        "public_law",
+        "public_international_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "12 - Historical interpretation and the war prerogative the case of the Royal Nav.pdf",
+        "12 - Historical interpretation and the war prerogative the case of the Royal Nav.pdf",
+        "14. Judicial Review—Scope, Procedures, and Remedies _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8872
+    },
+    {
+      "id": 8,
+      "title": "Administrative Law — Problem",
+      "subjects": [
+        "public_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "35 - Tailored judicial review doctrine tailoring judicial review doctrine.pdf",
+        "11 - The animators of administrative law challenging the monopoly of law's appli.pdf",
+        "13. The Grounds of Judicial Review _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8788
+    },
+    {
+      "id": 9,
+      "title": "Human Rights Law — Essay",
+      "subjects": [
+        "biolaw_ai_data",
+        "family_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "*L2 reading 'Towards New Human Rights In The Age Of Neuroscience And Neurotechnology.pdf",
+        "A RIGHT TO REASONABLE INFERENCES- RE-THINKING DATA PROTECTION LAW IN THE AGE OF BIG DATA AND AI Sandra Wachter* & Brent Mittelstadt**.pdf",
+        "BLUEPRINT FOR AN AI BILL OF RIGHTS MAKING AUTOMATED SYSTEMS WORK FOR THE AMERICAN PEOPLE.pdf"
+      ],
+      "top_categories": [
+        "Biolaw copy",
+        " Ai and data protection act copy",
+        " Ai and data protection act copy"
+      ],
+      "guide_chars": 7842
+    },
+    {
+      "id": 10,
+      "title": "Human Rights Law — Problem",
+      "subjects": [
+        "biolaw_ai_data",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "05 - Human rights challenges after SC.pdf",
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf",
+        "L3 When is the processing of data from medical implants lawful? The legal grounds for processing health-related personal data from ICT implantable medical devices for treatment purposes under EU data protection law.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Biolaw copy"
+      ],
+      "guide_chars": 7842
+    },
+    {
+      "id": 11,
+      "title": "Land Law — Essay",
+      "subjects": [
+        "land_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L8 M. Dixon, ‘Confining and Defining Proprietary Estoppel- The Role of Unconscionability’ (2010) 30 LS 408 copy.pdf",
+        "L8 M. Dixon, ‘Confining and Defining Proprietary Estoppel- The Role of Unconscionability’ (2010) 30 LS 408 copy.pdf",
+        "Chris 8. Proprietary Estoppel.pdf"
+      ],
+      "top_categories": [
+        "Land law",
+        "Land law",
+        "Land law"
+      ],
+      "guide_chars": 5018
+    },
+    {
+      "id": 12,
+      "title": "Land Law — Problem",
+      "subjects": [
+        "land_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Chris 8. Proprietary Estoppel.pdf",
+        "Chris 8. Proprietary Estoppel.pdf",
+        "L8 M. Dixon, ‘Confining and Defining Proprietary Estoppel- The Role of Unconscionability’ (2010) 30 LS 408 copy.pdf"
+      ],
+      "top_categories": [
+        "Land law",
+        "Land law",
+        "Land law"
+      ],
+      "guide_chars": 5018
+    },
+    {
+      "id": 13,
+      "title": "Equity and Trusts — Essay",
+      "subjects": [
+        "trusts_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "L10 Private purpose trusts - a reform proposal.pdf",
+        "L10 Private purpose trusts - a reform proposal.pdf",
+        "L10 Trusts of imperfect obligation David Wilde.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Trusts law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 5376
+    },
+    {
+      "id": 14,
+      "title": "Equity and Trusts — Problem",
+      "subjects": [
+        "trusts_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Part II 3. Trusts created expressly Trusts & Equity (10th edn) Gary Watt.pdf",
+        "144 - St Andrew's (Cheam) Lawn Tennis Club Trust Re.pdf",
+        "Part II 3. Trusts created expressly Trusts & Equity (10th edn) Gary Watt.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Wills and Trusts law cases 24 Jan",
+        "Trusts law copy"
+      ],
+      "guide_chars": 5376
+    },
+    {
+      "id": 15,
+      "title": "Company Law — Essay",
+      "subjects": [
+        "trusts_law",
+        "business_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "14. Fiduciary relationships _ Law Trove.pdf",
+        "L12* The law of trusts 14. Fiduciary relationships .pdf",
+        "L12 The nature and function of fiduciary loyalty MATTHEW CONAGLEN.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Trusts law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 8976
+    },
+    {
+      "id": 16,
+      "title": "Company Law — Problem",
+      "subjects": [
+        "land_law",
+        "business_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Business law copy",
+        "Pensions Law copy"
+      ],
+      "guide_chars": 8661
+    },
+    {
+      "id": 17,
+      "title": "Evidence Law — Essay",
+      "subjects": [
+        "evidence_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "008 - Judgment - R v Lunkulu (Blaize).pdf",
+        "L15 Women who kill- why self-defence rarely works for women who kill their abuser in Criminal Law Review by Howes Sally; Swaine Williams K; Wistrich Harriet 2021.pdf",
+        "056 - Judgment - R v Joyce (Joseph).pdf"
+      ],
+      "top_categories": [
+        "Criminal law cases + legislations 30 Jan",
+        "Criminal law  copy",
+        "Criminal law cases + legislations 30 Jan"
+      ],
+      "guide_chars": 6189
+    },
+    {
+      "id": 18,
+      "title": "Evidence Law — Problem",
+      "subjects": [
+        "evidence_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "02 - Similar fact evidence.pdf",
+        "155 - 2010 SCCR 681 - Beggs (William Frederick Ian) v HM Advocate.pdf",
+        "2 The Naturalized Epistemology Approach to Evidence Purchased Gabriel Broughton, Brian Leiter.pdf"
+      ],
+      "top_categories": [
+        "Evidence law",
+        "Criminal law cases + legislations 30 Jan",
+        "Evidence law"
+      ],
+      "guide_chars": 6189
+    },
+    {
+      "id": 19,
+      "title": "Family Law — Essay",
+      "subjects": [
+        "family_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "8. Financial Remedies_ The Court’s Powers _ Law Trove.pdf",
+        "099 - RM v WP.pdf",
+        "119 - JQ v IQ.pdf"
+      ],
+      "top_categories": [
+        "Family law",
+        "Family law cases 27 Jan",
+        "Family law cases 27 Jan"
+      ],
+      "guide_chars": 3564
+    },
+    {
+      "id": 20,
+      "title": "Family Law — Problem",
+      "subjects": [
+        "family_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "4. Financial Provision on Divorce _ Law Trove.pdf",
+        "4. Financial Provision on Divorce _ Law Trove.pdf",
+        "9. Financial Remedies_ Principles and Assessment _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Family law",
+        "Family law",
+        "Family law"
+      ],
+      "guide_chars": 3564
+    },
+    {
+      "id": 21,
+      "title": "Employment Law — Essay",
+      "subjects": [
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        " Does the ‘ Personal Employment Contract ’ Provide a Basis for the Reunifi cation of Employment Law? SIMON DEAKIN 1* .pdf",
+        " Does the ‘ Personal Employment Contract ’ Provide a Basis for the Reunifi cation of Employment Law? SIMON DEAKIN 1* .pdf",
+        "Legislating by Private Members’ Bill- Employment Law Reform in the 2022–23 UK Parliamentary Session.pdf"
+      ],
+      "top_categories": [
+        "Contract law journals 24 Jan",
+        "Contract law journals 24 Jan",
+        "Family law journals 23 Jan"
+      ],
+      "guide_chars": 6609
+    },
+    {
+      "id": 22,
+      "title": "Employment Law — Problem",
+      "subjects": [
+        "contract_law",
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        " Does the ‘ Personal Employment Contract ’ Provide a Basis for the Reunifi cation of Employment Law? SIMON DEAKIN 1* .pdf",
+        "20. Ending Employment Contracts at Common Law; and Duties to Redundant and Transferring Staff _ Law Trove.pdf",
+        "20. Ending Employment Contracts at Common Law; and Duties to Redundant and Transferring Staff _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Contract law journals 24 Jan",
+        "Business law copy",
+        "Business law copy"
+      ],
+      "guide_chars": 8874
+    },
+    {
+      "id": 23,
+      "title": "Intellectual Property — Essay",
+      "subjects": [
+        "intellectual_property_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "24. Intellectual Property and Data Protection _ Law Trove.pdf",
+        "Personal_Data_in_Competition_Consumer_Protection_a..._----_(Part_I._Fundamentals_of_Personal_Data_Between_Personal_Property_Rights...).pdf",
+        "Personal_Data_in_Competition_Consumer_Protection_a..._----_(Part_I._Fundamentals_of_Personal_Data_Between_Personal_Property_Rights...).pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Competition Law copy",
+        "Competition Law copy"
+      ],
+      "guide_chars": 2965
+    },
+    {
+      "id": 24,
+      "title": "Intellectual Property — Problem",
+      "subjects": [
+        "intellectual_property_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "24. Intellectual Property and Data Protection _ Law Trove.pdf",
+        "24. Intellectual Property and Data Protection _ Law Trove.pdf",
+        "Putting a face to the game- the intellectual property implications of using celebrity likenesses in videogames Yin Harn Lee*.pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Business law copy",
+        "Interllectual property law"
+      ],
+      "guide_chars": 2965
+    },
+    {
+      "id": 25,
+      "title": "Data Protection — Essay",
+      "subjects": [
+        "biolaw_ai_data",
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Complying with the GDPR when vulnerable people use smart devices  Stanislaw Piasecki , Jiahong Chen .pdf",
+        "The Great Scrape- The Clash Between Scraping and Privacy .pdf",
+        "edpb-annual-report-2024_en.pdf"
+      ],
+      "top_categories": [
+        " Ai and data protection act copy",
+        " Ai and data protection act copy",
+        " Ai and data protection act copy"
+      ],
+      "guide_chars": 4036
+    },
+    {
+      "id": 26,
+      "title": "Data Protection — Problem",
+      "subjects": [
+        "biolaw_ai_data",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "CEDPO, 2023.pdf",
+        "guidance-on-the-ai-auditing-framework-draft-for-consultation.pdf",
+        "The Great Scrape- The Clash Between Scraping and Privacy .pdf"
+      ],
+      "top_categories": [
+        " Ai and data protection act copy",
+        " Ai and data protection act copy",
+        " Ai and data protection act copy"
+      ],
+      "guide_chars": 7842
+    },
+    {
+      "id": 27,
+      "title": "Immigration Law — Essay",
+      "subjects": [
+        "immigration_refugee_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "13 - Immigration and asylum.pdf",
+        "13 - Immigration and asylum.pdf",
+        "43 - Immigration extradition deportation and asylum.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 3938
+    },
+    {
+      "id": 28,
+      "title": "Immigration Law — Problem",
+      "subjects": [
+        "family_law",
+        "human_rights_law",
+        "immigration_refugee_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "13 - Immigration and asylum.pdf",
+        "43 - Immigration extradition deportation and asylum.pdf",
+        "L15 Interpreting the contours of self-defence within the boundaries of the rule of law, the common law and human rights in Journal of Criminal Law by Catherine Elliott 2015.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 7744
+    },
+    {
+      "id": 29,
+      "title": "Jurisprudence — Essay",
+      "subjects": [
+        "public_law",
+        "jurisprudence_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "16. Tribunals _ Law Trove.pdf",
+        "legislative_sovereignty_and_the_rule_of_law.pdf",
+        "3. Themes, Sources, and Principles _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8824
+    },
+    {
+      "id": 30,
+      "title": "Legal Ethics — Problem",
+      "subjects": [
+        "legal_ethics"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "Rules of Evidence in International Arbitration_26_01_21_23_32_01.pdf",
+        "ch 9 confidentiality.pdf",
+        "068 - Judgment - Deutsche Bank AG v Sebastian Holdings Inc.pdf"
+      ],
+      "top_categories": [
+        "Evidence law",
+        "International Commercial Mediation copy",
+        "Contract law materials 26 Jan"
+      ],
+      "guide_chars": 4936
+    },
+    {
+      "id": 31,
+      "title": "Contract Law — Essay",
+      "subjects": [
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "remedies_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "17. Misrepresentation _ Law Trove.pdf",
+        "7. Factors Affecting The Validity of a Contract _ Law Trove.pdf",
+        "7. Factors Affecting The Validity of a Contract _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Contract law copy",
+        "Business law copy",
+        "Business law copy"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 32,
+      "title": "Contract Law — Problem",
+      "subjects": [
+        "contract_law",
+        "remedies_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "17. Misrepresentation _ Law Trove.pdf",
+        "080 - Judgment - Candey Ventures SARL v Aaqua BV.pdf",
+        "181 - Judgment - Kingspan Environmental Ltd v Borealis AS.pdf"
+      ],
+      "top_categories": [
+        "Contract law copy",
+        "Tort law cases:laws 25 Jan",
+        "Law resources Extra"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 33,
+      "title": "Contract Law — Essay",
+      "subjects": [
+        "contract_law",
+        "commercial_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "154 - [2016] AC 1172 - El Makdessi v Cavendish Square Holdings BV.pdf",
+        "030 - [2016] AC 1172 - El Makdessi v Cavendish Square Holdings BV.pdf",
+        "10. Ending the Contract _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Law resources Extra",
+        "Contract law materials 26 Jan",
+        "Business law copy"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 34,
+      "title": "Contract Law — Problem",
+      "subjects": [
+        "law_medicine",
+        "contract_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "23. Damages _ Law Trove.pdf",
+        "23. Damages _ Law Trove.pdf",
+        "SOME ASPECTS OF THE RECOVERY OF RELIANCE DAMAGES IN THE LAW OF CONTRACT MAR C OWEN *.pdf"
+      ],
+      "top_categories": [
+        "Contract law copy",
+        "Contract law copy",
+        "Contract law journals 24 Jan"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 35,
+      "title": "Tort Law — Essay",
+      "subjects": [
+        "tort_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "5. Duty of Care_ Applications _ Law Trove.pdf",
+        "12. Rylands v Fletcher and Strict Liability _ Law Trove.pdf",
+        "12. Rylands v Fletcher and Strict Liability _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Tort law copy",
+        "Tort law copy",
+        "Tort law copy"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 36,
+      "title": "Tort Law — Problem",
+      "subjects": [
+        "tort_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "2. Negligence _ Law Trove.pdf",
+        "5. Duty of Care_ Applications _ Law Trove.pdf",
+        "5. Duty of Care_ Applications _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Tort law copy",
+        "Tort law copy",
+        "Tort law copy"
+      ],
+      "guide_chars": 8783
+    },
+    {
+      "id": 37,
+      "title": "Tort Law — Essay",
+      "subjects": [
+        "tort_law",
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "10. Vicarious Liability and Non-Delegable Duties _ Law Trove.pdf",
+        "13. Responsibilities of Employers for the Torts of Employees and Statutory Duties _ Law Trove.pdf",
+        "X (Appellant) v Lord Advocate (Respondent).pdf"
+      ],
+      "top_categories": [
+        "Tort law copy",
+        "Business law copy",
+        "Tort law cases:laws 25 Jan"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 38,
+      "title": "Tort Law — Problem",
+      "subjects": [
+        "tort_law",
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "10. Vicarious Liability and Non-Delegable Duties _ Law Trove.pdf",
+        "10. Vicarious Liability and Non-Delegable Duties _ Law Trove.pdf",
+        "244 - Judgment - JD Wetherspoon Plc v Burger.pdf"
+      ],
+      "top_categories": [
+        "Tort law copy",
+        "Tort law copy",
+        "Tort law cases:laws 25 Jan"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 39,
+      "title": "Criminal Law — Essay",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L9 Gross negligence manslaughter and duty of care in drugs cases R v Evans.pdf",
+        "L9 Gross negligence manslaughter and duty of care in drugs cases R v Evans.pdf",
+        "094 - [2021] AC 563 - Henderson v Dorset Healthcare University NHS Foundation Tr.pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law  copy",
+        "Criminal law cases + legislations 30 Jan"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 40,
+      "title": "Criminal Law — Problem",
+      "subjects": [
+        "tort_law",
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "L8 (Cases) Omissions liability for homicide offences reconciling R v Kennedy with R v Evans .pdf",
+        "L9 UAM, GNM The contours of involuntary manslaughter - a place for unlawful act by omission.pdf",
+        "L8 (Cases) Omissions liability for homicide offences reconciling R v Kennedy with R v Evans .pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law  copy",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 8866
+    },
+    {
+      "id": 41,
+      "title": "Criminal Law — Essay",
+      "subjects": [
+        "law_medicine",
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L4-5  Offences against the Person- Into the 21st Century in The Journal of Criminal Law by Michael Jefferson 12:2012.pdf",
+        "L6 No.139-Criminal-Law-Consent-in-the-Criminal-Law-A-Consultation-Paper.pdf",
+        "Gillick v West Norfolk and Wisbech AHA [1986] AC 112.pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law  copy",
+        "Law and medicine materials "
+      ],
+      "guide_chars": 8705
+    },
+    {
+      "id": 42,
+      "title": "Criminal Law — Problem",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L17 Ten more years of the insanity defence in Criminal Law Review by R.D. Mackay* 2012.pdf",
+        "L6 No.139-Criminal-Law-Consent-in-the-Criminal-Law-A-Consultation-Paper.pdf",
+        "L17 Epilepsy and the defence of insanity- time for change? in Criminal Law Review by R.D. Mackay and Markus Reuber 2007.pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law  copy",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 43,
+      "title": "Public Law — Essay",
+      "subjects": [
+        "public_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "06 - Local islands of law third generation ouster clauses jurisdiction and a Par.pdf",
+        "06 - Local islands of law third generation ouster clauses jurisdiction and a Par.pdf",
+        "24 - The Human Rights Act under siege the vulnerability of fundamental rights pr.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 6489
+    },
+    {
+      "id": 44,
+      "title": "Administrative Law — Problem",
+      "subjects": [
+        "law_medicine",
+        "public_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "06 - Local islands of law third generation ouster clauses jurisdiction and a Par.pdf",
+        "16. Tribunals _ Law Trove.pdf",
+        "06 - Local islands of law third generation ouster clauses jurisdiction and a Par.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8986
+    },
+    {
+      "id": 45,
+      "title": "Human Rights Law — Essay",
+      "subjects": [
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf",
+        "18. Human Rights and the UK Constitution _ Law Trove.pdf",
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 3804
+    },
+    {
+      "id": 46,
+      "title": "Human Rights Law — Problem",
+      "subjects": [
+        "privacy_media_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "A RIGHT TO REASONABLE INFERENCES- RE-THINKING DATA PROTECTION LAW IN THE AGE OF BIG DATA AND AI Sandra Wachter* & Brent Mittelstadt**.pdf",
+        "19. Freedom of Expression _ Law Trove.pdf",
+        "A RIGHT TO REASONABLE INFERENCES- RE-THINKING DATA PROTECTION LAW IN THE AGE OF BIG DATA AND AI Sandra Wachter* & Brent Mittelstadt**.pdf"
+      ],
+      "top_categories": [
+        " Ai and data protection act copy",
+        "Constitutional law",
+        " Ai and data protection act copy"
+      ],
+      "guide_chars": 6545
+    },
+    {
+      "id": 47,
+      "title": "Land Law — Essay",
+      "subjects": [
+        "tort_law",
+        "land_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "022 - Something old something new something borrowed land law reform in Northern.pdf",
+        "022 - Something old something new something borrowed land law reform in Northern.pdf",
+        "Chris 2. Registered land .pdf"
+      ],
+      "top_categories": [
+        "Land law journals 29 Jan",
+        "Land law journals 29 Jan",
+        "Land law"
+      ],
+      "guide_chars": 8790
+    },
+    {
+      "id": 48,
+      "title": "Land Law — Problem",
+      "subjects": [
+        "trusts_law",
+        "land_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L19 M. Dixon, ‘To Sell or Not to Sell- That Is the Question. The Irony of the Trust of Land and Appointment of Trustees Act 1996’ (2011) 70 CLJ 579 copy.pdf",
+        "Chris 13. Mortgages.pdf",
+        "Chris 2. Registered land .pdf"
+      ],
+      "top_categories": [
+        "Land law",
+        "Land law",
+        "Land law"
+      ],
+      "guide_chars": 8821
+    },
+    {
+      "id": 49,
+      "title": "Equity and Trusts — Essay",
+      "subjects": [
+        "trusts_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L12 The nature and function of fiduciary loyalty MATTHEW CONAGLEN.pdf",
+        "Part III 10. The fiduciary duty.pdf",
+        "L12 The nature and function of fiduciary loyalty MATTHEW CONAGLEN.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Trusts law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 5376
+    },
+    {
+      "id": 50,
+      "title": "Equity and Trusts — Problem",
+      "subjects": [
+        "trusts_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "Trusts & Trustees, Vol. 20, No. 1&2, February:March 2014, pp. 1–16.pdf",
+        "Trusts & Trustees, Vol. 20, No. 1&2, February:March 2014, pp. 1–16 .pdf",
+        "Part III 10. The fiduciary duty.pdf"
+      ],
+      "top_categories": [
+        "Trusts law journals Extra 23 Jan ",
+        "Trusts law journals Extra 23 Jan ",
+        "Trusts law copy"
+      ],
+      "guide_chars": 5376
+    },
+    {
+      "id": 51,
+      "title": "Company Law — Essay",
+      "subjects": [
+        "business_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Business law copy",
+        "Pensions Law copy"
+      ],
+      "guide_chars": 3641
+    },
+    {
+      "id": 52,
+      "title": "Company Law — Problem",
+      "subjects": [
+        "business_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "16. Duties Relating to Corporation Finance and Capital _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Business law copy",
+        "Business law copy"
+      ],
+      "guide_chars": 3641
+    },
+    {
+      "id": 53,
+      "title": "Insolvency Law — Essay",
+      "subjects": [
+        "insolvency_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf"
+      ],
+      "top_categories": [
+        "Pensions Law copy",
+        "Pensions Law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 2403
+    },
+    {
+      "id": 54,
+      "title": "Insolvency Law — Problem",
+      "subjects": [
+        "insolvency_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf"
+      ],
+      "top_categories": [
+        "Pensions Law copy",
+        "Pensions Law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 2403
+    },
+    {
+      "id": 55,
+      "title": "Commercial Law — Essay",
+      "subjects": [
+        "commercial_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L11 Ex 1994 Sing. J. Legal Stud. 150 (1994) Application of English Law Act 1993- Sale of Goods and Nemo Dat, Neo, Dora S. S. [ 14 pages, 150 to 163 ].pdf",
+        "L11 Ex Oliver Riley, 'Sale of Goods by a Non-Owner- The Competing Property Rights of a True Owner and a Good Faith Purchaser' (2017) 8 QMLJ 99 .pdf",
+        "L11 Ex 1994 Sing. J. Legal Stud. 150 (1994) Application of English Law Act 1993- Sale of Goods and Nemo Dat, Neo, Dora S. S. [ 14 pages, 150 to 163 ].pdf"
+      ],
+      "top_categories": [
+        "Commerical Law copy",
+        "Commerical Law copy",
+        "Commerical Law copy"
+      ],
+      "guide_chars": 5363
+    },
+    {
+      "id": 56,
+      "title": "Commercial Law — Problem",
+      "subjects": [
+        "commercial_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "L11 Ex Oliver Riley, 'Sale of Goods by a Non-Owner- The Competing Property Rights of a True Owner and a Good Faith Purchaser' (2017) 8 QMLJ 99 .pdf",
+        "L11 Ex Oliver Riley, 'Sale of Goods by a Non-Owner- The Competing Property Rights of a True Owner and a Good Faith Purchaser' (2017) 8 QMLJ 99 .pdf",
+        "L11 Ex 1994 Sing. J. Legal Stud. 150 (1994) Application of English Law Act 1993- Sale of Goods and Nemo Dat, Neo, Dora S. S. [ 14 pages, 150 to 163 ].pdf"
+      ],
+      "top_categories": [
+        "Commerical Law copy",
+        "Commerical Law copy",
+        "Commerical Law copy"
+      ],
+      "guide_chars": 5363
+    },
+    {
+      "id": 57,
+      "title": "EU Law — Essay",
+      "subjects": [
+        "eu_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L2 B. van Leeuwen, “Rethinking the Structure of Free Movement Law- The Centralisation of Proportionality in the Internal Market” (2017) 10 European Journal of Legal Studies 235.pdf",
+        "Art 34* B. van Leeuwen, “Rethinking the Structure of Free Movement Law- The Centralisation of Proportionality in the Internal Market” (2017) 10 European Journal of Legal Studies 235.pdf",
+        "Brexit. K. Armstrong, “The Governance of Economic Unionism after the United Kingdom Internal Market Act” (2022) 85 Modern Law Review 635.pdf"
+      ],
+      "top_categories": [
+        "EU law copy",
+        "EU law copy",
+        "EU law copy"
+      ],
+      "guide_chars": 8313
+    },
+    {
+      "id": 58,
+      "title": "EU Law — Problem",
+      "subjects": [
+        "eu_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "Art 36* N. Nic Shuibhne and M. Maci, “Proving Public Interest- The Growing Impact of Evidence in Free Movement Case Law” (2013) 50 CML Rev 965.pdf",
+        "Art 36 E. Spaventa, “On discrimination and the theory of mandatory requirements” (2001) 3 CYELS 457.pdf",
+        "B. van Leeuwen, “Legal Empathy in the Internal Market- Free Movement Law as a Comparative Dialogue” (2021) 46 EL Rev 625 copy.pdf"
+      ],
+      "top_categories": [
+        "EU law copy",
+        "EU law copy",
+        "EU law copy"
+      ],
+      "guide_chars": 8313
+    },
+    {
+      "id": 59,
+      "title": "Public International Law — Essay",
+      "subjects": [
+        "public_international_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "The Legitimacy and Compatibility of Use of Force (jus ad bellum) in Public International Law and Islamic International Law.pdf",
+        "Decisions of British Courts During 2009 Involving Questions of Public or Private International Law A. Public International Law.pdf",
+        "The Legitimacy and Compatibility of Use of Force (jus ad bellum) in Public International Law and Islamic International Law.pdf"
+      ],
+      "top_categories": [
+        "Public international law",
+        "Public international law",
+        "Public international law"
+      ],
+      "guide_chars": 4275
+    },
+    {
+      "id": 60,
+      "title": "Public International Law — Problem",
+      "subjects": [
+        "criminal_law",
+        "public_international_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "The Legitimacy and Compatibility of Use of Force (jus ad bellum) in Public International Law and Islamic International Law.pdf",
+        "The Legitimacy and Compatibility of Use of Force (jus ad bellum) in Public International Law and Islamic International Law.pdf",
+        "L15 Proposals for Reforming the Law of Self-Defence in The Journal of Criminal Law by Amir Pichhadze.pdf"
+      ],
+      "top_categories": [
+        "Public international law",
+        "Public international law",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 8868
+    },
+    {
+      "id": 61,
+      "title": "Contract Law — Essay",
+      "subjects": [
+        "contract_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "TIG_insurance_v_giffin.pdf",
+        "199 - [2023] AC 684 - Barton v Gwyn-Jones.pdf",
+        "The Choice of Paradigm for Theory of Contract- Reflections on the Relational Model DORI KIMEL.pdf"
+      ],
+      "top_categories": [
+        "Contract law journals 24 Jan",
+        "Contract law materials 26 Jan",
+        "Contract law journals 24 Jan"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 62,
+      "title": "Contract Law — Problem",
+      "subjects": [
+        "contract_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "14 - Judgment - Astea (UK) Ltd v Time Group Ltd.pdf",
+        "14 - Judgment - Astea (UK) Ltd v Time Group Ltd.pdf",
+        "18 - Judgment - Peregrine Systems Ltd v Steria Ltd.pdf"
+      ],
+      "top_categories": [
+        "Contract law materials 26 Jan",
+        "Contract law materials 26 Jan",
+        "Contract law materials 26 Jan"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 63,
+      "title": "Tort Law — Essay",
+      "subjects": [
+        "tort_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Gambling Disorder, Financial Loss and Suicide—A Journey to the ‘Outer Reaches’ of the Common Law Janet O’Sullivan*.pdf",
+        "European Tort Law- A Primer for the Common Lawyer Ken Oliphant.pdf",
+        "2. Torts of Intention _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Tort law journals 24 Jan ",
+        "Tort law journals 24 Jan ",
+        "Tort law copy"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 64,
+      "title": "Tort Law — Problem",
+      "subjects": [
+        "tort_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "8. Limitation and Contribution _ Law Trove.pdf",
+        "5. Duty of Care_ Applications _ Law Trove.pdf",
+        "5. Duty of Care_ Applications _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Tort law copy",
+        "Tort law copy",
+        "Tort law copy"
+      ],
+      "guide_chars": 7861
+    },
+    {
+      "id": 65,
+      "title": "Criminal Law — Essay",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Causation in (Criminal) Law Andrew Simester Author Accepted Version to appear in- Law Quarterly Review.pdf",
+        "161 - [2010] 1 AC 345 - R (on the application of Purdy) v DPP.pdf",
+        "Ezokola v. Canada The Correct Place of International Criminal Law in International Refugee Law-making.pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law cases + legislations 30 Jan",
+        "Criminal law journals 26 Jan"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 66,
+      "title": "Criminal Law — Problem",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Extrapolation of Criminal Law Modes of Liability to Target Analysis under International Humanitarian Law.pdf",
+        "Extrapolation of Criminal Law Modes of Liability to Target Analysis under International Humanitarian Law.pdf",
+        "L12 Law Commission 2007 Part 6.pdf"
+      ],
+      "top_categories": [
+        "Criminal law journals 26 Jan",
+        "Criminal law journals 26 Jan",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 67,
+      "title": "Constitutional Law — Essay",
+      "subjects": [
+        "public_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "1. Public Law—An Introduction _ Law Trove.pdf",
+        "4. Separation of Powers—An Introduction _ Law Trove.pdf",
+        "8. Devolution and the Territorial Constitution _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 6489
+    },
+    {
+      "id": 68,
+      "title": "Public Law / Human Rights — Problem",
+      "subjects": [
+        "public_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf",
+        "20. The Right to Protest _ Law Trove.pdf",
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8788
+    },
+    {
+      "id": 69,
+      "title": "Land Law — Essay",
+      "subjects": [
+        "trusts_law",
+        "land_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L15 Law Commission Report 271 – ‘Land Registration for the Twenty-First Century- A Conveyancing Revolution copy.pdf",
+        "L5 Law, Commission Report No. 271, Land Registration for the 21st Century- A Conveyancing Revolution (2001)- paragraphs 1.1-1.14  copy.pdf",
+        "L7 * Overriding Interests under the Land Registration Act 2002- Time to Repair the “Cracked Mirror”’? [2024] Conv 123-139 copy.pdf"
+      ],
+      "top_categories": [
+        "Land law",
+        "Land law",
+        "Land law"
+      ],
+      "guide_chars": 8821
+    },
+    {
+      "id": 70,
+      "title": "Land Law — Problem",
+      "subjects": [
+        "land_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Chris 13. Mortgages.pdf",
+        "L10 LC.-204-TRANSFER-OF-LAND-LAND-MORTGAGES copy.pdf",
+        "L10 LC.-204-TRANSFER-OF-LAND-LAND-MORTGAGES copy.pdf"
+      ],
+      "top_categories": [
+        "Land law",
+        "Land law",
+        "Land law"
+      ],
+      "guide_chars": 5018
+    },
+    {
+      "id": 71,
+      "title": "Equity and Trusts — Essay",
+      "subjects": [
+        "trusts_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "L5  PQ * The three certainties required to declare a trust – or is it four? \"Distributional certainty\" in The Cambridge Law Journal.pdf",
+        "L5  PQ * The three certainties required to declare a trust – or is it four? \"Distributional certainty\" in The Cambridge Law Journal.pdf",
+        "UK Budget- Tax Changes for Offshore T rusts.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Trusts law copy",
+        "Trusts law journals Extra 23 Jan "
+      ],
+      "guide_chars": 5376
+    },
+    {
+      "id": 72,
+      "title": "Equity and Trusts — Problem",
+      "subjects": [
+        "trusts_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "L8 Explaining resulting trusts.pdf",
+        "L10 Developing the obligation characteristic of the trust.pdf",
+        "L10 Developing the obligation characteristic of the trust.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Trusts law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 5376
+    },
+    {
+      "id": 73,
+      "title": "Company Law — Essay",
+      "subjects": [
+        "business_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "17. The Management of Corporations _ Law Trove.pdf",
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Business law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 3641
+    },
+    {
+      "id": 74,
+      "title": "Company / Insolvency Law — Problem",
+      "subjects": [
+        "insolvency_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Pensions Law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 2403
+    },
+    {
+      "id": 75,
+      "title": "Employment Law — Essay",
+      "subjects": [
+        "contract_law",
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "19. Hiring Staff and Establishing the Contract of Employment _ Law Trove.pdf",
+        "Regulating the Employer's Power- from the Law of Contract to the Law of Power.pdf",
+        "Regulating the Employer’s Power- from the Law of Contract to the Law of Power PASCAL LOKIEC*.pdf"
+      ],
+      "top_categories": [
+        "Business law copy",
+        "Contract law journals 24 Jan",
+        "Contract law journals 24 Jan"
+      ],
+      "guide_chars": 8874
+    },
+    {
+      "id": 76,
+      "title": "Employment Law — Problem",
+      "subjects": [
+        "commercial_law",
+        "employment_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        " Does the ‘ Personal Employment Contract ’ Provide a Basis for the Reunifi cation of Employment Law? SIMON DEAKIN 1* .pdf",
+        "080 - [2012] ILPr 34 - Simpson v Intralinks Ltd.pdf",
+        "018 - [2020] 1 WLR 2381 - GDE LLC (formerly Anglia Autoflow North America LLC) v.pdf"
+      ],
+      "top_categories": [
+        "Contract law journals 24 Jan",
+        "Contract law materials 26 Jan",
+        "Contract law materials 26 Jan"
+      ],
+      "guide_chars": 8700
+    },
+    {
+      "id": 77,
+      "title": "Family Law — Essay",
+      "subjects": [
+        "family_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "16. Private Law Proceedings Concerning Children _ Law Trove.pdf",
+        "12. Human Rights, Children’s Rights, and Family Law _ Law Trove.pdf",
+        "5. Cohabitants and Remedies Not Dependent on Marriage _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Family law",
+        "Family law",
+        "Family law"
+      ],
+      "guide_chars": 3564
+    },
+    {
+      "id": 78,
+      "title": "Family Law — Problem",
+      "subjects": [
+        "family_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "10. Private Law Decisions about Children _ Law Trove.pdf",
+        "095 - FZD v MQB.pdf",
+        "065 - J (A Child) Re.pdf"
+      ],
+      "top_categories": [
+        "Family law",
+        "Family law cases 27 Jan",
+        "Family law cases 27 Jan"
+      ],
+      "guide_chars": 3564
+    },
+    {
+      "id": 79,
+      "title": "Medical Law — Essay",
+      "subjects": [
+        "law_medicine"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Stephen Smith, ‘Fallacies of the Logical Slippery Slope in the Debate on Physician- Assisted Suicide and Euthanasia’ (2005) 13(2) Medical Law Review 224..pdf",
+        "Chapter 4 MEDICINE, MORAL DILEMMAS AND THE LAW.pdf",
+        "Shaun Pattinson, ‘Contemporaneous and advance requests- the fight for rights at the end of life’ in J. Herring and J. Wall (eds) Landmark Cases in Medical Law (Hart, 2015)..pdf"
+      ],
+      "top_categories": [
+        "Law and medicine materials ",
+        "Law and medicine materials ",
+        "Law and medicine materials "
+      ],
+      "guide_chars": 6775
+    },
+    {
+      "id": 80,
+      "title": "Medical Law — Problem",
+      "subjects": [
+        "law_medicine",
+        "family_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Emma Walmsley, ‘Mama mia! Serious shortcomings with another ‘(en)forced’ caesarean section case’ (2015) 23(1) Medical Law Review 135..pdf",
+        "R (Conway) v SoS for Justice [2018] EWCA Civ 1431, refusal of leave to appeal by UK Supreme Court .pdf",
+        "Refusal of Emergency Medical Treatment- Case Studies and Ethical Foundations.pdf"
+      ],
+      "top_categories": [
+        "Law and medicine materials ",
+        "Law and medicine materials ",
+        "Law and medicine extra 14 Mar"
+      ],
+      "guide_chars": 6775
+    },
+    {
+      "id": 81,
+      "title": "IP / Technology Law — Essay",
+      "subjects": [
+        "biolaw_ai_data",
+        "intellectual_property_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Liability for AI-related IP infringements in the European Union.pdf",
+        "Liability for AI-related IP infringements in the European Union.pdf",
+        "The player, the programmer and the AI- a copyright odyssey in gaming Despoina Farmaki *.pdf"
+      ],
+      "top_categories": [
+        "Robotics and AI related issues",
+        "Robotics and AI related issues",
+        "Robotics and AI related issues"
+      ],
+      "guide_chars": 7003
+    },
+    {
+      "id": 82,
+      "title": "IP / Technology Law — Problem",
+      "subjects": [
+        "biolaw_ai_data"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "AI covers- legal notes on audio mining and voice cloning.pdf",
+        "Compliance report- FTC v. Everalbum (2021).pdf",
+        "Compliance report- FTC v. Everalbum (2021).pdf"
+      ],
+      "top_categories": [
+        "Robotics and AI related issues",
+        " Ai and data protection act copy",
+        " Ai and data protection act copy"
+      ],
+      "guide_chars": 4036
+    },
+    {
+      "id": 83,
+      "title": "Data Protection / Privacy — Essay",
+      "subjects": [
+        "biolaw_ai_data"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "A RIGHT TO REASONABLE INFERENCES- RE-THINKING DATA PROTECTION LAW IN THE AGE OF BIG DATA AND AI Sandra Wachter* & Brent Mittelstadt**.pdf",
+        "Privacy Issues and Data Protection in Big Data- A Case Study Analysis under GDPR.pdf",
+        "A RIGHT TO REASONABLE INFERENCES- RE-THINKING DATA PROTECTION LAW IN THE AGE OF BIG DATA AND AI Sandra Wachter* & Brent Mittelstadt**.pdf"
+      ],
+      "top_categories": [
+        " Ai and data protection act copy",
+        " Ai and data protection act copy",
+        " Ai and data protection act copy"
+      ],
+      "guide_chars": 4036
+    },
+    {
+      "id": 84,
+      "title": "Data Protection / Privacy — Problem",
+      "subjects": [
+        "biolaw_ai_data"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Rules for robots, and why medical AI breaks them Barbara J. Evans 1,.pdf",
+        "Detailed Chapter 3_ Case Studies – Enforcement and Regulatory Limitations.pdf",
+        "L1 The EU Artificial Intelligence Act (2024)- Implications for healthcare Author links open overlay panel Hannah van Kolfschooten a b ,  Janneke van Oirschot c.pdf"
+      ],
+      "top_categories": [
+        "Robotics and AI related issues",
+        " Ai and data protection act copy",
+        "Biolaw copy"
+      ],
+      "guide_chars": 4036
+    },
+    {
+      "id": 85,
+      "title": "Environmental Law — Essay",
+      "subjects": [
+        "environmental_law",
+        "public_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "14 - Judicial review.pdf",
+        "22 - Judicial review.pdf",
+        "22 - Judicial review.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8999
+    },
+    {
+      "id": 86,
+      "title": "Mega Private Law Essay",
+      "subjects": [
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "land_law",
+        "restitution_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "024 - Judgment - Hamersley Invest Anstalt v Haynes.pdf",
+        "104 - Judgment - Hamersley Invest Anstalt v Haynes.pdf",
+        "L15 Law Commission Report 271 – ‘Land Registration for the Twenty-First Century- A Conveyancing Revolution copy.pdf"
+      ],
+      "top_categories": [
+        "Wills and Trusts law cases 24 Jan",
+        "Land law legislation + cases 28 jan",
+        "Land law"
+      ],
+      "guide_chars": 8809
+    },
+    {
+      "id": 87,
+      "title": "Mega Contract Problem",
+      "subjects": [
+        "contract_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "263 - Judgment - Sapporo Breweries Ltd v Lupofresh Ltd.pdf",
+        "135 - Judgment - Sapporo Breweries Ltd v Lupofresh Ltd.pdf",
+        "181 - Judgment - Kingspan Environmental Ltd v Borealis AS.pdf"
+      ],
+      "top_categories": [
+        "Law resources Extra",
+        "Contract law materials 26 Jan",
+        "Law resources Extra"
+      ],
+      "guide_chars": 8965
+    },
+    {
+      "id": 88,
+      "title": "Mega Tort Problem",
+      "subjects": [
+        "tort_law",
+        "environmental_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "5. Duty of Care_ Applications _ Law Trove.pdf",
+        "SAVIOUR SIBLINGS- TRAUMA AND TORT LAW VICTORIA CHICO\u0001.pdf",
+        "SAVIOUR SIBLINGS- TRAUMA AND TORT LAW VICTORIA CHICO\u0001.pdf"
+      ],
+      "top_categories": [
+        "Tort law copy",
+        "Tort law journals 24 Jan ",
+        "Tort law journals 24 Jan "
+      ],
+      "guide_chars": 8915
+    },
+    {
+      "id": 89,
+      "title": "Mega Criminal Law Problem",
+      "subjects": [
+        "criminal_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 3,
+      "top_sources": [
+        "L17 Ten more years of the insanity defence in Criminal Law Review by R.D. Mackay* 2012.pdf",
+        "L17 The Insanity Defence in Operation in Northern Ireland Legal Quarterly by R. D. Mackay.pdf",
+        "045 - R v Sayed (Atlaf).pdf"
+      ],
+      "top_categories": [
+        "Criminal law  copy",
+        "Criminal law  copy",
+        "Criminal law cases + legislations 30 Jan"
+      ],
+      "guide_chars": 5932
+    },
+    {
+      "id": 90,
+      "title": "Mega Public Law Essay",
+      "subjects": [
+        "public_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "3. Themes, Sources, and Principles _ Law Trove.pdf",
+        "5. UK Central Government _ Law Trove.pdf",
+        "14 - Broadening the debate the Attlee Government untrammelled sovereignty and so.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 6489
+    },
+    {
+      "id": 91,
+      "title": "Mega Public Law Problem",
+      "subjects": [
+        "biolaw_ai_data",
+        "public_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf",
+        "ACM Computing Surveys, Fairness and Bias in Algorithmic Hiring- A Multidisciplinary Survey (2023).pdf",
+        "20. The Right to Protest _ Law Trove.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        " Ai and data protection act copy",
+        "Constitutional law"
+      ],
+      "guide_chars": 8909
+    },
+    {
+      "id": 92,
+      "title": "Mega Land / Equity Problem",
+      "subjects": [
+        "trusts_law",
+        "land_law",
+        "family_law",
+        "remedies_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "124 - [2017] Ch 93 - Mortgage Express v Lambert.pdf",
+        "In depth (Re-defining) the trust of the specifically enforceable contract of sale—the vendor purchaser constructive trust Jacob J.Meagher*.pdf",
+        "L18 Law Commission Working Paper No. 94, Trusts of Land (1985) paragraphs 16.11-16.14 copy.pdf"
+      ],
+      "top_categories": [
+        "Wills and Trusts law cases 24 Jan",
+        "Land law 25 Jan",
+        "Land law"
+      ],
+      "guide_chars": 8908
+    },
+    {
+      "id": 93,
+      "title": "Mega Company / Insolvency Problem",
+      "subjects": [
+        "insolvency_law",
+        "business_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 2,
+      "top_sources": [
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Turorial 4 Quistclose trusts- QUISTCLOSE TRUSTS FROM A CORPORATE INSOLVENCY PERSPECTIVE- A POSITIVE AND NORMATIVE ANALYSIS ADAM S. HOFRI-WINOGRADOW* AND GAL DAVID.pdf"
+      ],
+      "top_categories": [
+        "Trusts law copy",
+        "Pensions Law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 6046
+    },
+    {
+      "id": 94,
+      "title": "Mega Human Rights Essay",
+      "subjects": [
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 4,
+      "top_sources": [
+        "29 - From Fawdry And Co to Trump the de facto officer doctrine in the twenty fir.pdf",
+        "05 - Human rights challenges after SC.pdf",
+        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Constitutional law",
+        "Constitutional law"
+      ],
+      "guide_chars": 3804
+    },
+    {
+      "id": 95,
+      "title": "Mega International Law Essay",
+      "subjects": [
+        "public_international_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "The Legitimacy and Compatibility of Use of Force (jus ad bellum) in Public International Law and Islamic International Law.pdf",
+        "The Legitimacy and Compatibility of Use of Force (jus ad bellum) in Public International Law and Islamic International Law.pdf",
+        "M. J. Detmold, 'Sovereignty: Aspects in Constitutional Law and Jurisprudence' (1971) 4 Adel L Rev 169.pdf"
+      ],
+      "top_categories": [
+        "Public international law",
+        "Public international law",
+        "Constitutional law"
+      ],
+      "guide_chars": 8081
+    },
+    {
+      "id": 96,
+      "title": "Mega Legal Theory Essay",
+      "subjects": [
+        "jurisprudence_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "M. J. Detmold, 'Sovereignty: Aspects in Constitutional Law and Jurisprudence' (1971) 4 Adel L Rev 169.pdf",
+        "MINORU NAKAZATO & J. MARK RAMSEYER* Tax Law, Hiroshi Kaneko, and the Transformation of Japanese Jurisprudence! .pdf",
+        "The Force of Law- The Role of Coercion in Legal Norms.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Tax law journals",
+        "Criminal law  copy"
+      ],
+      "guide_chars": 3548
+    },
+    {
+      "id": 97,
+      "title": "Mega Legal Tech Problem",
+      "subjects": [
+        "biolaw_ai_data",
+        "consumer_law",
+        "contract_law",
+        "employment_law",
+        "intellectual_property_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "United States v. Google LLC (2025).pdf",
+        "024 - [2025] 5 CMLR 5 - Facebook Marketplace (AT40684).pdf",
+        "FTC v. Amazon (2023).pdf"
+      ],
+      "top_categories": [
+        "Competition Law copy",
+        "Competition law 23 jan",
+        "Competition Law copy"
+      ],
+      "guide_chars": 8831
+    },
+    {
+      "id": 98,
+      "title": "Mega Remedies Essay",
+      "subjects": [
+        "trusts_law",
+        "public_law",
+        "human_rights_law",
+        "remedies_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "9. The European Union and Brexit _ Law Trove.pdf",
+        "bfried.pdf",
+        "10. Remedies of the buyer.pdf"
+      ],
+      "top_categories": [
+        "Constitutional law",
+        "Contract law journals 24 Jan",
+        "Commerical law revision copy"
+      ],
+      "guide_chars": 8815
+    },
+    {
+      "id": 99,
+      "title": "Mega Integration Essay",
+      "subjects": [
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "land_law",
+        "criminal_law",
+        "business_law",
+        "public_law",
+        "human_rights_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "128 - Judgment - Lincoln v Revenue and Customs Commissioners.pdf",
+        "8. Devolution and the Territorial Constitution _ Law Trove.pdf",
+        "Costco Wholesale Corporation v. Omega, S.A..pdf"
+      ],
+      "top_categories": [
+        "Land law legislation + cases 28 jan",
+        "Constitutional law",
+        "Interllectual property law"
+      ],
+      "guide_chars": 8988
+    },
+    {
+      "id": 100,
+      "title": "Mega Final Problem",
+      "subjects": [
+        "legal_ethics",
+        "biolaw_ai_data",
+        "contract_law",
+        "tort_law",
+        "trusts_law",
+        "land_law",
+        "insolvency_law",
+        "business_law",
+        "employment_law",
+        "family_law"
+      ],
+      "indexed_hits": 6,
+      "guidance_hits": 5,
+      "top_sources": [
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "Corporate_Insolvency_Employment_and_Pension_Rights Part 1 -5_----_(Pg_1--509).pdf",
+        "*Quistclose trusts- Michael Bridge, 'The Quistclose Trust in a World of Secured Transactions' (1992) 12 Oxford J Legal Stud 333.pdf"
+      ],
+      "top_categories": [
+        "Pensions Law copy",
+        "Pensions Law copy",
+        "Trusts law copy"
+      ],
+      "guide_chars": 8974
+    }
+  ]
+}
