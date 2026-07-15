@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Local legal chat UI for the fine-tuned MLX model.
+"""Local legal chat UI with MLX and llama-server inference backends.
 
 Self-contained local mode; public mode additionally validates Cloudflare Access
 JWTs with PyJWT's cryptography extra.
 
-- Loads the base model + your trained LoRA adapter in-process.
+- Loads MLX + LoRA in-process or connects to a local llama.cpp GGUF server.
 - Serves a chat front-end styled like the source legal app.
 - Reports generation progress, then publishes only the completed supervised answer.
 - Saves every conversation + message to SQLite so you can reopen them.
 
-No external AI providers. The local fine-tuned model is the only engine.
+No external AI provider is required; both supported inference paths are local.
 """
 
 from __future__ import annotations
@@ -19,6 +19,7 @@ import base64
 import hashlib
 import json
 import os
+import platform
 import re
 import shutil
 import sqlite3
@@ -134,6 +135,8 @@ except Exception as _exc:  # pragma: no cover
 
 
 class ModelHolder:
+    backend = "mlx"
+    model_profile = "v11-adapter"
     def __init__(self, base_model: str, adapter_path: str | None, max_tokens: int,
                  temp: float, top_p: float):
         self.base_model = base_model
@@ -276,7 +279,7 @@ class ModelHolder:
                     last_progress = time.monotonic()
 
 
-MODEL: ModelHolder | None = None
+MODEL: ModelHolder | object | None = None
 
 # ---------------------------------------------------------------------------
 # Storage
@@ -1118,6 +1121,8 @@ class Handler(BaseHTTPRequestHandler):
                           else MODEL.error if MODEL else None),
                 "model": Path(MODEL.base_model).name if PUBLIC_MODE and MODEL else MODEL.base_model if MODEL else None,
                 "adapter": APPROVED_ADAPTER_DIR if MODEL and MODEL.adapter_path else None,
+                "backend": getattr(MODEL, "backend", None) if MODEL else None,
+                "model_profile": getattr(MODEL, "model_profile", None) if MODEL else None,
                 "public_mode": PUBLIC_MODE,
             })
             return
@@ -3528,7 +3533,12 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     global MODEL
-    ap = argparse.ArgumentParser(description="Local legal chat UI for the fine-tuned MLX model.")
+    ap = argparse.ArgumentParser(description="Local legal chat UI with MLX or llama-server inference.")
+    ap.add_argument(
+        "--backend", choices=("auto", "mlx", "llama-server"),
+        default=os.environ.get("LEGAL_MODEL_BACKEND", "auto"),
+        help="auto uses MLX on Apple silicon and llama-server elsewhere.",
+    )
     ap.add_argument("--model", default="mlx-community/Qwen2.5-7B-Instruct-Uncensored-4bit")
     ap.add_argument("--adapter-path", default=str(APP_DIR.parent / "adapters" / "legal_answer_flow_v11_specialist_lora"))
     ap.add_argument("--host", default="127.0.0.1")
@@ -3537,6 +3547,20 @@ def main():
     ap.add_argument("--temp", type=float, default=0.15)
     ap.add_argument("--top-p", type=float, default=0.9)
     ap.add_argument("--no-adapter", action="store_true", help="Chat with the base model only.")
+    ap.add_argument(
+        "--llama-base-url",
+        default=os.environ.get("LEGAL_LLAMA_BASE_URL", "http://127.0.0.1:8080/v1"),
+        help="OpenAI-compatible local llama-server base URL.",
+    )
+    ap.add_argument(
+        "--llama-model", default=os.environ.get("LEGAL_LLAMA_MODEL", ""),
+        help="Optional model id reported by llama-server; auto-discovered when omitted.",
+    )
+    ap.add_argument(
+        "--llama-model-profile", choices=("base", "v11-fused"),
+        default=os.environ.get("LEGAL_LLAMA_MODEL_PROFILE", "base"),
+        help="Label a verified V11-fused GGUF explicitly; generic GGUF defaults to base.",
+    )
     args = ap.parse_args()
 
     validate_public_config()
@@ -3546,13 +3570,37 @@ def main():
         )
     init_db()
     purged = purge_expired_public_data()
-    adapter = None if args.no_adapter else args.adapter_path
-    MODEL = ModelHolder(args.model, adapter, args.max_tokens, args.temp, args.top_p)
+    backend = args.backend
+    if backend == "auto":
+        backend = (
+            "mlx" if platform.system() == "Darwin" and platform.machine().lower() in {"arm64", "aarch64"}
+            else "llama-server"
+        )
+    if backend == "mlx":
+        adapter = None if args.no_adapter else args.adapter_path
+        MODEL = ModelHolder(args.model, adapter, args.max_tokens, args.temp, args.top_p)
+    else:
+        from llama_server_backend import LlamaServerModelHolder
+
+        profile = "base" if args.no_adapter else args.llama_model_profile
+        MODEL = LlamaServerModelHolder(
+            args.llama_base_url,
+            args.llama_model,
+            profile,
+            args.max_tokens,
+            args.temp,
+            args.top_p,
+            SYSTEM_PROMPT,
+            JURISDICTION_LABELS,
+        )
     threading.Thread(target=MODEL.load, daemon=True).start()
 
     httpd = ThreadingHTTPServer((args.host, args.port), Handler)
     url = f"http://{args.host}:{args.port}"
-    print(f"[server] Legal chat UI on {url}  (model loading in background)", flush=True)
+    print(
+        f"[server] Legal chat UI on {url}  "
+        f"({backend} model loading in background)", flush=True
+    )
     if PUBLIC_MODE:
         print("[server] Public mode: Cloudflare Access JWT + per-user isolation enabled", flush=True)
         if purged:
