@@ -83,7 +83,11 @@ def _get(url: str, timeout: int = 8, user_agent: str | None = None) -> str | Non
         return cached[1]
     try:
         req = urllib.request.Request(url, headers={"User-Agent": user_agent or _UA})
-        with urllib.request.urlopen(req, timeout=timeout, context=_SSL_CONTEXT) as r:
+        # Bound connect + read separately so a half-closed CloudFront socket
+        # cannot stall the generation lock for minutes.
+        with urllib.request.urlopen(
+            req, timeout=(min(5, timeout), timeout), context=_SSL_CONTEXT
+        ) as r:
             value = r.read(500_000).decode("utf-8", errors="ignore")
             if value:
                 if len(_HTTP_CACHE) >= 64:
@@ -578,61 +582,76 @@ def _search_specialist_primary(text: str, max_results: int) -> list[dict]:
     return []
 
 
-def search(query: str, jurisdiction: str | None = None, max_results: int = 5) -> list[dict]:
+def search(query: str, jurisdiction: str | None = None, max_results: int = 5,
+           overall_timeout: float = 20.0) -> list[dict]:
     """Combine official-source results: [{title, url, snippet, source}]. [] on total failure."""
-    text = _sanitize(query)
-    if not text:
+    from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeout
+
+    def _search_body() -> list[dict]:
+        text = _sanitize(query)
+        if not text:
+            return []
+        # relevance gate: a result must share at least one substantive query token with its
+        # title/snippet, else gov.uk returns popular-but-irrelevant pages (Universal Credit etc.)
+        stop = {"assume", "english", "suggested", "length", "words", "question", "critically",
+                "discuss", "statement", "reference", "essay", "problem", "advise", "consider"}
+        ordered_qtoks = [w for w in re.findall(r"[a-z]{4,}", text.lower()) if w not in stop]
+        qtoks = set(ordered_qtoks)
+        def relevant(r):
+            if r.get("curated_official"):
+                return True
+            blob = (r.get("title", "") + " " + r.get("snippet", "")).lower()
+            if len(qtoks) <= 3:
+                phrase = " ".join(dict.fromkeys(ordered_qtoks))
+                return bool(phrase) and phrase in blob
+            matches = sum(token in blob for token in qtoks)
+            return matches >= (2 if len(qtoks) >= 5 else 1)
+        results: list[dict] = []
+        # Search binding, current Supreme Court authority first.  Previously a
+        # broad essay could complete an "online check" using only generic GOV.UK
+        # pages and never expose a directly controlling recent judgment.
+        results += _search_find_case_law(text, max_results=2)
+        results += _search_sra(text, max_results=2)
+        results += _search_caa(text, max_results=2)
+        results += _search_justice_cpr(text, max_results=2)
+        results += _search_cma_competition(text, max_results=2)
+        results += _search_construction_adjudication(text, max_results=2)
+        results += _search_cultural_property(text, max_results=3)
+        results += _search_computer_misuse(text, max_results=3)
+        results += _search_election_advert(text, max_results=3)
+        results += _search_equality_adjustments(text, max_results=3)
+        results += _search_specialist_primary(text, max_results=3)
+        results += _search_legislation(text, max_results=3)
+        results += _search_govuk(text, max_results=3)
+        # Decide whether case-law search is needed *after* relevance filtering.
+        # The previous ordering counted irrelevant GOV.UK popularity results and
+        # could skip BAILII even though no usable legal result survived.
+        if sum(1 for result in results if relevant(result)) < 2:
+            results += _search_bailii(text, max_results=3)
+        # de-dup by URL, keep order, then apply the relevance and jurisdiction gates.
+        seen, uniq = set(), []
+        for r in results:
+            if r["url"] not in seen:
+                seen.add(r["url"]); uniq.append(r)
+        uniq = [r for r in uniq if relevant(r)]
+        if jurisdiction == "england_wales":
+            uniq = [
+                r for r in uniq
+                if not re.search(r"\b(act of adjournal|scotland|scottish)\b", r.get("title", ""), re.I)
+            ]
+        uniq = [r for r in uniq if not re.search(r"\b(revoked|superseded)\b", r.get("title", ""), re.I)]
+        return uniq[:max_results]
+
+    try:
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            return pool.submit(_search_body).result(timeout=overall_timeout)
+    except FuturesTimeout:
+        print(f"[online] search timed out after {overall_timeout:.0f}s; continuing without online hits",
+              flush=True)
         return []
-    # relevance gate: a result must share at least one substantive query token with its
-    # title/snippet, else gov.uk returns popular-but-irrelevant pages (Universal Credit etc.)
-    stop = {"assume", "english", "suggested", "length", "words", "question", "critically",
-            "discuss", "statement", "reference", "essay", "problem", "advise", "consider"}
-    ordered_qtoks = [w for w in re.findall(r"[a-z]{4,}", text.lower()) if w not in stop]
-    qtoks = set(ordered_qtoks)
-    def relevant(r):
-        if r.get("curated_official"):
-            return True
-        blob = (r.get("title", "") + " " + r.get("snippet", "")).lower()
-        if len(qtoks) <= 3:
-            phrase = " ".join(dict.fromkeys(ordered_qtoks))
-            return bool(phrase) and phrase in blob
-        matches = sum(token in blob for token in qtoks)
-        return matches >= (2 if len(qtoks) >= 5 else 1)
-    results: list[dict] = []
-    # Search binding, current Supreme Court authority first.  Previously a
-    # broad essay could complete an "online check" using only generic GOV.UK
-    # pages and never expose a directly controlling recent judgment.
-    results += _search_find_case_law(text, max_results=2)
-    results += _search_sra(text, max_results=2)
-    results += _search_caa(text, max_results=2)
-    results += _search_justice_cpr(text, max_results=2)
-    results += _search_cma_competition(text, max_results=2)
-    results += _search_construction_adjudication(text, max_results=2)
-    results += _search_cultural_property(text, max_results=3)
-    results += _search_computer_misuse(text, max_results=3)
-    results += _search_election_advert(text, max_results=3)
-    results += _search_equality_adjustments(text, max_results=3)
-    results += _search_specialist_primary(text, max_results=3)
-    results += _search_legislation(text, max_results=3)
-    results += _search_govuk(text, max_results=3)
-    # Decide whether case-law search is needed *after* relevance filtering.
-    # The previous ordering counted irrelevant GOV.UK popularity results and
-    # could skip BAILII even though no usable legal result survived.
-    if sum(1 for result in results if relevant(result)) < 2:
-        results += _search_bailii(text, max_results=3)
-    # de-dup by URL, keep order, then apply the relevance and jurisdiction gates.
-    seen, uniq = set(), []
-    for r in results:
-        if r["url"] not in seen:
-            seen.add(r["url"]); uniq.append(r)
-    uniq = [r for r in uniq if relevant(r)]
-    if jurisdiction == "england_wales":
-        uniq = [
-            r for r in uniq
-            if not re.search(r"\b(act of adjournal|scotland|scottish)\b", r.get("title", ""), re.I)
-        ]
-    uniq = [r for r in uniq if not re.search(r"\b(revoked|superseded)\b", r.get("title", ""), re.I)]
-    return uniq[:max_results]
+    except Exception as exc:
+        print(f"[online] search failed: {type(exc).__name__}: {exc}", flush=True)
+        return []
 
 
 def build_online_ledger(results: list[dict], start_index: int = 1) -> str:
