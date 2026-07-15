@@ -6,7 +6,7 @@ The most direct ground is that the particulars disclose no reasonable grounds fo
 
 For a contractual claim, the particulars should identify the agreement relied on, the material express or implied terms, the alleged breach, causation and recoverable loss. The defendant should make a schedule showing which indispensable allegation is absent or incoherent. Merely denying the pleaded facts is not normally enough for this ground: a fact-sensitive dispute is ordinarily resolved through evidence, not by treating strike out as a paper trial.
 
-Strike out is discretionary. If a defect can fairly be cured, the court may permit amendment or make an unless order instead of terminating the claim. Conversely, a pleading that remains legally untenable even if its material facts are assumed may be struck out. The jurisdiction should be used consistently with deciding cases justly and at proportionate cost, while recognising that striking out denies a trial (*Three Rivers District Council v Governor and Company of the Bank of England (No 3)* [2001] UKHL 16, [2003] 2 AC 1; Civil Procedure Rules 1998, SI 1998/3132, rr 1.1 and 3.4).
+Strike out is discretionary. If a defect can fairly be cured, the court may permit amendment or make an unless order instead of terminating the claim. Conversely, a pleading that remains legally untenable even if its material facts are assumed may be struck out. The jurisdiction should be used consistently with deciding cases justly and at proportionate cost, while recognising that striking out denies a trial (*Three Rivers District Council v Governor and Company of the Bank of England (No 3)* [2001] UKHL 16, [2003] 2 AC 1).
 
 ### Summary judgment
 

@@ -20,6 +20,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from html import unescape
+from datetime import date
 
 try:
     import certifi
@@ -33,6 +34,7 @@ _ATOM = "{http://www.w3.org/2005/Atom}"
 _HTTP_CACHE: dict[tuple[str, str], tuple[float, str]] = {}
 
 OFFICIAL_DOMAINS = ("legislation.gov.uk", "gov.uk", "bailii.org",
+                    "caselaw.nationalarchives.gov.uk",
                     "judiciary.uk", "supremecourt.uk", "parliament.uk", "sra.org.uk",
                     "caa.co.uk", "justice.gov.uk", "electoralcommission.org.uk",
                     "pensions-ombudsman.org.uk", "hcch.net", "sentencingcouncil.org.uk")
@@ -210,6 +212,92 @@ def _search_bailii(text: str, max_results: int) -> list[dict]:
     return out
 
 
+_CASE_SEARCH_STOP = {
+    "about", "against", "answer", "available", "because", "consider", "critically",
+    "clearly", "discuss", "england", "english", "essay", "evaluate", "explain", "fail",
+    "first", "general", "give", "include", "likely", "most", "particular", "problem",
+    "question", "reference", "relevant", "remedies", "rules", "single", "sqe",
+    "statement", "under", "using", "wales", "what", "when", "which", "words",
+}
+
+
+def _case_search_query(text: str) -> str:
+    """Reduce an exam prompt to concepts suitable for Find Case Law.
+
+    The National Archives search is a full-text court database.  Sending a
+    200-word scenario makes the result less precise, while sending only the
+    detected subject misses the decisive doctrinal phrase.  Keep the first
+    twelve distinct legal-looking concepts and let the official relevance
+    ranking identify the leading judgment. Generic SQE/exam directions are
+    excluded so that words such as ``single`` and ``answer`` do not outrank
+    the doctrine being tested.
+    """
+    terms: list[str] = []
+    for raw in re.findall(r"[A-Za-z][A-Za-z'-]{3,}", text or ""):
+        term = raw.lower().strip("'-")
+        if term in _CASE_SEARCH_STOP or term in terms:
+            continue
+        terms.append(term)
+        # Find Case Law treats a long list as an increasingly restrictive
+        # query. Five concepts preserves doctrinal focus without demanding
+        # that a judgment contain every party name mentioned in an exam.
+        if len(terms) >= 5:
+            break
+    return " ".join(terms)
+
+
+def _search_find_case_law(text: str, max_results: int) -> list[dict]:
+    """Search current UKSC judgments on the official Find Case Law service."""
+    query = _case_search_query(text)
+    if not query:
+        return []
+    url = "https://caselaw.nationalarchives.gov.uk/search?" + urllib.parse.urlencode({
+        "query": query,
+        "court": "uksc",
+        "order": "relevance",
+        "per_page": "10",
+    })
+    body = _get(url, timeout=15)
+    if not body:
+        return []
+    out: list[dict] = []
+    for block_match in re.finditer(r"<tbody\b[^>]*>(.*?)</tbody>", body, re.I | re.S):
+        block = block_match.group(1)
+        link = re.search(r'href="(/uksc/\d{4}/\d+)(?:\?[^\"]*)?"[^>]*>(.*?)</a>', block,
+                         re.I | re.S)
+        neutral = re.search(r"\[(20\d{2})\]\s+UKSC\s+\d+", _strip_html(block))
+        if not link or not neutral:
+            continue
+        title = _strip_html(link.group(2))
+        citation = neutral.group(0)
+        # This route exists to discover recent developments that a static
+        # guide may not yet contain. Older leading authorities remain in the
+        # curated authority banks; treating an old lexical hit as a mandatory
+        # "current" case can distort an otherwise correct answer.
+        if int(neutral.group(1)) < date.today().year - 3:
+            continue
+        handed = re.search(r"\b\d{1,2}\s+[A-Z][a-z]{2}\s+20\d{2}\b", _strip_html(block))
+        paragraphs = " ".join(
+            _strip_html(value)
+            for value in re.findall(r"<p\b[^>]*>(.*?)</p>", block, re.I | re.S)
+        )
+        snippet = re.sub(r"\s+", " ", paragraphs).strip()
+        if handed:
+            snippet = f"Handed down {handed.group(0)}. {snippet}"
+        if title and citation:
+            out.append({
+                "title": f"{title} {citation}",
+                "url": "https://caselaw.nationalarchives.gov.uk" + link.group(1),
+                "snippet": snippet[:900],
+                "source": "caselaw.nationalarchives.gov.uk",
+                "citation": citation,
+                "current_case": True,
+            })
+        if len(out) >= max_results:
+            break
+    return out
+
+
 def _search_sra(text: str, max_results: int) -> list[dict]:
     """Return live SRA primary rules for professional-ethics questions."""
     if not re.search(
@@ -329,7 +417,7 @@ def _search_cma_competition(text: str, max_results: int) -> list[dict]:
             "Resale price maintenance",
         ),
         (
-            "CMA: private actions and public enforcement",
+            "CMA competition law: private actions and public enforcement",
             "https://www.gov.uk/government/speeches/private-actions-and-public-enforcement",
             "private enforcement",
         ),
@@ -511,6 +599,10 @@ def search(query: str, jurisdiction: str | None = None, max_results: int = 5) ->
         matches = sum(token in blob for token in qtoks)
         return matches >= (2 if len(qtoks) >= 5 else 1)
     results: list[dict] = []
+    # Search binding, current Supreme Court authority first.  Previously a
+    # broad essay could complete an "online check" using only generic GOV.UK
+    # pages and never expose a directly controlling recent judgment.
+    results += _search_find_case_law(text, max_results=2)
     results += _search_sra(text, max_results=2)
     results += _search_caa(text, max_results=2)
     results += _search_justice_cpr(text, max_results=2)
@@ -546,7 +638,12 @@ def search(query: str, jurisdiction: str | None = None, max_results: int = 5) ->
 def build_online_ledger(results: list[dict], start_index: int = 1) -> str:
     if not results:
         return ""
-    lines = ["OFFICIAL ONLINE SOURCES (current — cite the URL; verify pinpoints):"]
+    lines = [
+        "OFFICIAL ONLINE SOURCES (current — cite the URL; verify pinpoints):",
+        "CURRENT-AUTHORITY RULE: assess the first relevant current appellate judgment expressly. "
+        "If it governs the issue, integrate its holding and full neutral citation; if it is materially "
+        "distinguishable, say why rather than silently relying only on older authorities.",
+    ]
     for i, r in enumerate(results, start_index):
         snip = f"\n    {r['snippet']}" if r.get("snippet") else ""
         lines.append(f"[O{i}] ({r['source']}) {r['title']} — {r['url']}{snip}")

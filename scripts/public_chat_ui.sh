@@ -7,6 +7,16 @@ umask 077
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DATA_DIR="${LEGAL_PUBLIC_DATA_DIR:-$HOME/Library/Application Support/LegalAI-public}"
 
+# The macOS service installer writes this operator-only file with mode 0600.
+# Keeping deployment values outside the repository prevents tunnel/account
+# configuration from being committed accidentally.
+CONFIG_FILE="${LEGAL_PUBLIC_CONFIG:-$DATA_DIR/public.env}"
+if [[ -f "$CONFIG_FILE" ]]; then
+  # shellcheck disable=SC1090
+  source "$CONFIG_FILE"
+fi
+DATA_DIR="${LEGAL_PUBLIC_DATA_DIR:-$DATA_DIR}"
+
 : "${CF_ACCESS_TEAM_DOMAIN:?Set CF_ACCESS_TEAM_DOMAIN, for example https://your-team.cloudflareaccess.com}"
 : "${CF_ACCESS_AUD:?Set CF_ACCESS_AUD to the Access application Audience tag}"
 

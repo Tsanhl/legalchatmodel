@@ -109,6 +109,45 @@ async function postJSON(url, body) {
   return r.json();
 }
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function assistantSavedAfter(messages, question) {
+  let userIndex = -1;
+  for (let i = 0; i < messages.length; i += 1) {
+    if (messages[i]?.role === "user" && messages[i]?.content === question) userIndex = i;
+  }
+  if (userIndex < 0) return "";
+  for (let i = userIndex + 1; i < messages.length; i += 1) {
+    if (messages[i]?.role === "assistant" && messages[i]?.content) return messages[i].content;
+  }
+  return "";
+}
+
+async function recoverSavedAnswer(conversationId, question) {
+  // A browser, reverse proxy, laptop sleep, or mobile handover may close a
+  // long SSE response while the local model is still completing its checked
+  // answer. The server saves only a complete answer, so poll that durable copy
+  // instead of exposing a transport error or asking the user to regenerate.
+  const deadline = Date.now() + 60 * 60 * 1000;
+  let pause = 2000;
+  while (Date.now() < deadline) {
+    if (state.currentId !== conversationId) return "";
+    let generationStopped = false;
+    try {
+      const saved = await getJSON(`/api/conversations/${conversationId}`);
+      const answer = assistantSavedAfter(saved.messages || [], question);
+      if (answer) return answer;
+      generationStopped = saved.generation_active === false;
+    } catch (_) {
+      // A short origin restart should not discard an in-flight user request.
+    }
+    if (generationStopped) throw new Error("The server is no longer completing this answer.");
+    await delay(pause);
+    pause = Math.min(pause + 1000, 10000);
+  }
+  throw new Error("The checked answer is still unavailable after the recovery window.");
+}
+
 // ---------- markdown-lite ----------
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -350,8 +389,40 @@ async function openConversation(id) {
   state.currentId = id;
   clearDocsBar();
   renderConversationList();
-  const { messages } = await getJSON(`/api/conversations/${id}`);
-  renderMessages(messages || []);
+  const { messages, generation_active: generationActive } = await getJSON(`/api/conversations/${id}`);
+  const loaded = messages || [];
+  renderMessages(loaded);
+  const latest = loaded.length ? loaded[loaded.length - 1] : null;
+  if (generationActive && latest?.role === "user") {
+    resumeActiveGeneration(id, latest.content);
+  }
+}
+
+async function resumeActiveGeneration(conversationId, question) {
+  if (state.streaming || state.currentId !== conversationId) return;
+  const node = assistantBubble(state.mode === "memory");
+  const body = node.querySelector(".bubble-ai");
+  body.innerHTML = `<span class="message-status">Reconnected; recovering the checked answer…</span>`;
+  els.messages.appendChild(node);
+  scrollDown();
+  state.streaming = true;
+  syncSend();
+  try {
+    const answer = await recoverSavedAnswer(conversationId, question);
+    if (answer && state.currentId === conversationId) {
+      body.innerHTML = renderMarkdown(answer);
+      node.querySelector(".msg-time").textContent = timeLabel();
+      attachFeedback(node, question, answer);
+    }
+  } catch (_) {
+    if (state.currentId === conversationId) {
+      body.innerHTML = `<p style="color:var(--danger,#f87171)">The completed answer could not be recovered. You can safely retry this question.</p>`;
+    }
+  } finally {
+    state.streaming = false;
+    syncSend();
+    refreshConversations();
+  }
 }
 
 function clearDocsBar() {
@@ -387,6 +458,7 @@ async function sendMessage(text) {
   syncSend();
   let acc = "";
   let terminalError = "";
+  let transportError = "";
   try {
     const resp = await fetch("/api/chat", {
       method: "POST",
@@ -424,28 +496,29 @@ async function sendMessage(text) {
     }
   } catch (err) {
     const message = err && err.message ? err.message : String(err);
-    terminalError = message;
+    transportError = message;
     acc = "";
-    body.innerHTML = `<p style="color:var(--danger,#f87171)">${escapeHtml(message)}</p>`;
+    body.innerHTML = `<span class="message-status">Connection interrupted; recovering the checked answer…</span>`;
   } finally {
     if (!terminalError && !acc.trim() && state.currentId) {
-      // A very large atomic SSE event can be lost if the connection closes at
-      // exactly the wrong moment. The server saves only complete supervised
-      // answers, so recover that durable copy instead of leaving "Thinking…"
-      // or showing an abandoned fragment.
+      // A very large atomic SSE event or the stream itself can be lost while
+      // the model continues. Wait for the durable, complete supervised answer.
       try {
-        const saved = await getJSON(`/api/conversations/${state.currentId}`);
-        const messages = saved.messages || [];
-        const latest = messages.length ? messages[messages.length - 1] : null;
-        if (latest && latest.role === "assistant" && latest.content) {
-          acc = latest.content;
+        if (!transportError) {
+          body.innerHTML = `<span class="message-status">Recovering the checked answer…</span>`;
+        }
+        const conversationId = state.currentId;
+        const recovered = await recoverSavedAnswer(conversationId, text);
+        if (recovered) {
+          acc = recovered;
           body.innerHTML = renderMarkdown(acc);
         } else {
-          terminalError = "No complete answer was saved. Please retry.";
-          body.innerHTML = `<p style="color:var(--danger,#f87171)">${escapeHtml(terminalError)}</p>`;
+          // The user opened another chat. Leave this detached bubble alone;
+          // reopening the conversation will load its saved answer normally.
+          acc = "";
         }
       } catch (_) {
-        terminalError = "The completed answer could not be recovered. Please reopen this chat or retry.";
+        terminalError = "The completed answer could not be recovered. Reopen this chat to check its saved result.";
         body.innerHTML = `<p style="color:var(--danger,#f87171)">${escapeHtml(terminalError)}</p>`;
       }
     }

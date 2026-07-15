@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "legal_chat_ui"))
 
 import guides  # noqa: E402
+import online_search  # noqa: E402
 import pipeline  # noqa: E402
 import retrieval  # noqa: E402
 import server  # noqa: E402
@@ -375,6 +376,42 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "reviewed general-enquiry fallback answers elements, remedies and evidence directly",
         results,
     )
+    exact_estoppel_question = (
+        "General legal enquiry — England and Wales. In exactly 1,000 words, explain the requirements "
+        "for proprietary estoppel, the role of detriment and unconscionability, and the available remedies. "
+        "Use full OSCOLA references in parentheses immediately after relevant propositions. "
+        "Do not include a final reference list."
+    )
+    exact_estoppel_fixture = pipeline.curated_regression_answer(exact_estoppel_question)
+    fixture_handler = server.Handler.__new__(server.Handler)
+    exact_estoppel_body = fixture_handler._without_reference_section(exact_estoppel_fixture)
+    exact_estoppel_body = fixture_handler._safe_enforce_body_word_band(
+        exact_estoppel_body, exact_estoppel_question, "", "land_law", 1000,
+        exact_estoppel_body,
+    )
+    check(
+        990 <= len(exact_estoppel_body.split()) <= 1010
+        and len(fixture_handler._extract_full_inline_citations(exact_estoppel_body)) >= 4
+        and "### References" not in exact_estoppel_body
+        and not fixture_handler._subject_accuracy_failures(
+            exact_estoppel_body, exact_estoppel_question, "land_law"
+        ),
+        "reviewed proprietary-estoppel enquiry is accurate, inline-cited and within 1,000 words ±1%",
+        results,
+    )
+    bad_estoppel = (
+        "Assurance, reliance, detriment, unconscionability and remedies apply. "
+        "Caparo Industries plc v Dickman established unconscionability. Gillett v Holt [2005] followed. "
+        "Guest v Guest [2008] was a Court of Appeal basement dispute between partners. "
+        "Hunt v Soady governs detriment."
+    )
+    check(
+        len(fixture_handler._proprietary_estoppel_accuracy_failures(
+            bad_estoppel, exact_estoppel_question
+        )) >= 4,
+        "proprietary-estoppel gate rejects the hallucinations found by the live browser probe",
+        results,
+    )
     app_js = (ROOT / "legal_chat_ui" / "static" / "app.js").read_text(encoding="utf-8")
     index_html = (ROOT / "legal_chat_ui" / "static" / "index.html").read_text(encoding="utf-8")
     server_source = (ROOT / "legal_chat_ui" / "server.py").read_text(encoding="utf-8")
@@ -387,6 +424,16 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "let terminalError" in app_js
         and "if (!terminalError && acc.trim())" in app_js,
         "a terminal quality error cannot be overwritten by provisional answer text",
+        results,
+    )
+    check(
+        "recoverSavedAnswer" in app_js
+        and "assistantSavedAfter" in app_js
+        and "Connection interrupted; recovering the checked answer" in app_js
+        and "let transportError" in app_js
+        and "resumeActiveGeneration" in app_js
+        and "generation_active" in server_source,
+        "browser recovers a saved complete answer after a long-stream transport interruption",
         results,
     )
     check(
@@ -425,6 +472,99 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "official latest-law search is active for every user enquiry",
         results,
     )
+    find_case_law_html = """
+    <tbody><tr><td><a href="/uksc/2025/10?query=fiduciary+profit" class="link">
+    Rukhadze and others v Recovery Partners GP Ltd and another</a></td></tr>
+    <tr><td><p>fiduciary duty to account for profits and fully informed consent</p></td>
+    <td>[2025] UKSC 10</td><td>19 Mar 2025</td></tr></tbody>
+    """
+    original_online_get = online_search._get
+    try:
+        online_search._get = lambda *_args, **_kwargs: find_case_law_html
+        current_cases = online_search._search_find_case_law(
+            "fiduciary duty conflict no profit Boardman v Phipps", 2
+        )
+    finally:
+        online_search._get = original_online_get
+    check(
+        len(online_search._case_search_query(
+            "fiduciary duty conflict no profit Boardman v Phipps Armitage v Nurse"
+        ).split()) <= 5
+        and current_cases
+        and current_cases[0]["citation"] == "[2025] UKSC 10"
+        and current_cases[0]["current_case"]
+        and pipeline.official_result_matches_subject("trusts_law", current_cases[0]),
+        "official online flow searches and subject-gates current UKSC authority",
+        results,
+    )
+    check(
+        pipeline.required_current_case(
+            "Fiduciary no-profit essay addressing accounts of profits and allowances.",
+            "trusts_law",
+            current_cases,
+        ) == current_cases[0]
+        and pipeline.required_current_case(
+            "General construction-adjudication timetable enquiry.",
+            "construction_law",
+            [{"citation": "[2024] UKSC 23"}],
+        ) is None,
+        "mandatory current-case gate is limited to precise doctrinal matches",
+        results,
+    )
+    check(
+        not pipeline.official_result_matches_subject(
+            "trusts_law",
+            {
+                "title": "Abbasi v Newcastle upon Tyne Hospitals NHS Foundation Trust [2025] UKSC 15",
+                "snippet": "The NHS trusts sought injunctions concerning patient care.",
+                "current_case": True,
+            },
+        )
+        and not pipeline.official_result_matches_subject(
+            "maritime_law",
+            {
+                "title": "Secretary of State v Mercer [2024] UKSC 12",
+                "snippet": "National Union of Rail, Maritime and Transport Workers.",
+                "current_case": True,
+            },
+        )
+        and not pipeline.official_result_matches_subject(
+            "contract_law",
+            {
+                "title": "R v Hayes; R v Palombo [2025] UKSC 29",
+                "snippet": "An interest rate swap is a contract.",
+                "current_case": True,
+            },
+        )
+        and not pipeline.official_result_matches_subject(
+            "election_law",
+            {
+                "title": "Representation of the People Act 2000",
+                "url": "https://www.legislation.gov.uk/id/ukpga/2000/2",
+                "snippet": "Registration of voters and voting at elections.",
+            },
+        )
+        and not pipeline.official_result_matches_subject(
+            "tort_law",
+            {
+                "title": "Paul v Royal Wolverhampton NHS Trust [2024] UKSC 1",
+                "snippet": "Secondary victims and psychiatric injury in clinical negligence.",
+                "current_case": True,
+            },
+            "A fragile skull makes an injury worse. Which remoteness rule applies?",
+        )
+        and not pipeline.official_result_matches_subject(
+            "business_law",
+            {
+                "title": "Saxon Woods Investments Ltd v Costa [2026] UKSC 21",
+                "snippet": "A company director must act in the company's best interests.",
+                "current_case": True,
+            },
+            "A director has an undisclosed personal interest in a proposed transaction.",
+        ),
+        "current-case source chips reject lexical false friends across broad subjects",
+        results,
+    )
     fiduciary_question = (
         "Equity and Trusts — Essay. Suggested length: 2,000 words. "
         "Fiduciary obligations are strict because equity distrusts divided loyalty."
@@ -440,8 +580,8 @@ therefore preferable, provided that it preserves the genuine disagreements among
         any("Armitage v Nurse [1998] Ch 241 (CA)" == value for value in trust_map.values())
         and "(1893)" not in repaired_trust
         and "(1920)" not in repaired_trust
-        and "Armitage v Nurse [1998] Ch 241 (CA)" in repaired_trust
-        and "Boardman v Phipps [1967] 2 AC 46 (HL)" in repaired_trust,
+        and "*Armitage v Nurse* [1998] Ch 241 (CA)" in repaired_trust
+        and "*Boardman v Phipps* [1967] 2 AC 46 (HL)" in repaired_trust,
         "trusts authority bank canonicalises invented dates and courts",
         results,
     )
@@ -547,14 +687,47 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "2,000 words: fiduciary obligations are strict because equity distrusts divided loyalty."
     )
     fiduciary_body = server.Handler._without_reference_section(fiduciary_gold)
+    fiduciary_runtime_body = server.Handler._repair_inline_oscola(
+        fiduciary_body,
+        fiduciary_question + " Address allowances, accounts of profits and proprietary remedies.",
+        "trusts_law",
+    )
+    fiduciary_references = server.Handler._authorities_table(
+        fiduciary_runtime_body, fiduciary_question
+    )
     check(
         1980 <= len(fiduciary_body.split()) <= 2020
-        and not server.Handler._generic_answer_failures(
-            fiduciary_body, fiduciary_question, target=2000
+        and 1980 <= len(fiduciary_runtime_body.split()) <= 2020
+        and "Rukhadze v Recovery Partners GP Ltd" in fiduciary_runtime_body
+        and "[2025] UKSC 10" in fiduciary_runtime_body
+        and "Stevens v Hotel Portfolio II UK Ltd" in fiduciary_runtime_body
+        and "Hopcraft v Close Brothers Ltd" in fiduciary_runtime_body
+        and "*Aberdeen Railway Co v Blaikie Brothers* (1854) 1 Macq 461 (HL)" in fiduciary_references
+        and "**Other authorities**\n- (1854) 1 Macq 461" not in fiduciary_references
+        and not server.Handler._current_authority_failures(
+            fiduciary_runtime_body,
+            {"required_current_authority": {
+                "name": "Rukhadze and others v Recovery Partners GP Ltd and another [2025] UKSC 10",
+                "citation": "[2025] UKSC 10",
+            }},
         )
-        and not server.Handler._complete_answer_failures(fiduciary_body, fiduciary_question)
-        and not server.Handler._trust_accuracy_failures(fiduciary_body, fiduciary_question),
+        and not server.Handler._generic_answer_failures(
+            fiduciary_runtime_body, fiduciary_question, target=2000
+        )
+        and not server.Handler._complete_answer_failures(fiduciary_runtime_body, fiduciary_question)
+        and not server.Handler._trust_accuracy_failures(fiduciary_runtime_body, fiduciary_question),
         "reviewed fiduciary-loyalty essay is complete, accurate and within the 2,000-word ±1% band",
+        results,
+    )
+    check(
+        bool(server.Handler._current_authority_failures(
+            "Only Boardman v Phipps and FHR are discussed.",
+            {"required_current_authority": {
+                "name": "Rukhadze and others v Recovery Partners GP Ltd and another [2025] UKSC 10",
+                "citation": "[2025] UKSC 10",
+            }},
+        )),
+        "release gate rejects an answer that silently omits the relevant current official judgment",
         results,
     )
     unsafe_gold_question = (
@@ -742,8 +915,8 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "contract_law",
     )
     check(
-        "Hyde v Wrench (1840) 3 Beav 334" in repaired_citations
-        and "Butler Machine Tool Co Ltd v Ex-Cell-O Corporation (England) Ltd [1979] 1 WLR 401"
+        "*Hyde v Wrench* (1840) 3 Beav 334" in repaired_citations
+        and "*Butler Machine Tool Co Ltd v Ex-Cell-O Corporation (England) Ltd* [1979] 1 WLR 401"
         in repaired_citations
         and not server.Handler._uncited_authority_sentences(repaired_citations),
         "verified guide citations repair named-authority OSCOLA omissions without guessing",
@@ -1019,6 +1192,19 @@ therefore preferable, provided that it preserves the genuine disagreements among
                 in public_launcher
                 and "model_database" not in public_launcher,
                 "public launcher cannot inherit the private local RAG database",
+                results,
+            )
+            macos_installer = (
+                ROOT / "scripts" / "configure_public_macos.py"
+            ).read_text(encoding="utf-8")
+            check(
+                'ORIGIN_LABEL = "ai.legalchatmodel.origin"' in macos_installer
+                and 'TUNNEL_LABEL = "ai.legalchatmodel.tunnel"' in macos_installer
+                and '"--token-file"' in macos_installer
+                and "_atomic_write(token_path, (token + \"\\n\").encode(), 0o600)"
+                in macos_installer
+                and "public.env" in public_launcher,
+                "persistent macOS public services keep the tunnel token outside Git with mode 0600",
                 results,
             )
             server.CF_ACCESS_TEAM_DOMAIN, server.CF_ACCESS_AUD, server._JWKS_CLIENT, old_env = old_auth

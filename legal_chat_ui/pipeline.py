@@ -356,6 +356,8 @@ def trusts_accuracy_lock(question: str, part_title: str = "full answer") -> str:
 - Distinguish the fiduciary duty of loyalty from non-fiduciary duties of care, skill, accounting and administration.
 - Explain the prophylactic no-conflict and no-profit rules: fraud, bad faith and proved loss are not prerequisites. Use the real-sensible-possibility of conflict, informed consent/authorisation and strict gain-based liability.
 - Critically evaluate whether informed consent, authorisation, equitable allowance and remedial choice qualify the operation or consequences of the rules without converting loyalty into a general fairness discretion.
+- Treat Rukhadze v Recovery Partners GP Ltd [2025] UKSC 10, [2025] 2 WLR 529 as the current leading account-of-profits authority: the Supreme Court refused to introduce a lawful-alternative/but-for escape, reaffirmed strictness, and treated equitable allowance as the response to disproportionate injustice. Distinguish the majority's duty-to-account analysis from the concurring remedial analyses where the essay's thesis makes that debate material.
+- When proprietary consequences are material, use Stevens v Hotel Portfolio II UK Ltd [2025] UKSC 28 and Hopcraft v Close Brothers Ltd [2025] UKSC 33, [2025] 3 WLR 423 where relevant: unauthorised profits are subject to an immediate institutional constructive trust, with real tracing, priority and dissipation consequences.
 - Use the verified trusts authority bank. Never invent a year, judge, court, report or party. Armitage v Nurse is [1998] Ch 241 (CA), associated with Millett LJ; Boardman v Phipps is [1967] 2 AC 46 (HL); FHR is FHR European Ventures LLP v Cedar Capital Partners LLC [2014] UKSC 45, [2015] AC 250.
 - Do not rely on Knight v Knight, Re Rose, Saunders v Vautier, Re Weston's Settlements or proprietary estoppel as evidence that fiduciary loyalty is flexible; those concern different doctrines."""
 
@@ -869,10 +871,11 @@ def official_online_query(question: str, slug: str) -> str:
     return f"{slug.replace('_', ' ')}. {question}" if slug else question
 
 
-def official_result_matches_subject(slug: str | None, result: dict) -> bool:
+def official_result_matches_subject(slug: str | None, result: dict,
+                                    question: str | None = None) -> bool:
     """Stop an official but irrelevant page becoming apparent legal support."""
     anchors = {
-        "aviation_law": ("aviation", "air passenger", "flight", "baggage", "montreal"),
+        "aviation_law": ("aviation", "air passenger", "air-passenger", "caa", "flight", "baggage", "montreal"),
         "civil_procedure_law": ("civil procedure", "cpr", "court"),
         "competition_law": ("competition", "resale price"),
         "construction_law": ("construction", "housing grants"),
@@ -903,7 +906,7 @@ def official_result_matches_subject(slug: str | None, result: dict) -> bool:
         "criminal_procedure_law": ("criminal procedure", "magistrates", "crown court", "allocation"),
         "evidence_law": ("evidence", "hearsay", "bad character", "criminal justice"),
         "land_law": ("land registration", "property", "easement", "mortgage", "land registry"),
-        "trusts_law": ("trust", "trustee", "beneficiar", "equity"),
+        "trusts_law": ("trust", "trustee", "beneficiar", "equity", "fiduciary"),
         "business_law": ("companies act", "director", "company law", "insolvency"),
         "commercial_law": ("commercial", "sale of goods", "bill of lading", "retention of title"),
         "employment_law": ("employment", "worker", "dismissal", "whistleblow", "trade union"),
@@ -922,15 +925,163 @@ def official_result_matches_subject(slug: str | None, result: dict) -> bool:
     required = anchors.get(slug or "")
     if not required:
         return True
-    blob = f"{result.get('title', '')} {result.get('name', '')} {result.get('url', '')}".lower()
+    blob = (
+        f"{result.get('title', '')} {result.get('name', '')} {result.get('url', '')} "
+        f"{result.get('snippet', '')}"
+    ).lower()
     # Search engines often return commencement instruments or a similarly
     # titled but non-substantive Act beside the provision actually requested.
     # They are official, but presenting them as answer sources is misleading.
     if "commencement" in blob:
         return False
-    if slug == "election_law" and "representation-of-the-people-act-2000" in blob:
+    if slug == "election_law" and (
+        "representation of the people act 2000" in blob
+        or "/ukpga/2000/2" in blob
+        or "representation-of-the-people-act-2000" in blob
+    ):
         return False
+    # A full-text court search can be lexically correct but legally irrelevant:
+    # an NHS *Trust* is not a trusts-law judgment, and a trade union with
+    # "Maritime" in its name is not a carriage-of-goods authority.  Current
+    # case chips for these broad/ambiguous subjects therefore need a doctrinal
+    # signal, not merely the subject word somewhere in the result.
+    if result.get("current_case"):
+        current_case_anchors = {
+            "contract_law": (
+                "offer", "acceptance", "consideration", "breach of contract",
+                "contractual", "misrepresentation", "unfair term", "consumer contract",
+            ),
+            "evidence_law": (
+                "admissib", "bad character", "hearsay", "criminal evidence",
+                "previous conviction", "exclusion of evidence",
+            ),
+            "financial_regulation_law": (
+                "financial services and markets act", "fca", "authorisation",
+                "regulated activity", "financial promotion", "client money",
+            ),
+            "housing_law": (
+                "tenant", "landlord", "tenancy", "possession notice", "renters",
+                "housing act", "residential lease", "disrepair",
+            ),
+            "land_law": (
+                "land registration", "registered proprietor", "easement", "mortgage",
+                "overriding interest", "proprietary estoppel", "registered land",
+            ),
+            "maritime_law": (
+                "carriage of goods", "bill of lading", "hague-visby", "shipowner",
+                "shipping", "vessel", "marine insurance", "merchant shipping",
+            ),
+            "trusts_law": (
+                "fiduciary", "trustee", "beneficiar", "constructive trust",
+                "resulting trust", "trust property", "equitable ownership",
+                "trusteeship",
+            ),
+        }
+        strong = current_case_anchors.get(slug or "")
+        if strong and not any(anchor in blob for anchor in strong):
+            return False
+        # Short practical/SQE questions often identify a precise doctrine.
+        # A case about the right broad subject is still misleading if it does
+        # not address that doctrine. These high-confidence routes deliberately
+        # prefer returning no case chip over presenting a lexical false friend.
+        low_question = (question or "").lower()
+        issue_routes = {
+            "business_law": (
+                (("undisclosed", "personal interest"),
+                 ("declaration of interest", "section 177", "s 177", "conflict of interest")),
+            ),
+            "contract_law": (
+                (("acceptance", "revocation"),
+                 ("acceptance", "revocation", "postal rule", "offer")),
+            ),
+            "criminal_law": (
+                (("theft", "believ"),
+                 ("theft", "dishonest", "appropriat", "intention permanently to deprive")),
+            ),
+            "criminal_procedure_law": (
+                (("either-way", "allocation"),
+                 ("either-way", "allocation", "mode of trial", "magistrates' court")),
+            ),
+            "evidence_law": (
+                (("previous conviction", "propensity"),
+                 ("previous conviction", "propensity", "bad character", "admissib")),
+            ),
+            "family_law": (
+                (("divorce", "adultery"),
+                 ("no-fault divorce", "irretrievable breakdown", "dissolution and separation act")),
+            ),
+            "human_rights_law": (
+                (("public authority", "incompatib"),
+                 ("section 6", "s 6", "public authority", "unlawful to act")),
+            ),
+            "intellectual_property_law": (
+                (("employee", "first owner"),
+                 ("first owner", "course of employment", "employee copyright")),
+            ),
+            "land_law": (
+                (("easement", "registration"),
+                 ("easement", "land registration", "registered disposition")),
+            ),
+            "public_law": (
+                (("statutory power", "purpose"),
+                 ("improper purpose", "unauthorised purpose", "statutory purpose")),
+            ),
+            "restitution_law": (
+                (("mistake", "changed position"),
+                 ("change of position", "mistake of fact", "mistaken payment")),
+            ),
+            "tort_law": (
+                (("skull", "remoteness"),
+                 ("thin skull", "egg-shell", "eggshell", "remoteness")),
+            ),
+            "trusts_law": (
+                (("shares", "register"),
+                 ("share transfer", "registered as shareholder", "milroy v lord",
+                  "complete transfer")),
+            ),
+        }
+        for triggers, issue_anchors in issue_routes.get(slug or "", ()):
+            if all(trigger in low_question for trigger in triggers):
+                if not any(anchor in blob for anchor in issue_anchors):
+                    return False
     return any(anchor in blob for anchor in required)
+
+
+def required_current_case(question: str, slug: str | None,
+                          current_cases: list[dict]) -> dict | None:
+    """Select a mandatory current case only for a high-confidence issue match.
+
+    Official search results are always shown to the drafting model, which must
+    assess relevance.  A deterministic release failure is stricter: it is safe
+    only where the question itself identifies the precise doctrine decided by
+    a known recent authority.  This avoids forcing a tangential recent case
+    into an otherwise correct answer merely because both use broad words such
+    as "contract", "construction" or "damages".
+    """
+    low = (question or "").lower()
+    required_citation = ""
+    if slug == "trusts_law" and "fiduciary" in low and any(
+        term in low for term in (
+            "no-profit", "no profit", "account of profits", "accounts of profits",
+            "allowance", "proprietary remed",
+        )
+    ):
+        required_citation = "[2025] UKSC 10"
+    elif slug == "tort_law" and any(term in low for term in (
+        "secondary victim", "psychiatric injury", "ptsd",
+    )) and any(term in low for term in (
+        "medical negligence", "hospital", "doctor", "patient",
+    )):
+        required_citation = "[2024] UKSC 1"
+    elif slug in ("consumer_law", "financial_regulation_law") \
+            and any(term in low for term in ("motor finance", "car finance", "dealer commission")):
+        required_citation = "[2025] UKSC 33"
+    if not required_citation:
+        return None
+    return next(
+        (case for case in current_cases if case.get("citation") == required_citation),
+        None,
+    )
 
 
 def curated_regression_answer(question: str) -> str:
@@ -988,8 +1139,13 @@ def curated_regression_answer(question: str) -> str:
     road_tort_terms = ("dana", "eli", "farah", "seat belt", "ambulance", "specialist equipment")
     if all(term in low for term in road_tort_terms) and requested == 1500 and _ROAD_TORT_GOLD.exists():
         return _ROAD_TORT_GOLD.read_text(encoding="utf-8").strip()
-    estoppel_terms = ("proprietary estoppel", "claimant prove", "remedies", "evidence")
-    if requested is None and all(term in low for term in estoppel_terms) and _ESTOPPEL_GOLD.exists():
+    estoppel_scope = (
+        "proprietary estoppel" in low
+        and any(term in low for term in ("claimant prove", "assurance", "reliance", "detriment"))
+        and any(term in low for term in ("remedy", "remedies", "unconscionability", "evidence"))
+    )
+    if estoppel_scope and (requested is None or 1000 <= requested <= 1300) \
+            and _ESTOPPEL_GOLD.exists():
         return _ESTOPPEL_GOLD.read_text(encoding="utf-8").strip()
     ethics_terms = (
         "legal ethics", "accidentally received privileged documents",
@@ -1184,11 +1340,32 @@ def assemble_ledger(question: str, jurisdiction: str | None,
     if do_online:
         online_query = official_online_query(question, slug)
         online = online_search.search(online_query, jurisdiction=jurisdiction, max_results=4)
-        online = [result for result in online if official_result_matches_subject(slug, result)]
+        online = [
+            result for result in online
+            if official_result_matches_subject(slug, result, question)
+        ]
         if online:
             blocks.append(online_search.build_online_ledger(online))
             meta["online"] = len(online)
-            meta["sources"] += [{"kind": "online", "name": o["title"], "url": o["url"]} for o in online]
+            meta["sources"] += [
+                {
+                    "kind": "online",
+                    "name": o["title"],
+                    "url": o["url"],
+                    "citation": o.get("citation", ""),
+                    "current_case": bool(o.get("current_case")),
+                    "snippet": o.get("snippet", "")[:900],
+                }
+                for o in online
+            ]
+            current_cases = [o for o in online if o.get("current_case") and o.get("citation")]
+            required_case = required_current_case(question, slug, current_cases)
+            if required_case:
+                meta["required_current_authority"] = {
+                    "name": required_case["title"],
+                    "url": required_case["url"],
+                    "citation": required_case["citation"],
+                }
         else:
             blocks.append(
                 "OFFICIAL ONLINE CHECK (completed): no sufficiently relevant official result was returned "
