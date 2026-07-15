@@ -48,19 +48,27 @@ _SUBJECT_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("contract_law", ("contract", "consideration", "offer and acceptance", "counter-offer", "counter offer",
                        "battle of forms", "certainty of terms", "payment term", "misrepresentation",
                        "breach of contract", "exclusion clause", "frustration")),
-    ("tort_law", ("negligence", "duty of care", "nuisance", "tort", "occupiers", "defamation", "vicarious liability")),
+    ("tort_law", ("negligence", "duty of care", "nuisance", "tort", "occupiers", "defamation", "vicarious liability",
+                  "psychiatric injury", "pure economic loss")),
     ("trusts_law", ("trust", "equity", "fiduciary", "constructive trust", "resulting trust", "beneficiary")),
     ("land_law", ("land", "easement", "covenant", "mortgage", "adverse possession", "co-ownership", "registered land", "lease")),
     ("criminal_procedure_law", ("criminal procedure", "criminal trial", "fitness to plead", "plea and trial", "criminal disclosure", "bail application")),
-    ("criminal_law", ("criminal", "murder", "theft", "mens rea", "actus reus", "manslaughter", "self-defence")),
+    ("criminal_law", ("criminal", "murder", "theft", "mens rea", "actus reus", "manslaughter", "self-defence",
+                      "homicide", "diminished responsibility", "loss of control", "accessorial liability",
+                      "intoxication")),
     ("evidence_law", ("evidence law", "hearsay", "admissibility", "burden of proof", "witness competence", "bad character evidence")),
-    ("competition_law", ("competition", "cartel", "coordinating resale prices", "resale price maintenance", "chapter i prohibition", "abuse of dominance", "article 101", "article 102", "merger control")),
-    ("commercial_law", ("commercial", "sale of goods", "agency", "carriage", "bills of lading", "romalpa")),
+    ("competition_law", ("competition", "cartel", "coordinating resale prices", "resale price maintenance", "chapter i prohibition", "abuse of dominance", "article 101", "article 102", "merger control",
+                         "tfeu", "market definition", "ca 1998", "predatory pricing")),
+    ("commercial_law", ("commercial", "sale of goods", "agency", "carriage", "bills of lading", "romalpa",
+                        "nemo dat", "retention of title", "cif", "passing of property")),
     ("insolvency_law", ("insolvency", "liquidation", "administrator", "wrongful trading", "fraudulent trading", "company moratorium", "creditor losses")),
-    ("business_law", ("company law", "director", "shareholder", "corporate group", "corporate governance", "piercing the veil")),
-    ("intellectual_property_law", ("copyright", "patent", "trade mark", "trademark", "passing off", "design right", "intellectual property", "copyright software")),
+    ("business_law", ("company law", "director", "shareholder", "corporate group", "corporate governance", "piercing the veil",
+                      "corporate opportunity", "corporate veil", "companies act 2006", "ca 2006")),
+    ("intellectual_property_law", ("copyright", "patent", "trade mark", "trademark", "passing off", "design right", "intellectual property", "copyright software",
+                                   "originality", "cdpa", "computer-generated works")),
     ("employment_law", ("employment law", "unfair dismissal", "redundancy", "worker status", "discrimination at work",
-                        "unsafe workplace", "refusing to return", "serious and imminent danger")),
+                        "unsafe workplace", "refusing to return", "serious and imminent danger",
+                        "whistleblowing", "employee status", "self-employed", "trade union", "trade-union")),
     ("family_law", ("family law", "divorce", "financial remedy", "child arrangements", "ancillary relief", "matrimonial")),
     ("tax_law", ("tax", "hmrc", "vat", "capital gains", "income tax", "avoidance", "statutory residence test", "tax residence")),
     ("pensions_law", ("pension", "occupational scheme", "trustee of the scheme", "auto-enrolment")),
@@ -74,14 +82,17 @@ _SUBJECT_KEYWORDS: list[tuple[str, tuple[str, ...]]] = [
     ("public_international_law", ("international law", "treaty", "state responsibility", "customary international", "un charter")),
     ("mediation_law", ("mediation", "adr", "arbitration", "settlement negotiation")),
     ("human_rights_law", ("human rights", "echr", "convention right", "proportionality", "strasbourg",
-                          "article 8", "article 10", "freedom of expression", "right to private life")),
+                          "article 8", "article 10", "freedom of expression", "right to private life",
+                          "margin of appreciation", "human rights act")),
     ("restitution_law", ("unjust enrichment", "restitution", "change of position", "mistaken payment", "pays under a mistake", "quantum meruit")),
     ("remedies_law", ("law of remedies", "remedies essay", "choice of remedy", "damages, injunctions", "specific performance", "rescission", "tracing", "declarations")),
     ("equality_law", ("equality act", "protected characteristic", "direct discrimination", "indirect discrimination",
                       "reasonable adjustments", "victimisation", "harassment at work")),
-    ("immigration_refugee_law", ("immigration", "asylum", "refugee", "deportation", "leave to remain", "removal directions")),
+    ("immigration_refugee_law", ("immigration", "asylum", "refugee", "deportation", "leave to remain", "removal directions",
+                                 "refugee convention", "nationality and borders act", "illegal migration act")),
     ("housing_law", ("housing", "homelessness", "secure tenancy", "assured shorthold", "possession order", "disrepair")),
-    ("jurisprudence_law", ("jurisprudence", "legal positivism", "natural law", "dworkin", "legal theory", "rule of recognition")),
+    ("jurisprudence_law", ("jurisprudence", "legal positivism", "natural law", "dworkin", "legal theory", "rule of recognition",
+                           "interpretivism")),
     ("civil_procedure_law", ("civil procedure", "summary judgment", "case management", "part 36", "disclosure obligations")),
     ("sentencing_law", ("sentencing", "sentencing council", "custodial sentence", "guilty-plea credit", "offence category", "culpability and harm", "sentencing guidelines", "dangerous offender", "dangerousness")),
     ("financial_regulation_law", ("financial regulation", "investment platform", "fca authorisation", "financial promotion", "client money", "fsma", "market abuse", "authorised person", "fca handbook")),
@@ -120,10 +131,16 @@ def detect_subject(question: str) -> str:
     for phrase, slug in _EXPLICIT_SUBJECTS:
         if _keyword_matches(t, phrase):
             return slug
+    # Realistic questions rarely name their subject, and a single shared word
+    # ("contract", "criminal", "bill of lading") routinely appears outside its
+    # own field.  Rank subjects by the number of distinct keyword hits so the
+    # dominant subject wins; a tie keeps the historical first-match order.
+    best_slug, best_hits = "", 0
     for slug, kws in _SUBJECT_KEYWORDS:
-        if any(_keyword_matches(t, kw) for kw in kws):
-            return slug
-    return ""
+        hits = sum(1 for kw in kws if _keyword_matches(t, kw))
+        if hits > best_hits:
+            best_slug, best_hits = slug, hits
+    return best_slug
 
 
 def _keyword_matches(text: str, keyword: str) -> bool:

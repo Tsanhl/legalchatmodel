@@ -64,3 +64,7 @@
 ## Avoid
 - Avoid name-dropping theorists without applying their argument.
 - Avoid reducing jurisprudence to personal political opinion.
+
+## Full OSCOLA Authority Bank
+- UK constitutional testing ground: *R (Jackson) v Attorney General* [2005] UKHL 56, [2006] 1 AC 262; *R (Miller) v Secretary of State for Exiting the European Union* [2017] UKSC 5, [2018] AC 61; *R (Miller) v The Prime Minister* [2019] UKSC 41, [2020] AC 373.
+- Rule-of-law tradition: *Entick v Carrington* (1765) 19 St Tr 1029.

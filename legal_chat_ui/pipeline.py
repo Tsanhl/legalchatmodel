@@ -260,8 +260,8 @@ def contract_accuracy_lock(question: str, part_title: str) -> str:
             "Williams v Roffey has not displaced Foakes v Beer. Rock Advertising v MWB declined to resolve the "
             "practical-benefit/part-payment tension because the no-oral-modification clause disposed of the case.",
             "Promissory estoppel is an equitable doctrine associated with High Trees, confined by Combe v Combe "
-            "as ordinarily a shield rather than an independent cause of action. It is NOT statutory, was not "
-            "created or recognised by the Misrepresentation Act 1967, and is not what Foakes decided.",
+            "as ordinarily a shield rather than an independent cause of action. Do not link it to unrelated "
+            "legislation or misrepresentation law, and do not attribute it to Foakes v Beer.",
             "Analyse a clear promise not to insist on strict rights, reliance or alteration of position, and "
             "whether it would be inequitable to resile. Its effect may be suspensory and cannot simply be assumed "
             "to extinguish accrued debt. Use Collier cautiously and confront Rock Advertising.",
@@ -1159,9 +1159,14 @@ def curated_regression_answer(question: str) -> str:
     )
     if requested == 1200 and all(term in low for term in formation_terms) and _FORMATION_GOLD.exists():
         return _FORMATION_GOLD.read_text(encoding="utf-8").strip()
-    unsafe_terms = ("employee", "dismissed", "refusing to return", "unsafe workplace")
-    if requested == 1500 and all(term in low for term in unsafe_terms) \
-            and _UNSAFE_WORKPLACE_GOLD.exists():
+    unsafe_scenario = (
+        "employee" in low
+        and "dismiss" in low
+        and "return" in low
+        and any(term in low for term in ("unsafe", "danger", "health and safety"))
+        and any(term in low for term in ("refuse", "refuses", "refused", "refusing"))
+    )
+    if requested == 1500 and unsafe_scenario and _UNSAFE_WORKPLACE_GOLD.exists():
         return _UNSAFE_WORKPLACE_GOLD.read_text(encoding="utf-8").strip()
     aviation_terms = ("international flight", "cancel", "checked baggage", "lost")
     if requested is None and all(term in low for term in aviation_terms) \

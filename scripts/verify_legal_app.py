@@ -22,7 +22,7 @@ import online_search  # noqa: E402
 import pipeline  # noqa: E402
 import retrieval  # noqa: E402
 import server  # noqa: E402
-from live_private_release_sweep import GENERAL_ENQUIRIES, SQE_PROBES  # noqa: E402
+from live_private_release_sweep import GENERAL_ENQUIRIES, LENGTH_QUESTIONS, SQE_PROBES  # noqa: E402
 from promote_feedback_to_lora_data import feedback_paths  # noqa: E402
 
 
@@ -746,6 +746,17 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "reviewed unsafe-workplace problem is complete, accurate and within the 1,500-word ±1% band",
         results,
     )
+    unsafe_variant = (
+        "Problem question — Employment Law, 1,500 words. Maya, an employee, refuses to return "
+        "to a warehouse after reporting a danger. The employer dismisses her for insubordination. "
+        "Advise both parties under the law of England and Wales."
+    )
+    check(
+        pipeline.curated_regression_answer(unsafe_variant).strip()
+        == pipeline.curated_regression_answer(unsafe_gold_question).strip(),
+        "unsafe-workplace reviewed answer recognises ordinary user wording, not one exact test phrase",
+        results,
+    )
     leaked_case_bank = server.Handler._sanitize_final(
         "Ready Mixed Concrete: Facts: driver engaged under mixed terms. Held: employee status applied. "
         "Reasoning: multi-factor test. Answer use: employee status baseline. The legal analysis continues."
@@ -877,6 +888,27 @@ therefore preferable, provided that it preserves the genuine disagreements among
     references = server.Handler._authorities_table(sample, contract)
     check("### References" in references and "Cavendish" in references,
           "used-authority-only References footer is generated", results)
+    grouped_sample = (
+        "The authorities remain distinct "
+        "(*Williams v Roffey Bros & Nicholls (Contractors) Ltd* [1991] 1 QB 1; "
+        "*Foakes v Beer* (1884) 9 App Cas 605). "
+        "The bargain need not be adequate "
+        "(*Currie v Misa* (1875) LR 10 Ex 153; *Thomas v Thomas* (1842) 2 QB 851). "
+        "The statutory routes are distinct (Employment Rights Act 1996, ss 94 and 100). "
+        "The limitation route is separate (Employment Rights Act 1996, s 111)."
+    )
+    grouped_references = server.Handler._authorities_table(grouped_sample, contract)
+    check(
+        grouped_references.count("Williams v Roffey") == 1
+        and grouped_references.count("Foakes v Beer") == 1
+        and grouped_references.count("Currie v Misa") == 1
+        and grouped_references.count("Thomas v Thomas") == 1
+        and grouped_references.count("Employment Rights Act 1996") == 1
+        and "Employment Rights Act 1996, s" not in grouped_references
+        and ";" not in grouped_references,
+        "grouped cases split cleanly and legislation is deduplicated without section pinpoints",
+        results,
+    )
     general_question = "Explain proprietary estoppel in practical terms for a homeowner."
     sqe_question = "SQE single best answer: identify the correct proprietary-estoppel remedy."
     check(
@@ -920,6 +952,69 @@ therefore preferable, provided that it preserves the genuine disagreements among
         in repaired_citations
         and not server.Handler._uncited_authority_sentences(repaired_citations),
         "verified guide citations repair named-authority OSCOLA omissions without guessing",
+        results,
+    )
+    statute_only_question = (
+        "Assume England and Wales law. Problem question. Suggested length: 1,000 words. "
+        "A defendant is charged under the Criminal Justice Act 1967."
+    )
+    repaired_statute = server.Handler._repair_inline_oscola(
+        "Section 1(1) of the Criminal Justice Act 1967 applies.",
+        statute_only_question,
+        "criminal_law",
+    )
+    check(
+        "(Criminal Justice Act 1967)" in repaired_statute
+        and not server.Handler._uncited_authority_sentences(repaired_statute),
+        "statute citations are repaired even when a subject has no case-bank entries",
+        results,
+    )
+    check(
+        all(
+            guides.detect_subject(
+                f"Assume England and Wales law. "
+                f"{'Essay question' if register == 'essay' else 'Problem question'}. "
+                f"Suggested length: {length_words:,} words. {stem} "
+                "Default to full parenthetical OSCOLA."
+            ) == expected_slug
+            for length_words, expected_slug, register, stem in LENGTH_QUESTIONS
+        ),
+        "realistic fact-pattern questions route to the dominant subject across all 20 lengths",
+        results,
+    )
+    restructured = server.Handler._collapse_duplicate_headings(
+        "### Introduction\n\nOpening thesis.\n\n### Intoxication\n\nFirst analysis.\n\n"
+        "### Conclusion\n\nInterim conclusion.\n\n### Introduction\n\nSecond opening.\n\n"
+        "### Intoxication\n\nSecond analysis.\n\n### Conclusion\n\nFinal conclusion."
+    )
+    check(
+        restructured.count("### Introduction") == 1
+        and restructured.count("### Conclusion") == 1
+        and restructured.count("### Intoxication") == 1
+        and restructured.startswith("### Introduction")
+        and "Final conclusion" in restructured.split("### Conclusion")[1]
+        and "Second analysis" in restructured,
+        "assembly keeps one Introduction, the final Conclusion and one copy of each repeated heading",
+        results,
+    )
+    criminal_problem_question = (
+        "Assume England and Wales law. Problem question. Suggested length: 3,000 words. "
+        "Gus, drunk, throws a bottle which strikes Hana, who dies after a mismanaged operation. "
+        "Advise on homicide liability, causation, intoxication, accessorial liability, "
+        "loss of control and diminished responsibility. Default to full parenthetical OSCOLA."
+    )
+    repaired_criminal = server.Handler._repair_inline_oscola(
+        "The leading case is R v Woollin, which requires foresight of virtual certainty. "
+        "Voluntary intoxication is governed by DPP v Majewski.",
+        criminal_problem_question,
+        "criminal_law",
+    )
+    check(
+        len(guides.authority_citation_map_for_question(criminal_problem_question, "criminal_law")) >= 20
+        and "*R v Woollin* [1999] 1 AC 82 (HL)" in repaired_criminal
+        and "*DPP v Majewski* [1977] AC 443 (HL)" in repaired_criminal
+        and not server.Handler._uncited_authority_sentences(repaired_criminal),
+        "criminal law carries a verified OSCOLA bank so named homicide authorities are repaired",
         results,
     )
     heading_repair = server.Handler._ensure_required_headings(

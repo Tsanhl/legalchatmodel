@@ -3,28 +3,28 @@
   "passed": true,
   "questions_with_at_least_3_legal_hits": 100,
   "questions_with_assessment_guidance": 100,
-  "median_guide_chars": 6889,
+  "median_guide_chars": 7686,
   "top_retrieved_categories": {
-    "Constitutional law": 47,
-    "Trusts law copy": 25,
+    "Constitutional law": 46,
+    "Trusts law copy": 26,
     "Criminal law  copy": 23,
     "Business law copy": 19,
     "Land law": 18,
     " Ai and data protection act copy": 17,
     "Tort law copy": 14,
-    "Contract law journals 24 Jan": 12,
+    "Contract law journals 24 Jan": 13,
     "Pensions Law copy": 10,
-    "Contract law materials 26 Jan": 9,
     "Contract law copy": 8,
     "Tort law cases:laws 25 Jan": 8,
     "Family law": 8,
+    "Contract law materials 26 Jan": 8,
     "Public international law": 7,
     "Criminal law cases + legislations 30 Jan": 6,
     "Law and medicine materials ": 6,
     "Commerical Law copy": 6,
     "EU law copy": 6,
-    "Robotics and AI related issues": 5,
-    "Criminal law journals 26 Jan": 4
+    "Family law cases 27 Jan": 5,
+    "Tort law journals 24 Jan ": 5
   },
   "failures": [],
   "questions": [
@@ -46,7 +46,7 @@
         "Contract law journals 24 Jan",
         "Contract law copy"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 2,
@@ -66,7 +66,7 @@
         "Contract law copy",
         "Contract law journals 24 Jan"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 3,
@@ -86,7 +86,7 @@
         "Tort law cases:laws 25 Jan",
         "Tort law cases:laws 24 Jan"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 4,
@@ -106,7 +106,7 @@
         "Tort law cases:laws 25 Jan",
         "Tort law cases:laws 25 Jan"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 5,
@@ -126,7 +126,7 @@
         "Criminal law  copy",
         "Criminal law  copy"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 6,
@@ -146,7 +146,7 @@
         "Criminal law  copy",
         "Criminal law  copy"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 7,
@@ -167,7 +167,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 8872
+      "guide_chars": 8911
     },
     {
       "id": 8,
@@ -188,7 +188,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 8788
+      "guide_chars": 8927
     },
     {
       "id": 9,
@@ -210,7 +210,7 @@
         " Ai and data protection act copy",
         " Ai and data protection act copy"
       ],
-      "guide_chars": 7842
+      "guide_chars": 8398
     },
     {
       "id": 10,
@@ -231,7 +231,7 @@
         "Constitutional law",
         "Biolaw copy"
       ],
-      "guide_chars": 7842
+      "guide_chars": 8398
     },
     {
       "id": 11,
@@ -251,7 +251,7 @@
         "Land law",
         "Land law"
       ],
-      "guide_chars": 5018
+      "guide_chars": 5326
     },
     {
       "id": 12,
@@ -271,7 +271,7 @@
         "Land law",
         "Land law"
       ],
-      "guide_chars": 5018
+      "guide_chars": 5326
     },
     {
       "id": 13,
@@ -291,7 +291,7 @@
         "Trusts law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 5376
+      "guide_chars": 7122
     },
     {
       "id": 14,
@@ -311,7 +311,7 @@
         "Wills and Trusts law cases 24 Jan",
         "Trusts law copy"
       ],
-      "guide_chars": 5376
+      "guide_chars": 7122
     },
     {
       "id": 15,
@@ -332,7 +332,7 @@
         "Trusts law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 8976
+      "guide_chars": 8850
     },
     {
       "id": 16,
@@ -353,7 +353,7 @@
         "Business law copy",
         "Pensions Law copy"
       ],
-      "guide_chars": 8661
+      "guide_chars": 8905
     },
     {
       "id": 17,
@@ -373,7 +373,7 @@
         "Criminal law  copy",
         "Criminal law cases + legislations 30 Jan"
       ],
-      "guide_chars": 6189
+      "guide_chars": 7373
     },
     {
       "id": 18,
@@ -393,7 +393,7 @@
         "Criminal law cases + legislations 30 Jan",
         "Evidence law"
       ],
-      "guide_chars": 6189
+      "guide_chars": 7373
     },
     {
       "id": 19,
@@ -494,7 +494,7 @@
         "Competition Law copy",
         "Competition Law copy"
       ],
-      "guide_chars": 2965
+      "guide_chars": 3716
     },
     {
       "id": 24,
@@ -514,7 +514,7 @@
         "Business law copy",
         "Interllectual property law"
       ],
-      "guide_chars": 2965
+      "guide_chars": 3716
     },
     {
       "id": 25,
@@ -535,7 +535,7 @@
         " Ai and data protection act copy",
         " Ai and data protection act copy"
       ],
-      "guide_chars": 4036
+      "guide_chars": 4592
     },
     {
       "id": 26,
@@ -556,7 +556,7 @@
         " Ai and data protection act copy",
         " Ai and data protection act copy"
       ],
-      "guide_chars": 7842
+      "guide_chars": 8398
     },
     {
       "id": 27,
@@ -569,12 +569,12 @@
       "top_sources": [
         "13 - Immigration and asylum.pdf",
         "13 - Immigration and asylum.pdf",
-        "43 - Immigration extradition deportation and asylum.pdf"
+        "020 - Judgment - G (A Child) (Child Abduction and Asylum Claim) Re.pdf"
       ],
       "top_categories": [
         "Constitutional law",
         "Constitutional law",
-        "Constitutional law"
+        "Family law cases 27 Jan"
       ],
       "guide_chars": 3938
     },
@@ -619,7 +619,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 8824
+      "guide_chars": 8950
     },
     {
       "id": 30,
@@ -662,7 +662,7 @@
         "Business law copy",
         "Business law copy"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 32,
@@ -683,7 +683,7 @@
         "Tort law cases:laws 25 Jan",
         "Law resources Extra"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 33,
@@ -704,7 +704,7 @@
         "Contract law materials 26 Jan",
         "Business law copy"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 34,
@@ -725,7 +725,7 @@
         "Contract law copy",
         "Contract law journals 24 Jan"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 35,
@@ -745,7 +745,7 @@
         "Tort law copy",
         "Tort law copy"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 36,
@@ -766,7 +766,7 @@
         "Tort law copy",
         "Tort law copy"
       ],
-      "guide_chars": 8783
+      "guide_chars": 8786
     },
     {
       "id": 37,
@@ -787,7 +787,7 @@
         "Business law copy",
         "Tort law cases:laws 25 Jan"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 38,
@@ -808,7 +808,7 @@
         "Tort law copy",
         "Tort law cases:laws 25 Jan"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 39,
@@ -828,7 +828,7 @@
         "Criminal law  copy",
         "Criminal law cases + legislations 30 Jan"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 40,
@@ -849,7 +849,7 @@
         "Criminal law  copy",
         "Criminal law  copy"
       ],
-      "guide_chars": 8866
+      "guide_chars": 8927
     },
     {
       "id": 41,
@@ -870,7 +870,7 @@
         "Criminal law  copy",
         "Law and medicine materials "
       ],
-      "guide_chars": 8705
+      "guide_chars": 8991
     },
     {
       "id": 42,
@@ -890,7 +890,7 @@
         "Criminal law  copy",
         "Criminal law  copy"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 43,
@@ -910,7 +910,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 6489
+      "guide_chars": 7063
     },
     {
       "id": 44,
@@ -931,7 +931,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 8986
+      "guide_chars": 8968
     },
     {
       "id": 45,
@@ -944,7 +944,7 @@
       "top_sources": [
         "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf",
         "18. Human Rights and the UK Constitution _ Law Trove.pdf",
-        "55 - Check terms and conditions scrutiny human rights and civil preventative pow.pdf"
+        "06 - Where proportionality meets the most important factor of national security.pdf"
       ],
       "top_categories": [
         "Constitutional law",
@@ -993,7 +993,7 @@
         "Land law journals 29 Jan",
         "Land law"
       ],
-      "guide_chars": 8790
+      "guide_chars": 8864
     },
     {
       "id": 48,
@@ -1014,7 +1014,7 @@
         "Land law",
         "Land law"
       ],
-      "guide_chars": 8821
+      "guide_chars": 8732
     },
     {
       "id": 49,
@@ -1034,7 +1034,7 @@
         "Trusts law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 5376
+      "guide_chars": 7122
     },
     {
       "id": 50,
@@ -1054,7 +1054,7 @@
         "Trusts law journals Extra 23 Jan ",
         "Trusts law copy"
       ],
-      "guide_chars": 5376
+      "guide_chars": 7122
     },
     {
       "id": 51,
@@ -1074,7 +1074,7 @@
         "Business law copy",
         "Pensions Law copy"
       ],
-      "guide_chars": 3641
+      "guide_chars": 4208
     },
     {
       "id": 52,
@@ -1094,7 +1094,7 @@
         "Business law copy",
         "Business law copy"
       ],
-      "guide_chars": 3641
+      "guide_chars": 4208
     },
     {
       "id": 53,
@@ -1114,7 +1114,7 @@
         "Pensions Law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 2403
+      "guide_chars": 7629
     },
     {
       "id": 54,
@@ -1154,7 +1154,7 @@
         "Commerical Law copy",
         "Commerical Law copy"
       ],
-      "guide_chars": 5363
+      "guide_chars": 5224
     },
     {
       "id": 56,
@@ -1174,7 +1174,7 @@
         "Commerical Law copy",
         "Commerical Law copy"
       ],
-      "guide_chars": 5363
+      "guide_chars": 5224
     },
     {
       "id": 57,
@@ -1195,7 +1195,7 @@
         "EU law copy",
         "EU law copy"
       ],
-      "guide_chars": 8313
+      "guide_chars": 8170
     },
     {
       "id": 58,
@@ -1205,7 +1205,7 @@
         "human_rights_law"
       ],
       "indexed_hits": 6,
-      "guidance_hits": 4,
+      "guidance_hits": 3,
       "top_sources": [
         "Art 36* N. Nic Shuibhne and M. Maci, “Proving Public Interest- The Growing Impact of Evidence in Free Movement Case Law” (2013) 50 CML Rev 965.pdf",
         "Art 36 E. Spaventa, “On discrimination and the theory of mandatory requirements” (2001) 3 CYELS 457.pdf",
@@ -1216,7 +1216,7 @@
         "EU law copy",
         "EU law copy"
       ],
-      "guide_chars": 8313
+      "guide_chars": 8170
     },
     {
       "id": 59,
@@ -1257,7 +1257,7 @@
         "Public international law",
         "Criminal law  copy"
       ],
-      "guide_chars": 8868
+      "guide_chars": 8857
     },
     {
       "id": 61,
@@ -1277,7 +1277,7 @@
         "Contract law materials 26 Jan",
         "Contract law journals 24 Jan"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 62,
@@ -1297,7 +1297,7 @@
         "Contract law materials 26 Jan",
         "Contract law materials 26 Jan"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 63,
@@ -1317,7 +1317,7 @@
         "Tort law journals 24 Jan ",
         "Tort law copy"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 64,
@@ -1337,7 +1337,7 @@
         "Tort law copy",
         "Tort law copy"
       ],
-      "guide_chars": 7861
+      "guide_chars": 8786
     },
     {
       "id": 65,
@@ -1349,15 +1349,15 @@
       "guidance_hits": 5,
       "top_sources": [
         "Causation in (Criminal) Law Andrew Simester Author Accepted Version to appear in- Law Quarterly Review.pdf",
-        "161 - [2010] 1 AC 345 - R (on the application of Purdy) v DPP.pdf",
-        "Ezokola v. Canada The Correct Place of International Criminal Law in International Refugee Law-making.pdf"
+        "Ezokola v. Canada The Correct Place of International Criminal Law in International Refugee Law-making.pdf",
+        "161 - [2010] 1 AC 345 - R (on the application of Purdy) v DPP.pdf"
       ],
       "top_categories": [
         "Criminal law  copy",
-        "Criminal law cases + legislations 30 Jan",
-        "Criminal law journals 26 Jan"
+        "Criminal law journals 26 Jan",
+        "Criminal law cases + legislations 30 Jan"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 66,
@@ -1377,7 +1377,7 @@
         "Criminal law journals 26 Jan",
         "Criminal law  copy"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 67,
@@ -1397,7 +1397,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 6489
+      "guide_chars": 7063
     },
     {
       "id": 68,
@@ -1418,7 +1418,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 8788
+      "guide_chars": 8927
     },
     {
       "id": 69,
@@ -1439,7 +1439,7 @@
         "Land law",
         "Land law"
       ],
-      "guide_chars": 8821
+      "guide_chars": 8732
     },
     {
       "id": 70,
@@ -1459,7 +1459,7 @@
         "Land law",
         "Land law"
       ],
-      "guide_chars": 5018
+      "guide_chars": 5326
     },
     {
       "id": 71,
@@ -1472,14 +1472,14 @@
       "top_sources": [
         "L5  PQ * The three certainties required to declare a trust – or is it four? \"Distributional certainty\" in The Cambridge Law Journal.pdf",
         "L5  PQ * The three certainties required to declare a trust – or is it four? \"Distributional certainty\" in The Cambridge Law Journal.pdf",
-        "UK Budget- Tax Changes for Offshore T rusts.pdf"
+        "Part II 3. Trusts created expressly Trusts & Equity (10th edn) Gary Watt.pdf"
       ],
       "top_categories": [
         "Trusts law copy",
         "Trusts law copy",
-        "Trusts law journals Extra 23 Jan "
+        "Trusts law copy"
       ],
-      "guide_chars": 5376
+      "guide_chars": 7122
     },
     {
       "id": 72,
@@ -1499,7 +1499,7 @@
         "Trusts law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 5376
+      "guide_chars": 7122
     },
     {
       "id": 73,
@@ -1519,7 +1519,7 @@
         "Business law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 3641
+      "guide_chars": 4208
     },
     {
       "id": 74,
@@ -1573,12 +1573,12 @@
       "guidance_hits": 2,
       "top_sources": [
         " Does the ‘ Personal Employment Contract ’ Provide a Basis for the Reunifi cation of Employment Law? SIMON DEAKIN 1* .pdf",
-        "080 - [2012] ILPr 34 - Simpson v Intralinks Ltd.pdf",
-        "018 - [2020] 1 WLR 2381 - GDE LLC (formerly Anglia Autoflow North America LLC) v.pdf"
+        " Does the ‘ Personal Employment Contract ’ Provide a Basis for the Reunifi cation of Employment Law? SIMON DEAKIN 1* .pdf",
+        "080 - [2012] ILPr 34 - Simpson v Intralinks Ltd.pdf"
       ],
       "top_categories": [
         "Contract law journals 24 Jan",
-        "Contract law materials 26 Jan",
+        "Contract law journals 24 Jan",
         "Contract law materials 26 Jan"
       ],
       "guide_chars": 8700
@@ -1641,7 +1641,7 @@
         "Law and medicine materials ",
         "Law and medicine materials "
       ],
-      "guide_chars": 6775
+      "guide_chars": 7554
     },
     {
       "id": 80,
@@ -1662,7 +1662,7 @@
         "Law and medicine materials ",
         "Law and medicine extra 14 Mar"
       ],
-      "guide_chars": 6775
+      "guide_chars": 7554
     },
     {
       "id": 81,
@@ -1675,15 +1675,15 @@
       "guidance_hits": 5,
       "top_sources": [
         "Liability for AI-related IP infringements in the European Union.pdf",
-        "Liability for AI-related IP infringements in the European Union.pdf",
-        "The player, the programmer and the AI- a copyright odyssey in gaming Despoina Farmaki *.pdf"
+        "The player, the programmer and the AI- a copyright odyssey in gaming Despoina Farmaki *.pdf",
+        "Liability for AI-related IP infringements in the European Union.pdf"
       ],
       "top_categories": [
         "Robotics and AI related issues",
         "Robotics and AI related issues",
         "Robotics and AI related issues"
       ],
-      "guide_chars": 7003
+      "guide_chars": 8310
     },
     {
       "id": 82,
@@ -1703,7 +1703,7 @@
         " Ai and data protection act copy",
         " Ai and data protection act copy"
       ],
-      "guide_chars": 4036
+      "guide_chars": 4592
     },
     {
       "id": 83,
@@ -1723,7 +1723,7 @@
         " Ai and data protection act copy",
         " Ai and data protection act copy"
       ],
-      "guide_chars": 4036
+      "guide_chars": 4592
     },
     {
       "id": 84,
@@ -1743,7 +1743,7 @@
         " Ai and data protection act copy",
         "Biolaw copy"
       ],
-      "guide_chars": 4036
+      "guide_chars": 4592
     },
     {
       "id": 85,
@@ -1788,7 +1788,7 @@
         "Land law legislation + cases 28 jan",
         "Land law"
       ],
-      "guide_chars": 8809
+      "guide_chars": 8844
     },
     {
       "id": 87,
@@ -1808,7 +1808,7 @@
         "Contract law materials 26 Jan",
         "Law resources Extra"
       ],
-      "guide_chars": 8965
+      "guide_chars": 8875
     },
     {
       "id": 88,
@@ -1829,7 +1829,7 @@
         "Tort law journals 24 Jan ",
         "Tort law journals 24 Jan "
       ],
-      "guide_chars": 8915
+      "guide_chars": 8786
     },
     {
       "id": 89,
@@ -1849,7 +1849,7 @@
         "Criminal law  copy",
         "Criminal law cases + legislations 30 Jan"
       ],
-      "guide_chars": 5932
+      "guide_chars": 6979
     },
     {
       "id": 90,
@@ -1869,7 +1869,7 @@
         "Constitutional law",
         "Constitutional law"
       ],
-      "guide_chars": 6489
+      "guide_chars": 7063
     },
     {
       "id": 91,
@@ -1890,7 +1890,7 @@
         " Ai and data protection act copy",
         "Constitutional law"
       ],
-      "guide_chars": 8909
+      "guide_chars": 8938
     },
     {
       "id": 92,
@@ -1913,7 +1913,7 @@
         "Land law 25 Jan",
         "Land law"
       ],
-      "guide_chars": 8908
+      "guide_chars": 8732
     },
     {
       "id": 93,
@@ -1934,7 +1934,7 @@
         "Pensions Law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 6046
+      "guide_chars": 6613
     },
     {
       "id": 94,
@@ -1995,7 +1995,7 @@
         "Tax law journals",
         "Criminal law  copy"
       ],
-      "guide_chars": 3548
+      "guide_chars": 3907
     },
     {
       "id": 97,
@@ -2019,7 +2019,7 @@
         "Competition law 23 jan",
         "Competition Law copy"
       ],
-      "guide_chars": 8831
+      "guide_chars": 8945
     },
     {
       "id": 98,
@@ -2035,14 +2035,14 @@
       "top_sources": [
         "9. The European Union and Brexit _ Law Trove.pdf",
         "bfried.pdf",
-        "10. Remedies of the buyer.pdf"
+        "Misfeasance in a Public Office- A Tort Law Misfit? John Murphy*.pdf"
       ],
       "top_categories": [
         "Constitutional law",
         "Contract law journals 24 Jan",
-        "Commerical law revision copy"
+        "Tort law journals 24 Jan "
       ],
-      "guide_chars": 8815
+      "guide_chars": 8888
     },
     {
       "id": 99,
@@ -2069,7 +2069,7 @@
         "Constitutional law",
         "Interllectual property law"
       ],
-      "guide_chars": 8988
+      "guide_chars": 8802
     },
     {
       "id": 100,
@@ -2098,7 +2098,7 @@
         "Pensions Law copy",
         "Trusts law copy"
       ],
-      "guide_chars": 8974
+      "guide_chars": 8868
     }
   ]
 }

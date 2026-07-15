@@ -202,6 +202,10 @@
       "passed": true
     },
     {
+      "check": "unsafe-workplace reviewed answer recognises ordinary user wording, not one exact test phrase",
+      "passed": true
+    },
+    {
       "check": "internal case-brief annotations are removed without deleting later analysis",
       "passed": true
     },
@@ -242,6 +246,10 @@
       "passed": true
     },
     {
+      "check": "grouped cases split cleanly and legislation is deduplicated without section pinpoints",
+      "passed": true
+    },
+    {
       "check": "general enquiries and SQE omit the final list unless expressly requested",
       "passed": true
     },
@@ -255,6 +263,22 @@
     },
     {
       "check": "verified guide citations repair named-authority OSCOLA omissions without guessing",
+      "passed": true
+    },
+    {
+      "check": "statute citations are repaired even when a subject has no case-bank entries",
+      "passed": true
+    },
+    {
+      "check": "realistic fact-pattern questions route to the dominant subject across all 20 lengths",
+      "passed": true
+    },
+    {
+      "check": "assembly keeps one Introduction, the final Conclusion and one copy of each repeated heading",
+      "passed": true
+    },
+    {
+      "check": "criminal law carries a verified OSCOLA bank so named homicide authorities are repaired",
       "passed": true
     },
     {

@@ -89,3 +89,10 @@
 ## Anonymized Output Architecture
 - In a multi-item criminal problem, list the proposed use of each item, classify it, apply the exact gateway, address exclusion and fairness, then state admissibility, limits and any jury direction. Admissibility and weight must not be collapsed.
 - A reliability essay should select a few evidential controls for sustained evaluation, connect each statutory gateway to its trial consequence, and use Article 6 as overall fairness context rather than a freestanding shortcut.
+
+## Full OSCOLA Authority Bank
+- Burden and standard: *Woolmington v DPP* [1935] AC 462 (HL).
+- Hearsay: *R v Horncastle* [2009] UKSC 14, [2010] 2 AC 373; *R v Riat* [2012] EWCA Crim 1509, [2013] 1 WLR 2592; *Al-Khawaja and Tahery v United Kingdom* (2011) 54 EHRR 23; Criminal Justice Act 2003, ss 114-126.
+- Bad and good character: *R v Hanson* [2005] EWCA Crim 824, [2005] 1 WLR 3169; *R v Vye* [1993] 1 WLR 471 (CA); *R v Hunter* [2015] EWCA Crim 631, [2015] 1 WLR 5367; Criminal Justice Act 2003, ss 98-113.
+- Identification and lies: *R v Turnbull* [1977] QB 224 (CA); *R v Lucas* [1981] QB 720 (CA).
+- Exclusionary discretion: Police and Criminal Evidence Act 1984, s 78.

@@ -47,6 +47,14 @@
 - R v Jogee: Facts: secondary liability. Held: foresight is evidence, not mens rea. Reasoning: accessory must intend assistance/encouragement. Answer use: complicity.
 - R v Shivpuri: Facts: impossible drug importation attempt. Held: impossible attempts can be criminal. Reasoning: culpable intent suffices under statute. Answer use: attempts.
 
+## Full OSCOLA Authority Bank
+- Murder intent and recklessness: *R v Woollin* [1999] 1 AC 82 (HL); *R v Cunningham* [1957] 2 QB 396 (CCA); *R v G and R* [2003] UKHL 50, [2004] 1 AC 1034.
+- Causation: *R v Smith* [1959] 2 QB 35 (CMAC); *R v Cheshire* [1991] 1 WLR 844 (CA); *R v Jordan* (1956) 40 Cr App R 152 (CCA); *R v Blaue* [1975] 1 WLR 1411 (CA); *R v Kennedy (No 2)* [2007] UKHL 38, [2008] 1 AC 269.
+- Manslaughter: *R v Adomako* [1995] 1 AC 171 (HL); *R v Church* [1966] 1 QB 59 (CCA); *DPP v Newbury* [1977] AC 500 (HL).
+- Intoxication: *DPP v Majewski* [1977] AC 443 (HL); *R v Kingston* [1995] 2 AC 355 (HL); *R v Hardie* [1985] 1 WLR 64 (CA).
+- Partial defences: *R v Clinton* [2012] EWCA Crim 2, [2013] QB 1; *R v Dawes* [2013] EWCA Crim 322; *R v Golds* [2016] UKSC 61, [2016] 1 WLR 4373; *R v Byrne* [1960] 2 QB 396 (CCA); Homicide Act 1957, s 2; Coroners and Justice Act 2009, ss 54-55.
+- Complicity, attempts, consent and self-defence: *R v Jogee* [2016] UKSC 8, [2017] AC 387; *R v Shivpuri* [1987] AC 1 (HL); *R v Brown* [1994] 1 AC 212 (HL); Accessories and Abettors Act 1861, s 8; Criminal Attempts Act 1981, s 1; Criminal Justice and Immigration Act 2008, s 76.
+
 ## Feedback Rules
 - Keep offence selection visible before analysing defences.
 - Do not add repetitive jury-assessment sections; integrate facts into each element.

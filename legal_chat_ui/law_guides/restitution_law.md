@@ -46,3 +46,8 @@
 ## Avoid
 - Avoid treating restitution as damages.
 - Avoid vague "unfair enrichment" without route and defence.
+
+## Full OSCOLA Authority Bank
+- Framework and enrichment: *Banque Financière de la Cité v Parc (Battersea) Ltd* [1999] 1 AC 221 (HL); *Benedetti v Sawiris* [2013] UKSC 50, [2014] AC 938; *Investment Trust Companies v Revenue and Customs Commissioners* [2017] UKSC 29, [2018] AC 275.
+- Mistake: *Kelly v Solari* (1841) 9 M & W 54; *Kleinwort Benson Ltd v Lincoln City Council* [1999] 2 AC 349 (HL); *Deutsche Morgan Grenfell Group plc v Inland Revenue Commissioners* [2006] UKHL 49, [2007] 1 AC 558.
+- Defences and proprietary claims: *Lipkin Gorman v Karpnale Ltd* [1991] 2 AC 548 (HL); *Foskett v McKeown* [2001] 1 AC 102 (HL); *Prudential Assurance Co Ltd v Revenue and Customs Commissioners* [2018] UKSC 39, [2019] AC 929.

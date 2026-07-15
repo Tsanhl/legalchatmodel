@@ -1540,6 +1540,39 @@ class Handler(BaseHTTPRequestHandler):
         return re.sub(r"\n{3,}", "\n\n", "\n".join(out_lines)).strip()
 
     @staticmethod
+    def _collapse_duplicate_headings(text: str) -> str:
+        """Keep each heading once: the first Introduction, the last Conclusion,
+        and the first occurrence of any other repeated title.
+
+        A multi-part build can re-open the essay structure inside later parts.
+        Sentence-level dedupe cannot reach heading lines, and a released answer
+        must never show two Introductions or two Conclusions.
+        """
+        lines = text.splitlines()
+
+        def title_key(line: str) -> str:
+            plain = re.sub(r"[*_`#]", "", line.lower())
+            return re.sub(r"[^a-z0-9]+", " ", plain).strip()
+
+        heading_at = [i for i, line in enumerate(lines) if line.lstrip().startswith("#")]
+        conclusions = [i for i in heading_at
+                       if re.search(r"\bconclusion\b", title_key(lines[i]))]
+        drop = set(conclusions[:-1])
+        seen: set[str] = set()
+        for i in heading_at:
+            if i in conclusions:
+                continue
+            key = title_key(lines[i])
+            if key in seen:
+                drop.add(i)
+            else:
+                seen.add(key)
+        if not drop:
+            return text
+        kept = [line for i, line in enumerate(lines) if i not in drop]
+        return re.sub(r"\n{3,}", "\n\n", "\n".join(kept)).strip()
+
+    @staticmethod
     def _drop_transplanted_problem_facts(text: str, question: str) -> str:
         """Remove sentences that turn source-case parties into question facts.
 
@@ -2573,9 +2606,10 @@ class Handler(BaseHTTPRequestHandler):
     @classmethod
     def _repair_inline_oscola(cls, text: str, question: str, slug: str | None) -> str:
         """Attach verified guide-bank citations to named, uncited authorities."""
-        citation_map = pipeline.guides.authority_citation_map_for_question(question, slug)
-        if not citation_map:
-            return text
+        # A subject may have no case-bank entries while still containing named
+        # statutes. Do not return early: statute citation repair is independent
+        # of the case map and is required for complete OSCOLA coverage.
+        citation_map = pipeline.guides.authority_citation_map_for_question(question, slug) or {}
 
         def normalized(value: str) -> str:
             value = re.sub(r"[*_`]", "", value.lower())
@@ -2959,7 +2993,19 @@ class Handler(BaseHTTPRequestHandler):
                 if k and k not in seen:
                     seen.add(k); out.append(re.sub(r"\s+", " ", x.strip(" .,;")))
             return out
-        full_inline = dedupe(cls._extract_full_inline_citations(final))[:60]
+        # A single parenthesis often contains several authorities separated by
+        # semicolons.  Treat each as a distinct entry so the deterministic list
+        # never emits hybrid authorities such as ``A v B ...; C v D ...``.
+        # Commas are deliberately retained because neutral citations and report
+        # citations for the same case are conventionally comma-separated.
+        full_inline: list[str] = []
+        for citation_group in cls._extract_full_inline_citations(final):
+            full_inline.extend(
+                part.strip()
+                for part in re.split(r"\s*;\s*", citation_group)
+                if part.strip()
+            )
+        full_inline = dedupe(full_inline)[:60]
         full_case_raw = [citation for citation in full_inline if re.search(r"\b(?:v|Re)\b", citation)]
         full_legislation_raw = [
             citation for citation in full_inline
@@ -2974,6 +3020,15 @@ class Handler(BaseHTTPRequestHandler):
             details = plain[dated.start():].strip()
             return f"*{name}* {details}" if name else plain
 
+        def format_legislation(citation: str) -> str:
+            """A bibliography lists an enactment once, without provision pinpoints."""
+            plain = re.sub(r"[*_`]", "", citation).strip()
+            match = re.match(
+                r"^(.*?\b(?:Act|Regulations|Rules)\s+(?:19|20)\d{2})\b",
+                plain,
+            )
+            return match.group(1).strip() if match else plain
+
         full_cases = [format_case(citation) for citation in full_case_raw]
         full_other = [
             re.sub(r"[*_`]", "", citation).strip()
@@ -2985,8 +3040,7 @@ class Handler(BaseHTTPRequestHandler):
             key=lambda value: re.sub(r"[^a-z0-9]+", " ", value.lower()).strip(),
         )[:60]
         legis = sorted(
-            dedupe([re.sub(r"[*_`]", "", citation).strip()
-                    for citation in full_legislation_raw]),
+            dedupe([format_legislation(citation) for citation in full_legislation_raw]),
             key=lambda value: value.lower(),
         )[:25]
         if not cases and not legis and not full_other:
@@ -3273,8 +3327,10 @@ class Handler(BaseHTTPRequestHandler):
                 candidates,
                 key=lambda candidate: self._candidate_penalty(candidate, message, words, slug),
             )
-        final = self._ensure_required_headings(self._deduplicate_substantive_prose(
-            self._repair_inline_oscola(final, message, slug)
+        final = self._ensure_required_headings(self._collapse_duplicate_headings(
+            self._deduplicate_substantive_prose(
+                self._repair_inline_oscola(final, message, slug)
+            )
         ), message)
         if words:
             final = self._safe_enforce_body_word_band(final, message, ledger, slug, words, corpus)
@@ -3502,9 +3558,9 @@ class Handler(BaseHTTPRequestHandler):
             prev_tail = ""
             # Internal sections remain private until the complete answer passes
             # every count, structure, citation, privacy and accuracy gate.
-        body = self._deduplicate_substantive_prose(
+        body = self._collapse_duplicate_headings(self._deduplicate_substantive_prose(
             self._drop_transplanted_problem_facts("\n\n".join(chunks), message)
-        )
+        ))
         body = self._ensure_required_headings(
             self._repair_inline_oscola(body, message, slug), message
         )
