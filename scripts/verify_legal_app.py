@@ -1017,6 +1017,30 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "criminal law carries a verified OSCOLA bank so named homicide authorities are repaired",
         results,
     )
+    mia_style_question = (
+        "Problem question. Suggested length: 1,000 words. Mia gets very drunk at a party and "
+        "hurls a glass across the room; it hits Ben, who dies in hospital after a doctor "
+        "misreads his scan. Mia's friend Zoe had been chanting 'throw it, throw it'. "
+        "Advise Mia and Zoe."
+    )
+    weak_mia = (
+        "### Introduction\nMia may be liable for manslaughter. Zoe may be an accomplice.\n"
+        "### Conclusion\nLiability is likely."
+    )
+    strong_mia = (
+        "### Introduction\nMia faces homicide charges. Intention may be inferred under "
+        "Woollin's virtual certainty direction. Voluntary intoxication follows Majewski. "
+        "Zoe's encouragement engages Jogee accessorial liability. Causation follows "
+        "Cheshire medical-treatment principles.\n### Conclusion\nBoth may be liable."
+    )
+    check(
+        "jogee" in " ".join(server.Handler._criminal_accuracy_failures(weak_mia, mia_style_question)).lower()
+        and "woollin" in " ".join(server.Handler._criminal_accuracy_failures(weak_mia, mia_style_question)).lower()
+        and "majewski" in " ".join(server.Handler._criminal_accuracy_failures(weak_mia, mia_style_question)).lower()
+        and not server.Handler._criminal_accuracy_failures(strong_mia, mia_style_question),
+        "criminal homicide answers must cover Woollin, Majewski and Jogee where facts engage them",
+        results,
+    )
     heading_repair = server.Handler._ensure_required_headings(
         "Opening analysis.\n\n### Formation\n\nApplied analysis.\n\nFinal advice.",
         formation_question,

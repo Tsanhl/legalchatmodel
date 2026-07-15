@@ -282,6 +282,10 @@
       "passed": true
     },
     {
+      "check": "criminal homicide answers must cover Woollin, Majewski and Jogee where facts engage them",
+      "passed": true
+    },
+    {
       "check": "word-count trimming preserves required Introduction and Conclusion structure",
       "passed": true
     },

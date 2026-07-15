@@ -1874,6 +1874,35 @@ class Handler(BaseHTTPRequestHandler):
         return list(dict.fromkeys(failures))
 
     @staticmethod
+    def _criminal_accuracy_failures(text: str, question: str) -> list[str]:
+        """Reject high-confidence omissions exposed by live homicide/complicity probes."""
+        qlow = question.lower()
+        homicide = any(term in qlow for term in (
+            "murder", "manslaughter", "homicide", "dies", "death", "kills", "killed",
+        ))
+        if not homicide:
+            return []
+        low = text.lower()
+        failures: list[str] = []
+        complicity = any(term in qlow for term in (
+            "chant", "encourage", "incite", "accomplice", "accessory", "secondary",
+            "friend", "assist",
+        ))
+        if complicity and "jogee" not in low:
+            failures.append("omitted Jogee when advising on accessorial/encouragement liability")
+        intent_issue = any(term in qlow for term in (
+            "intent", "intention", "murder", "oblique", "virtual certainty",
+            "throws", "throw", "hurls", "hurl", "bottle", "glass",
+        ))
+        if intent_issue and "woollin" not in low and "virtual certainty" not in low:
+            failures.append("omitted Woollin/virtual-certainty analysis for murderous intent")
+        if any(term in qlow for term in ("drunk", "intoxicat")) and "majewski" not in low:
+            failures.append("omitted Majewski when voluntary intoxication was in issue")
+        if "gatwick investment" in low or "liberty mutual insurance" in low:
+            failures.append("used an irrelevant insurance authority in a criminal-law answer")
+        return list(dict.fromkeys(failures))
+
+    @staticmethod
     def _employment_accuracy_failures(text: str, question: str) -> list[str]:
         """High-confidence errors for unsafe-workplace dismissal problems."""
         qlow = question.lower()
@@ -2229,6 +2258,8 @@ class Handler(BaseHTTPRequestHandler):
             failures += cls._tort_accuracy_failures(text, question, part_title)
         if slug == "trusts_law":
             failures += cls._trust_accuracy_failures(text, question)
+        if slug == "criminal_law":
+            failures += cls._criminal_accuracy_failures(text, question)
         if slug == "employment_law":
             failures += cls._employment_accuracy_failures(text, question)
         if slug == "aviation_law":
