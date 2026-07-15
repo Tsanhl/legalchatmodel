@@ -1,0 +1,6 @@
+# LegalChatModel UI/RAG/runtime dependencies for Windows.
+# MLX is deliberately absent: Windows inference is supplied by local llama-server.
+certifi>=2024.8.30
+pypdf>=5.0.0
+python-docx>=1.1.2
+PyJWT[crypto]>=2.10.0

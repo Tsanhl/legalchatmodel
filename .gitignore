@@ -123,6 +123,8 @@ adapters/legal_answer_flow_v11_specialist_lora/*
 !adapters/legal_answer_flow_v11_specialist_lora/adapter_config.json
 !adapters/legal_answer_flow_v11_specialist_lora/README.md
 fused/
+*.gguf
+*.gguf.v11.json
 
 # Spyder project settings
 .spyderproject

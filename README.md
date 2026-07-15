@@ -1,7 +1,7 @@
 # LegalChatModel
 
 LegalChatModel is a local, ChatGPT-style legal drafting and study application
-tailored to the law of England and Wales. It combines a fine-tuned MLX model,
+tailored to the law of England and Wales. It combines a fine-tuned local model,
 an anonymized legal knowledge base, official current-law checking, structured
 answer modes, OSCOLA output controls, cross-chat Memory, and isolated Private
 conversations.
@@ -114,6 +114,16 @@ RAG knowledge base. Users may build their own local index without committing it.
 For the free-pilot, private-storage and feedback-to-training architecture, see
 [DEPLOYMENT.md](DEPLOYMENT.md).
 
+## Supported local platforms
+
+- **Apple silicon:** production MLX path with the included audited V11 adapter.
+- **Windows 10/11 (64-bit):** the same application and legal pipeline through a
+  local llama.cpp server. A generic GGUF is functional; full V11-equivalent
+  operation requires the separately exported and validated V11-fused GGUF.
+
+See [WINDOWS.md](WINDOWS.md) for setup, integrity checks, conversion and the
+Windows CI smoke test. MLX itself is not used on Windows.
+
 ## Quick start on Apple silicon
 
 Requirements: macOS, Python 3.10+ and enough memory for the 4-bit 7B base model.
@@ -172,10 +182,25 @@ Useful options:
 ./scripts/chat_ui.sh --temp 0.1
 ```
 
+### Quick start on Windows
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+.\scripts\setup_windows.ps1
+$env:LEGAL_LLAMA_SERVER = "C:\path\to\llama-server.exe"
+$env:LEGAL_GGUF_MODEL = "C:\path\to\model.gguf"
+.\scripts\chat_ui_windows.ps1
+```
+
+The base-model download and llama.cpp executable are not bundled. Users must
+provide a local GGUF; the V11 converter and verified-profile mechanism are
+documented in [WINDOWS.md](WINDOWS.md).
+
 ## Verification
 
 ```bash
 python3 scripts/verify_legal_app.py
+python3 scripts/verify_windows_backend.py
 python3 scripts/live_private_release_sweep.py --general --fresh
 python3 scripts/live_private_release_sweep.py --sqe --fresh
 ```

@@ -1,9 +1,12 @@
 # Deployment and private-data architecture
 
-The checked release is a local Apple-silicon application. Its MLX inference
-backend cannot be moved unchanged to a normal Linux CPU web host. Publishing the
-source repository and publishing a working multi-user inference service are two
-different tasks.
+The checked release supports Apple-silicon MLX inference and a cross-platform
+local llama.cpp backend for Windows/Linux-compatible GGUF models. The MLX
+backend cannot be moved unchanged to a normal Linux CPU web host, and the
+multi-gigabyte V11-fused GGUF is not stored in GitHub. Publishing the source
+repository and publishing a working multi-user inference service are therefore
+still two different tasks. See [WINDOWS.md](WINDOWS.md) for the local Windows
+path and the V11 conversion/validation boundary.
 
 ## Recommended no-GPU-cost public pilot
 
@@ -194,13 +197,14 @@ and the database may preserve private or copyrighted source text.
 
 ## Fully cloud-hosted alternative
 
-A genuine always-on public service requires porting inference from MLX to a
-Linux-compatible engine and using GPU compute. [Hugging Face Spaces offers free
+A genuine always-on public service may use the new llama-server adapter with a
+validated V11-fused GGUF, but still requires suitable GPU compute and private
+persistent storage. [Hugging Face Spaces offers free
 CPU hardware](https://huggingface.co/docs/hub/main/spaces-overview), but GPU
 hardware is a paid upgrade unless a community grant is approved; free Spaces
 also sleep when unused. The base model, adapter conversion, licence, private
-storage and inference quality must all be revalidated after a port. This is not
-equivalent to uploading the current repository.
+storage and inference quality must all be revalidated for the hosted hardware.
+This is not equivalent to uploading the current repository.
 
 ## Feedback-to-training lifecycle
 
