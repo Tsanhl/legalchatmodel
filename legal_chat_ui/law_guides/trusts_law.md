@@ -33,6 +33,9 @@
 - Armitage v Nurse: Facts: trustee exemption clause. Held: core obligation of honesty cannot be excluded. Reasoning: trust requires irreducible core. Answer use: trustee liability clauses.
 - Boardman v Phipps: Facts: fiduciary profited from information. Held: account of profit despite good faith. Reasoning: prophylactic loyalty rule. Answer use: no-profit duty.
 - FHR European Ventures: Facts: secret commission. Held: bribe/commission held on constructive trust. Reasoning: proprietary response deters disloyalty. Answer use: remedies and insolvency.
+- Rukhadze v Recovery Partners GP Ltd: Facts: former fiduciaries diverted and exploited a business opportunity. Held: the Supreme Court refused to add a lawful-alternative/but-for escape from the profit rule. Reasoning: strict disgorgement protects single-minded loyalty, while an equitable allowance answers disproportionate injustice. Answer use: current account-of-profits, causation and allowance analysis.
+- Stevens v Hotel Portfolio II UK Ltd: Facts: an unauthorised profit held on constructive trust was dissipated. Held: the beneficiary's immediate proprietary interest was real and its dissipation caused compensable loss. Reasoning: an institutional constructive trust is not a merely notional remedy. Answer use: proprietary consequences and dissipation.
+- Hopcraft v Close Brothers Ltd: Facts: commission arrangements raised fiduciary-duty questions. Held: the Supreme Court restated the strict no-profit/no-conflict rules and fully informed consent, while carefully defining when a fiduciary undertaking exists. Answer use: current scope and consequences of loyalty.
 - Saunders v Vautier: Facts: beneficiary sought trust property despite postponement. Held: adult capacitated absolutely entitled beneficiaries can terminate the trust. Reasoning: beneficial ownership can override settlor-imposed timing where all relevant beneficiaries agree. Answer use: termination/variation.
 - Re Weston's Settlements / Goulding v James: Facts: court approval of trust variations affecting protected beneficiaries. Held: court approval turns on benefit, broadly understood. Reasoning: the court consents for those unable to consent but does not simply enforce settlor preference. Answer use: Variation of Trusts Act 1958 benefit analysis.
 
@@ -40,6 +43,7 @@
 - Nature and scope of fiduciary loyalty: *Bristol and West Building Society v Mothew* [1998] Ch 1 (CA); *Bray v Ford* [1896] AC 44 (HL); *Aberdeen Railway Co v Blaikie Brothers* (1854) 1 Macq 461 (HL).
 - No-conflict and no-profit rules: *Keech v Sandford* (1726) Sel Cas Ch 61, 25 ER 223; *Boardman v Phipps* [1967] 2 AC 46 (HL); *Regal (Hastings) Ltd v Gulliver* [1967] 2 AC 134 (HL).
 - Honesty, authorisation and remedies: *Armitage v Nurse* [1998] Ch 241 (CA); *Murad v Al-Saraj* [2005] EWCA Civ 959, [2005] WTLR 1573; *FHR European Ventures LLP v Cedar Capital Partners LLC* [2014] UKSC 45, [2015] AC 250.
+- Current profit, allowance and proprietary consequences: *Rukhadze v Recovery Partners GP Ltd* [2025] UKSC 10, [2025] 2 WLR 529; *Stevens v Hotel Portfolio II UK Ltd* [2025] UKSC 28; *Hopcraft v Close Brothers Ltd* [2025] UKSC 33, [2025] 3 WLR 423.
 - Trust creation and constitution, only where directly relevant: *Knight v Knight* (1840) 3 Beav 148, 49 ER 58; *Milroy v Lord* (1862) 4 De GF & J 264, 45 ER 1185; *Re Rose* [1952] Ch 499 (CA); *Pennington v Waine* [2002] EWCA Civ 227, [2002] 1 WLR 2075.
 - Beneficiary consent and variation, only where directly relevant: *Saunders v Vautier* (1841) 4 Beav 115, 49 ER 282; Variation of Trusts Act 1958, s 1; *Re Weston's Settlements* [1969] 1 Ch 223 (CA).
 
@@ -51,6 +55,7 @@
 - *Armitage v Nurse* is a Court of Appeal authority reported at [1998] Ch 241; the irreducible-core formulation is associated with Millett LJ. Do not attribute it to Lord Halsbury, Lord Lindley or the House of Lords.
 - *Boardman v Phipps* is reported at [1967] 2 AC 46. Boardman was a fiduciary, not the trustee whose shares were administered by the trust.
 - *FHR European Ventures LLP v Cedar Capital Partners LLC* is [2014] UKSC 45. Do not substitute Pimco, call it a 2015 Court of Appeal decision, or present secret commissions as merely personal relief.
+- For any post-2025 answer addressing accounts, allowances or proprietary relief, use *Rukhadze v Recovery Partners GP Ltd* [2025] UKSC 10 and distinguish strict liability from the conceptual debate about whether accounting enforces a primary duty or operates remedially. Use *Stevens v Hotel Portfolio II UK Ltd* [2025] UKSC 28 for the real proprietary and dissipation consequences. Do not present an account and an institutional constructive trust as merely discretionary judicial responses.
 - Creation, constitution and variation cases such as *Knight v Knight*, *Re Rose*, *Saunders v Vautier* and *Re Weston's Settlements* are not evidence that fiduciary loyalty itself is flexible. Omit them from a focused loyalty essay unless a precise comparison is necessary.
 
 ## Feedback Rules

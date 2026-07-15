@@ -1,5 +1,5 @@
 **Single best answer: illegality, specifically use of a statutory power for an improper purpose (ultra vires), is the most directly engaged judicial-review ground.**
 
-A public power must be exercised to promote the purpose for which Parliament conferred it, not an unauthorised collateral objective. The court identifies the statute’s purpose and asks whether the minister’s reason frustrated or departed from that purpose (*Padfield v Minister of Agriculture, Fisheries and Food* [1968] AC 997).
+A public power must be exercised to promote the purpose for which Parliament conferred it, not an unauthorised collateral objective. The court identifies the statute’s purpose and asks whether the minister’s reason frustrated or departed from that purpose (*Padfield v Minister of Agriculture, Fisheries and Food* [1968] AC 997 (HL)).
 
 Relevant-considerations review may overlap if the improper objective caused the minister to consider matters Parliament excluded. Irrationality is not the best primary answer because an action can be rationally calculated to achieve the minister’s objective yet unlawful because that objective is outside the statute. Procedural unfairness is also not indicated by the stated facts. The direct classification is therefore improper purpose within illegality.

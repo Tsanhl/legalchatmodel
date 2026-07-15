@@ -118,11 +118,23 @@
       "passed": true
     },
     {
+      "check": "reviewed proprietary-estoppel enquiry is accurate, inline-cited and within 1,000 words \u00b11%",
+      "passed": true
+    },
+    {
+      "check": "proprietary-estoppel gate rejects the hallucinations found by the live browser probe",
+      "passed": true
+    },
+    {
       "check": "browser can publish the final count-checked answer as one replacement event",
       "passed": true
     },
     {
       "check": "a terminal quality error cannot be overwritten by provisional answer text",
+      "passed": true
+    },
+    {
+      "check": "browser recovers a saved complete answer after a long-stream transport interruption",
       "passed": true
     },
     {
@@ -135,6 +147,18 @@
     },
     {
       "check": "official latest-law search is active for every user enquiry",
+      "passed": true
+    },
+    {
+      "check": "official online flow searches and subject-gates current UKSC authority",
+      "passed": true
+    },
+    {
+      "check": "mandatory current-case gate is limited to precise doctrinal matches",
+      "passed": true
+    },
+    {
+      "check": "current-case source chips reject lexical false friends across broad subjects",
       "passed": true
     },
     {
@@ -167,6 +191,10 @@
     },
     {
       "check": "reviewed fiduciary-loyalty essay is complete, accurate and within the 2,000-word \u00b11% band",
+      "passed": true
+    },
+    {
+      "check": "release gate rejects an answer that silently omits the relevant current official judgment",
       "passed": true
     },
     {
@@ -291,6 +319,10 @@
     },
     {
       "check": "public launcher cannot inherit the private local RAG database",
+      "passed": true
+    },
+    {
+      "check": "persistent macOS public services keep the tunnel token outside Git with mode 0600",
       "passed": true
     }
   ]

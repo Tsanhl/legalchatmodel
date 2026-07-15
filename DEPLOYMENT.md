@@ -53,7 +53,7 @@ not clone GitHub, install Python or download model weights.
    and abuse controls enabled. Never use a Bypass policy.
 
 4. Copy the Access **team domain** and **Application Audience (AUD) tag**, then
-   start the origin:
+   start the origin. For an interactive foreground run:
 
    ```bash
    export CF_ACCESS_TEAM_DOMAIN="https://your-team.cloudflareaccess.com"
@@ -63,9 +63,27 @@ not clone GitHub, install Python or download model weights.
    ./scripts/public_chat_ui.sh
    ```
 
-5. Start the named tunnel with `cloudflared tunnel run YOUR_TUNNEL_NAME` and
-   visit the public hostname. Access performs the login; the origin separately
-   validates the JWT signature, issuer and audience.
+   On macOS, the recommended persistent setup stores the tunnel token outside
+   the repository with mode `0600` and installs separate origin/tunnel user
+   launch agents. Download `cloudflared`, then run:
+
+   ```bash
+   python3 scripts/configure_public_macos.py install \
+     --team-domain "https://your-team.cloudflareaccess.com" \
+     --aud "your-application-audience-tag"
+   ```
+
+   Paste the tunnel token only at the hidden prompt. It is never printed or
+   added to Git. Check the services with
+   `python3 scripts/configure_public_macos.py status`. The Mac must remain
+   powered on, connected to the internet and logged in for this user-level
+   service to answer visitors.
+
+5. If you used the foreground launch, start the named tunnel with
+   `cloudflared tunnel run YOUR_TUNNEL_NAME`. The macOS installer in step 4
+   starts it automatically. Visit the public hostname: Access performs the
+   login, and the origin separately validates the JWT signature, issuer and
+   audience.
 
 The public launcher binds only to loopback and refuses to start without the
 Access configuration and separate database/feedback/upload paths. This prevents

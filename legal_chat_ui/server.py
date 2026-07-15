@@ -149,6 +149,7 @@ class ModelHolder:
         self.error: str | None = None
         self._gen_lock = threading.Lock()  # MLX generation is serialized
         self._request_lock = threading.Lock()  # one complete answer pipeline at a time
+        self.active_conversation_id: str | None = None
 
     def load(self):
         try:
@@ -1137,7 +1138,12 @@ class Handler(BaseHTTPRequestHandler):
             if not conversation_mode(cid, user["id"]):
                 self._json({"error": "Conversation not found."}, status=404)
             else:
-                self._json({"messages": get_messages(cid, user["id"])})
+                self._json({
+                    "messages": get_messages(cid, user["id"]),
+                    "generation_active": bool(
+                        MODEL and MODEL.active_conversation_id == cid
+                    ),
+                })
         elif path.startswith("/assets/"):
             self._serve_static(path[len("/assets/"):])
         else:
@@ -1304,6 +1310,7 @@ class Handler(BaseHTTPRequestHandler):
             }, status=409)
             return
 
+        MODEL.active_conversation_id = conv_id
         try:
             try:
                 consume_generation_quota(user_id)
@@ -1373,6 +1380,8 @@ class Handler(BaseHTTPRequestHandler):
             self._sse({"sources": meta.get("sources", []) if meta else []})
             self._sse({"done": True})
         finally:
+            if MODEL.active_conversation_id == conv_id:
+                MODEL.active_conversation_id = None
             MODEL._request_lock.release()
 
     def _sse(self, obj: dict) -> None:
@@ -1411,7 +1420,8 @@ class Handler(BaseHTTPRequestHandler):
         r"\s*[\[(](?:1[89]|20)\d{2}[\])]\s+\d{0,3}\s*(?:UKSC|UKHL|UKPC|EWCA(?:\s+(?:Civ|Crim))?|EWHC|"
         r"EWFC|EWCOP|AC|App\s*Cas|Ch(?:\s*D)?|QB|KB|Fam|WLR|All\s*ER|Exch?|LR|CLC|Lloyd's\s*Rep|"
         r"BCLC|BCC|BMLR|Bus\s+LR|Cr\s+App\s+R|ECR|FSR|ICR|RPC|WTLR|"
-        r"Lloyd's\s+Rep|P\s*&\s*CR)\b\s*\d*(?:\s*\((?:Ch|QB|KB|Fam|Admin|Comm|TCC|Ex)\))?")
+        r"Lloyd's\s+Rep|P\s*&\s*CR|Macq|ER|Sel\s+Cas\s+Ch)\b\s*\d*"
+        r"(?:\s*\((?:HL|Ch|QB|KB|Fam|Admin|Comm|TCC|Ex)\))?")
     _FOOTNOTE_REF_RE = re.compile(r"\s*\(n\s+\d+\)")
 
     @classmethod
@@ -1785,6 +1795,44 @@ class Handler(BaseHTTPRequestHandler):
             failures.append("omitted the no-profit rule and gain-based response")
         if not re.search(r"\b(?:informed consent|authoris(?:e|ation|ed))\b", low):
             failures.append("omitted informed consent or authorisation")
+        current_remedies = any(term in qlow for term in (
+            "allowance", "account of profits", "accounts of profits", "proprietary remed",
+        ))
+        if current_remedies and "rukhadze" not in low:
+            failures.append("omitted the current leading fiduciary-profit authority Rukhadze")
+        if current_remedies and not re.search(
+            r"(?:duty to account|institutional constructive trust|not (?:merely|just) a remedy|"
+            r"primary duty|remedial analys)", low,
+        ):
+            failures.append("treated fiduciary accounting as a generic remedy without the current conceptual analysis")
+        return list(dict.fromkeys(failures))
+
+    @staticmethod
+    def _proprietary_estoppel_accuracy_failures(text: str, question: str) -> list[str]:
+        """Reject recurring land-law hallucinations found by live browser probes."""
+        if "proprietary estoppel" not in question.lower():
+            return []
+        low = text.lower()
+        failures: list[str] = []
+        for term, label in (
+            ("assurance", "assurance"), ("reliance", "reliance"),
+            ("detriment", "detriment"), ("unconscionab", "unconscionability"),
+        ):
+            if term not in low:
+                failures.append(f"omitted proprietary-estoppel {label} analysis")
+        if not any(term in low for term in ("remedy", "remedies", "relief")):
+            failures.append("omitted proprietary-estoppel remedies")
+        if "caparo industries" in low:
+            failures.append("imported the negligence authority Caparo into proprietary estoppel")
+        if re.search(r"gillett v holt.{0,100}(?:\[2005\]|\b2005\b)", low, re.S):
+            failures.append("misstated Gillett v Holt as a 2005 authority")
+        if re.search(
+            r"guest v guest.{0,180}(?:\[2008\]|\b2008\b|court of appeal|basement|partner)",
+            low, re.S,
+        ):
+            failures.append("misstated Guest v Guest's date, court or farm facts")
+        if "hunt v soady" in low:
+            failures.append("used Hunt v Soady as a proprietary-estoppel detriment authority")
         return list(dict.fromkeys(failures))
 
     @staticmethod
@@ -2136,6 +2184,7 @@ class Handler(BaseHTTPRequestHandler):
                                    slug: str | None, part_title: str = "") -> list[str]:
         failures = cls._sqe_accuracy_failures(text, question)
         failures += cls._specialist_general_accuracy_failures(text, question, slug)
+        failures += cls._proprietary_estoppel_accuracy_failures(text, question)
         if slug == "contract_law":
             failures += cls._contract_accuracy_failures(text, question, part_title)
         if slug == "tort_law":
@@ -2452,6 +2501,25 @@ class Handler(BaseHTTPRequestHandler):
             body = self._trim_to_words(body, target)
         return self._ensure_required_headings(body, question)
 
+    @staticmethod
+    def _current_authority_failures(text: str, meta: dict | None) -> list[str]:
+        """Require the top relevant official current judgment to be confronted.
+
+        The Find Case Law result has already passed query relevance and subject
+        gates.  Requiring its neutral citation prevents an answer from showing
+        a successful online-search chip while silently recycling only an older
+        fixture or authority bank.
+        """
+        required = (meta or {}).get("required_current_authority") or {}
+        citation = re.sub(r"\s+", " ", str(required.get("citation") or "")).strip()
+        if not citation:
+            return []
+        haystack = re.sub(r"\s+", " ", text or "")
+        if citation.lower() in haystack.lower():
+            return []
+        name = re.sub(r"\s*\[20\d{2}\]\s+UKSC\s+\d+\s*$", "", str(required.get("name") or ""))
+        return [f"omitted the current official authority {name} {citation}".strip()]
+
     @classmethod
     def _candidate_penalty(cls, text: str, question: str, target: int | None,
                            slug: str | None) -> tuple[int, int, int]:
@@ -2508,6 +2576,37 @@ class Handler(BaseHTTPRequestHandler):
             value = re.sub(r"[*_`]", "", value.lower())
             return re.sub(r"[^a-z0-9]+", " ", value).strip()
 
+        def drop_named_parentheticals(value: str, keys: list[str]) -> str:
+            """Remove an existing full case parenthesis before canonical replacement."""
+            spans: list[tuple[int, int]] = []
+            stack: list[int] = []
+            for index, char in enumerate(value):
+                if char == "(":
+                    stack.append(index)
+                elif char == ")" and stack:
+                    start = stack.pop()
+                    if stack:
+                        continue
+                    blob = normalized(value[start + 1:index])
+                    if any(key in blob for key in keys):
+                        spans.append((start, index + 1))
+            for start, end in reversed(spans):
+                value = value[:start] + " " + value[end:]
+            return value
+
+        def format_inline(value: str) -> str:
+            plain = re.sub(r"[*_`]", "", value).strip()
+            if not re.search(r"\b(?:v|Re)\b", plain):
+                return plain
+            dated = re.search(
+                r"\s(?=(?:\[(?:1[5-9]|20)\d{2}\]|\((?:1[5-9]|20)\d{2}\)|"
+                r"\d+\s+US\s+\d+))",
+                plain,
+            )
+            if not dated:
+                return plain
+            return f"*{plain[:dated.start()].strip()}* {plain[dated.start():].strip()}"
+
         out_lines: list[str] = []
         for line in text.splitlines():
             if line.lstrip().startswith("#"):
@@ -2528,12 +2627,12 @@ class Handler(BaseHTTPRequestHandler):
                     # supplied year/report/court fragment and restore the whole
                     # canonical citation at proposition level. This catches
                     # plausible-looking inventions such as Armitage (1893).
+                    matched_keys = [key for key in citation_map if key in blob]
+                    sentence = drop_named_parentheticals(sentence, matched_keys)
                     sentence = cls._NEUTRAL_RE.sub("", sentence)
                     sentence = re.sub(r"\s*\((?:18|19|20)\d{2}\)(?=[,.;\s]|$)", "", sentence)
                     sentence = re.sub(r"\[([^\]\n]{2,160}\bv\s+[^\]\n]{2,160})\]", r"\1", sentence)
-                    for key in citation_map:
-                        if key not in blob:
-                            continue
+                    for key in matched_keys:
                         words = [re.escape(word) for word in key.split()]
                         case_pattern = r"\b" + r"[\s*_`.-]*".join(words) + r"\b"
                         sentence = re.sub(
@@ -2553,8 +2652,7 @@ class Handler(BaseHTTPRequestHandler):
                             rf"\(\s*{case_pattern}\s*\)", " ", sentence,
                             flags=re.I,
                         )
-                    for full in citations:
-                        sentence = sentence.replace(f"({full})", "")
+                    sentence = re.sub(r"\(\s*\)", " ", sentence)
                 elif cls._extract_full_inline_citations(sentence):
                     repaired.append(sentence)
                     continue
@@ -2576,7 +2674,8 @@ class Handler(BaseHTTPRequestHandler):
                     stripped = sentence.rstrip()
                     punctuation = stripped[-1] if stripped[-1:] in ".?!" else ""
                     core = stripped[:-1].rstrip() if punctuation else stripped
-                    sentence = f"{core} ({'; '.join(citations)}){punctuation or '.'}"
+                    formatted = [format_inline(citation) for citation in citations]
+                    sentence = f"{core} ({'; '.join(formatted)}){punctuation or '.'}"
                 repaired.append(sentence)
             out_lines.append(" ".join(part.strip() for part in repaired if part.strip()))
         return re.sub(r"\n{3,}", "\n\n", "\n".join(out_lines)).strip()
@@ -2861,18 +2960,30 @@ class Handler(BaseHTTPRequestHandler):
             citation for citation in full_inline
             if re.search(r"\b(?:Act|Regulations|Rules)\s+(?:19|20)\d{2}\b", citation)
         ]
-        full_cases = [
-            re.sub(r"[*_`]", "", citation).strip()
-            for citation in full_case_raw
-        ]
+        def format_case(citation: str) -> str:
+            plain = re.sub(r"[*_`]", "", citation).strip()
+            dated = re.search(r"\s(?=(?:\[(?:1[5-9]|20)\d{2}\]|\((?:1[5-9]|20)\d{2}\)))", plain)
+            if not dated:
+                return plain
+            name = plain[:dated.start()].strip()
+            details = plain[dated.start():].strip()
+            return f"*{name}* {details}" if name else plain
+
+        full_cases = [format_case(citation) for citation in full_case_raw]
         full_other = [
             re.sub(r"[*_`]", "", citation).strip()
             for citation in full_inline
             if citation not in full_case_raw and citation not in full_legislation_raw
         ]
-        cases = dedupe(full_cases)[:60]
-        legis = dedupe([re.sub(r"[*_`]", "", citation).strip()
-                        for citation in full_legislation_raw])[:25]
+        cases = sorted(
+            dedupe(full_cases),
+            key=lambda value: re.sub(r"[^a-z0-9]+", " ", value.lower()).strip(),
+        )[:60]
+        legis = sorted(
+            dedupe([re.sub(r"[*_`]", "", citation).strip()
+                    for citation in full_legislation_raw]),
+            key=lambda value: value.lower(),
+        )[:25]
         if not cases and not legis and not full_other:
             return ""
         parts = ["\n\n---\n### References"]
@@ -2881,7 +2992,8 @@ class Handler(BaseHTTPRequestHandler):
         if legis:
             parts.append("**Legislation**\n" + "\n".join(f"- {s}" for s in legis))
         if full_other:
-            parts.append("**Other authorities**\n" + "\n".join(f"- {s}" for s in dedupe(full_other)))
+            ordered_other = sorted(dedupe(full_other), key=lambda value: value.lower())
+            parts.append("**Other authorities**\n" + "\n".join(f"- {s}" for s in ordered_other))
         parts.append("_OSCOLA list of authorities used above. Pinpoints appear only where verified._")
         return "\n\n".join(parts)
 
@@ -2973,12 +3085,26 @@ class Handler(BaseHTTPRequestHandler):
 
         curated = pipeline.curated_regression_answer(message)
         if curated:
-            curated_body = self._without_reference_section(curated)
+            curated_body = self._ensure_required_headings(
+                self._repair_inline_oscola(
+                    self._without_reference_section(curated), message, slug
+                ),
+                message,
+            )
+            if words:
+                curated_corpus = (
+                    ledger.split("ASSESSMENT & WRITING GUIDANCE", 1)[0]
+                    + pipeline.guides.guide_method_for_question(message, slug)
+                )
+                curated_body = self._safe_enforce_body_word_band(
+                    curated_body, message, ledger, slug, words, curated_corpus
+                )
             curated_failures = self._generic_answer_failures(curated_body, message, target=words)
             curated_failures += self._complete_answer_failures(curated_body, message)
             curated_failures += self._subject_accuracy_failures(
                 curated_body, message, slug, "reviewed full answer"
             )
+            curated_failures += self._current_authority_failures(curated_body, meta)
             if words:
                 lower = (words * 99 + 99) // 100
                 upper = words * 101 // 100
@@ -3083,6 +3209,7 @@ class Handler(BaseHTTPRequestHandler):
             failures += self._subject_accuracy_failures(
                 final, message, slug, "full answer"
             )
+            failures += self._current_authority_failures(final, meta)
             failures = list(dict.fromkeys(failures))
             rewrite_markers = (
                 "plan or writing advice", "pipeline instructions", "private filename",
@@ -3105,6 +3232,9 @@ class Handler(BaseHTTPRequestHandler):
                 "unlawful export", "export control (amendment)", "unesco convention",
                 "computer misuse act", "further-offence intent", "impairment under section 2",
                 "fraud act section 1", "data protection act 2018", "evidence destruction",
+                "proprietary-estoppel", "caparo into proprietary estoppel",
+                "gillett v holt", "guest v guest", "hunt v soady",
+                "current official authority",
             )
             rewrite_failures = [
                 failure for failure in failures
@@ -3148,6 +3278,7 @@ class Handler(BaseHTTPRequestHandler):
         remaining += self._subject_accuracy_failures(
             final, message, slug, "full answer"
         )
+        remaining += self._current_authority_failures(final, meta)
         remaining = list(dict.fromkeys(remaining))
         if remaining:
             # These checks supervise and rank revisions.  They are not a reason
@@ -3378,6 +3509,7 @@ class Handler(BaseHTTPRequestHandler):
         remaining += self._subject_accuracy_failures(
             body, message, slug, "complete answer"
         )
+        remaining += self._current_authority_failures(body, meta)
         remaining = list(dict.fromkeys(remaining))
         if remaining:
             print("[longform] released best assembled answer with warnings: "

@@ -149,6 +149,17 @@ export CF_ACCESS_AUD="your-application-audience-tag"
 ./scripts/public_chat_ui.sh
 ```
 
+For a persistent Mac-hosted public service, use the installer after creating
+the Cloudflare named tunnel and Access application:
+
+```bash
+python3 scripts/configure_public_macos.py install \
+  --team-domain "https://your-team.cloudflareaccess.com" \
+  --aud "your-application-audience-tag"
+```
+
+It prompts invisibly for the tunnel token and keeps it outside the repository.
+
 This is not deployable through GitHub Pages: Pages cannot run the Python/MLX
 model process. Complete tunnel, Access policy and private-storage instructions
 are in [DEPLOYMENT.md](DEPLOYMENT.md).

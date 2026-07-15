@@ -163,7 +163,9 @@ def audit_answer(case_id: str, message: str, expected_slug: str, answer: str,
     failures += server.Handler._subject_accuracy_failures(body, message, slug, "full answer")
     failures += official_source_failures(sources)
     for source in sources:
-        if isinstance(source, dict) and not pipeline.official_result_matches_subject(slug, source):
+        if isinstance(source, dict) and not pipeline.official_result_matches_subject(
+            slug, source, message
+        ):
             failures.append(f"official but subject-irrelevant source chip: {source.get('url') or source!r}")
     if PRIVATE_RE.search(answer):
         failures.append("private filename, path, identifier or internal label leaked")
