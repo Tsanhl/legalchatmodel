@@ -1350,7 +1350,7 @@ class Handler(BaseHTTPRequestHandler):
                     conv_id, message, history, jurisdiction, online_mode,
                     memory_context=memory_context, user_id=user_id)
             except (BrokenPipeError, ConnectionResetError):
-                return  # client navigated away
+                return  # client navigated away; lock released in finally
             except Exception as exc:
                 # Do not rerun the entire multi-pass pipeline and then return a
                 # blank error.  Build one direct, source-grounded completion and
@@ -1391,8 +1391,21 @@ class Handler(BaseHTTPRequestHandler):
 
     def _sse(self, obj: dict) -> None:
         try:
+            # A disconnected browser can leave the socket half-closed; without a
+            # write timeout, flush() may block forever and keep the generation lock.
+            try:
+                self.connection.settimeout(5)
+            except Exception:
+                pass
             self.wfile.write(f"data: {json.dumps(obj)}\n\n".encode("utf-8"))
             self.wfile.flush()
+        except Exception:
+            pass
+
+    def setup(self):
+        super().setup()
+        try:
+            self.connection.settimeout(600)
         except Exception:
             pass
 
@@ -2284,8 +2297,9 @@ class Handler(BaseHTTPRequestHandler):
     def _complete_answer_failures(cls, text: str, question: str) -> list[str]:
         """Release gates that apply only after every internal unit is assembled."""
         failures: list[str] = []
-        low = text.lower()
-        headings = re.findall(r"(?im)^#{2,4}\s+(.+?)\s*$", text)
+        body = cls._without_reference_section(text)
+        low = body.lower()
+        headings = re.findall(r"(?im)^#{2,4}\s+(.+?)\s*$", body)
         if pipeline.is_essay(question) or pipeline.is_problem_question(question):
             if not any(re.match(r"(?:part\s+i\s*[:.-]?\s*)?introduction\b", h, re.I)
                        for h in headings):
@@ -2301,11 +2315,11 @@ class Handler(BaseHTTPRequestHandler):
         if any(re.search(pattern, low, re.I | re.M) for pattern in private_markers):
             failures.append("leaked a private filename, identifier or internal source label")
 
-        words = len(text.split())
+        words = len(body.split())
         # Full inline OSCOLA is represented in chat by a parenthetical citation
         # immediately following the supported proposition. A modest density
         # floor catches name-only/no-citation answers without encouraging strings.
-        full_citations = cls._extract_full_inline_citations(text)
+        full_citations = cls._extract_full_inline_citations(body)
         if words >= 120:
             required = max(1, (words + 649) // 650)
             if len(full_citations) < required:
@@ -2313,7 +2327,7 @@ class Handler(BaseHTTPRequestHandler):
                     f"used only {len(full_citations)} full inline OSCOLA citations; "
                     f"at least {required} are required for this answer length"
                 )
-        uncited = cls._uncited_authority_sentences(text)
+        uncited = cls._uncited_authority_sentences(body)
         if uncited:
             failures.append(
                 f"left {len(uncited)} case/statute proposition(s) without an immediately following full "
@@ -2325,19 +2339,20 @@ class Handler(BaseHTTPRequestHandler):
     def _part_release_failures(cls, text: str, part_number: int, part_total: int) -> list[str]:
         """Enforce final-answer structure and citation coverage before a part is accepted."""
         failures: list[str] = []
-        headings = re.findall(r"(?im)^#{2,4}\s+(.+?)\s*$", text)
+        body = cls._without_reference_section(text)
+        headings = re.findall(r"(?im)^#{2,4}\s+(.+?)\s*$", body)
         if part_number == 1 and not any(re.match(r"introduction\b", heading, re.I) for heading in headings):
             failures.append("omitted the required Introduction heading in the opening unit")
         if part_number == part_total and not any(re.search(r"\bconclusion\b", heading, re.I) for heading in headings):
             failures.append("omitted the required Conclusion heading in the final unit")
-        words = len(text.split())
+        words = len(body.split())
         required = max(1, (words + 649) // 650) if words >= 120 else 0
-        found = len(cls._extract_full_inline_citations(text))
+        found = len(cls._extract_full_inline_citations(body))
         if found < required:
             failures.append(
                 f"used only {found} full inline OSCOLA citations in this unit; at least {required} are required"
             )
-        uncited = cls._uncited_authority_sentences(text)
+        uncited = cls._uncited_authority_sentences(body)
         if uncited:
             failures.append(
                 f"left {len(uncited)} case/statute proposition(s) without an immediately following full "
@@ -2999,6 +3014,8 @@ class Handler(BaseHTTPRequestHandler):
         for index, segment in enumerate(segments):
             if segment.lstrip().startswith("#"):
                 continue
+            if re.match(r"^[-*]\s+", segment.lstrip()):
+                continue
             if not (cls._extract_cases(segment) or cls._extract_legislation(segment)):
                 continue
             if cls._extract_full_inline_citations(segment):
@@ -3325,6 +3342,8 @@ class Handler(BaseHTTPRequestHandler):
                 "proprietary-estoppel", "caparo into proprietary estoppel",
                 "gillett v holt", "guest v guest", "hunt v soady",
                 "current official authority",
+                "omitted jogee", "omitted woollin", "omitted majewski",
+                "irrelevant insurance authority",
             )
             rewrite_failures = [
                 failure for failure in failures
