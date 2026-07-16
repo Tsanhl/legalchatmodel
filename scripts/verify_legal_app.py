@@ -1065,6 +1065,28 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "land-law answers must not invent LPA years or use Street v Mountford for easements",
         results,
     )
+    check(
+        "invented Law of Property Act 2002" in " ".join(
+            server.Handler._invented_authority_failures(
+                "Priority follows the Law of Property Act 2002 and the Criminal Law Review Act 1967."
+            )
+        )
+        and not server.Handler._invented_authority_failures(
+            "Priority follows the Land Registration Act 2002 and the Law of Property Act 1925, s 36."
+        ),
+        "invented-statute detector rejects fake LPA/Criminal Law Review Acts",
+        results,
+    )
+    near = server.Handler._deloop(
+        "The neighbour Ned has used a track across the garden for twenty years under an asserted easement claim that requires careful analysis of accommodation and grant. "
+        "The neighbour Ned has used a track across the garden for twenty years under an asserted right of way that also requires careful analysis of accommodation and grant. "
+        "Further distinct analysis follows here with different content about severance under Williams v Hensman."
+    )
+    check(
+        near.lower().count("the neighbour ned has used a track") == 1,
+        "deloop cuts near-duplicate long sentences before they inflate longform parts",
+        results,
+    )
     heading_repair = server.Handler._ensure_required_headings(
         "Opening analysis.\n\n### Formation\n\nApplied analysis.\n\nFinal advice.",
         formation_question,

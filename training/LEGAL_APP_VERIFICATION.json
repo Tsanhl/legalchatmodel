@@ -290,6 +290,14 @@
       "passed": true
     },
     {
+      "check": "invented-statute detector rejects fake LPA/Criminal Law Review Acts",
+      "passed": true
+    },
+    {
+      "check": "deloop cuts near-duplicate long sentences before they inflate longform parts",
+      "passed": true
+    },
+    {
       "check": "word-count trimming preserves required Introduction and Conclusion structure",
       "passed": true
     },

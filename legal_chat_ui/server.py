@@ -215,6 +215,8 @@ class ModelHolder:
         seen_long_sentences: set[str] = set()
         repeated = False
         last_progress = time.monotonic()
+        last_token = time.monotonic()
+        idle_limit = float(os.environ.get("LEGAL_GEN_IDLE_SECONDS", "180"))
         with self._gen_lock:
             for resp in stream_generate(
                 self.model, self.tokenizer, prompt,
@@ -222,6 +224,7 @@ class ModelHolder:
                 logits_processors=self.logits_processors,
             ):
                 if resp.text:
+                    last_token = time.monotonic()
                     out.append(resp.text)
                     sentence_tail += resp.text
                     sentences = re.split(r"(?<=[.!?])\s+", sentence_tail)
@@ -233,9 +236,21 @@ class ModelHolder:
                             break
                         if len(key) > 100:
                             seen_long_sentences.add(key)
+                            prefix = re.sub(r"[^a-z0-9]+", " ", key.lower()).strip()[:110]
+                            if len(prefix) >= 60 and any(
+                                existing.startswith(prefix[:60]) or prefix.startswith(
+                                    re.sub(r"[^a-z0-9]+", " ", existing.lower()).strip()[:60]
+                                )
+                                for existing in seen_long_sentences if existing != key
+                            ):
+                                repeated = True
+                                break
                     if repeated:
                         print("[generation] stopped at a repeated long sentence", flush=True)
                         break
+                elif time.monotonic() - last_token > idle_limit:
+                    print(f"[generation] idle for {idle_limit:.0f}s; aborting completion", flush=True)
+                    break
                 if on_progress and time.monotonic() - last_progress >= 1.5:
                     on_progress(len("".join(out).split()))
                     last_progress = time.monotonic()
@@ -1399,11 +1414,16 @@ class Handler(BaseHTTPRequestHandler):
                 pass
             self.wfile.write(f"data: {json.dumps(obj)}\n\n".encode("utf-8"))
             self.wfile.flush()
+            self._sse_write_failures = 0
         except Exception:
-            pass
+            self._sse_write_failures = getattr(self, "_sse_write_failures", 0) + 1
+            if self._sse_write_failures >= 3:
+                # Client is gone; abort the pipeline so finally releases the lock.
+                raise BrokenPipeError("SSE client disconnected")
 
     def setup(self):
         super().setup()
+        self._sse_write_failures = 0
         try:
             self.connection.settimeout(600)
         except Exception:
@@ -1414,9 +1434,10 @@ class Handler(BaseHTTPRequestHandler):
 
     @staticmethod
     def _deloop(text: str) -> str:
-        """Cut degenerate repetition before a second exact long sentence is retained."""
+        """Cut degenerate repetition before a second exact/near-duplicate long sentence is retained."""
         sents = re.split(r"(?<=[.!?])\s+", text)
         seen: dict[str, int] = {}
+        seen_prefix: set[str] = set()
         out = []
         for s in sents:
             key = s.strip()
@@ -1426,6 +1447,14 @@ class Handler(BaseHTTPRequestHandler):
                     detail = "" if PUBLIC_MODE else f": {key[:80]!r}"
                     print(f"[deloop] cut at repeat{detail}", flush=True)
                     break
+                # Near-duplicate: same normalised opening often marks a looped paragraph.
+                prefix = re.sub(r"[^a-z0-9]+", " ", key.lower()).strip()[:70]
+                if len(prefix) >= 50:
+                    if prefix in seen_prefix:
+                        detail = "" if PUBLIC_MODE else f": {key[:80]!r}"
+                        print(f"[deloop] cut at near-repeat{detail}", flush=True)
+                        break
+                    seen_prefix.add(prefix)
             out.append(s)
         return " ".join(out).strip()
 
@@ -2286,12 +2315,39 @@ class Handler(BaseHTTPRequestHandler):
             failures.append("made business-insurance avoidance automatic")
         return list(dict.fromkeys(failures))
 
+    @staticmethod
+    def _invented_authority_failures(text: str) -> list[str]:
+        """Catch high-confidence invented statutes / wrong-year Acts across subjects."""
+        low = text.lower()
+        failures: list[str] = []
+        banned = (
+            (r"law of property act\s+1997", "invented Law of Property Act 1997"),
+            (r"law of property act\s+2002", "invented Law of Property Act 2002"),
+            (r"criminal law review act\s+1967", "invented Criminal Law Review Act 1967"),
+            (r"road safety act\s+2006", "invented or misapplied the Road Safety Act 2006"),
+            (r"land registration act\s+1925", "used the repealed Land Registration Act 1925 as current registered-title law"),
+        )
+        for pattern, label in banned:
+            if re.search(pattern, low):
+                failures.append(label)
+        # Future-dated Acts are almost always invented in this corpus.
+        year_now = datetime.now(timezone.utc).year
+        for match in re.finditer(
+            r"\b([A-Z][A-Za-z&'’(). -]{2,80}?\s+(?:Act|Regulations|Rules))\s+((?:20)\d{2})\b",
+            text,
+        ):
+            year = int(match.group(2))
+            if year > year_now + 1:
+                failures.append(f"invented future-dated legislation {match.group(0).strip()}")
+        return list(dict.fromkeys(failures))
+
     @classmethod
     def _subject_accuracy_failures(cls, text: str, question: str,
                                    slug: str | None, part_title: str = "") -> list[str]:
         failures = cls._sqe_accuracy_failures(text, question)
         failures += cls._specialist_general_accuracy_failures(text, question, slug)
         failures += cls._proprietary_estoppel_accuracy_failures(text, question)
+        failures += cls._invented_authority_failures(text)
         if slug == "land_law":
             failures += cls._land_accuracy_failures(text, question)
         if slug == "contract_law":
@@ -2350,7 +2406,7 @@ class Handler(BaseHTTPRequestHandler):
         # floor catches name-only/no-citation answers without encouraging strings.
         full_citations = cls._extract_full_inline_citations(body)
         if words >= 120:
-            required = max(1, (words + 649) // 650)
+            required = max(1, (words + 499) // 500)
             if len(full_citations) < required:
                 failures.append(
                     f"used only {len(full_citations)} full inline OSCOLA citations; "
@@ -2375,7 +2431,7 @@ class Handler(BaseHTTPRequestHandler):
         if part_number == part_total and not any(re.search(r"\bconclusion\b", heading, re.I) for heading in headings):
             failures.append("omitted the required Conclusion heading in the final unit")
         words = len(body.split())
-        required = max(1, (words + 649) // 650) if words >= 120 else 0
+        required = max(1, (words + 499) // 500) if words >= 120 else 0
         found = len(cls._extract_full_inline_citations(body))
         if found < required:
             failures.append(
@@ -3376,6 +3432,8 @@ class Handler(BaseHTTPRequestHandler):
                 "street v mountford as an easement", "law of property act 1997",
                 "law of property act 2002", "core easement authorities",
                 "severance framework",
+                "invented", "future-dated legislation", "land registration act 1925",
+                "criminal law review act",
             )
             rewrite_failures = [
                 failure for failure in failures
@@ -3613,6 +3671,10 @@ class Handler(BaseHTTPRequestHandler):
                     ), corpus
                 ))
                 extra = self._repair_inline_oscola(extra, message, slug)
+                extra = self._drop_existing_sentences(extra, out)
+                # Also avoid echoing earlier longform parts.
+                for prior in chunks:
+                    extra = self._drop_existing_sentences(extra, prior)
                 if not extra:
                     break
                 out = self._without_reference_section(self._sanitize_final(
