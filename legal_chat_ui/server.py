@@ -45,6 +45,19 @@ RECORD_ROOT = Path(os.environ.get(
 PRIVATE_UPLOAD_ROOT = Path(os.environ.get(
     "LEGAL_PRIVATE_UPLOAD_ROOT", APP_DIR / "private_uploads"
 )).expanduser()
+# Longform keeps assistant words at 0 until the final replace. External
+# supervisors watch this heartbeat so a quiet Metal pause is not confused
+# with a dead lock, and a true hang (no beats) can still be killed.
+GEN_HEARTBEAT = Path(os.environ.get("LEGAL_GEN_HEARTBEAT", "/tmp/legal_gen_heartbeat"))
+
+
+def _gen_heartbeat(note: str = "") -> None:
+    try:
+        GEN_HEARTBEAT.write_text(
+            f"{time.time():.3f} {note.strip()[:160]}\n", encoding="utf-8"
+        )
+    except OSError:
+        pass
 
 
 def _env_bool(name: str, default: bool = False) -> bool:
@@ -1389,7 +1402,7 @@ class Handler(BaseHTTPRequestHandler):
                 self._sse({"status": "Finalising a complete answer after an internal retry…"})
                 try:
                     answer, meta = self._run_emergency_completion(
-                        conv_id, message, history, jurisdiction, "always", memory_context
+                        conv_id, message, history, jurisdiction, online_mode, memory_context
                         , user_id=user_id
                     )
                 except (BrokenPipeError, ConnectionResetError):
@@ -1420,6 +1433,8 @@ class Handler(BaseHTTPRequestHandler):
 
     def _sse(self, obj: dict) -> None:
         try:
+            if obj.get("status") or obj.get("replace") or obj.get("done"):
+                _gen_heartbeat(str(obj.get("status") or obj.get("done") or "replace"))
             # A disconnected browser can leave the socket half-closed; without a
             # write timeout, flush() may block forever and keep the generation lock.
             try:
@@ -3716,13 +3731,23 @@ class Handler(BaseHTTPRequestHandler):
             prev_tail = ""
             # Internal sections remain private until the complete answer passes
             # every count, structure, citation, privacy and accuracy gate.
+        _gen_heartbeat(f"longform assemble {n} parts")
         body = self._collapse_duplicate_headings(self._deduplicate_substantive_prose(
             self._drop_transplanted_problem_facts("\n\n".join(chunks), message)
         ))
-        body = self._ensure_required_headings(
-            self._repair_inline_oscola(body, message, slug), message
-        )
+        # Second repair+dedupe pass: stitched parts often leave name-only
+        # authorities and near-duplicate sentences that fail release scoring.
+        for _ in range(2):
+            body = self._ensure_required_headings(
+                self._deduplicate_substantive_prose(
+                    self._repair_inline_oscola(body, message, slug)
+                ),
+                message,
+            )
         body = self._safe_enforce_body_word_band(body, message, ledger, slug, words, corpus)
+        body = self._deduplicate_substantive_prose(
+            self._repair_inline_oscola(body, message, slug)
+        )
         remaining = self._generic_answer_failures(body, message, target=words)
         remaining += self._complete_answer_failures(body, message)
         remaining += self._subject_accuracy_failures(

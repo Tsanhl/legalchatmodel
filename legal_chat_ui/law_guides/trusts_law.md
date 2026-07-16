@@ -44,8 +44,14 @@
 - No-conflict and no-profit rules: *Keech v Sandford* (1726) Sel Cas Ch 61, 25 ER 223; *Boardman v Phipps* [1967] 2 AC 46 (HL); *Regal (Hastings) Ltd v Gulliver* [1967] 2 AC 134 (HL).
 - Honesty, authorisation and remedies: *Armitage v Nurse* [1998] Ch 241 (CA); *Murad v Al-Saraj* [2005] EWCA Civ 959, [2005] WTLR 1573; *FHR European Ventures LLP v Cedar Capital Partners LLC* [2014] UKSC 45, [2015] AC 250.
 - Current profit, allowance and proprietary consequences: *Rukhadze v Recovery Partners GP Ltd* [2025] UKSC 10, [2025] 2 WLR 529; *Stevens v Hotel Portfolio II UK Ltd* [2025] UKSC 28; *Hopcraft v Close Brothers Ltd* [2025] UKSC 33, [2025] 3 WLR 423.
-- Trust creation and constitution, only where directly relevant: *Knight v Knight* (1840) 3 Beav 148, 49 ER 58; *Milroy v Lord* (1862) 4 De GF & J 264, 45 ER 1185; *Re Rose* [1952] Ch 499 (CA); *Pennington v Waine* [2002] EWCA Civ 227, [2002] 1 WLR 2075.
+- Certainty of intention: *Knight v Knight* (1840) 3 Beav 148, 49 ER 58; *Re Adams and the Kensington Vestry* (1884) 27 Ch D 394 (CA); *Comiskey v Bowring-Hanbury* [1905] AC 84 (HL); *Paul v Constance* [1977] 1 WLR 527 (CA); *Jones v Lock* (1865) 1 Ch App 25.
+- Certainty of subject matter: *Sprange v Barnard* (1789) 2 Bro CC 585; *Boyce v Boyce* (1849) 16 Sim 476; *Re London Wine Co (Shippers) Ltd* [1986] PCC 121; *Hunter v Moss* [1994] 1 WLR 452 (CA).
+- Certainty of objects: *IRC v Broadway Cottages Trust* [1955] Ch 20 (CA); *Re Gulbenkian's Settlements* [1970] AC 508 (HL); *McPhail v Doulton* [1971] AC 424 (HL); *Re Baden's Deed Trusts (No 2)* [1973] Ch 9 (CA); *Re Barlow's Will Trusts* [1979] 1 WLR 278.
+- Beneficiary principle and purpose trusts: *Morice v Bishop of Durham* (1804) 9 Ves 399; *Re Astor's Settlement Trusts* [1952] Ch 534; *Re Endacott* [1960] Ch 232 (CA); *Re Denley's Trust Deed* [1969] 1 Ch 373; *Re Lipinski's Will Trusts* [1976] Ch 235; *Re Dean* (1889) 41 Ch D 552.
+- Secret and half-secret trusts: *McCormick v Grogan* (1869) LR 4 HL 82; *Blackwell v Blackwell* [1929] AC 318 (HL); *Re Keen* [1937] Ch 236 (CA); *Ottaway v Norman* [1972] Ch 698; *Re Snowden* [1979] Ch 528.
+- Trust creation and constitution, only where directly relevant: *Milroy v Lord* (1862) 4 De GF & J 264, 45 ER 1185; *Re Rose* [1952] Ch 499 (CA); *Pennington v Waine* [2002] EWCA Civ 227, [2002] 1 WLR 2075.
 - Beneficiary consent and variation, only where directly relevant: *Saunders v Vautier* (1841) 4 Beav 115, 49 ER 282; Variation of Trusts Act 1958, s 1; *Re Weston's Settlements* [1969] 1 Ch 223 (CA).
+- Formalities commonly engaged: Wills Act 1837, s 9; Law of Property Act 1925, s 53(1)(b) and s 53(1)(c).
 
 ## Fiduciary-Loyalty Essay Accuracy Lock
 - A constituted trustee does not ordinarily balance a continuing fiduciary duty to the settlor against a duty to beneficiaries. The quotation concerns conflicts between the fiduciary's duty to the principal/beneficiaries, personal interest, and duties owed to another person.

@@ -78,6 +78,14 @@ def assistant_words(conv_id: str | None) -> int:
     return 0
 
 
+def heartbeat_mtime() -> float:
+    path = Path(os.environ.get("LEGAL_GEN_HEARTBEAT", "/tmp/legal_gen_heartbeat"))
+    try:
+        return path.stat().st_mtime
+    except OSError:
+        return 0.0
+
+
 def http_json(path: str, method: str = "GET", payload: dict | None = None, timeout: int = 30) -> dict:
     data = None if payload is None else json.dumps(payload).encode()
     req = urllib.request.Request(
@@ -216,6 +224,7 @@ def run_one(index: int) -> int:
     started = time.time()
     last_progress = time.time()
     last_words = 0
+    last_beat = heartbeat_mtime()
     assert proc.stdout is not None
     # Non-blocking-ish read loop with stall detection.
     import select
@@ -237,6 +246,7 @@ def run_one(index: int) -> int:
         # Do NOT treat server stdout growth as progress: /api/busy and
         # /api/health polls write access lines and would reset the stall timer
         # forever while generation is hung on a CloudFront CLOSE_WAIT socket.
+        # Heartbeat is written during longform parts before assistant words exist.
         progressed = False
         cpu = server_cpu_pct()
         if info.get("busy") and cpu >= 12.0:
@@ -245,12 +255,17 @@ def run_one(index: int) -> int:
         if words_now > last_words:
             last_words = words_now
             progressed = True
+        beat = heartbeat_mtime()
+        if beat > last_beat:
+            last_beat = beat
+            progressed = True
         if progressed:
             last_progress = time.time()
         if time.time() - last_progress > STALL_SECONDS:
             log(
                 f"STALL {case_id}; busy={info.get('busy')} cpu={cpu:.1f} "
-                f"words={words_now}; killing case pid={proc.pid}"
+                f"words={words_now} beat_age={time.time() - beat:.0f}s; "
+                f"killing case pid={proc.pid}"
             )
             try:
                 os.killpg(proc.pid, signal.SIGKILL)

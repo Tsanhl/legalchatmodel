@@ -243,11 +243,68 @@ def authority_citation_map_for_question(question: str, primary: str | None = Non
     if primary:
         slugs = [primary] + [slug for slug in slugs if slug != primary]
     mapping: dict[str, str] = {}
+    # Party-v-party and Re-style short titles (Re Rose, Re Baden, etc.).
     pattern = re.compile(
-        r"\*([^*\n]{2,180}?\bv\s+[^*\n]{2,180}?)\*\s+"
+        r"\*((?:Re\s+[^*\n]{2,120}?|[^*\n]{2,180}?\bv\s+[^*\n]{2,180}?))\*\s+"
         r"((?:(?:\[(?:18|19|20)\d{2}\]|\((?:18|19|20)\d{2}\))[^;\n]{0,150}|"
         r"\d+\s+US\s+\d+\s+\((?:18|19|20)\d{2}\)[^;\n]{0,60}))"
     )
+
+    def index_citation(name: str, details: str) -> None:
+        details = re.sub(r"\s+", " ", details).strip().rstrip(". ")
+        normalized_name = re.sub(r"\s+", " ", name).strip()
+        full = f"{normalized_name} {details}"
+        key = re.sub(r"[^a-z0-9]+", " ", name.lower()).strip()
+        if not key or not details:
+            return
+        mapping[key] = full
+        # Models commonly omit corporate suffixes while retaining both
+        # recognisable party names (for example, "Butler Machine Tool v
+        # Ex-Cell-O").  Index that conservative alias to the same
+        # verified citation; never guess aliases that drop a party.
+        corporate = {
+            "co", "company", "corp", "corporation", "inc", "limited", "ltd",
+            "llp", "llc", "plc", "gmbh", "ag", "sa", "nv", "england",
+        }
+        alias = " ".join(token for token in key.split() if token not in corporate)
+        if (" v " in f" {alias} " or alias.startswith("re ")) and alias != key:
+            mapping.setdefault(alias, full)
+
+        # A model will often use the conventional shortened party
+        # names ("Williams v Roffey") rather than reproduce every
+        # corporate suffix and descriptor.  Index conservative one-
+        # and two-token roots on *both* sides of v.  Keeping both
+        # parties is important: a bare surname is too easy to match in
+        # ordinary prose and could attach the wrong authority.
+        parties = re.split(r"\s+v\s+", alias, maxsplit=1)
+        if len(parties) == 2:
+            left = [t for t in parties[0].split() if t not in {"the"}]
+            right = [t for t in parties[1].split() if t not in {"the"}]
+            for left_n in (1, 2):
+                for right_n in (1, 2):
+                    if len(left) >= left_n and len(right) >= right_n:
+                        short = f"{' '.join(left[:left_n])} v {' '.join(right[:right_n])}"
+                        if len(short) >= 7:
+                            mapping.setdefault(short, full)
+        elif alias.startswith("re "):
+            # Re Baden's Deed Trusts (No 2) → also index "re baden".
+            tokens = [t for t in alias.split()[1:] if t not in {"the", "no", "and"}]
+            if tokens:
+                mapping.setdefault("re " + tokens[0], full)
+                if len(tokens) >= 2:
+                    mapping.setdefault("re " + " ".join(tokens[:2]), full)
+
+        # A few authorities are universally cited by a distinctive
+        # conventional short title that omits one party altogether.
+        # These aliases are explicit so the repair never guesses.
+        conventional = {
+            "central london property trust ltd v high trees house ltd": ("high trees",),
+            "central london property trust v high trees house": ("high trees",),
+            "mcphail v doulton": ("re baden",),
+        }
+        for short in conventional.get(key, ()):
+            mapping.setdefault(short, full)
+
     for slug in slugs:
         path = GUIDES_DIR / f"{slug}.md"
         if not path.is_file():
@@ -255,50 +312,7 @@ def authority_citation_map_for_question(question: str, primary: str | None = Non
         bank = _section(path.read_text(encoding="utf-8", errors="ignore"),
                         "Full OSCOLA Authority Bank")
         for name, details in pattern.findall(bank):
-            details = re.sub(r"\s+", " ", details).strip().rstrip(". ")
-            normalized_name = re.sub(r"\s+", " ", name).strip()
-            full = f"{normalized_name} {details}"
-            key = re.sub(r"[^a-z0-9]+", " ", name.lower()).strip()
-            if key and details:
-                mapping[key] = full
-                # Models commonly omit corporate suffixes while retaining both
-                # recognisable party names (for example, "Butler Machine Tool v
-                # Ex-Cell-O").  Index that conservative alias to the same
-                # verified citation; never guess aliases that drop a party.
-                corporate = {
-                    "co", "company", "corp", "corporation", "inc", "limited", "ltd",
-                    "llp", "llc", "plc", "gmbh", "ag", "sa", "nv", "england",
-                }
-                alias = " ".join(token for token in key.split() if token not in corporate)
-                if " v " in f" {alias} " and alias != key:
-                    mapping.setdefault(alias, full)
-
-                # A model will often use the conventional shortened party
-                # names ("Williams v Roffey") rather than reproduce every
-                # corporate suffix and descriptor.  Index conservative one-
-                # and two-token roots on *both* sides of v.  Keeping both
-                # parties is important: a bare surname is too easy to match in
-                # ordinary prose and could attach the wrong authority.
-                parties = re.split(r"\s+v\s+", alias, maxsplit=1)
-                if len(parties) == 2:
-                    left = [t for t in parties[0].split() if t not in {"the"}]
-                    right = [t for t in parties[1].split() if t not in {"the"}]
-                    for left_n in (1, 2):
-                        for right_n in (1, 2):
-                            if len(left) >= left_n and len(right) >= right_n:
-                                short = f"{' '.join(left[:left_n])} v {' '.join(right[:right_n])}"
-                                if len(short) >= 7:
-                                    mapping.setdefault(short, full)
-
-                # A few authorities are universally cited by a distinctive
-                # conventional short title that omits one party altogether.
-                # These aliases are explicit so the repair never guesses.
-                conventional = {
-                    "central london property trust ltd v high trees house ltd": ("high trees",),
-                    "central london property trust v high trees house": ("high trees",),
-                }
-                for short in conventional.get(key, ()):
-                    mapping.setdefault(short, full)
+            index_citation(name, details)
     return mapping
 
 
