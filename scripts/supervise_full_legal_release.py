@@ -25,7 +25,7 @@ BASE = os.environ.get("LEGAL_CHAT_BASE", "http://127.0.0.1:8765")
 LOG = Path(os.environ.get("LEGAL_SUPERVISOR_LOG", "/tmp/legal_full_supervisor.log"))
 REPORT = ROOT / "training" / "live_private_release_sweep" / "report.jsonl"
 LOCK = Path("/tmp/legal_full_supervisor.lock")
-STALL_SECONDS = int(os.environ.get("LEGAL_STALL_SECONDS", "1200"))
+STALL_SECONDS = int(os.environ.get("LEGAL_STALL_SECONDS", "300"))
 MAX_RETRIES = int(os.environ.get("LEGAL_CASE_RETRIES", "3"))
 CASE_TIMEOUT = int(os.environ.get("LEGAL_CASE_TIMEOUT", str(6 * 3600)))
 SERVER_STDOUT = Path("/private/tmp/legal_ai_server.stdout.log")
@@ -35,8 +35,47 @@ SERVER_STDERR = Path("/private/tmp/legal_ai_server.stderr.log")
 def log(msg: str) -> None:
     line = f"{time.strftime('%Y-%m-%dT%H:%M:%S')} {msg}"
     print(line, flush=True)
-    with LOG.open("a", encoding="utf-8") as handle:
-        handle.write(line + "\n")
+    try:
+        same = LOG.exists() and os.fstat(1).st_ino == LOG.stat().st_ino
+    except OSError:
+        same = False
+    if not same:
+        with LOG.open("a", encoding="utf-8") as handle:
+            handle.write(line + "\n")
+
+
+def server_cpu_pct() -> float:
+    """Return the legal server process CPU percentage, or -1 if unknown."""
+    try:
+        out = subprocess.check_output(
+            ["ps", "-o", "%cpu=", "-p", str(_server_pid())],
+            text=True,
+        ).strip()
+        return float(out or "-1")
+    except Exception:
+        return -1.0
+
+
+def _server_pid() -> int:
+    try:
+        out = subprocess.check_output(["pgrep", "-f", "legal_chat_ui/server.py"], text=True)
+        return int(out.splitlines()[0].strip())
+    except Exception:
+        return 0
+
+
+def assistant_words(conv_id: str | None) -> int:
+    if not conv_id:
+        return 0
+    try:
+        data = http_json(f"/api/conversations/{conv_id}")
+        msgs = data.get("messages") or []
+        for msg in reversed(msgs):
+            if msg.get("role") == "assistant":
+                return len((msg.get("content") or "").split())
+    except Exception:
+        return 0
+    return 0
 
 
 def http_json(path: str, method: str = "GET", payload: dict | None = None, timeout: int = 30) -> dict:
@@ -171,6 +210,7 @@ def run_one(index: int) -> int:
     started = time.time()
     last_progress = time.time()
     last_fp = stdout_fingerprint()
+    last_words = 0
     assert proc.stdout is not None
     # Non-blocking-ish read loop with stall detection.
     import select
@@ -190,11 +230,26 @@ def run_one(index: int) -> int:
                 last_progress = time.time()
         fp = stdout_fingerprint()
         info = busy_info()
-        if info.get("busy") or fp != last_fp:
-            last_progress = time.time()
+        # Busy alone is NOT progress — a hung lock stays busy forever.
+        # Count real work: server stdout growth, MLX CPU, or saved assistant words.
+        progressed = False
+        if fp != last_fp:
             last_fp = fp
+            progressed = True
+        cpu = server_cpu_pct()
+        if info.get("busy") and cpu >= 8.0:
+            progressed = True
+        words_now = assistant_words(info.get("active_conversation_id"))
+        if words_now > last_words:
+            last_words = words_now
+            progressed = True
+        if progressed:
+            last_progress = time.time()
         if time.time() - last_progress > STALL_SECONDS:
-            log(f"STALL {case_id}; killing case pid={proc.pid}")
+            log(
+                f"STALL {case_id}; busy={info.get('busy')} cpu={cpu:.1f} "
+                f"words={words_now}; killing case pid={proc.pid}"
+            )
             try:
                 os.killpg(proc.pid, signal.SIGKILL)
             except Exception:

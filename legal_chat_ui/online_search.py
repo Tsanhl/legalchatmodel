@@ -642,9 +642,13 @@ def search(query: str, jurisdiction: str | None = None, max_results: int = 5,
         uniq = [r for r in uniq if not re.search(r"\b(revoked|superseded)\b", r.get("title", ""), re.I)]
         return uniq[:max_results]
 
+    # Do not use ``with ThreadPoolExecutor`` here: on timeout the context
+    # manager calls shutdown(wait=True), which blocks until the hung urllib
+    # worker finishes and can leave generation locked for minutes on a
+    # CloudFront CLOSE_WAIT socket. Abandon the worker instead.
+    pool = ThreadPoolExecutor(max_workers=1)
     try:
-        with ThreadPoolExecutor(max_workers=1) as pool:
-            return pool.submit(_search_body).result(timeout=overall_timeout)
+        return pool.submit(_search_body).result(timeout=overall_timeout)
     except FuturesTimeout:
         print(f"[online] search timed out after {overall_timeout:.0f}s; continuing without online hits",
               flush=True)
@@ -652,6 +656,8 @@ def search(query: str, jurisdiction: str | None = None, max_results: int = 5,
     except Exception as exc:
         print(f"[online] search failed: {type(exc).__name__}: {exc}", flush=True)
         return []
+    finally:
+        pool.shutdown(wait=False, cancel_futures=True)
 
 
 def build_online_ledger(results: list[dict], start_index: int = 1) -> str:

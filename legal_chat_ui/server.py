@@ -1369,7 +1369,11 @@ class Handler(BaseHTTPRequestHandler):
             # Current official-source checking is a release default, not a
             # best-effort UI preference. Queries are sanitised before leaving
             # the app and only official legal domains are used.
-            online_mode = "always"
+            # LEGAL_ONLINE_MODE can force auto/off for long live sweeps when
+            # upstream CloudFront sockets hang; default remains always.
+            online_mode = os.environ.get("LEGAL_ONLINE_MODE", "always").strip().lower() or "always"
+            if online_mode not in {"always", "auto", "off"}:
+                online_mode = "always"
             try:
                 answer, meta = self._run_pipeline(
                     conv_id, message, history, jurisdiction, online_mode,
