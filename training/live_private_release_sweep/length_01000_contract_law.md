@@ -40,17 +40,17 @@ Consideration is neither useless nor coherent enough to escape reform. Its barga
 ### References
 
 **Cases**
-- Williams v Roffey Bros & Nicholls (Contractors) Ltd [1991] 1 QB 1; Foakes v Beer (1884) 9 App Cas 605
-- Currie v Misa (1875) LR 10 Ex 153; Thomas v Thomas (1842) 2 QB 851
-- Chappell & Co Ltd v Nestlé Co Ltd [1960] AC 87
-- Stilk v Myrick (1809) 2 Camp 317, 170 ER 1168
-- Williams v Roffey Bros & Nicholls (Contractors) Ltd [1991] 1 QB 1
-- Foakes v Beer (1884) 9 App Cas 605
-- Rock Advertising Ltd v MWB Business Exchange Centres Ltd [2018] UKSC 24, [2019] AC 119
-- Central London Property Trust Ltd v High Trees House Ltd [1947] KB 130
-- Combe v Combe [1951] 2 KB 215
-- D & C Builders Ltd v Rees [1966] 2 QB 617
-- Collier v P & MJ Wright (Holdings) Ltd [2007] EWCA Civ 1329, [2008] 1 WLR 643
+- *Central London Property Trust Ltd v High Trees House Ltd* [1947] KB 130
+- *Chappell & Co Ltd v Nestlé Co Ltd* [1960] AC 87
+- *Collier v P & MJ Wright (Holdings) Ltd* [2007] EWCA Civ 1329, [2008] 1 WLR 643
+- *Combe v Combe* [1951] 2 KB 215
+- *Currie v Misa* (1875) LR 10 Ex 153
+- *D & C Builders Ltd v Rees* [1966] 2 QB 617
+- *Foakes v Beer* (1884) 9 App Cas 605
+- *Rock Advertising Ltd v MWB Business Exchange Centres Ltd* [2018] UKSC 24, [2019] AC 119
+- *Stilk v Myrick* (1809) 2 Camp 317, 170 ER 1168
+- *Thomas v Thomas* (1842) 2 QB 851
+- *Williams v Roffey Bros & Nicholls (Contractors) Ltd* [1991] 1 QB 1
 
 **Legislation**
 - Misrepresentation Act 1967
