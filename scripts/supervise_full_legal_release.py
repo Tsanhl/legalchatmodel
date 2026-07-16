@@ -321,7 +321,7 @@ def run_v12() -> None:
     with Path("/tmp/v12_train.log").open("a", encoding="utf-8") as handle:
         handle.write(f"START_TRAIN {time.strftime('%Y-%m-%dT%H:%M:%S')}\n")
         proc = subprocess.run(
-            ["mlx_lm.lora", "--config", "training/legal_answer_flow_v12_quality_gates/config.yaml"],
+            [str(ROOT / ".venv/bin/mlx_lm.lora"), "--config", "training/legal_answer_flow_v12_quality_gates/config.yaml"],
             cwd=str(ROOT),
             stdout=handle,
             stderr=subprocess.STDOUT,
