@@ -277,7 +277,28 @@ def _alive(pid: int) -> bool:
         return False
 
 
+def daemonize() -> None:
+    """Detach from the controlling terminal (macOS-safe double-fork)."""
+    if os.environ.get("LEGAL_SUPERVISOR_FOREGROUND") == "1":
+        return
+    if os.fork() > 0:
+        os._exit(0)
+    os.setsid()
+    if os.fork() > 0:
+        os._exit(0)
+    sys.stdout.flush()
+    sys.stderr.flush()
+    with open("/dev/null", "rb") as devnull:
+        os.dup2(devnull.fileno(), 0)
+    # Keep writing to the existing log path via reopen.
+    log_handle = LOG.open("a", encoding="utf-8")
+    os.dup2(log_handle.fileno(), 1)
+    os.dup2(log_handle.fileno(), 2)
+
+
 def main() -> None:
+    LOG.parent.mkdir(parents=True, exist_ok=True)
+    daemonize()
     acquire_lock()
     log(f"supervisor start pid={os.getpid()}")
     ensure_server()
