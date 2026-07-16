@@ -286,6 +286,10 @@
       "passed": true
     },
     {
+      "check": "land-law answers must not invent LPA years or use Street v Mountford for easements",
+      "passed": true
+    },
+    {
       "check": "word-count trimming preserves required Introduction and Conclusion structure",
       "passed": true
     },

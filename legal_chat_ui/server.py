@@ -1887,6 +1887,33 @@ class Handler(BaseHTTPRequestHandler):
         return list(dict.fromkeys(failures))
 
     @staticmethod
+    def _land_accuracy_failures(text: str, question: str) -> list[str]:
+        """Reject high-confidence land-law errors exposed by the 4,000-word live case."""
+        qlow = question.lower()
+        landish = any(term in qlow for term in (
+            "joint tenant", "sever", "overriding interest", "easement", "actual occupation",
+            "land registration", "mortgage", "beneficial",
+        ))
+        if not landish:
+            return []
+        low = text.lower()
+        failures: list[str] = []
+        if re.search(r"street v mountford.{0,120}easement", low, re.S):
+            failures.append("used Street v Mountford as an easement authority")
+        if re.search(r"law of property act\s+1997|law of property act\s+2002", low):
+            failures.append("invented a Law of Property Act 1997/2002")
+        if "easement" in qlow and not any(term in low for term in (
+            "re ellenborough", "ellenborough park", "prescription act", "wheeldon",
+            "section 62", "s 62", "schedule 3",
+        )):
+            failures.append("omitted the core easement authorities/tests for the track claim")
+        if ("joint tenant" in qlow or "sever" in qlow) and not any(term in low for term in (
+            "williams v hensman", "section 36", "s 36", "notice in writing",
+        )):
+            failures.append("omitted the severance framework for joint tenancy")
+        return list(dict.fromkeys(failures))
+
+    @staticmethod
     def _criminal_accuracy_failures(text: str, question: str) -> list[str]:
         """Reject high-confidence omissions exposed by live homicide/complicity probes."""
         qlow = question.lower()
@@ -2265,6 +2292,8 @@ class Handler(BaseHTTPRequestHandler):
         failures = cls._sqe_accuracy_failures(text, question)
         failures += cls._specialist_general_accuracy_failures(text, question, slug)
         failures += cls._proprietary_estoppel_accuracy_failures(text, question)
+        if slug == "land_law":
+            failures += cls._land_accuracy_failures(text, question)
         if slug == "contract_law":
             failures += cls._contract_accuracy_failures(text, question, part_title)
         if slug == "tort_law":
@@ -3344,6 +3373,9 @@ class Handler(BaseHTTPRequestHandler):
                 "current official authority",
                 "omitted jogee", "omitted woollin", "omitted majewski",
                 "irrelevant insurance authority",
+                "street v mountford as an easement", "law of property act 1997",
+                "law of property act 2002", "core easement authorities",
+                "severance framework",
             )
             rewrite_failures = [
                 failure for failure in failures

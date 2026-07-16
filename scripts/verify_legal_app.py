@@ -1041,6 +1041,30 @@ therefore preferable, provided that it preserves the genuine disagreements among
         "criminal homicide answers must cover Woollin, Majewski and Jogee where facts engage them",
         results,
     )
+    land_question = (
+        "Assume England and Wales law. Problem question. Suggested length: 4,000 words. "
+        "Kay and Lee bought a house as joint tenants; Kay later wrote to Lee 'I want my half "
+        "share sorted when we sell'. Lee secretly mortgaged the house then died leaving his "
+        "estate to Mia. Neighbour Ned has used a track across the garden for 22 years. Tenant "
+        "Ola claims an overriding interest through actual occupation. Advise."
+    )
+    weak_land = (
+        "### Introduction\nUnder Street v Mountford an easement arises from exclusive occupation.\n"
+        "The Law of Property Act 2002 confirms this.\n### Conclusion\nNed succeeds."
+    )
+    strong_land = (
+        "### Introduction\nSeverance may arise under Williams v Hensman and LPA 1925 s 36 notice. "
+        "Ned's track engages Re Ellenborough Park, prescription and Schedule 3 LRA 2002. "
+        "Ola relies on actual occupation overriding interests as in Boland/Flegg.\n"
+        "### Conclusion\nAdvice follows those frameworks."
+    )
+    check(
+        "street v mountford" in " ".join(server.Handler._land_accuracy_failures(weak_land, land_question)).lower()
+        and "1997/2002" in " ".join(server.Handler._land_accuracy_failures(weak_land, land_question)).lower()
+        and not server.Handler._land_accuracy_failures(strong_land, land_question),
+        "land-law answers must not invent LPA years or use Street v Mountford for easements",
+        results,
+    )
     heading_repair = server.Handler._ensure_required_headings(
         "Opening analysis.\n\n### Formation\n\nApplied analysis.\n\nFinal advice.",
         formation_question,
