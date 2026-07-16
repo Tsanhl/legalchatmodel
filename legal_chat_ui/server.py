@@ -1139,6 +1139,16 @@ class Handler(BaseHTTPRequestHandler):
                 "backend": getattr(MODEL, "backend", None) if MODEL else None,
                 "model_profile": getattr(MODEL, "model_profile", None) if MODEL else None,
                 "public_mode": PUBLIC_MODE,
+                "busy": bool(MODEL and getattr(MODEL, "_request_lock", None)
+                             and MODEL._request_lock.locked()),
+                "active_conversation_id": getattr(MODEL, "active_conversation_id", None) if MODEL else None,
+            })
+            return
+        if path == "/api/busy":
+            self._json({
+                "busy": bool(MODEL and getattr(MODEL, "_request_lock", None)
+                             and MODEL._request_lock.locked()),
+                "active_conversation_id": getattr(MODEL, "active_conversation_id", None) if MODEL else None,
             })
             return
         if path.startswith("/api/"):

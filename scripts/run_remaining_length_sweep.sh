@@ -32,16 +32,8 @@ wait_healthy() {
 
 wait_lock_free() {
   for _ in $(seq 1 360); do
-    cid=$(curl -fsS -X POST "$BASE/api/conversations" \
-      -H 'Content-Type: application/json' \
-      -d '{"mode":"private","title":"lock-wait"}' | python3 -c 'import sys,json; print(json.load(sys.stdin)["id"])')
-    code=$(curl -sS -o /tmp/lock_wait_body.json -w '%{http_code}' \
-      -X POST "$BASE/api/chat" \
-      -H 'Content-Type: application/json' \
-      -d "{\"conversation_id\":\"$cid\",\"message\":\"lock probe\",\"jurisdiction\":\"england_wales\"}" \
-      --max-time 5 || echo 000)
-    curl -fsS -X DELETE "$BASE/api/conversations/$cid" >/dev/null 2>&1 || true
-    if [ "$code" != "409" ]; then
+    busy=$(curl -fsS "$BASE/api/busy" 2>/dev/null | python3 -c 'import sys,json; print(json.load(sys.stdin).get("busy", True))' 2>/dev/null || echo True)
+    if [ "$busy" = "False" ] || [ "$busy" = "false" ]; then
       return 0
     fi
     sleep 20
