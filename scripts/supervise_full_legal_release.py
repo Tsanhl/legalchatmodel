@@ -123,6 +123,11 @@ def restart_server() -> None:
     log("restarting server")
     subprocess.run(["pkill", "-9", "-f", "legal_chat_ui/server.py"], check=False)
     time.sleep(2)
+    env = os.environ.copy()
+    # Long live sweeps are more reliable without CloudFront hangs; indexed
+    # guides + local authority banks still ground answers. Override with
+    # LEGAL_ONLINE_MODE=always if a live online check is required.
+    env.setdefault("LEGAL_ONLINE_MODE", "off")
     with SERVER_STDOUT.open("a") as out, SERVER_STDERR.open("a") as err:
         subprocess.Popen(
             [str(ROOT / ".venv/bin/python"), "-u", str(ROOT / "legal_chat_ui/server.py")],
@@ -130,11 +135,12 @@ def restart_server() -> None:
             stdout=out,
             stderr=err,
             start_new_session=True,
+            env=env,
         )
     for _ in range(90):
         info = health()
         if info.get("ready"):
-            log(f"server ready adapter={info.get('adapter')}")
+            log(f"server ready adapter={info.get('adapter')} online_mode={env.get('LEGAL_ONLINE_MODE')}")
             return
         time.sleep(2)
     raise RuntimeError("server failed to become ready")
@@ -209,7 +215,6 @@ def run_one(index: int) -> int:
     )
     started = time.time()
     last_progress = time.time()
-    last_fp = stdout_fingerprint()
     last_words = 0
     assert proc.stdout is not None
     # Non-blocking-ish read loop with stall detection.
@@ -228,16 +233,13 @@ def run_one(index: int) -> int:
             if line:
                 log(f"case[{case_id}] {line.rstrip()}")
                 last_progress = time.time()
-        fp = stdout_fingerprint()
         info = busy_info()
-        # Busy alone is NOT progress — a hung lock stays busy forever.
-        # Count real work: server stdout growth, MLX CPU, or saved assistant words.
+        # Do NOT treat server stdout growth as progress: /api/busy and
+        # /api/health polls write access lines and would reset the stall timer
+        # forever while generation is hung on a CloudFront CLOSE_WAIT socket.
         progressed = False
-        if fp != last_fp:
-            last_fp = fp
-            progressed = True
         cpu = server_cpu_pct()
-        if info.get("busy") and cpu >= 8.0:
+        if info.get("busy") and cpu >= 12.0:
             progressed = True
         words_now = assistant_words(info.get("active_conversation_id"))
         if words_now > last_words:
@@ -351,6 +353,16 @@ def daemonize() -> None:
     os.dup2(log_handle.fileno(), 2)
 
 
+def run_publish() -> None:
+    log("START publish GitHub + Hugging Face")
+    proc = subprocess.run(
+        [str(ROOT / ".venv/bin/python"), "-u", str(ROOT / "scripts/publish_legal_release.py")],
+        cwd=str(ROOT),
+        check=False,
+    )
+    log(f"DONE publish exit={proc.returncode}")
+
+
 def main() -> None:
     LOG.parent.mkdir(parents=True, exist_ok=True)
     daemonize()
@@ -375,6 +387,7 @@ def main() -> None:
     run_v12()
     rows = [r for k, r in report_rows().items() if k.startswith("length_")]
     log(f"supervisor complete length_passed={sum(1 for r in rows if r.get('passed'))}/{len(rows)}")
+    run_publish()
     LOCK.unlink(missing_ok=True)
 
 
