@@ -111,6 +111,8 @@ def corrective_examples() -> list[dict]:
             rows.append(make_row(question, answer, subject, register, "v12_quality_drill", variant))
 
     # Live release-gated answers already scored in the private sweep.
+    # Include failed 5k/6k artifacts after deterministic OSCOLA repair so V12
+    # learns from the exact failure modes that blocked the overnight matrix.
     live_specs = [
         ("length_01000_contract_law.md", "contract_law", "essay",
          "Assume England and Wales law. Essay question. Suggested length: 1,000 words. "
@@ -127,12 +129,38 @@ def corrective_examples() -> list[dict]:
          "Gus, drunk, throws a bottle which strikes Hana, who dies after a mismanaged operation. "
          "Advise on homicide, causation, intoxication, accessorial liability, loss of control and "
          "diminished responsibility. Default to full parenthetical OSCOLA."),
+        ("length_04000_land_law.md", "land_law", "essay",
+         "Assume England and Wales law. Essay question. Suggested length: 4,000 words. "
+         "Critically discuss easements, leases versus licences, and co-ownership severance. "
+         "Default to full parenthetical OSCOLA."),
+        ("length_05000_trusts_law.md", "trusts_law", "problem",
+         "Assume England and Wales law. Problem question. Suggested length: 5,000 words. "
+         "Critically discuss certainty of intention, objects, purpose trusts and secret trusts. "
+         "Default to full parenthetical OSCOLA."),
+        ("length_06000_public_law.md", "public_law", "essay",
+         "Assume England and Wales law. Essay question. Suggested length: 6,000 words. "
+         "Critically discuss the Human Rights Act 1998, EU withdrawal, Jackson, Miller and "
+         "Privacy International. Default to full parenthetical OSCOLA."),
     ]
+    try:
+        import sys
+        sys.path.insert(0, str(ROOT / "legal_chat_ui"))
+        import server as legal_server  # noqa: WPS433
+    except Exception:
+        legal_server = None
+
     for filename, subject, register, question in live_specs:
         path = SWEEP / filename
         if not path.exists():
             continue
         answer = path.read_text(encoding="utf-8").strip()
+        if legal_server is not None:
+            try:
+                answer = legal_server.Handler._deduplicate_substantive_prose(
+                    legal_server.Handler._repair_inline_oscola(answer, question, subject)
+                )
+            except Exception:
+                pass
         # Keep sequences trainable within 4096 tokens: trim very long live answers.
         if body_words(answer) > 2200:
             paras = strip_refs(answer).split("\n\n")
@@ -144,6 +172,9 @@ def corrective_examples() -> list[dict]:
             if not any(re.match(r"(?i)^#{1,3}\s*conclusion", p) for p in kept):
                 kept.append("### Conclusion\nLiability turns on the authorities applied above.")
             answer = "\n\n".join(kept)
+        # Skip if repair emptied the sample.
+        if body_words(answer) < 200:
+            continue
         for variant in range(1, 3):
             rows.append(make_row(question, answer, subject, register, f"live_{filename}", variant))
 
