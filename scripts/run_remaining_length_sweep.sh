@@ -9,11 +9,15 @@ REPORT="$ROOT/training/live_private_release_sweep/report.jsonl"
 BASE="${BASE:-http://127.0.0.1:8765}"
 LOCKFILE="${LOCKFILE:-/tmp/legal_length_sweep.lock}"
 
-exec 9>"$LOCKFILE"
-if ! flock -n 9; then
-  echo "another length sweep holds $LOCKFILE; exiting" | tee -a "$LOG"
-  exit 0
+if [ -f "$LOCKFILE" ]; then
+  old_pid=$(cat "$LOCKFILE" 2>/dev/null || true)
+  if [ -n "${old_pid:-}" ] && kill -0 "$old_pid" 2>/dev/null; then
+    echo "another length sweep holds $LOCKFILE (pid $old_pid); exiting" | tee -a "$LOG"
+    exit 0
+  fi
 fi
+echo $$ > "$LOCKFILE"
+trap 'rm -f "$LOCKFILE"' EXIT
 
 wait_healthy() {
   for _ in $(seq 1 90); do
