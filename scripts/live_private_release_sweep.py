@@ -29,6 +29,7 @@ import guides  # noqa: E402
 import pipeline  # noqa: E402
 import server  # noqa: E402
 from final_trial_sweep import QUESTIONS as LENGTH_QUESTIONS  # noqa: E402
+from efficient_all_laws_plan import EFFICIENT_QUESTIONS  # noqa: E402
 
 
 BASE = "http://127.0.0.1:8765"
@@ -242,11 +243,12 @@ def run_case(case_id: str, message: str, expected_slug: str) -> dict:
 
 def cases_for_args(args: argparse.Namespace) -> list[tuple[str, str, str]]:
     cases: list[tuple[str, str, str]] = []
-    if args.lengths:
+    if args.lengths or args.efficient:
+        length_bank = EFFICIENT_QUESTIONS if args.efficient else LENGTH_QUESTIONS
         start = max(args.start, 0)
-        stop = min(args.stop if args.stop is not None else len(LENGTH_QUESTIONS), len(LENGTH_QUESTIONS))
+        stop = min(args.stop if args.stop is not None else len(length_bank), len(length_bank))
         for index in range(start, stop):
-            words, slug, register, stem = LENGTH_QUESTIONS[index]
+            words, slug, register, stem = length_bank[index]
             prompt = (
                 f"Assume England and Wales law. {'Essay question' if register == 'essay' else 'Problem question'}. "
                 f"Suggested length: {words:,} words. {stem} Default to full parenthetical OSCOLA."
@@ -274,6 +276,11 @@ def cases_for_args(args: argparse.Namespace) -> list[tuple[str, str, str]]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--lengths", action="store_true")
+    parser.add_argument(
+        "--efficient",
+        action="store_true",
+        help="5k/10k/15k/20k stress + 3k compact for remaining core subjects (faster all-laws cover)",
+    )
     parser.add_argument("--general", action="store_true")
     parser.add_argument("--sqe", action="store_true")
     parser.add_argument("--start", type=int, default=0)
@@ -281,7 +288,7 @@ def main() -> None:
     parser.add_argument("--case")
     parser.add_argument("--fresh", action="store_true")
     args = parser.parse_args()
-    if not (args.lengths or args.general or args.sqe):
+    if not (args.lengths or args.efficient or args.general or args.sqe):
         args.lengths = args.general = args.sqe = True
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     if args.fresh and REPORT.exists():

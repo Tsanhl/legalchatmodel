@@ -21,7 +21,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from final_trial_sweep import QUESTIONS as LENGTH_QUESTIONS  # noqa: E402
+from efficient_all_laws_plan import (  # noqa: E402
+    EFFICIENT_QUESTIONS,
+    plan_summary,
+)
 
 BASE = os.environ.get("LEGAL_CHAT_BASE", "http://127.0.0.1:8765")
 LOG = Path(os.environ.get("LEGAL_IMPROVE_LOG", "/tmp/legal_improve_loop.log"))
@@ -32,6 +35,8 @@ SERVER_STDOUT = Path("/private/tmp/legal_ai_server.stdout.log")
 SERVER_STDERR = Path("/private/tmp/legal_ai_server.stderr.log")
 STALL_SECONDS = int(os.environ.get("LEGAL_STALL_SECONDS", "3600"))
 MAX_RETRIES = int(os.environ.get("LEGAL_CASE_RETRIES", "3"))
+# Use efficient all-laws plan by default (5/10/15/20k stress + 3k compact).
+USE_EFFICIENT = os.environ.get("LEGAL_USE_FULL_LENGTH_LADDER") != "1"
 
 
 def log(msg: str) -> None:
@@ -68,9 +73,20 @@ def report_rows() -> dict[str, dict]:
     }
 
 
-def length_passed(words: int) -> bool:
-    prefix = f"length_{words:05}_"
-    return any(k.startswith(prefix) and v.get("passed") for k, v in report_rows().items())
+def case_passed(words: int, slug: str) -> bool:
+    """Pass is per subject id — many compact cases share the same word count."""
+    case_id = f"length_{words:05}_{slug}"
+    row = report_rows().get(case_id)
+    return bool(row and row.get("passed"))
+
+
+def subject_already_covered(slug: str) -> bool:
+    """1k–4k passes already prove those core subjects; skip redoing them."""
+    return any(
+        k.endswith(f"_{slug}") and v.get("passed")
+        for k, v in report_rows().items()
+        if k.startswith("length_")
+    )
 
 
 def run(cmd: list[str], **kwargs) -> int:
@@ -145,13 +161,13 @@ def start_server() -> None:
     raise RuntimeError("server failed to become ready")
 
 
-def run_length(index: int) -> int:
-    words = LENGTH_QUESTIONS[index][0]
-    case_id = f"length_{words:05}_{LENGTH_QUESTIONS[index][1]}"
+def run_length(index: int, words: int, slug: str) -> int:
+    case_id = f"length_{words:05}_{slug}"
+    flag = "--efficient" if USE_EFFICIENT else "--lengths"
     cmd = [
         str(ROOT / ".venv/bin/python"), "-u",
         str(ROOT / "scripts/live_private_release_sweep.py"),
-        "--lengths", "--start", str(index), "--stop", str(index + 1),
+        flag, "--start", str(index), "--stop", str(index + 1),
     ]
     log(f"START {case_id}")
     proc = subprocess.Popen(
@@ -208,7 +224,7 @@ def run_length(index: int) -> int:
             except Exception:
                 proc.kill()
             return 1
-    ok = length_passed(words)
+    ok = case_passed(words, slug)
     log(f"EXIT {case_id} passed={ok}")
     return 0 if ok else 1
 
@@ -231,31 +247,34 @@ def main() -> None:
             pass
     LOCK.write_text(str(os.getpid()))
     log(f"improve-loop start pid={os.getpid()}")
+    log(plan_summary() if USE_EFFICIENT else "using full 1k–20k ladder")
     force = os.environ.get("LEGAL_FORCE_V12_TRAIN") == "1"
     # Never let the chat server steal Metal during LoRA training.
     stop_server()
     train_v12(force=force or not (V12_ADAPTER / "adapters.safetensors").exists())
     start_server()
-    for index, (words, slug, *_rest) in enumerate(LENGTH_QUESTIONS):
-        if length_passed(words):
-            log(f"SKIP length_{words:05}_ already passed")
+    questions = EFFICIENT_QUESTIONS if USE_EFFICIENT else __import__(
+        "final_trial_sweep", fromlist=["QUESTIONS"]
+    ).QUESTIONS
+    for index, (words, slug, *_rest) in enumerate(questions):
+        if case_passed(words, slug) or subject_already_covered(slug):
+            log(f"SKIP length_{words:05}_{slug} already covered")
             continue
         ok = False
         for attempt in range(1, MAX_RETRIES + 1):
             log(f"attempt {attempt}/{MAX_RETRIES} length_{words:05}_{slug}")
-            if run_length(index) == 0:
+            if run_length(index, words, slug) == 0:
                 ok = True
                 break
             on_fail_improve(words, slug)
-            # Only retrain once mid-loop if still on early failures.
             if attempt == 1 and words <= 8000 and os.environ.get("LEGAL_RETRAIN_ON_FAIL") == "1":
                 train_v12(force=True)
                 start_server()
             else:
                 start_server()
         if not ok:
-            log(f"GIVE UP length_{words:05}_ (continuing matrix)")
-    log("START general+SQE")
+            log(f"GIVE UP length_{words:05}_{slug} (continuing matrix)")
+    log("START general+SQE (specialist all-laws enquiries)")
     run([str(ROOT / ".venv/bin/python"), "-u", "scripts/live_private_release_sweep.py", "--general", "--sqe"])
     log("START publish")
     pub = [str(ROOT / ".venv/bin/python"), "-u", "scripts/publish_legal_release.py"]
