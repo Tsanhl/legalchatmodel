@@ -4,23 +4,26 @@
 Strategy
 --------
 1. Keep 1k–4k passes already scored (contract/tort/criminal/land).
-2. Run only four true longform stress tests: 5k / 10k / 15k / 20k.
-3. Cover every other core matrix subject at 3,000 words (long enough for
-   structure + OSCOLA gates, ~2–4× faster than the old escalating ladder).
-4. Specialist subjects stay on the existing general+SQE enquiry suite
-   (aviation, housing, cybercrime, …) instead of another 20k essay each.
+2. Phase-1 longform stress: 5k / 10k / 12k only (skip 15k–20k until later).
+3. Cover other core subjects that sat between 5k–12k at 3,000 words.
+4. Specialist subjects stay on general+SQE (not another mega-essay each).
 
-Total live longform cases after 1k–4k: 4 stress + 12 compact = 16
-(same subject count as before, far less wall-clock than 5k+6k+…+20k).
+Phase 1 total after 1k–4k: 3 stress + ~6 compact, then general+SQE + publish.
+15k–20k stress can be re-enabled later by raising MAX_WORDS.
 """
 from __future__ import annotations
 
+import os
+
 from final_trial_sweep import QUESTIONS as FULL_LENGTH_QUESTIONS
 
-# True longform stress (prove 5k–20k still works under release gates).
-STRESS_WORDS = {5000, 10000, 15000, 20000}
+# Phase-1 ceiling: prove up to 12k first (15k/20k deferred — too slow).
+MAX_WORDS = int(os.environ.get("LEGAL_MAX_WORDS", "12000"))
 
-# Compact longform for remaining core matrix subjects.
+# True longform stress within the phase-1 ceiling.
+STRESS_WORDS = {w for w in (5000, 10000, 12000) if w <= MAX_WORDS}
+
+# Compact longform for remaining core matrix subjects under the ceiling.
 COMPACT_WORDS = 3000
 
 # Subjects already passed at 1k–4k — do not redo in the efficient plan.
@@ -45,7 +48,9 @@ def build_efficient_questions() -> list[tuple[int, str, str, str]]:
             continue
         if words <= 4000:
             continue  # already covered / passed
-        # Remap former 6k–19k slots to compact 3k for the same subject+stem.
+        if words > MAX_WORDS:
+            continue  # defer 13k–20k (or whatever is above the phase ceiling)
+        # Remap former mid-ladder slots to compact 3k for the same subject+stem.
         out.append((COMPACT_WORDS, slug, register, stem))
 
     # Stable order: stress ascending, then compact in original subject order.
@@ -61,7 +66,7 @@ def plan_summary() -> str:
     stress = [w for w, *_ in EFFICIENT_QUESTIONS if w in STRESS_WORDS]
     compact = [slug for w, slug, *_ in EFFICIENT_QUESTIONS if w not in STRESS_WORDS]
     return (
-        f"efficient plan: stress={stress} compact_{COMPACT_WORDS}w="
+        f"efficient plan max={MAX_WORDS}: stress={stress} compact_{COMPACT_WORDS}w="
         f"{len(compact)} subjects ({', '.join(compact)})"
     )
 
