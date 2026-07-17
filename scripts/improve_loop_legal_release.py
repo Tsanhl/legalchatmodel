@@ -232,6 +232,8 @@ def main() -> None:
     LOCK.write_text(str(os.getpid()))
     log(f"improve-loop start pid={os.getpid()}")
     force = os.environ.get("LEGAL_FORCE_V12_TRAIN") == "1"
+    # Never let the chat server steal Metal during LoRA training.
+    stop_server()
     train_v12(force=force or not (V12_ADAPTER / "adapters.safetensors").exists())
     start_server()
     for index, (words, slug, *_rest) in enumerate(LENGTH_QUESTIONS):
