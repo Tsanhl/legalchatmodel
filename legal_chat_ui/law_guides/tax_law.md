@@ -63,6 +63,14 @@
 - Capital gains and VAT: Taxation of Chargeable Gains Act 1992, ss 1, 21, 28, 38 and 222; Value Added Tax Act 1994, ss 1, 4, 5, 24 and 25.
 - Avoidance: Finance Act 2013, Pt 5; *WT Ramsay Ltd v Inland Revenue Commissioners* [1982] AC 300 (HL); *Barclays Mercantile Business Finance Ltd v Mawson* [2004] UKHL 51, [2005] 1 AC 684; *RFC 2012 plc (in liquidation) v Advocate General for Scotland* [2017] UKSC 45, [2017] 1 WLR 2767.
 - Administration and penalties: Taxes Management Act 1970, ss 9A, 28A, 31 and 50; Finance Act 2007, Sch 24; *HMRC v Tooth* [2021] UKSC 17, [2021] 1 WLR 2811.
+- Anti-avoidance judicial / statutory: *WT Ramsay Ltd v IRC* [1982] AC 300 (HL); *Barclays Mercantile Business Finance Ltd v Mawson* [2004] UKHL 51, [2005] 1 AC 684; Finance Act 2013, Part 5 (GAAR) as engaged.
+- Income / corporation framework: Income Tax Act 2007; Corporation Tax Act 2009/2010 (as engaged); *IRC v Duke of Westminster* [1936] AC 1 (HL) (historical — do not overstate).
+- VAT classic: *Card Protection Plan Ltd v C&E Commissioners* (C-349/96) [1999] ECR I-973; check UK VAT Act 1994 post-exit status.
+- Discovery / enquiry procedure: check TMA 1970 provisions in force on the assessment date.
+
+## Current-Law Update Checkpoints
+- Distinguish statutory construction, Ramsay-style purposive analysis, and the GAAR — do not conflate.
+- Always verify the Finance Act year and HMRC guidance date before advising rates or reliefs.
 
 ## Avoid
 - Avoid unverified current thresholds unless retrieved/current.

@@ -62,3 +62,15 @@
 - Avoid broad moral unfairness analysis without a probate route.
 - Avoid saying suspicious circumstances prove undue influence without evidence of coercion.
 - Avoid leaving the estate distribution consequence unstated.
+
+## Full OSCOLA Authority Bank
+- Wills Act 1837, s 9; Administration of Estates Act 1925; Inheritance (Provision for Family and Dependants) Act 1975.
+- *White v White* [2000] UKHL 54, [2001] 1 AC 596; *Ilott v The Blue Cross* [2017] UKSC 17, [2018] AC 545.
+- Formalities / knowledge and approval classics: *Banks v Goodfellow* (1870) LR 5 QB 549; *Gill v Woodall* [2010] EWCA Civ 1430, [2011] Ch 380.
+- Revocation / marriage: Wills Act 1837, s 18 (as amended).
+- Rectification / construction: Administration of Justice Act 1982, s 20; *Marley v Rawlings* [2014] UKSC 2, [2015] AC 129.
+- Mutual wills / secret trusts cross-ref trusts bank.
+
+## Current-Law Update Checkpoints
+- Separate validity (form/capacity/undue influence) from family-provision claims under the 1975 Act.
+

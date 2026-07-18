@@ -49,6 +49,10 @@
 - Responsibility and remedies: International Law Commission, Articles on Responsibility of States for Internationally Wrongful Acts (2001), arts 1-2, 4-11, 31, 34-37 and 49-54; *Gabcikovo-Nagymaros Project (Hungary/Slovakia)* [1997] ICJ Rep 7.
 - Immunity and international criminal law: State Immunity Act 1978, ss 1-3; *Jurisdictional Immunities of the State (Germany v Italy: Greece intervening)* [2012] ICJ Rep 99; *Arrest Warrant of 11 April 2000 (Democratic Republic of the Congo v Belgium)* [2002] ICJ Rep 3; Rome Statute of the International Criminal Court, arts 5, 17 and 27.
 
+## Current-Law Update Checkpoints
+- Identify the source (treaty, custom, general principle, unilateral act) before citing ICJ cases.
+- Use of force answers need UN Charter arts 2(4) and 51 and the exact conflict facts; do not collapse into domestic JR.
+
 ## Avoid
 - Avoid private-international-law concepts unless the prompt asks.
 - Avoid soft-law instruments as if binding without explanation.

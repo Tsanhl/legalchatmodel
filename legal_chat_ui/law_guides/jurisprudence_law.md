@@ -61,6 +61,10 @@
 - Do not claim natural law simply denies that wicked enactments are law; distinguish legal validity, focal meaning, moral obligation and legality.
 - Do not present realism as saying rules never matter, feminism as a single voice, CRT as only individual prejudice, Marxism as crude economic determination, or postcolonial theory as confined to past empire.
 
+## Current-Law Update Checkpoints
+- Essays must separate descriptive UK constitutional practice from normative theory.
+- Cite cases for legal propositions; cite theorists as secondary literature only.
+
 ## Avoid
 - Avoid name-dropping theorists without applying their argument.
 - Avoid reducing jurisprudence to personal political opinion.
@@ -68,3 +72,8 @@
 ## Full OSCOLA Authority Bank
 - UK constitutional testing ground: *R (Jackson) v Attorney General* [2005] UKHL 56, [2006] 1 AC 262; *R (Miller) v Secretary of State for Exiting the European Union* [2017] UKSC 5, [2018] AC 61; *R (Miller) v The Prime Minister* [2019] UKSC 41, [2020] AC 373.
 - Rule-of-law tradition: *Entick v Carrington* (1765) 19 St Tr 1029.
+- Positivism / rule of recognition: H.L.A. Hart, *The Concept of Law* (3rd edn, OUP 2012) — secondary; *R (Jackson) v Attorney General* [2005] UKHL 56 (constitutional testing ground).
+- Interpretivism contrast: Ronald Dworkin, *Law's Empire* (Harvard 1986) — secondary; UK practice illustrations via *Miller* [2017] UKSC 5 and *Privacy International* [2019] UKSC 22.
+- Rule of law: A.V. Dicey (historical); *R (UNISON) v Lord Chancellor* [2017] UKSC 51.
+- Soft law / authority: do not cite academic works as if they were cases; label secondary literature clearly.
+

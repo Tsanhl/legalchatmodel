@@ -45,3 +45,15 @@
 ## Avoid
 - Avoid saying a sentence is "harsh" without appeal threshold.
 - Avoid mixing sentencing mitigation with liability defences.
+
+## Full OSCOLA Authority Bank
+- Sentencing Act 2020 (consolidating framework); Criminal Justice Act 2003 legacy provisions only where still relevant.
+- *R v Blackshaw* [2011] EWCA Crim 2312 (guidelines / deterrence context — use carefully); guideline authorities must be matched to the current Sentencing Council guideline in force on the sentencing date.
+- Totality / guilty plea: apply current Sentencing Council guidelines rather than outdated case headlines alone.
+- Custodial thresholds / community orders: Sentencing Act 2020, Parts 2–10 as engaged.
+- Dangerous offenders / extended sentences: SA 2020 provisions replacing CJA 2003 chapters — verify current sections.
+- Appeal against sentence: Criminal Appeal Act 1968; undue leniency references under CJA 1988, s 36.
+
+## Current-Law Update Checkpoints
+- Cite the guideline and statutory maximum for the offence dated to the sentence; do not invent tariff numbers.
+

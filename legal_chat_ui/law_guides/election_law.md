@@ -47,3 +47,15 @@
 ## Avoid
 - Avoid political commentary without legal route.
 - Avoid treating online campaigning as unregulated without checking current rules.
+
+## Full OSCOLA Authority Bank
+- Representation of the People Act 1983; Political Parties, Elections and Referendums Act 2000.
+- *R (Miller) v Secretary of State for Exiting the European Union* [2017] UKSC 5 (constitutional context — not a pure election case); election petition authorities must be matched to the statutory ground pleaded.
+- European Convention / free elections: Protocol 1 Art 3 ECHR where engaged.
+- Election petitions / corrupt practices: Representation of the People Act 1983, Parts II–III.
+- Campaign finance: Political Parties, Elections and Referendums Act 2000; Elections Act 2022 reforms as engaged.
+- Voting rights / prisoners: *Hirst v United Kingdom (No 2)* (2006) 42 EHRR 41 — Strasbourg; check current UK legislative response before advising domestic entitlement.
+
+## Current-Law Update Checkpoints
+- Use the statute and Electoral Commission guidance in force on the election date; avoid generic constitutional commentary.
+

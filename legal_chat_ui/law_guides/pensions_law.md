@@ -73,6 +73,25 @@
 - Avoid generic trust analysis with no pensions statute/scheme wording.
 - Avoid final advice without assumptions on dates, consent, certificates, or member status.
 
+## Full OSCOLA Authority Bank
+<!-- Verified Pack v1 (2026-07-18): drawn from Desktop/Law/Pensions Law materials + primary checks (UKSC/BAILII/CURIA). Only entries with confirmed neutral/report citations. -->
+- Employer powers / good faith: *Imperial Group Pension Trust Ltd v Imperial Tobacco Ltd* [1991] 1 WLR 589 (Ch); *IBM United Kingdom Holdings Ltd v Dalgleish* [2014] EWHC 980 (Ch); *IBM United Kingdom Holdings Ltd v Dalgleish* [2017] EWCA Civ 1212; *Braganza v BP Shipping Ltd* [2015] UKSC 17, [2015] 1 WLR 1661.
+- Scheme interpretation / indexation: *Barnardo's v Buckinghamshire* [2018] UKSC 55, [2019] AC 585.
+- Equalisation / EU pay equality: *Barber v Guardian Royal Exchange Assurance Group* (C-262/88) [1990] ECR I-1889, [1991] 1 QB 344; *Coloroll Pension Trustees Ltd v Russell* (C-200/91) [1994] ECR I-4389; *Safeway Ltd v Newton* (C-171/18) EU:C:2019:839; *Safeway Ltd v Newton* [2017] EWCA Civ 1482; *Safeway Ltd v Newton* [2020] EWCA Civ 869.
+- Survivor / equality: *Re Brewster's Application for Judicial Review* [2017] UKSC 8, [2017] 1 WLR 717; Equality Act 2010, ss 13, 61–62, 64–71 and Sch 7; Pensions Act 1995, s 62 (sex equality rule) where engaged.
+- Investment / ESG / public-fund directions: *Cowan v Scargill* [1985] Ch 270; *Harries v Church Commissioners for England* [1992] 1 WLR 1241 (Ch); *R (Palestine Solidarity Campaign Ltd) v Secretary of State for Housing, Communities and Local Government* [2020] UKSC 16, [2020] 1 WLR 1774; *Butler-Sloss v Charity Commission for England and Wales* [2022] EWHC 974 (Ch); *McGaughey v Universities Superannuation Scheme Ltd* [2022] EWHC 1233 (Ch); *McGaughey v Universities Superannuation Scheme Ltd* [2023] EWCA Civ 873.
+- PPF / insolvency protection (EU/assimilated overlay): *Robins v Secretary of State for Work and Pensions* (C-278/05) [2007] ECR I-1053; *Hampshire v Board of the Pension Protection Fund* (C-17/17) EU:C:2018:674; *Pensions-Sicherungs-Verein VVaG v Bauer* (C-168/18) EU:C:2019:1128; Directive 2008/94/EC, art 8 (as relevant on facts/timing).
+- TUPE / early-retirement rights: *Beckmann v Dynamco Whichelow Macfarlane Ltd* (C-164/00) [2002] ECR I-4893; *Martin v South Bank University* (C-4/01) [2003] ECR I-12859; Transfer of Undertakings (Protection of Employment) Regulations 2006, SI 2006/246, regs 4 and 10.
+- Core UK statutes (pinpoints only where engaged): Pensions Act 1995, ss 3–11, 67, 75–75A; Pensions Act 2004, ss 38–51, 143–145, 154, 160, 255, 257–258; Pension Schemes Act 1993, ss 1, 180–181; Pensions Act 2008, s 3 (automatic enrolment); Companies Act 2006, ss 170–181 (directors' duties where trustee/employer company overlap arises).
+- Funding / employer debt regulations (verify current text): Occupational Pension Schemes (Employer Debt) Regulations 2005, SI 2005/678, regs 6–6E and 9; Pensions Regulator (Financial Support Directions etc) Regulations 2005, SI 2005/2188.
+
+## Current-Law Update Checkpoints
+- Equalisation / NRA answers: verify Barber window, scheme amendment power, Pensions Act 1995 s 67 protected modifications, and current Equality Act 2010 Sch 7 exceptions before advising on sex-differentiated actuarial factors.
+- Post-Brexit EU pensions authorities (Barber line, PPF/Robins-Hampshire-Bauer, Beckmann/Martin): state whether the rule is relied on as assimilated retained EU law, domestic statute, or persuasive comparative authority for the facts' date.
+- ESG / non-financial investment: keep private occupational schemes distinct from LGPS public-direction cases (*Palestine Solidarity*); apply *Cowan* / *Harries* / Law Commission framing and any current SIP / TPR investment guidance in force on the advice date.
+- Auto-enrolment / dashboards / small pots: check the Pensions Act 2008 employer duties and any later amending regulations in force on the facts' date rather than course handout summaries alone.
+- When citing High Court pensions decisions later appealed (e.g. IBM, McGaughey, Safeway), prefer the latest appellate holding unless the first-instance point remains undisturbed.
+
 ## Anonymized Output Architecture
 - In an equalisation or calculation problem, lead with a result map and assumptions, then connect each service tranche and visible calculation to the deed and rules, equality timing, amendment power, protected-rights route and any actuarial exception. Finish with a number or range and the documents needed to firm it up.
 - For non-financial investment requests, state the retirement-benefit purpose first; analyse financial materiality, informed beneficiary support, detriment risk, DB or DC context, employer covenant and impartiality; then accept, reject or defer with operational trustee steps.

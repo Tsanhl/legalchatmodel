@@ -47,7 +47,14 @@
 - Foundational EU doctrines: Case 26/62 *NV Algemene Transport- en Expeditie Onderneming van Gend en Loos v Nederlandse Administratie der Belastingen* [1963] ECR 1; Case 6/64 *Flaminio Costa v ENEL* [1964] ECR 585; *R v Secretary of State for Transport, ex p Factortame Ltd (No 2)* [1991] 1 AC 603 (HL).
 - Directives/state liability: Case 41/74 *Van Duyn v Home Office* [1974] ECR 1337; Case 152/84 *Marshall v Southampton and South-West Hampshire Area Health Authority* [1986] ECR 723; Joined Cases C-6/90 and C-9/90 *Francovich v Italy* [1991] ECR I-5357.
 - Free movement/proportionality: Case 120/78 *Rewe-Zentral AG v Bundesmonopolverwaltung fuer Branntwein (Cassis de Dijon)* [1979] ECR 649; Case C-55/94 *Gebhard v Consiglio dell'Ordine degli Avvocati e Procuratori di Milano* [1995] ECR I-4165.
-- UK post-Brexit status: European Union (Withdrawal) Act 2018, ss 2-7; Retained EU Law (Revocation and Reform) Act 2023, ss 1-5.
+- UK post-Brexit status: European Union (Withdrawal) Act 2018, ss 2-7; Retained EU Law (Revocation and Reform) Act 2023, ss 1-5; European Union (Withdrawal Agreement) Act 2020 where Northern Ireland / TCA issues arise.
+- Citizenship / residence classic: Case C-413/99 *Baumbast and R v Secretary of State for the Home Department* [2002] ECR I-7091; Case C-34/09 *Zambrano* [2011] ECR I-1177 — label post-exit UK relevance before applying.
+- Competition overlap (where free-movement vs antitrust): cross-refer competition bank (*Meta* C-252/21; *Google Shopping* C-48/22 P).
+
+## Current-Law Update Checkpoints
+- For UK domestic questions, identify whether the rule is assimilated law, preserved EU law, domestic statute, or merely persuasive CJEU authority after the REUL Act 2023.
+- Do not assume direct effect / supremacy propositions still operate as they did pre-exit unless the Withdrawal Act route is spelled out.
+- Northern Ireland / Windsor Framework trade issues need the specific Protocol/TCA provision — not generic free-movement rhetoric.
 
 ## Avoid
 - Avoid generic “EU law prevails” without instrument and route.

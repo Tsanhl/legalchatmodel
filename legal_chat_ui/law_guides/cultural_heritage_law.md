@@ -48,3 +48,12 @@
 ## Avoid
 - Avoid treating cultural significance as itself proof of legal ownership.
 - Avoid relying on soft-law restitution norms as binding without explanation.
+
+## Full OSCOLA Authority Bank
+- Treasure Act 1996; Ancient Monuments and Archaeological Areas Act 1979; Planning (Listed Buildings and Conservation Areas) Act 1990 (as amended).
+- Export / illicit trade: Dealing in Cultural Objects (Offences) Act 2003; UNESCO 1970 Convention (UK implementation status must be checked before advising).
+- Judicial review of heritage decisions: ordinary public-law standards (*Wednesbury* / *Daly* proportionality where rights engaged).
+
+## Current-Law Update Checkpoints
+- Identify whether the object is treasure, listed, scheduled, or museum property before selecting the regime.
+

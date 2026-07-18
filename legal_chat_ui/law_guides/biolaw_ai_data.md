@@ -68,6 +68,21 @@
 - Avoid speculative technology claims not grounded in retrieved material.
 - Avoid treating ethics as a substitute for legal route.
 
+
+## Full OSCOLA Authority Bank
+<!-- Verified Pack v1; overlaps law_medicine + AI/data leading authorities -->
+- Medical consent / capacity anchors: *Aintree University Hospitals NHS Foundation Trust v James* [2013] UKSC 67; *Gillick v West Norfolk and Wisbech Area Health Authority* [1986] AC 112; Mental Capacity Act 2005, ss 1–5.
+- Reproductive / HFEA: *Evans v Amicus Healthcare Ltd* [2004] EWCA Civ 727, [2005] Fam 1; Human Fertilisation and Embryology Act 1990 (as amended).
+- Data / privacy litigation: *Lloyd v Google LLC* [2021] UKSC 50, [2022] AC 1217; UK GDPR; Data Protection Act 2018.
+- AI / biometrics public law: *R (Bridges) v Chief Constable of South Wales Police* [2020] EWCA Civ 1058, [2020] 1 WLR 5037.
+- Gender medicine appellate: *Bell v Tavistock and Portman NHS Foundation Trust* [2021] EWCA Civ 1363.
+- UK data reform: Data (Use and Access) Act 2025 — cite only commenced provisions.
+
+## Current-Law Update Checkpoints
+- Status-label every source: enacted law, bill, guidance, settlement, first-instance vs appellate.
+- Check DUAA 2025 commencement before asserting changes to UK GDPR / DPA 2018.
+- Do not treat US FTC filings as English authorities; use comparatively only with jurisdiction labelled.
+
 ## Anonymized Output Architecture
 - A long AI or data essay should move from a bounded thesis and defined theory to the constitutional, statutory, regulatory and private-law architecture; use case studies to prove identified gaps, comparators for a stated function, and a reform with actor, trigger, audit, enforcement, remedy and safeguards.
 - Status-label every bill, code, settlement, investigation, judgment and academic proposal. Bias, security and privacy harms should be explained through mechanisms rather than asserted as generic technology risks.

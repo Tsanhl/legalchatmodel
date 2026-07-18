@@ -25,3 +25,13 @@
 ## Avoid
 - Avoid saying directors must stop trading immediately on any financial difficulty.
 - Avoid treating all asset transfers as preferences; undervalue, preference, transaction defrauding creditors and breach of duty have different elements.
+
+## Full OSCOLA Authority Bank
+- Insolvency Act 1986, especially Parts I–IX as engaged (administration, liquidation, preferences, transactions at undervalue: ss 238–241, 423).
+- *Re Spectrum Plus Ltd* [2005] UKSC 41, [2005] 2 AC 680; *Belmont Park Investments Pty Ltd v BNY Corporate Trustee Services Ltd* [2011] UKSC 38, [2012] 1 AC 383.
+- Directors: Companies Act 2006, ss 171–177; *Re Continental Assurance Co of London plc* [2007] 2 BCLC 287 (context); wrongful trading IA 1986, s 214.
+- Pension interface: Pensions Act 2004 / s 75 Pensions Act 1995 (cross-refer pensions bank).
+
+## Current-Law Update Checkpoints
+- Identify the insolvency procedure and date; priorities and moratorium rules differ by procedure and later amending statutes.
+

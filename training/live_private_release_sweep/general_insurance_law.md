@@ -4,7 +4,7 @@ Because this is business insurance, the principal regime is the statutory duty o
 
 Before the contract, the insured must disclose every material circumstance it knows or ought to know, or give sufficient information to put a prudent insurer on notice to enquire further, and must present the risk reasonably clearly (Insurance Act 2015, ss 3-4). A circumstance is material if it would influence the judgment of a prudent insurer in deciding whether to take the risk and on what terms (Insurance Act 2015, s 7).
 
-An earlier “minor” loss is not necessarily immaterial. Its type, amount, cause, date, recurrence and the proposal questions matter. The insurer should produce underwriting evidence showing what it would actually have done. Materiality and inducement are distinct requirements; avoidance is unavailable merely because the omitted fact was material (*Pan Atlantic Insurance Co Ltd v Pine Top Insurance Co Ltd* [1995] 1 AC 501).
+An earlier “minor” loss is not necessarily immaterial. Its type, amount, cause, date, recurrence and the proposal questions matter. The insurer should produce underwriting evidence showing what it would actually have done. Materiality and inducement are distinct requirements; avoidance is unavailable merely because the omitted fact was material (*Pan Atlantic Insurance Co Ltd v Pine Top Insurance Co Ltd* [1995] 1 AC 501 (HL) (pre-2015 context)).
 
 The business should examine who completed the proposal, searches reasonably expected of its senior management and insurance team, broker communications, the clarity of questions, and information already known or presumed known by the insurer. Waiver may arise where the insurer asked a limited question or failed to pursue an obvious lead.
 

@@ -8,7 +8,7 @@ The protection has recognised exceptions, including disputes about whether a set
 
 ### Court powers and costs
 
-Courts can stay or order parties to engage in a non-court dispute-resolution process where doing so is proportionate and does not impair the essence of the right to a judicial hearing (*Churchill v Merthyr Tydfil County Borough Council* [2023] EWCA Civ 1416, [2024] 1 WLR 382). An unreasonable refusal to mediate can affect costs; relevant circumstances include merits, prior attempts, cost, delay and prospects of settlement (*Halsey v Milton Keynes General NHS Trust* [2004] EWCA Civ 576, [2004] 1 WLR 3002).
+Courts can stay or order parties to engage in a non-court dispute-resolution process where doing so is proportionate and does not impair the essence of the right to a judicial hearing (*Churchill v Merthyr Tydfil County Borough Council* [2023] EWCA Civ 1416, [2024] 1 WLR 3333). An unreasonable refusal to mediate can affect costs; relevant circumstances include merits, prior attempts, cost, delay and prospects of settlement (*Halsey v Milton Keynes General NHS Trust* [2004] EWCA Civ 576, [2004] 1 WLR 3002).
 
 The companies should not assume mediation suspends a contractual or statutory limitation period. They should agree a standstill or issue protective proceedings if needed.
 

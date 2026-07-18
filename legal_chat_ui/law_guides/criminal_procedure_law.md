@@ -24,3 +24,13 @@
 ## Avoid
 - Avoid discussing substantive offence liability when the question asks about trial procedure.
 - Avoid guessing a time limit or current rule number.
+
+## Full OSCOLA Authority Bank
+- Police and Criminal Evidence Act 1984; Criminal Procedure and Investigations Act 1996; Criminal Justice Act 2003 (disclosure / bad character / hearsay as engaged).
+- *R v Turnbull* [1977] QB 224 (CA); *R v Galbraith* [1981] 1 WLR 1039 (CA).
+- Abuse of process / fair trial: *R v Horseferry Road Magistrates' Court, ex p Bennett* [1994] 1 AC 42 (HL); Art 6 ECHR / HRA 1998.
+- Youth / householder context example from materials: *R (Collins) v Secretary of State for Justice* [2016] EWHC 33 (Admin) — check later appellate/statutory overlay before advising.
+
+## Current-Law Update Checkpoints
+- Always identify stage: investigation, charge, disclosure, trial, appeal, sentence.
+

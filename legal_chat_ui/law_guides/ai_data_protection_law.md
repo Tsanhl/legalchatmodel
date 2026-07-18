@@ -60,3 +60,16 @@
 - Avoid merging the privacy tort and the data protection claim into one cause of action.
 - Avoid treating "AI copyright" as a single issue without naming the right, the act, and the input/output layer.
 - Avoid asserting current statutory detail without flagging that this area changes rapidly and needs verification.
+
+## Full OSCOLA Authority Bank
+<!-- Verified Pack v1 from dissertation AI/data materials + UK anchors -->
+- UK data framework: UK GDPR; Data Protection Act 2018; Data (Use and Access) Act 2025 (commenced provisions only).
+- Representative / damages: *Lloyd v Google LLC* [2021] UKSC 50, [2022] AC 1217.
+- Live facial recognition: *R (Bridges) v Chief Constable of South Wales Police* [2020] EWCA Civ 1058, [2020] 1 WLR 5037.
+- EU classic personal-data right to be forgotten (comparative/assimilated care): *Google Spain SL v Agencia Española de Protección de Datos* (C-131/12) EU:C:2014:317, [2014] QB 1022.
+- Platform competition / data leverage overlap: *Meta Platforms Inc v Bundeskartellamt* (C-252/21) EU:C:2023:537.
+
+## Current-Law Update Checkpoints
+- Separate privacy, data protection, consumer, and competition routes; do not merge into “tech law”.
+- For ongoing foreign litigation (e.g. Getty / Stability AI), label jurisdiction and procedural status; do not invent English holdings.
+

@@ -47,6 +47,10 @@
 - Consumer credit/redress: Consumer Credit Act 1974, ss 140A-140C; *Plevin v Paragon Personal Finance Ltd* [2014] UKSC 61, [2014] 1 WLR 4222.
 - Enforcement/fairness: *FCA v Arch Financial Products LLP* [2021] EWCA Civ 1183; *Financial Conduct Authority v Macris* [2017] UKSC 19, [2017] 1 WLR 1459.
 - Market abuse/SMCR: UK Market Abuse Regulation, arts 7, 14, 15, 17 and 19; Senior Managers and Certification Regime materials under FSMA 2000 and FCA/PRA rules.
+- FSMA 2000 (as amended); Financial Services and Markets Act 2023 reforms as engaged.
+- Regulatory objectives / accountability: check current FCA/PRA statutory objectives text.
+- Market abuse / listing: UK MAR (assimilated) / FSMA Part 8 as engaged; *FCA v Da Vinci Invest Ltd* [2015] EWHC 2401 (Ch) (illustrative — verify before pinpoints).
+- Consumer duty / SMCR: treat Handbook rules as regulatory soft-law unless incorporated; do not cite Handbook paragraphs as if statutes.
 
 ## Current-Law Update Checkpoints
 - FCA Consumer Duty is live for open products and services from 31 July 2023 and closed products and services from 31 July 2024. Use it for regulated-firm conduct/outcomes but still identify the exact Handbook/statutory route.

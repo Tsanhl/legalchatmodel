@@ -50,3 +50,15 @@
 ## Avoid
 - Avoid generic breach analysis without contract machinery.
 - Avoid giving delay conclusions without causation and notices.
+
+## Full OSCOLA Authority Bank
+- Housing Grants, Construction and Regeneration Act 1996 (as amended) — adjudication; Scheme for Construction Contracts.
+- *Macob Civil Engineering Ltd v Morrison Construction Ltd* [1999] CLC 215; *Bresco Electrical Services Ltd v Michael J Lonsdale (Electrical) Ltd* [2020] UKSC 25, [2020] 2 WLR 1027.
+- Implied terms / quality: *MT Højgaard A/S v E.On Climate & Renewables UK Robin Rigg East Ltd* [2017] UKSC 59, [2017] 1 WLR 3140.
+- Concurrent delay / prevention: *North Midland Building Ltd v Cyden Homes Ltd* [2018] EWCA Civ 1744.
+- Liquidated damages: *Triple Point Technology Inc v PTT Public Co Ltd* [2021] UKSC 29, [2021] AC 1148.
+- Adjudication enforcement: *Carillion Construction Ltd v Devonport Royal Dockyard Ltd* [2005] EWCA Civ 1358.
+
+## Current-Law Update Checkpoints
+- Separate contractual claims, adjudication enforcement, and insolvency set-off (*Bresco*).
+

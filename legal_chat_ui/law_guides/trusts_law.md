@@ -52,6 +52,12 @@
 - Trust creation and constitution, only where directly relevant: *Milroy v Lord* (1862) 4 De GF & J 264, 45 ER 1185; *Re Rose* [1952] Ch 499 (CA); *Pennington v Waine* [2002] EWCA Civ 227, [2002] 1 WLR 2075.
 - Beneficiary consent and variation, only where directly relevant: *Saunders v Vautier* (1841) 4 Beav 115, 49 ER 282; Variation of Trusts Act 1958, s 1; *Re Weston's Settlements* [1969] 1 Ch 223 (CA).
 - Formalities commonly engaged: Wills Act 1837, s 9; Law of Property Act 1925, s 53(1)(b) and s 53(1)(c).
+- Knowing receipt / proprietary claims (recent): *Byers v Saudi National Bank* [2023] UKSC 51, [2024] 2 WLR 259.
+- Sub-trusts (recent appellate): *LA Micro Group (UK) Ltd v LA Micro Group Inc* [2023] EWCA Civ 214.
+
+## Current-Law Update Checkpoints
+- For dishonest assistance / knowing receipt, prefer *Byers* [2023] UKSC 51 on the proprietary/personal analysis over outdated one-line summaries.
+- Cite *Rukhadze* / *Stevens* / *Hopcraft* (2025 UKSC) only for the fiduciary-profit issues they actually decide.
 
 ## Fiduciary-Loyalty Essay Accuracy Lock
 - A constituted trustee does not ordinarily balance a continuing fiduciary duty to the settlor against a duty to beneficiaries. The quotation concerns conflicts between the fiduciary's duty to the principal/beneficiaries, personal interest, and duties owed to another person.

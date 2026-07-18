@@ -26,3 +26,16 @@
 ## Avoid
 - Avoid treating every unfair outcome as an unfair term; identify the exact statutory route.
 - Avoid assuming regulator powers automatically create a private damages claim.
+
+## Full OSCOLA Authority Bank
+- Consumer Rights Act 2015, Parts 1–2 (goods, digital content, services, unfair terms).
+- Consumer Protection from Unfair Trading Regulations 2008, SI 2008/1277 (as amended).
+- *Office of Fair Trading v Abbey National plc* [2009] UKSC 6, [2010] 1 AC 696; *ParkingEye Ltd v Beavis* [2015] UKSC 67, [2015] 3 WLR 1373.
+- Unfair Contract Terms Act 1977 (still relevant for some B2B / residual contexts — check CRA boundary).
+- Unfair terms (consumer): CRA 2015, ss 61–69; *Director General of Fair Trading v First National Bank plc* [2001] UKHL 52 (pre-CRA comparative).
+- Digital content: CRA 2015, Part 1 Ch 3.
+- Product liability: Consumer Protection Act 1987; *A v National Blood Authority* [2001] 3 All ER 289.
+
+## Current-Law Update Checkpoints
+- Confirm whether the CRA 2015 or retained UCTA/UTCCR analysis applies to the contract date and party types.
+

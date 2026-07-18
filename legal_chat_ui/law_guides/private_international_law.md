@@ -66,6 +66,21 @@
 - Avoid generic international-law discussion.
 - Avoid using EU instruments without checking retained/post-Brexit status.
 
+## Full OSCOLA Authority Bank
+<!-- Verified Pack v1 (2026-07-18): drawn from Desktop/Law/Private International Law filenames with clear neutral/report cites + primary checks. -->
+- Forum / stay: *Spiliada Maritime Corp v Cansulex Ltd* [1987] AC 460 (HL); *Amin Rasheed Shipping Corp v Kuwait Insurance Co* [1984] AC 50 (HL).
+- Parent company / foreign claimants: *Vedanta Resources plc v Lungowe* [2019] UKSC 20, [2020] AC 1045; *Chandler v Cape plc* [2012] EWCA Civ 525, [2012] 1 WLR 3111.
+- Tort gateway / damage: *FS Cairo (Nile Plaza) LLC v Brownlie* [2021] UKSC 45, [2022] AC 995 (*Brownlie II*).
+- Arbitration agreement governing law: *Enka Insaat ve Sanayi AS v OOO Insurance Company Chubb* [2020] UKSC 38, [2020] 1 WLR 4117; *Fiona Trust & Holding Corp v Privalov* [2007] UKHL 40, [2007] 4 All ER 951.
+- Choice of law for contracts (classic): *Amin Rasheed Shipping Corp v Kuwait Insurance Co* [1984] AC 50 (HL) (common-law proper law contrast — always check Rome I / assimilated position for the facts' date).
+- Instruments / frameworks to verify before citing as in-force: Hague Convention of 30 June 2005 on Choice of Court Agreements; Regulation (EC) No 593/2008 (Rome I); Regulation (EC) No 864/2007 (Rome II); Civil Jurisdiction and Judgments Act 1982 (as amended post-exit).
+
+## Current-Law Update Checkpoints
+- Post-Brexit: state whether Brussels I Recast / Lugano applies on the facts' date, or whether common-law + Hague 2005 / residual gateways control; do not assume EU jurisdiction rules still bind English courts.
+- Rome I / Rome II: confirm assimilated / retained status and any UK amending SI before applying connecting factors.
+- Corporate-group foreign-harm claims: keep *Vedanta* jurisdiction analysis separate from substantive duty; do not treat English parent presence as automatic liability.
+- Anti-suit / foreign judgments: identify the exact recognition route (common law, statute, Hague) and the asset forum before advising enforceability.
+
 ## Anonymized Output Architecture
 - A post-exit jurisdiction and enforcement essay should test front-end service and forum rules separately from back-end recognition and execution, verify the current treaty position, and explain how that asymmetry changes forum and asset strategy.
 - End each major section with both the current legal position and its litigation consequence; abstract claims about comity or attractiveness are insufficient without the legal mechanism.

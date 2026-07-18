@@ -51,6 +51,10 @@
 - Agency: *Freeman & Lockyer v Buckhurst Park Properties (Mangal) Ltd* [1964] 2 QB 480 (CA); *Hely-Hutchinson v Brayhead Ltd* [1968] 1 QB 549 (CA); *Watteau v Fenwick* [1893] 1 QB 346 (QB); *Armagas Ltd v Mundogas SA (The Ocean Frost)* [1986] AC 717 (HL).
 - Carriage and documents: Carriage of Goods by Sea Act 1992, ss 2-3; *Homburg Houtimport BV v Agrosin Private Ltd (The Starsin)* [2003] UKHL 12, [2004] 1 AC 715.
 
+## Current-Law Update Checkpoints
+- Characterise the contract (sale, bailment, carriage, finance) before applying SGA / UCC-style reasoning.
+- Retention of title: apply *Romalpa* lineage and registration/priority issues under the Companies Act where relevant.
+
 ## Avoid
 - Avoid using contract damages when the key issue is proprietary title.
 - Avoid title conclusions without timeline.

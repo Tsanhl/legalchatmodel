@@ -64,12 +64,15 @@
 - Fairness/reasons/legitimate expectation: *R v Secretary of State for the Home Department, ex p Doody* [1994] 1 AC 531 (HL); *R v North and East Devon Health Authority, ex p Coughlan* [2001] QB 213 (CA); *R (Lumba) v Secretary of State for the Home Department* [2011] UKSC 12, [2012] 1 AC 245; *R (Bibi) v Newham LBC* [2001] EWCA Civ 607, [2002] 1 WLR 237.
 - Proportionality/constitutional principle: *R (Daly) v Secretary of State for the Home Department* [2001] UKHL 26, [2001] 2 AC 532; *Huang v Secretary of State for the Home Department* [2007] UKHL 11, [2007] 2 AC 167; *Bank Mellat v HM Treasury (No 2)* [2013] UKSC 39, [2014] AC 700; *R (UNISON) v Lord Chancellor* [2017] UKSC 51, [2020] AC 869; *R (Privacy International) v Investigatory Powers Tribunal* [2019] UKSC 22, [2020] AC 491.
 - Human Rights Act and Convention structure: Human Rights Act 1998, ss 2, 3, 4 and 6; *R (Ullah) v Special Adjudicator* [2004] UKHL 26, [2004] 2 AC 323; *Manchester City Council v Pinnock* [2010] UKSC 45, [2011] 2 AC 104.
-- EU membership, withdrawal and parliamentary sovereignty: *R (Miller) v Secretary of State for Exiting the European Union* [2017] UKSC 5, [2018] AC 61; *R (Miller) v The Prime Minister* [2019] UKSC 41, [2020] AC 373; *R (Jackson) v Attorney General* [2005] UKHL 56, [2006] 1 AC 262; European Union (Withdrawal) Act 2018, s 1.
-- Planning/protest statutes: Town and Country Planning Act 1990, s 70(2); Planning and Compulsory Purchase Act 2004, s 38(6); Public Order Act 1986, ss 12 and 14; Public Order Act 2023, ss 1, 10 and 34.
+- EU membership, withdrawal and parliamentary sovereignty: *R (Miller) v Secretary of State for Exiting the European Union* [2017] UKSC 5, [2018] AC 61; *R (Miller) v The Prime Minister* [2019] UKSC 41, [2020] AC 373; *R (Jackson) v Attorney General* [2005] UKHL 56, [2006] 1 AC 262; *Thoburn v Sunderland City Council* [2002] EWHC 195 (Admin), [2003] QB 151; *R (HS2 Action Alliance Ltd) v Secretary of State for Transport* [2014] UKSC 3, [2014] 1 WLR 324; European Union (Withdrawal) Act 2018, s 1; European Communities Act 1972, s 2.
+- Devolution / rights interface: *AXA General Insurance Ltd v HM Advocate* [2011] UKSC 46, [2012] 1 AC 868; *H v Lord Advocate* [2012] UKSC 24, [2013] 1 AC 413; Scotland Act 1998, s 29; Government of Wales Act 2006, s 108A.
+- Planning/protest / expression in public law: *Belfast City Council v Miss Behavin' Ltd* [2007] UKHL 19, [2007] 1 WLR 1420; Town and Country Planning Act 1990, s 70(2); Planning and Compulsory Purchase Act 2004, s 38(6); Public Order Act 1986, ss 12 and 14; Public Order Act 2023, ss 1, 10 and 34.
 
 ## Current-Law Update Checkpoints
 - Protest and assembly questions should verify Public Order Act 1986, ss 12 and 14 as amended, Police, Crime, Sentencing and Courts Act 2022 and Public Order Act 2023 before applying Articles 10 and 11 or common-law proportionality.
 - Public-law algorithm/risk-score questions should identify power source, transparency/reasons, relevant considerations, equality/data protection, and whether human rights require more intense review.
+- Ouster / access to court: prefer *Privacy International* [2019] UKSC 22 and *UNISON* [2017] UKSC 51 over older absolute-ouster assumptions.
+- Your Desktop Law resources include Westlaw Public Law full-text packs (2025/2026) under doc-ai `Law resouces` — use those PDFs in Chroma/online retrieval for current journal commentary; do not invent case names from secondary articles.
 
 ## Avoid
 - Avoid political commentary without legal standard.

@@ -45,3 +45,13 @@
 ## Avoid
 - Avoid treating WTO exceptions as free-standing policy preferences.
 - Avoid assuming trade liberalisation and fairness are identical.
+
+## Full OSCOLA Authority Bank
+- WTO covered agreements (GATT 1994, GATS, TRIPS) — cite the specific agreement/article; UK trade remedies / TCA where engaged.
+- *Argentina — Import Measures* and classic WTO AB reports only if retrieved/verified for the proposition; prefer primary WTO documents over secondary summaries.
+- UK: Taxation (Cross-border Trade) Act 2018; Trade Act 2021 (as engaged).
+- EU classic free-movement comparative: *Cassis de Dijon* (120/78) [1979] ECR 649 — label post-Brexit relevance.
+
+## Current-Law Update Checkpoints
+- Separate WTO, UK-EU TCA, and unilateral UK trade-remedy routes; do not assume EU free-movement law still governs UK-third-country trade.
+

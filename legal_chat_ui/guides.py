@@ -294,6 +294,27 @@ def authority_citation_map_for_question(question: str, primary: str | None = Non
                 if len(tokens) >= 2:
                     mapping.setdefault("re " + " ".join(tokens[:2]), full)
 
+        # Judicial-review style titles: R (Applicant) v Respondent → also
+        # index "applicant v respondent" (models almost never write the R ()).
+        jr = re.match(
+            r"^(?:r|r on the application of)\s+(.+?)\s+v\s+(.+)$",
+            key,
+        )
+        if jr:
+            applicant = jr.group(1).strip()
+            respondent = jr.group(2).strip()
+            if applicant and respondent:
+                mapping.setdefault(f"{applicant} v {respondent}", full)
+                app_toks = [t for t in applicant.split() if t not in {"the"}]
+                resp_toks = [t for t in respondent.split() if t not in {"the"}]
+                if app_toks and resp_toks:
+                    mapping.setdefault(
+                        f"{app_toks[0]} v {' '.join(resp_toks[:2])}", full
+                    )
+                    mapping.setdefault(
+                        f"{' '.join(app_toks[:2])} v {' '.join(resp_toks[:2])}", full
+                    )
+
         # A few authorities are universally cited by a distinctive
         # conventional short title that omits one party altogether.
         # These aliases are explicit so the repair never guesses.
@@ -301,6 +322,22 @@ def authority_citation_map_for_question(question: str, primary: str | None = Non
             "central london property trust ltd v high trees house ltd": ("high trees",),
             "central london property trust v high trees house": ("high trees",),
             "mcphail v doulton": ("re baden",),
+            "r jackson v attorney general": ("jackson v attorney general", "jackson"),
+            "r miller v secretary of state for exiting the european union": (
+                "miller v secretary of state for exiting the european union",
+                "miller no 1",
+                "miller (no 1)",
+            ),
+            "r miller v the prime minister": (
+                "miller v the prime minister",
+                "miller no 2",
+                "miller (no 2)",
+                "cherry miller",
+            ),
+            "r privacy international v investigatory powers tribunal": (
+                "privacy international v investigatory powers tribunal",
+                "privacy international",
+            ),
         }
         for short in conventional.get(key, ()):
             mapping.setdefault(short, full)

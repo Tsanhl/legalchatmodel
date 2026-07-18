@@ -58,6 +58,10 @@
 - Insolvency: Insolvency Act 1986, ss 212-214, 238, 239 and 423; Company Directors Disqualification Act 1986, ss 6 and 8.
 - Partnership: Partnership Act 1890, ss 1, 5, 9, 24, 29 and 30; Limited Liability Partnerships Act 2000, s 1.
 
+## Current-Law Update Checkpoints
+- Identify the company decision-maker (board / shareholder / liquidator) before selecting the duty or remedy.
+- Veil-piercing is exceptional after *Prest*; prefer specific statutory/agency routes where available.
+
 ## Avoid
 - Avoid moral blame without duty and remedy.
 - Avoid treating all directors collectively if facts differentiate them.

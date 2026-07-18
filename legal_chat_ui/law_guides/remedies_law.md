@@ -25,3 +25,12 @@
 ## Avoid
 - Avoid assuming an injunction follows because damages are difficult to quantify.
 - Avoid double recovery or mixing rescission with affirming damages without addressing election and consistency.
+
+## Full OSCOLA Authority Bank
+- Damages: *Hadley v Baxendale* (1854) 9 Exch 341; *The Achilleas* [2008] UKSC 48; *Attorney General v Blake* [2001] 1 AC 268 (HL) (exceptional account of profits).
+- Injunctions: *American Cyanamid Co v Ethicon Ltd* [1975] AC 396 (HL); *National Commercial Bank Jamaica Ltd v Olint Corp Ltd* [2009] UKPC 16, [2009] 1 WLR 1405.
+- Unjust enrichment cross-ref: *Benedetti v Sawiris* [2013] UKSC 50; *Investment Trust Companies v HMRC* [2017] UKSC 29.
+
+## Current-Law Update Checkpoints
+- Identify primary right (contract, tort, equity, unjust enrichment) before selecting remedy.
+

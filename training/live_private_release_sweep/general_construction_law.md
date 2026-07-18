@@ -16,7 +16,7 @@ The adjudicator ordinarily has 28 days from referral to decide. That period may 
 
 The decision is temporarily binding: the parties must comply until the dispute is finally determined by litigation, arbitration or agreement (Housing Grants, Construction and Regeneration Act 1996, s 108(3)). It is therefore not a final merits appeal-proof judgment, but neither may the losing party simply ignore it because it believes the adjudicator made a factual or legal error.
 
-If payment is not made, the successful party normally brings expedited enforcement proceedings in the Technology and Construction Court and seeks summary judgment. The courts support “pay now, argue later” by enforcing adjudicators’ decisions despite ordinary errors within jurisdiction (*Macob Civil Engineering Ltd v Morrison Construction Ltd* [1999] EWHC Technology 254, [1999] BLR 93). The Court of Appeal has similarly emphasised that challenges should be restricted so that the statutory objective of prompt enforcement is not defeated (*Carillion Construction Ltd v Devonport Royal Dockyard Ltd* [2005] EWCA Civ 1358, [2006] BLR 15).
+If payment is not made, the successful party normally brings expedited enforcement proceedings in the Technology and Construction Court and seeks summary judgment. The courts support “pay now, argue later” by enforcing adjudicators’ decisions despite ordinary errors within jurisdiction (*Macob Civil Engineering Ltd v Morrison Construction Ltd* [1999] CLC 215). The Court of Appeal has similarly emphasised that challenges should be restricted so that the statutory objective of prompt enforcement is not defeated (*Carillion Construction Ltd v Devonport Royal Dockyard Ltd* [2005] EWCA Civ 1358).
 
 Interest depends on the contract, the decision and applicable judicial powers; the contractor should not assume a non-existent HGCRA section or an automatic prescribed rate. Costs of the adjudication and court enforcement also require separate analysis under the applicable rules.
 
@@ -26,7 +26,7 @@ A genuine jurisdictional challenge may arise where there was no qualifying const
 
 A material breach of natural justice may also defeat enforcement. The threshold is high. The objecting party must ordinarily identify a serious procedural failure—such as deciding on a decisive basis that it had no fair chance to address—and show materiality. Disagreement with the reasoning, an incorrect factual finding, a tight but procedurally permitted timetable, or ordinary unfairness in the colloquial sense will not usually suffice.
 
-The court may consider whether an invalid part can be severed while enforcing the remainder. Insolvency may affect the practical terms of enforcement but does not automatically remove the statutory adjudication right (*Bresco Electrical Services Ltd v Michael J Lonsdale (Electrical) Ltd* [2020] UKSC 25, [2020] 1 WLR 2434).
+The court may consider whether an invalid part can be severed while enforcing the remainder. Insolvency may affect the practical terms of enforcement but does not automatically remove the statutory adjudication right (*Bresco Electrical Services Ltd v Michael J Lonsdale (Electrical) Ltd* [2020] UKSC 25, [2020] 2 WLR 1027).
 
 ### Practical next steps
 

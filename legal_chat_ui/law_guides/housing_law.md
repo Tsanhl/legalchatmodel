@@ -46,6 +46,9 @@
 - Status/possession: Housing Act 1988, ss 8 and 21; Protection from Eviction Act 1977, ss 1 and 3; *Street v Mountford* [1985] AC 809 (HL).
 - Public-sector possession and equality: *Manchester City Council v Pinnock* [2010] UKSC 45, [2011] 2 AC 104; *Hounslow London Borough Council v Powell* [2011] UKSC 8, [2011] 2 AC 186; *Akerman-Livingstone v Aster Communities Ltd* [2015] UKSC 15, [2015] AC 1399.
 - Homelessness/repairs/deposits: Housing Act 1996, Pt VII; Landlord and Tenant Act 1985, ss 11 and 9A; Housing Act 2004, ss 213-215.
+- Possession / public landlords: *Manchester City Council v Pinnock* [2010] UKSC 45, [2011] 2 AC 104; *Hounslow LBC v Powell* [2011] UKSC 8.
+- Homelessness: Housing Act 1996 Part VII; *Hotak v Southwark LBC* [2015] UKSC 30, [2016] AC 811.
+- Disrepair / fitness: Landlord and Tenant Act 1985, s 11; Homes (Fitness for Human Habitation) Act 2018.
 
 ## Current-Law Update Checkpoints
 - Renters' Rights Act 2025 received Royal Assent and the government roadmap states the first phase for the private rented sector comes into force on 1 May 2026. Verify commencement, transitional rules and whether the tenancy is PRS/social/lodger before applying section 21 or assured-periodic tenancy analysis.

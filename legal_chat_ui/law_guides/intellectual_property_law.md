@@ -43,6 +43,10 @@
 - Patent answers must construe the claim before infringement or validity. Keep novelty, inventive step, sufficiency, excluded subject matter and remedies separate.
 - AI/data questions require input training, generated output, authorship/inventorship, platform liability and text/data mining or other exceptions to be separated and current-law checked.
 
+## Current-Law Update Checkpoints
+- Separate subsistence, infringement, defences/exceptions, and remedies.
+- AI-training answers must verify the statutory TDM / research exception text in force on the facts' date — do not invent a US fair-use rule for UK copyright.
+
 ## Avoid
 - Avoid broad “AI copyright” discussion without right and act.
 - Avoid defences after remedies; analyse before remedy.
@@ -52,3 +56,9 @@
 - Infringement of copyright: *Designers Guild Ltd v Russell Williams (Textiles) Ltd* [2000] 1 WLR 2416 (HL); *Newspaper Licensing Agency Ltd v Meltwater Holding BV* [2011] EWCA Civ 890, [2012] RPC 1.
 - Patents: *Actavis UK Ltd v Eli Lilly and Co* [2017] UKSC 48, [2017] RPC 21; Patents Act 1977, s 60.
 - Trade marks and passing off: *Reckitt & Colman Products Ltd v Borden Inc* [1990] 1 WLR 491 (HL); Trade Marks Act 1994, s 10.
+- Copyright: Copyright, Designs and Patents Act 1988, ss 1–3, 16–21, 9(3); *Infopaq International A/S v Danske Dagblades Forening* (C-5/08) [2009] ECR I-6569; *SAS Institute Inc v World Programming Ltd* [2013] EWCA Civ 1482.
+- Trade marks: Trade Marks Act 1994; *Interflora Inc v Marks & Spencer plc* [2014] EWCA Civ 1403; *Sky plc v SkyKick UK Ltd* [2021] EWCA Civ 1121 (and later Supreme Court treatment — verify before advising).
+- Patents: Patents Act 1977; *Actavis UK Ltd v Eli Lilly & Co* [2017] UKSC 48, [2017] RPC 21.
+- Passing off: *Reckitt & Colman Products Ltd v Borden Inc* [1990] 1 WLR 491 (HL); *Starbucks (HK) Ltd v British Sky Broadcasting Group plc* [2015] UKSC 31.
+- Generative AI / TDM: check current CDPA text and any post-2023 UKIPO policy before asserting training exceptions.
+

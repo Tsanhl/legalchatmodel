@@ -120,6 +120,23 @@
 - In no-limitation mode, these topics may be used where they answer the question, but identify them as wider material and verify current law.
 - Avoid copying slide language or feedback wording.
 
+
+## Full OSCOLA Authority Bank
+<!-- Verified Pack v1 from Desktop/Law/Law and medicine + primary checks -->
+- Capacity / refusal: *Re C (Adult: Refusal of Medical Treatment)* [1994] 1 WLR 290; *Re B (Consent to Treatment: Capacity)* [2002] EWHC 429 (Fam); Mental Capacity Act 2005, ss 1–4 and 5.
+- Best interests / end of life: *Airedale NHS Trust v Bland* [1993] AC 789 (HL); *Aintree University Hospitals NHS Foundation Trust v James* [2013] UKSC 67, [2014] AC 591; *R (Burke) v General Medical Council* [2005] EWCA Civ 1003, [2006] QB 273.
+- Children / Gillick: *Gillick v West Norfolk and Wisbech Area Health Authority* [1986] AC 112 (HL).
+- Reproduction / embryos: *Evans v Amicus Healthcare Ltd* [2004] EWCA Civ 727, [2005] Fam 1; *Evans v United Kingdom* (2008) 46 EHRR 34; Human Fertilisation and Embryology Act 1990 (as amended).
+- Abortion / discrimination litigation: *R (Crowter) v Secretary of State for Health and Social Care* [2022] EWCA Civ 1559; Abortion Act 1967, s 1.
+- Gender identity / puberty blockers (appellate): *Bell v Tavistock and Portman NHS Foundation Trust* [2021] EWCA Civ 1363, [2022] 1 All ER 937.
+- Assisted dying challenge context: *R (Conway) v Secretary of State for Justice* [2018] EWCA Civ 1431.
+- Tissue / transplantation framework: Human Tissue Act 2004 (verify appropriate consent provisions for the facts).
+
+## Current-Law Update Checkpoints
+- Keep course-bound medical-law answers inside the module topics unless the question expressly expands; do not default to clinical negligence (*Montgomery*) unless asked.
+- For MCA best interests, apply the s 4 checklist; past wishes inform but do not bind as substituted judgment.
+- Verify commencement of any later HFEA / abortion / gender-identity statutory reforms before advising.
+
 ## Anonymized Output Architecture
 - In a multi-patient problem, use one issue heading per person and decision. Identify the decision-maker, consent or capacity route, statutory gateway, strongest factual uncertainty, alternative branch, urgent court or regulatory step and practical outcome.
 - Keep a capacitous adult's refusal, a child's competence and welfare, non-therapeutic donation safeguards, and an incapacitated patient's advance-decision or best-interests analysis distinct even when one scenario combines them.

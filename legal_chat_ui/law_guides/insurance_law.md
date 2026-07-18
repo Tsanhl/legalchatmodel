@@ -45,3 +45,15 @@
 ## Avoid
 - Avoid assuming insurance is ordinary contract law only.
 - Avoid remedy conclusions without materiality, inducement and statutory consequence.
+
+## Full OSCOLA Authority Bank
+- Insurance Act 2015; Consumer Insurance (Disclosure and Representations) Act 2012.
+- *Pan Atlantic Insurance Co Ltd v Pine Top Insurance Co Ltd* [1995] 1 AC 501 (HL) (pre-2015 context); *Versloot Dredging BV v HDI Gerling Industrie Versicherung AG* [2016] UKSC 45, [2017] AC 1.
+- Brokers / duties: *Punjab National Bank v de Boinville* [1992] 1 WLR 1138 (CA) (use only where on point).
+- Fair presentation: Insurance Act 2015, ss 3–8; remedies ss 8–14A.
+- Warranties: IA 2015, ss 9–11; *Bank of Nova Scotia v Hellenic Mutual War Risks Association (Bermuda) Ltd (The Good Luck)* [1992] 1 AC 233 (HL) (pre-2015 contrast).
+- Fraudulent claims: *Versloot* [2016] UKSC 45.
+
+## Current-Law Update Checkpoints
+- Identify whether IA 2015 / CIDRA 2012 applies to the placement date; do not apply pre-2015 utmost-good-faith consequences blindly.
+

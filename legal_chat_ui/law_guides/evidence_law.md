@@ -79,6 +79,10 @@
 - Silence under CJPOA s.34 needs the later fact relied on, opportunity to mention it, reasonable expectation and fairness of the inference.
 - Hearsay and bad character require status discipline: defendant, co-defendant, non-defendant witness or absent co-suspect changes the gateway and fairness analysis.
 
+## Current-Law Update Checkpoints
+- Keep hearsay gateways (s 114) separate from bad-character gateways (s 101); do not merge into “fairness”.
+- Art 6 confrontation issues: start from *Horncastle*, not solely Strasbourg rhetoric.
+
 ## Avoid
 - Avoid broad fairness rhetoric without PACE/CJA route.
 - Avoid expert evidence without reliability test.
@@ -96,3 +100,9 @@
 - Bad and good character: *R v Hanson* [2005] EWCA Crim 824, [2005] 1 WLR 3169; *R v Vye* [1993] 1 WLR 471 (CA); *R v Hunter* [2015] EWCA Crim 631, [2015] 1 WLR 5367; Criminal Justice Act 2003, ss 98-113.
 - Identification and lies: *R v Turnbull* [1977] QB 224 (CA); *R v Lucas* [1981] QB 720 (CA).
 - Exclusionary discretion: Police and Criminal Evidence Act 1984, s 78.
+- Hearsay / bad character (CJA 2003): Criminal Justice Act 2003, ss 98–112, 114–118; *R v Horncastle* [2009] UKSC 14, [2010] 2 AC 373; *R v Twist* [2011] EWCA Crim 1143.
+- Identification: *R v Turnbull* [1977] QB 224 (CA).
+- Silence / adverse inference: Criminal Justice and Public Order Act 1994, ss 34–37; *Condron v United Kingdom* (2001) 31 EHRR 1.
+- Privilege: *R v Derby Magistrates' Court, ex p B* [1996] AC 487 (HL); *Three Rivers DC v Bank of England (No 6)* [2004] UKHL 48, [2005] 1 AC 610.
+- Burden / standard: *Woolmington v DPP* [1935] AC 462 (HL); *R v Hunt* [1987] AC 352 (HL).
+

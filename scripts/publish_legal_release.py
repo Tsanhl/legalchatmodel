@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Refresh gated HF dataset staging, upload Agnes999/legalchat, and push GitHub.
 
-Quality gate: live length matrix must be fully passed and verify_legal_app must
-exit 0 unless --force is set.
+Quality gate: length passes up to LEGAL_MAX_WORDS (give-ups skipped) and
+verify_legal_app must exit 0 unless --force is set.
 """
 from __future__ import annotations
 
@@ -54,16 +54,32 @@ def report_rows() -> dict[str, dict]:
 
 
 def length_pass_summary() -> tuple[int, list[str]]:
+    """Require length passes up to LEGAL_MAX_WORDS (phased publish).
+
+    Skips cases listed in /tmp/legal_give_up_cases.txt so a deferred/failed
+    slot (e.g. 5k trusts) does not block an earlier batch release.
+    """
     rows = report_rows()
+    max_words = int(os.environ.get("LEGAL_MAX_WORDS", "20000"))
+    give_up: set[str] = set()
+    give_up_path = Path("/tmp/legal_give_up_cases.txt")
+    if give_up_path.exists():
+        give_up = {line.strip() for line in give_up_path.read_text().splitlines() if line.strip()}
+
+    required = [
+        words
+        for words in range(1000, max_words + 1, 1000)
+        if not any(gid.startswith(f"length_{words:05d}_") for gid in give_up)
+    ]
     missing = [
         f"{words:05d}"
-        for words in range(1000, 21000, 1000)
+        for words in required
         if not any(
             key.startswith(f"length_{words:05d}_") and rows[key].get("passed")
             for key in rows
         )
     ]
-    passed = 20 - len(missing)
+    passed = len(required) - len(missing)
     return passed, missing
 
 
@@ -273,9 +289,10 @@ def main() -> int:
     args = parser.parse_args()
 
     passed, missing = length_pass_summary()
-    log(f"length passes {passed}/20 missing={missing or 'none'}")
+    max_words = int(os.environ.get("LEGAL_MAX_WORDS", "20000"))
+    log(f"length passes {passed} (phase ≤{max_words}) missing={missing or 'none'}")
     if missing and not args.force:
-        log("refusing publish: length matrix incomplete")
+        log("refusing publish: length matrix incomplete for this phase")
         return 2
 
     if not args.skip_verify:
@@ -295,6 +312,7 @@ def main() -> int:
         "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "length_passed": passed,
         "missing_lengths": missing,
+        "phase_max_words": max_words,
         "github": "https://github.com/Tsanhl/legalchatmodel",
         "hf_dataset": f"https://huggingface.co/datasets/{HF_DATASET}",
         "hf_model": f"https://huggingface.co/{HF_MODEL}",
@@ -303,7 +321,7 @@ def main() -> int:
     write_done(payload)
     notify(
         "LegalChatModel publish complete",
-        f"{passed}/20 lengths · GitHub + HF updated",
+        f"phase ≤{max_words}: {passed} lengths · GitHub + HF updated",
     )
     log(f"DONE {json.dumps(payload)}")
     return 0

@@ -70,8 +70,16 @@
 - Formalities and priority: Law of Property Act 1925, ss 2, 52-53; Land Registration Act 2002, ss 27, 29 and Sch 3 para 2; Landlord and Tenant Act 1954, Pt II.
 - Overreaching/occupation: *Williams & Glyn's Bank Ltd v Boland* [1981] AC 487 (HL); *City of London Building Society v Flegg* [1988] AC 54 (HL); *Thompson v Foy* [2009] EWHC 1076 (Ch).
 - Co-ownership: *Stack v Dowden* [2007] UKHL 17, [2007] 2 AC 432; *Jones v Kernott* [2011] UKSC 53, [2012] 1 AC 776; *Williams v Hensman* (1861) 1 John & H 546, 70 ER 862; Trusts of Land and Appointment of Trustees Act 1996, ss 14-15; Law of Property Act 1925, s 36.
-- Leases/easements/estoppel: *Street v Mountford* [1985] AC 809 (HL); *Re Ellenborough Park* [1956] Ch 131 (CA); *Wheeldon v Burrows* (1879) 12 Ch D 31 (CA); *Guest v Guest* [2022] UKSC 27, [2023] AC 111; Prescription Act 1833, s 2; Law of Property Act 1925, s 62; Land Registration Act 2002, Sch 3 para 3.
+- Leases/easements/estoppel: *Street v Mountford* [1985] AC 809 (HL); *Bruton v London & Quadrant Housing Trust* [2000] 1 AC 406 (HL); *Re Ellenborough Park* [1956] Ch 131 (CA); *Wheeldon v Burrows* (1879) 12 Ch D 31 (CA); *Guest v Guest* [2022] UKSC 27, [2023] AC 111; Prescription Act 1833, s 2; Law of Property Act 1925, s 62; Land Registration Act 2002, Sch 3 para 3.
+- Parking / recreational easements (Y2 land materials): *Batchelor v Marlow* [2001] EWCA Civ 1051, [2003] 1 WLR 764; *Moncrieff v Jamieson* [2007] UKHL 42, [2007] 1 WLR 2620; *Regency Villas Title Ltd v Diamond Resorts (Europe) Ltd* [2018] UKSC 57, [2019] AC 1013.
+- Adverse possession / human rights: Land Registration Act 2002, Sch 6; *JA Pye (Oxford) Ltd v United Kingdom* (2008) 46 EHRR 45; *J A Pye (Oxford) Ltd v Graham* [2002] UKHL 30, [2003] 1 AC 419.
 - Covenants/mortgages: *Tulk v Moxhay* (1848) 2 Ph 774, 41 ER 1143; *Royal Bank of Scotland plc v Etridge (No 2)* [2001] UKHL 44, [2002] 2 AC 773.
+
+## Current-Law Update Checkpoints
+- Lease vs licence: apply *Street* first; use *Bruton* only for the non-estate contractual tenancy analysis and its limits against third parties.
+- Parking easements: *Batchelor* remains binding CA authority in England and Wales; treat *Moncrieff* (Scotland) as persuasive on ouster and always test degree of exclusion on the facts.
+- Recreational easements: prefer *Regency Villas* [2018] UKSC 57 over older Conveyancer commentary alone.
+- Registered adverse possession is Sch 6 LRA 2002, not the old unregistered limitation model; check human-rights arguments against *Pye*.
 
 ## Avoid
 - Avoid broad fairness without property concepts.

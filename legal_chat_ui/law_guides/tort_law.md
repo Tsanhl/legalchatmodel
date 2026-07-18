@@ -82,6 +82,14 @@
 - Psychiatric harm/economic loss: *Alcock v Chief Constable of South Yorkshire Police* [1992] 1 AC 310 (HL); *Paul v Royal Wolverhampton NHS Trust* [2024] UKSC 1, [2024] 2 WLR 417; *Hedley Byrne & Co Ltd v Heller & Partners Ltd* [1964] AC 465 (HL); *Spartan Steel & Alloys Ltd v Martin & Co (Contractors) Ltd* [1973] QB 27 (CA).
 - Medical causation: *Barnett v Chelsea and Kensington Hospital Management Committee* [1969] 1 QB 428 (QB); *Gregg v Scott* [2005] UKHL 2, [2005] 2 AC 176.
 - Statutory tort routes: Occupiers' Liability Act 1957, s 2; Consumer Protection Act 1987, s 2; Defamation Act 2013, s 1.
+- Nuisance / land use (significant recent): *Fearn v Board of Trustees of the Tate Gallery* [2023] UKSC 4, [2024] AC 1; *Southwark LBC v Mills* [1999] 4 All ER 449 (HL); *Hunter v Canary Wharf Ltd* [1997] AC 655 (HL).
+- Strict liability / Rylands: *Rylands v Fletcher* (1868) LR 3 HL 330; *Transco plc v Stockport MBC* [2003] UKHL 61, [2004] 2 AC 1.
+- Pure omission / public authority: *Michael v Chief Constable of South Wales Police* [2015] UKSC 2, [2015] AC 1732; *Robinson v Chief Constable of West Yorkshire Police* [2018] UKSC 4 (already above — keep duty analysis current).
+
+## Current-Law Update Checkpoints
+- Secondary victim / psychiatric injury: prefer *Paul* [2024] UKSC 1 over pre-*Paul* Court of Appeal expansions.
+- Private nuisance viewing/overlooking: apply *Fearn* [2023] UKSC 4; do not treat ordinary overlooking as automatically actionable.
+- Public-authority negligence: start from *Robinson* / *Michael*; do not assume a general duty of care to protect from third-party harm.
 
 ## Avoid
 - Avoid generic negligence where nuisance/defamation/product liability is the real route.

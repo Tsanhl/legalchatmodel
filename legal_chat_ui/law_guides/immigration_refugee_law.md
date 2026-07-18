@@ -47,6 +47,10 @@
 - Refugee protection: Refugee Convention 1951, arts 1A(2), 1F and 33; *Horvath v Secretary of State for the Home Department* [2000] UKHL 37, [2001] 1 AC 489; *HJ (Iran) v Secretary of State for the Home Department* [2010] UKSC 31, [2011] 1 AC 596; *Januzi v Secretary of State for the Home Department* [2006] UKHL 5, [2006] 2 AC 426.
 - Human rights/deportation: Human Rights Act 1998, ss 6-8; Nationality, Immigration and Asylum Act 2002, ss 117A-117D; *KO (Nigeria) v Secretary of State for the Home Department* [2018] UKSC 53, [2018] 1 WLR 5273.
 - Detention/procedure: *R v Governor of Durham Prison, ex p Hardial Singh* [1984] 1 WLR 704 (QB); Immigration Act 1971, Sch 2; Tribunals, Courts and Enforcement Act 2007, s 13.
+- Refugee Convention 1951 / Protocol 1967; Nationality and Borders Act 2022; Illegal Migration Act 2023 (as engaged — check commencement).
+- Art 3 / non-refoulement: *Soering v United Kingdom* (1989) 11 EHRR 439; *R (Ullah) v Special Adjudicator* [2004] UKHL 26.
+- Deportation / Art 8: *Huang v SSHD* [2007] UKHL 11; *Agyarko v SSHD* [2017] UKSC 11.
+- Safe third country / Rwanda litigation: verify the latest UKSC / treaty position before advising — do not rely on superseded High Court holdings alone.
 
 ## Current-Law Update Checkpoints
 - Border Security, Asylum and Immigration Act 2025 received Royal Assent on 2 December 2025. Verify commencement before relying on new border, advice-regulation, detention, EUSS or facilitation provisions.

@@ -45,3 +45,15 @@
 ## Avoid
 - Avoid generic contract analysis before checking the maritime instrument.
 - Avoid citing maritime acronyms without explaining the route they control.
+
+## Full OSCOLA Authority Bank
+- Carriage of Goods by Sea Act 1992; Merchant Shipping Act 1995 (as engaged).
+- *The Achilleas* (*Transfield Shipping Inc v Mercator Shipping Inc*) [2008] UKSC 48, [2009] 1 AC 61; *Volcafe Ltd v CSAV* [2018] UKSC 61, [2019] AC 358.
+- Hague-Visby Rules (where incorporated); verify bill of lading terms before advising.
+- Limitation: Merchant Shipping Act 1995 / LLMC as engaged.
+- General average / salvage: verify York-Antwerp Rules incorporation in the contract.
+- Unsafe ports / charterparties: *The Ocean Victory* [2017] UKSC 35, [2017] 1 WLR 1793.
+
+## Current-Law Update Checkpoints
+- Characterise claim: cargo, collision, pollution, limitation, or personal injury — different regimes.
+

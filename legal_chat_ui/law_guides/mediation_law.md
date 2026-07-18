@@ -80,6 +80,18 @@
 - Avoid assuming mediator neutrality solves party inequality; analyse advice, pressure, repeat-player advantage, and reviewability.
 - Avoid treating an agreement to negotiate, an agreement to mediate, and a mediated settlement agreement as the same legal object.
 
+## Full OSCOLA Authority Bank
+<!-- Verified Pack v1 (2026-07-18): drawn from Desktop/Law/International Commercial Mediation + primary checks. -->
+- Costs / unreasonable refusal: *Halsey v Milton Keynes General NHS Trust* [2004] EWCA Civ 576, [2004] 1 WLR 3002; *Dunnett v Railtrack plc* [2002] EWCA Civ 303, [2002] 1 WLR 2434; *PGF II SA v OMFS Company 1 Ltd* [2013] EWCA Civ 1288, [2014] 1 WLR 1386.
+- Court power to stay/order ADR: *Churchill v Merthyr Tydfil County Borough Council* [2023] EWCA Civ 1416, [2024] 1 WLR 3333.
+- Enforceable ADR / escalation clauses: *Cable & Wireless plc v IBM United Kingdom Ltd* [2002] EWHC 2059 (Comm), [2002] 2 All ER (Comm) 1041; *Sulamérica Cia Nacional de Seguros SA v Enesa Engenharia SA* [2012] EWCA Civ 638, [2013] 1 WLR 102; *Walford v Miles* [1992] 2 AC 128 (HL) (bare agreement to negotiate contrast).
+- International mediated settlements: United Nations Convention on International Settlement Agreements Resulting from Mediation (New York, 20 December 2018) (Singapore Convention), arts 1 and 5; UK Government response to the consultation on implementing the Singapore Convention (GOV.UK — check current implementation status before advising).
+
+## Current-Law Update Checkpoints
+- After *Churchill*, do not treat *Halsey* as an absolute bar on court-ordered ADR; test proportionality and Art 6 essence of the right to a hearing.
+- Singapore Convention answers must separate signature/ratification, UK domestic implementation status, and private-party reliance; verify the latest GOV.UK / treaty status before asserting enforceability in England and Wales.
+- Costs sanctions still turn on reasonableness of refusal/silence (*Halsey* / *PGF II*) even where a stay/order power exists.
+
 ## Anonymized Output Architecture
 - A Singapore Convention essay should define its success benchmark, explain the former enforcement gap, distinguish state implementation from party use, isolate the material refusal-ground uncertainty, address confidentiality and evidence, and propose a mechanism capable of binding the relevant actor.
 - A mediation problem should classify the agreement to mediate, the process, mediator conduct and the resulting settlement separately; only then choose the clause, confidentiality, enforcement and defence routes and give the immediate procedural step.

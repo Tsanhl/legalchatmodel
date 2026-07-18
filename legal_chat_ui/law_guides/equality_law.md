@@ -47,3 +47,13 @@
 ## Avoid
 - Avoid using "unfair" as a substitute for a discrimination route.
 - Avoid mixing harassment, victimisation and discrimination without matching facts.
+
+## Full OSCOLA Authority Bank
+- Equality Act 2010, ss 4–19, 39, 136 and Schs as engaged; Human Rights Act 1998 / Art 14 ECHR where relevant.
+- *R (E) v Governing Body of JFS* [2009] UKSC 15, [2010] 2 AC 728; *Essop v Home Office* [2017] UKSC 27, [2017] 1 WLR 1343; *R (SC) v Secretary of State for Work and Pensions* [2021] UKSC 26, [2022] AC 223.
+- Indirect discrimination / justification: *Homer v Chief Constable of West Yorkshire Police* [2012] UKSC 15, [2012] 3 All ER 1287.
+- Pensions survivor equality cross-ref: *Re Brewster* [2017] UKSC 8.
+
+## Current-Law Update Checkpoints
+- Separate direct, indirect, harassment, victimisation, and reasonable adjustments; do not use “discrimination” as one undifferentiated label.
+

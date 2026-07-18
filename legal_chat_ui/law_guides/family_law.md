@@ -48,6 +48,11 @@
 - Domestic abuse/protection: Family Law Act 1996, ss 33 and 42; *Yemshaw v Hounslow London Borough Council* [2011] UKSC 3, [2011] 1 WLR 433.
 - Jurisdiction/abduction: Child Abduction and Custody Act 1985; *A v A (Children: Habitual Residence)* [2013] UKSC 60, [2014] AC 1.
 
+## Current-Law Update Checkpoints
+- Financial remedies: apply needs/sharing/compensation through *White* / *Miller; McFarlane*; check nuptial agreements via *Radmacher*.
+- Care / threshold: Children Act 1989 s 31; prefer recent UKSC guidance over outdated checklist rhetoric.
+- Always identify the statute first (MCA 1973, CA 1989, FLA 1996, DAA 2021) before case law.
+
 ## Avoid
 - Avoid generic fairness without statutory factors.
 - Avoid assuming one parent “wins”; give order structure and safeguards.

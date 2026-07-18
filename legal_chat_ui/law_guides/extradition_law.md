@@ -45,3 +45,14 @@
 ## Avoid
 - Avoid starting with Article 8 before the extradition route.
 - Avoid assuming poor conditions automatically bar extradition.
+
+## Full OSCOLA Authority Bank
+- Extradition Act 2003; *Norris v Government of the United States of America* [2010] UKSC 9, [2010] 2 AC 487; *HH v Deputy Prosecutor of the Italian Republic, Genoa* [2012] UKSC 25, [2013] 1 AC 338.
+- Human rights bars: Art 3 / Art 8 ECHR via HRA 1998; *Poland v Celinski* [2015] EWHC 1274 (Admin), [2016] 1 WLR 551 (framework — check later appellate treatment).
+- Forums / specialty: Extradition Act 2003, ss 11–21B, 79–87 as engaged.
+- *R (USA) v Bow Street Magistrates' Court* [2009] EWHC 3049 (Admin) lineage — verify current leading specialty cases on the facts.
+- Human rights bars: *HH* [2012] UKSC 25; Art 3 prison conditions evidence must be current and country-specific.
+
+## Current-Law Update Checkpoints
+- Identify Part 1 vs Part 2 country and the exact statutory bar relied on.
+

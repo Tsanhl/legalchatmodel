@@ -83,8 +83,15 @@
 - *Sainsbury's Supermarkets Ltd v Visa Europe Services LLC* [2020] UKSC 24, [2020] Bus LR 1196.
 - *Napp Pharmaceutical Holdings Ltd v Director General of Fair Trading* [2002] CAT 1, [2002] CompAR 13.
 - *T-Mobile Netherlands BV v Raad van bestuur van de Nederlandse Mededingingsautoriteit* (C-8/08) EU:C:2009:343, [2009] ECR I-4529.
+- Classic Art 102 / dominance: *Hoffmann-La Roche & Co AG v Commission* (85/76) [1979] ECR 461; *AKZO Chemie BV v Commission* (C-62/86) [1991] ECR I-3359; *Nederlandsche Banden-Industrie Michelin v Commission* (322/81) [1983] ECR 3461; *Microsoft Corp v Commission* (T-201/04) [2007] ECR II-3601.
+- Platform / search / data leverage: *Google and Alphabet v Commission* (Google Shopping) (T-612/17) EU:T:2021:763; *Google and Alphabet v Commission* (Google Shopping) (C-48/22 P) (CJEU, 10 September 2024); *Google and Alphabet v Commission* (Google Android) (T-604/18) (GC, 14 September 2022); *Meta Platforms Inc v Bundeskartellamt* (C-252/21) EU:C:2023:537.
+- Cartel object / by-object restrictions: *Gazdasági Versenyhivatal v Budapest Bank Zrt* (C-228/18) EU:C:2020:265; *Sot Lelos kai Sia EE v GlaxoSmithKline AEVE Farmakeftikon Proionton* (C-468/06) [2008] ECR I-7139.
+- Early distribution / exclusive dealing classics (comparative): *Distillers Company Ltd v Commission* (30/78) [1980] ECR 2229; *Metro SB-Großmärkte GmbH & Co KG v Commission* (26/76) [1977] ECR 1875.
+- Vertical agreements soft-law: Commission Regulation (EU) 2022/720 (VBER) — verify UK/assimilated status before applying.
 
 ## Current-Law Update Checkpoints
+- Platform cases: prefer the latest CJEU holding (*Google Shopping* C-48/22 P; *Meta* C-252/21) over General Court alone.
+- Post-Brexit: label EU authorities as persuasive comparative vs CA 1998 Chapter I/II analysis for UK problems.
 - Resale price maintenance ordinarily concerns a supplier requiring a retailer not to resell below a fixed or minimum price. A genuinely non-binding recommended price is not itself RPM; pressure, incentives, monitoring or agreement may change the analysis.
 - Chapter I remedies are not US antitrust remedies. A private claimant seeks compensatory damages or other available relief; never award treble damages.
 - Distinguish CMA public enforcement (directions and financial penalties, subject to statute) from private standalone/follow-on claims in the CAT or courts. The CMA does not ordinarily award a retailer its private damages.

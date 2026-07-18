@@ -62,6 +62,9 @@
 - Workplace safety: Health and Safety at Work etc Act 1974, s 2(1); Employment Rights Act 1996, ss 44 and 100.
 - Equality and whistleblowing: Equality Act 2010, ss 13, 19, 26, 27, 136 and 149; Employment Rights Act 1996, ss 43A-43L and 103A; *Royal Mail Group Ltd v Jhuti* [2019] UKSC 55, [2020] ICR 731.
 - Restrictive covenants: *Tillman v Egon Zehnder Ltd* [2019] UKSC 32, [2020] AC 154; *Nordenfelt v Maxim Nordenfelt Guns and Ammunition Co Ltd* [1894] AC 535 (HL).
+- Worker status: *Autoclenz Ltd v Belcher* [2011] UKSC 41; *Uber BV v Aslam* [2021] UKSC 5; *Pimlico Plumbers Ltd v Smith* [2018] UKSC 29.
+- Unfair dismissal: ERA 1996 ss 94–98; *Polkey v AE Dayton Services Ltd* [1988] AC 344 (HL).
+- Whistleblowing: ERA 1996 Part IVA; *Chesterton Global Ltd v Nurmohamed* [2017] EWCA Civ 979.
 
 ## Current-Law Update Checkpoints
 - Employment Rights Act 2025 (c 36) received Royal Assent on 18 December 2025 and is being commenced in phases. Verify which measures are in force before treating new rights as operative.

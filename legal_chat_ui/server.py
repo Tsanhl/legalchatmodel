@@ -2770,10 +2770,32 @@ class Handler(BaseHTTPRequestHandler):
         # statutes. Do not return early: statute citation repair is independent
         # of the case map and is required for complete OSCOLA coverage.
         citation_map = pipeline.guides.authority_citation_map_for_question(question, slug) or {}
+        # Model sometimes emits LaTeX-escaped brackets that break OSCOLA matching.
+        text = text.replace("\\[", "[").replace("\\]", "]").replace("\\(", "(").replace("\\)", ")")
 
         def normalized(value: str) -> str:
             value = re.sub(r"[*_`]", "", value.lower())
             return re.sub(r"[^a-z0-9]+", " ", value).strip()
+
+        def wrap_bare_full_cites(sentence: str) -> str:
+            """Wrap 'Case [year] report…' into parenthetical OSCOLA the gate accepts."""
+            if cls._extract_full_inline_citations(sentence):
+                return sentence
+            # Name v Name [YYYY] …   or   Name v Name (YYYY) …
+            pattern = re.compile(
+                r"(?P<name>(?:Re\s+[A-Z][\w'’().&-]*(?:\s+[A-Z][\w'’().&-]*){0,5}|"
+                r"[A-Z][\w'’().&-]*(?:\s+[A-Z][\w'’().&-]*){0,5}\s+v\.?\s+"
+                r"[A-Z][\w'’().&-]*(?:\s+[A-Z][\w'’().&-]*){0,6}))"
+                r"\s+(?P<cite>(?:\[(?:1[5-9]|20)\d{2}\]|\((?:1[5-9]|20)\d{2}\))"
+                r"[^,.;]{0,120})",
+            )
+
+            def repl(match: re.Match[str]) -> str:
+                name = match.group("name").strip(" ,;")
+                cite = match.group("cite").strip(" ,;")
+                return f"{name} ({name} {cite})"
+
+            return pattern.sub(repl, sentence, count=3)
 
         def drop_named_parentheticals(value: str, keys: list[str]) -> str:
             """Remove an existing full case parenthesis before canonical replacement."""
@@ -2816,6 +2838,7 @@ class Handler(BaseHTTPRequestHandler):
                 if not sentence.strip():
                     repaired.append(sentence)
                     continue
+                sentence = wrap_bare_full_cites(sentence)
                 blob = normalized(sentence)
                 citations: list[str] = []
                 for key, full in citation_map.items():
@@ -3123,8 +3146,13 @@ class Handler(BaseHTTPRequestHandler):
     @classmethod
     def _uncited_authority_sentences(cls, text: str) -> list[str]:
         """Find named case/statute propositions lacking the requested adjacent OSCOLA parenthesis."""
+        text = text.replace("\\[", "[").replace("\\]", "]").replace("\\(", "(").replace("\\)", ")")
         segments = [segment.strip() for segment in re.split(r"(?<=[.!?])\s+|\n+", text) if segment.strip()]
         failures: list[str] = []
+        bare_full = re.compile(
+            r"\b(?:v|Re)\b.{0,80}(?:\[(?:1[5-9]|20)\d{2}\]|\((?:1[5-9]|20)\d{2}\))",
+            re.I | re.S,
+        )
         for index, segment in enumerate(segments):
             if segment.lstrip().startswith("#"):
                 continue
@@ -3133,6 +3161,9 @@ class Handler(BaseHTTPRequestHandler):
             if not (cls._extract_cases(segment) or cls._extract_legislation(segment)):
                 continue
             if cls._extract_full_inline_citations(segment):
+                continue
+            # Accept full OSCOLA already written inline without parentheses.
+            if bare_full.search(segment):
                 continue
             following = segments[index + 1] if index + 1 < len(segments) else ""
             if following.startswith("(") and cls._extract_full_inline_citations(following):

@@ -50,6 +50,10 @@
 - Platform duties and enforcement: Online Safety Act 2023, Pts 3-4 and 7; Ofcom illegal-content risk-assessment, safety-duties, record-keeping, review and enforcement guidance should be checked for current operational duties.
 - Evidence, seizure and disclosure: Police and Criminal Evidence Act 1984 powers and Codes; Criminal Justice and Police Act 2001 seizure/filtering powers where mixed electronic material is seized; Investigatory Powers Act 2016 and communications-data routes where platform-held data is sought; Article 8 ECHR and Data Protection Act 2018/UK GDPR for privacy controls.
 - Cross-border route: Convention on Cybercrime (Budapest Convention), arts 22, 24, 25, 29, 31 and 32; Computer Misuse Act 1990, ss 4-5 for jurisdiction/significant-link analysis.
+- Computer Misuse Act 1990, ss 1–3ZA; Serious Crime Act 2015 amendments as engaged.
+- Investigatory Powers Act 2016 (bulk/equipment interference) — public-law interface with *Privacy International*.
+- Fraud Act 2006; data offences via DPA 2018 / UK GDPR where charged as criminal.
+- *DPP v Bignell* [1998] 1 Cr App R 1 (historic CMA — check later amendments before relying).
 
 ## Current-Law Update Checkpoints
 - Online Safety Act 2023 imposes platform duties separate from criminal liability. Ofcom's 2026 illegal-content duties material requires in-scope services to carry out illegal-content risk assessment, put protections in place, and comply with record-keeping/review duties.

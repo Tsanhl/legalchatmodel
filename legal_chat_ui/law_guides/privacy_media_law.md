@@ -28,3 +28,15 @@
 ## Avoid
 - Avoid treating falsity as a complete privacy answer or truth as a complete data-protection answer.
 - Avoid assuming platform regulation replaces publisher/intermediary liability analysis.
+
+## Full OSCOLA Authority Bank
+- Misuse of private information / confidence: *Campbell v MGN Ltd* [2004] UKHL 22, [2004] 2 AC 457; *Douglas v Hello! Ltd* [2007] UKHL 21, [2008] 1 AC 1; *PJS v News Group Newspapers Ltd* [2016] UKSC 26, [2016] AC 1081.
+- Defamation: Defamation Act 2013; *Lachaux v Independent Print Ltd* [2019] UKSC 27, [2020] AC 612.
+- Data overlap: UK GDPR / DPA 2018; *Lloyd v Google LLC* [2021] UKSC 50.
+- Open justice / anonymity: *Scott v Scott* [1913] AC 417; *PJS* [2016] UKSC 26.
+- Harassment: Protection from Harassment Act 1997; *Majrowski v Guy's and St Thomas's NHS Trust* [2006] UKSC 34.
+- Data + journalism exemption: DPA 2018 Sch 2 Part 5 — verify before advising.
+
+## Current-Law Update Checkpoints
+- Separate privacy, defamation, data protection, and harassment routes.
+
